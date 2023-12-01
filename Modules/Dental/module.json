@@ -1,0 +1,11 @@
+{
+    "name": "Dental",
+    "alias": "dental",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Dental\\Providers\\DentalServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,43 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build && vite build --ssr"
+    },
+    "devDependencies": {
+        "@inertiajs/vue3": "^1.0.0",
+        "@tailwindcss/forms": "^0.5.3",
+        "@vitejs/plugin-vue": "^4.0.0",
+        "@vue/server-renderer": "^3.2.31",
+        "autoprefixer": "^10.4.12",
+        "axios": "^1.3.4",
+        "laravel-vite-plugin": "^0.7.2",
+        "postcss": "^8.4.18",
+        "tailwindcss": "^3.2.1",
+        "vite": "^4.5.0",
+        "vue": "^3.3.4"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.4.0",
+        "@fortawesome/fontawesome-svg-core": "^6.2.1",
+        "@fortawesome/free-solid-svg-icons": "^6.2.1",
+        "@fortawesome/vue-fontawesome": "^3.0.0-5",
+        "@popperjs/core": "2.9.1",
+        "@tinymce/tinymce-vue": "^5.1.0",
+        "@websitebeaver/vue-magnifier": "^1.1.0",
+        "ant-design-vue": "^4.0.7",
+        "cropperjs": "^1.5.13",
+        "flowbite": "^1.8.1",
+        "flowbite-vue": "^0.0.17",
+        "jspdf": "^2.5.1",
+        "jspdf-autotable": "^3.5.28",
+        "sweetalert": "^2.1.2",
+        "sweetalert2": "^11.7.3",
+        "table2excel": "^1.0.0",
+        "vue-cropperjs": "^5.0.0",
+        "vue-gates": "^2.1.2",
+        "vue-the-mask": "^0.11.1",
+        "vue3-select2-component": "^0.1.7",
+        "xlsx": "^0.18.5"
+    }
+}
