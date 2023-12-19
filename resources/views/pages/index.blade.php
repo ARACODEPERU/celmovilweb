@@ -506,7 +506,7 @@
                                     <div class="slide-text">
                                         <h1 class="animated fadeInDown">best cycling experience</h1>
                                         <div class="shape animated flipInX">
-                                            <img src="img/slider/shape.png" alt="" />
+                                            <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
                                         </div>
                                         <h4 class="animated fadeIn">become the world leader on the internet for the sport
                                             of cycling.</h4>
@@ -527,7 +527,7 @@
                                     <div class="slide-text">
                                         <h1 class="animated fadeInDown">best cycling experience</h1>
                                         <div class="shape animated flipInX">
-                                            <img src="img/slider/shape.png" alt="" />
+                                            <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
                                         </div>
                                         <h4 class="animated fadeIn">become the world leader on the internet for the sport
                                             of cycling.</h4>
@@ -550,11 +550,11 @@
                     <div class="single-mata">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="img/products/1.jpg" alt="Product" /></a>
+                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/1.jpg') }}" alt="Product" /></a>
                                 <div class="link-icon">
                                     <a href="product-details.html"><i class="fa fa-link"></i></a>
                                     <div class="zoom-gallery">
-                                        <a href="img/products/1.jpg"><img src="img/icon/plus.png" alt="Product" /></a>
+                                        <a href="{{ asset('themes/celmovil/img/products/1.jpg') }}"><img src="img/icon/plus.png" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
