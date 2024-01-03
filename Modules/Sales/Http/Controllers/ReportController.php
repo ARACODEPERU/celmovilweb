@@ -173,24 +173,59 @@ class ReportController extends Controller
     public function PettyCashReport($petty_cash_id)
     {
         $petty_cash = PettyCash::find($petty_cash_id);
-        $sales = Sale::join('local_sales', 'sales.local_id', 'local_sales.id')
+
+        $tickets = Sale::join('local_sales', 'sales.local_id', 'local_sales.id')
             ->join('sale_products', 'sale_products.sale_id', 'sales.id')
             ->join('products', 'products.id', 'sale_products.product_id')
-            ->select('sales.*', 'products.interne', 'products.description as product_description', 'products.image', 'sale_products.product as product')
+            ->select(
+                'sales.*',
+                'products.interne',
+                'products.description as product_description',
+                'products.image',
+                'sale_products.product as product'
+            )
             ->where('sales.petty_cash_id', '=', $petty_cash_id)
             ->where('sales.status', '=', 1)
-            ->orderBy('id', 'desc')->orderBy('sale_products.id', 'desc')
+            ->where('physical', 1)
+            ->orderBy('id', 'desc')
+            ->orderBy('sale_products.id', 'desc')
             ->get();
+
+        $physicals = Sale::join('local_sales', 'sales.local_id', 'local_sales.id')
+            ->join('sale_physical_documents', 'sale_physical_documents.sale_id', 'sales.id')
+            ->select(
+                'sales.*',
+                'local_sales.description',
+                'sale_physical_documents.products'
+            )
+            ->where('sales.petty_cash_id', '=', $petty_cash_id)
+            ->where('sales.status', '=', 1)
+            ->where('physical', 3)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $total = 0;
+
+        foreach ($tickets as $ticket) {
+            $total = $total + $ticket->total;
+        }
+        foreach ($physicals as $physical) {
+            $total = $total + $physical->total;
+        }
+
+
         $expenses = Expense::where('petty_cash_id', $petty_cash_id)->get();
 
         return Inertia::render('Sales::Reports/PettyCashReport', [
             'locals' => LocalSale::all(),
-            'sales' => $sales,
+            'tickets' => $tickets,
+            'physicals' => $physicals,
             'petty_cash' => $petty_cash,
             'date' => $petty_cash->date_opening . $petty_cash->time_opening,
             'start' => $petty_cash->date_closed,
             'end' => $petty_cash->date_opening,
-            'expenses' => $expenses
+            'expenses' => $expenses,
+            'total' => number_format($total, 2, '.', '')
         ]);
     }
 

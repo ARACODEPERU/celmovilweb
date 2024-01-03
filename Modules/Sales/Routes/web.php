@@ -20,6 +20,9 @@ use Modules\Sales\Http\Controllers\ReportController;
 use Modules\Sales\Http\Controllers\SaleController;
 use Modules\Sales\Http\Controllers\SaleDocumentController;
 use Modules\Sales\Http\Controllers\SaleLowCommunicationController;
+use Modules\Sales\Http\Controllers\SalePhysicalDocumentController;
+use Modules\Sales\Http\Controllers\SaleProductBrandController;
+use Modules\Sales\Http\Controllers\SaleProductCategoryController;
 use Modules\Sales\Http\Controllers\SaleSummaryController;
 use Modules\Sales\Http\Controllers\SerieController;
 
@@ -93,6 +96,7 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     ///rutas de docuemntos de ventas boletas y facturas
     Route::get('saledocuments', [SaleDocumentController::class, 'create'])->name('saledocuments_create');
     Route::post('saledocuments/store', [SaleDocumentController::class, 'store'])->name('saledocuments_store');
+    Route::post('saledocuments/store_from_ticket', [SaleDocumentController::class, 'storeFromTicket'])->name('saledocuments_store_from_ticket');
     Route::get('saledocuments/list', [SaleDocumentController::class, 'index'])->name('saledocuments_list');
     Route::get('saledocuments/send/{id}/{type}', [SaleDocumentController::class, 'sendSunatDocument'])->name('saledocuments_send');
     Route::post('saledocuments/update/details', [SaleDocumentController::class, 'updateDetailsAndHeader'])->name('saledocuments_update_details');
@@ -113,4 +117,17 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     Route::post('lowcommunication/store', [SaleLowCommunicationController::class, 'store'])->name('low_communication_store');
     Route::get('lowcommunication/check/{id}/{ticket}', [SaleLowCommunicationController::class, 'check'])->name('low_communication_check');
     Route::get('lowcommunication/destroy/{id}', [SaleLowCommunicationController::class, 'destroy'])->name('low_communication_destroy');
+
+
+    ///////////nuevo cambios en productos
+    Route::post('category/products/store', [SaleProductCategoryController::class, 'store'])->name('sale_category_product_store');
+
+    Route::post('brand/products/store', [SaleProductBrandController::class, 'store'])->name('sale_brand_product_store');
+
+
+    ///////documentos fisico o de otra plataforma
+    Route::get('physicaldocument/list', [SalePhysicalDocumentController::class, 'index'])->name('sale_physical_document_list');
+    Route::get('physicaldocument/create', [SalePhysicalDocumentController::class, 'create'])->name('sale_physical_document_create');
+    Route::post('physicaldocument/store', [SalePhysicalDocumentController::class, 'store'])->name('sale_physical_document_store');
+    Route::delete('physicaldocument/destroy/{id}', [SalePhysicalDocumentController::class, 'destroy'])->name('sale_physical_document_destroy');
 });

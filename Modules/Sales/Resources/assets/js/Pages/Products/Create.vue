@@ -2,9 +2,18 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import CreateProductForm from './Partials/CreateProductForm.vue';
 import { Link } from '@inertiajs/vue3';
+import { faGears } from "@fortawesome/free-solid-svg-icons";
 
 const props = defineProps({
     establishments: {
+        type: Object,
+        default: () => ({}),
+    },
+    categories: {
+        type: Object,
+        default: () => ({}),
+    },
+    brands: {
         type: Object,
         default: () => ({}),
     }
@@ -43,7 +52,11 @@ const props = defineProps({
                     </li>
                 </ol>
             </nav>
-            <CreateProductForm :establishments="props.establishments" />
+            <CreateProductForm 
+                :categories="categories" 
+                :establishments="establishments"
+                :brands="brands"
+            />
         </div>
     </AppLayout>
 </template>

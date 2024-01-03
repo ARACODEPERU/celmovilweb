@@ -10,6 +10,7 @@ import Swal2 from 'sweetalert2';
 import { ref, watch } from 'vue';
 import { Select, Input, Textarea } from 'flowbite-vue'
 import Editor from '@tinymce/tinymce-vue'
+import ImageCompressorjs from '@/Components/ImageCompressorjs.vue';
 
 const props = defineProps({
     venture: {
@@ -38,32 +39,38 @@ const form = useForm({
 });
 
 const createTestimony = () => {
-    form.post(route('cms_testimonies_store'), {
-        forceFormData: true,
-        errorBag: 'createTestimony',
-        preserveScroll: true,
-        onSuccess: () => {
-            Swal2.fire({
-                title: 'Enhorabuena',
-                text: 'Se registró correctamente',
-                icon: 'success',
-            });
-            form.reset()
-        },
-    });
+    
+    try {
+        form.post(route('cms_testimonies_store'), {
+            forceFormData: true,
+            errorBag: 'createTestimony',
+            preserveScroll: true,
+            onSuccess: () => {
+                Swal2.fire({
+                    title: 'Enhorabuena',
+                    text: 'Se registró correctamente',
+                    icon: 'success',
+                });
+                form.reset()
+            },
+        });
+    throw new Error('Este es un error de ejemplo');
+    } catch (error) {
+    // Manejar la excepción
+        console.error('Se produjo un error:', error.message);
+    } finally {
+    // Este bloque opcional se ejecuta siempre, haya o no haya excepción
+        console.log('Este bloque siempre se ejecuta');
+    }
 }
 
-watch(() => form.image, (newValue) => {
-    if (typeof newValue === 'object' && newValue instanceof Blob) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            form.image_pre = e.target.result;
-        };
-        reader.readAsDataURL(newValue);
-    } else {
-        console.log('El nuevo valor no es un objeto Blob válido para FileReader.readAsDataURL');
-    }
-});
+
+
+const handleImageCompressed = (file) => {
+    form.image = file;
+    form.image_pre = file;
+};
+
 
 </script>
 
@@ -116,7 +123,8 @@ watch(() => form.image, (newValue) => {
                         <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">Imagen Actual</figcaption>
                     </figure>
                 </div>
-                <input @input="form.image = $event.target.files[0]" accept=".svg, .png, .jpg, .jpeg, .gif" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
+                <!-- <input @input="form.image = $event.target.files[0]" accept=".svg, .png, .jpg, .jpeg, .gif" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file"> -->
+                <ImageCompressorjs :onImageCompressed="handleImageCompressed" /> 
                 <InputError :message="form.errors.image" class="mt-2" />
             </div>
             <div class="col-span-6">
@@ -124,7 +132,7 @@ watch(() => form.image, (newValue) => {
                     v-model="form.video"
                     :rows="4"
                     label="Iframe del vídeo *"
-                    placeholder="Código del vídeo..."
+                    placeholder="Código del vídeo... por favor verifique que el código no contenga emoticonos(genera error). Borre los emoticonos manualmente"
                 />
                 <InputError :message="form.errors.video" class="mt-2" />
                 <div class="mt-4 w-full" v-html="form.video"></div>

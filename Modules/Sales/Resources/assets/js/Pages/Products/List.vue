@@ -1,7 +1,7 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
     import { useForm, router, Link } from '@inertiajs/vue3';
-    import { faTrashAlt, faPencilAlt, faPrint, faWarehouse, faDollarSign, faTruck } from "@fortawesome/free-solid-svg-icons";
+    import { faGears, faPlus } from "@fortawesome/free-solid-svg-icons";
     import Pagination from '@/Components/Pagination.vue';
     import DialogModal from '@/Components/DialogModal.vue';
     import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -17,7 +17,10 @@
     import VueMagnifier from '@websitebeaver/vue-magnifier'
     import '@websitebeaver/vue-magnifier/styles.css'
     import Swal2 from 'sweetalert2';
-
+    import esES from 'ant-design-vue/es/locale/es_ES';
+    import { 
+      ConfigProvider, Dropdown, Menu, MenuItem, Button, Select, Image
+    } from 'ant-design-vue';
 
     const props = defineProps({
         products: {
@@ -241,13 +244,22 @@
         local_id_origin: 1,
         local_id_destiny: '',
         description:'',
+        presentations: false,
+        quantity: null,
+        stock: null,
         sizes: []
     });
 
     const openModalTrasladoMercaderia = (product) => {
         formReLocate.product_id = product.id;
+        formReLocate.presentations = product.presentations;
         formReLocate.product_full_name = product.interne+' - '+product.description
-        getProductByLocal();
+        if(product.presentations){
+          getProductByLocal();
+        }else{
+          formReLocate.stock = product.stock;
+        }
+        
         openModalTraslado.value = true;
     }
 
@@ -267,9 +279,7 @@
           preserveScroll: true,
           onSuccess: () => {
             swal('Traslado registrados correctamente');
-            formReLocate.sizes = [];
-            formReLocate.description="";
-            formReLocate.local_id_destiny="";
+            formReLocate.reset();
             openModalTraslado.value = false;
           },
       });
@@ -330,6 +340,7 @@
 </script>
 <template>
     <AppLayout title="Productos">
+      <ConfigProvider :locale="esES">
         <div class="max-w-screen-2xl  mx-auto p-4 md:p-6 2xl:p-10">
           <!-- Breadcrumb Start -->
           <nav class="flex px-4 py-3 border border-stroke text-gray-700 mb-4 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
@@ -360,7 +371,7 @@
           <!-- ====== Table Section Start -->
           <div class="flex flex-col gap-10">
             <!-- ====== Table One Start -->
-            <div class="rounded-sm border border-stroke bg-white pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+            <div class="rounded-sm border border-stroke bg-white pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark">
               <div class="border-b border-gray-200 dark:border-gray-700">
                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                   <li class="mr-2">
@@ -413,72 +424,74 @@
                 <table class="w-full table-auto">
                   <thead class="border-b border-stroke">
                     <tr class="bg-gray-50 text-left dark:bg-meta-4">
-                      <th class="py-4 px-4 font-medium text-black dark:text-white xl:pl-11">#</th>
-                      <th class="py-4 px-4 text-center  font-medium text-black dark:text-white">
+                      <th class="w-20 py-2 px-2 text-sm font-medium text-black dark:text-white xl:pl-11">
                           Acción
                       </th>
-                      <th v-if="form.displayProduct" class="py-4 px-4 text-center font-medium text-black dark:text-white">
+                      <th v-if="form.displayProduct" class="py-2 px-2 text-sm font-medium text-black dark:text-white">
                           Imagen
                       </th>
-                      <th class="py-4 px-4 font-medium text-black dark:text-white">
+                      <th class="py-2 px-2 text-sm font-medium text-black dark:text-white">
                           Código
                       </th>
-                      <th class="py-4 px-4 font-medium text-black dark:text-white">
+                      <th class="py-2 px-2 text-sm font-medium text-black dark:text-white">
                           Descripción
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="(product, index) in products.data" :key="product.id" >
-                      <td class="border-b border-stroke py-4 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                          {{ index + 1 }}
-                      </td>
-                        <td class="text-center border-b border-stroke py-4 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                          <div class="flex items-center space-x-3.5">
-                              <Link v-permission="'productos_editar'" title="Editar" :href="route('products.edit',product.id)" class="mr-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                  <font-awesome-icon :icon="faPencilAlt" />
-                              </Link>
-                              <template v-if="form.displayProduct" >
-                                <button title="Mover Mercadería/Calzados" type="button" class="mr-1 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                                @click="openModalTrasladoMercaderia(product)"
-                                >
-                                  <font-awesome-icon :icon="faTruck" />
+                        <td class="text-center text-sm border-b border-stroke py-2 px-2 dark:border-strokedark">
+                          
+                            <Dropdown :placement="'bottomLeft'" arrow>
+                                <button class="border py-1.5 px-2 dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm" type="button" @click="toggle">
+                                    <font-awesome-icon :icon="faGears" />
                                 </button>
-                                <button type="button" class="mr-1 text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                                    <font-awesome-icon :icon="faPrint" />
-                                </button>
-                                <button
-                                  @click="openModalPrices(product)"
-                                  title="precios por tienda"
-                                  type="button"
-                                  class="mr-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    <font-awesome-icon :icon="faDollarSign" />
-                                </button>
-                                <button title="ver Stock" type="button" class="mr-1 text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-center inline-flex items-center text-sm p-2.5 mr-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                                  @click="showDetailProduct(product)"
-                                >
-                                  <font-awesome-icon :icon="faWarehouse" />
-                                </button>
-                              </template> 
-                              <button type="button" class="mr-1 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                                @click="destroy(product.id)"
-                                >
-                                <font-awesome-icon :icon="faTrashAlt" />
-                            </button>
-                          </div>
+                              <template #overlay>
+                                <Menu>
+                                  <MenuItem>
+                                    <Link v-permission="'productos_editar'" :href="route('products.edit',product.id)" class="text-left block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
+                                      Editar
+                                    </Link>
+                                  </MenuItem>
+                                  <MenuItem>
+                                    <Button type="Link" @click="openModalTrasladoMercaderia(product)">
+                                      Mover producto
+                                    </Button>
+                                  </MenuItem>
+                                  <MenuItem>
+                                    <Button type="Link">
+                                        Imprimir Tiket
+                                    </Button>
+                                  </MenuItem>
+                                  <MenuItem>
+                                    <Button @click="openModalPrices(product)" type="Link" >
+                                      Precios por Tienda
+                                    </Button>
+                                  </MenuItem>
+                                  <MenuItem v-if="form.displayProduct">
+                                    <Button type="Link"  @click="showDetailProduct(product)">
+                                      Ver Stock
+                                    </Button>
+                                  </MenuItem>
+                                  <MenuItem>
+                                    <Button type="Link" @click="destroy(product.id)" class="text-red-700" >
+                                        Eliminar
+                                    </Button>
+                                  </MenuItem>
+                                </Menu>
+                              </template>
+                            </Dropdown>
+                          
                         </td>
                         <td v-if="form.displayProduct" class="w-32 border-b border-stroke py-4 px-4 dark:border-strokedark">
-                          <VueMagnifier
-                            :src="product.image" width="500"
-                            :zoomImgSrc="product.image"
-                            :mgWidth="210"
-                            :mgHeight="210"
+                          <Image
+                            :src="product.image"
                             />
                         </td>
-                        <td class="border-b border-stroke py-4 px-4 dark:border-strokedark">
+                        <td class="text-sm border-b border-stroke py-2 px-2 dark:border-strokedark">
                             {{ product.interne }}
                         </td>
-                        <td class="border-b border-stroke py-4 px-4 dark:border-strokedark">
+                        <td class="text-sm border-b border-stroke py-2 px-2 dark:border-strokedark">
                             {{ product.description }}
                         </td>
                     </tr>
@@ -512,13 +525,13 @@
                         <th :colspan="formDetails.presentations ? 0 : 2" class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
                           Cantidad
                         </th>
-                        <th class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
+                        <th v-if="formDetails.sale_prices.high" class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
                           Precio V. Normal
                         </th>
-                        <th class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
+                        <th v-if="formDetails.sale_prices.medium" class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
                           Precio V. Medio
                         </th>
-                        <th class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
+                        <th v-if="formDetails.sale_prices.under" class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
                           Precio V. Minimo
                         </th>
                         <th class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
@@ -534,13 +547,13 @@
                           <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
                             {{ size.quantity }}
                           </td>
-                          <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.high" class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
                             S/. {{ formDetails.sale_prices.high }}
                           </td>
-                          <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.medium" class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
                             S/. {{ formDetails.sale_prices.medium ? formDetails.sale_prices.medium : 0 }}
                           </td>
-                          <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.under" class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
                             S/. {{ formDetails.sale_prices.under ? formDetails.sale_prices.under : 0 }}
                           </td>
                           <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
@@ -553,13 +566,13 @@
                           <td :colspan="formDetails.presentations ? 0 : 2" class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
                             {{ formDetails.stock }}
                           </td>
-                          <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.high" class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
                             S/. {{ formDetails.sale_prices.high ? formDetails.sale_prices.high : 0 }}
                           </td>
-                          <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.medium" class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
                             S/. {{ formDetails.sale_prices.medium ? formDetails.sale_prices.medium : 0 }}
                           </td>
-                          <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.under" class="text-right text-sm text-white font-light px-6 py-4 bg-blue-600 dark:bg-gray-800">
                             S/. {{ formDetails.sale_prices.under ? formDetails.sale_prices.under : 0 }}
                           </td>
                           <td class="text-right text-sm text-white font-light px-6 py-4 bg-blue-700 dark:bg-gray-800">
@@ -575,13 +588,13 @@
                           <td class="text-right text-sm text-white font-light bg-blue-700 px-6 py-4 dark:bg-gray-800">
                             {{ formDetails.quantity_total }}
                           </td>
-                          <td class="text-right text-sm text-white font-light bg-blue-600 px-6 py-4 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.high" class="text-right text-sm text-white font-light bg-blue-600 px-6 py-4 dark:bg-gray-800">
                             S/. {{ formDetails.quantity_total*formDetails.sale_prices.high }}
                           </td>
-                          <td class="text-right text-sm text-white font-light bg-blue-700 px-6 py-4 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.medium" class="text-right text-sm text-white font-light bg-blue-700 px-6 py-4 dark:bg-gray-800">
                             S/. {{ formDetails.quantity_total*formDetails.sale_prices.medium }}
                           </td>
-                          <td class="text-right text-sm text-white font-light bg-blue-600 px-6 py-4 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.under" class="text-right text-sm text-white font-light bg-blue-600 px-6 py-4 dark:bg-gray-800">
                             S/. {{ formDetails.quantity_total*formDetails.sale_prices.under }}
                           </td>
                           <td class="text-right text-sm text-white font-light bg-blue-700 px-6 py-4 dark:bg-gray-800">
@@ -593,13 +606,13 @@
                           <td colspan="2" class="text-right px-6 py-4 text-sm bg-green-700 font-medium text-white dark:bg-gray-800">
                             Ganancias Esperadas
                           </td>
-                          <td class="text-right text-sm text-white font-light bg-green-700 px-6 py-4 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.high" class="text-right text-sm text-white font-light bg-green-700 px-6 py-4 dark:bg-gray-800">
                             S/. {{ formDetails.quantity_total*formDetails.sale_prices.high-(formDetails.quantity_total*formDetails.purchase_prices) }}
                           </td>
-                          <td class="text-right text-sm text-white font-light bg-green-700 px-6 py-4 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.medium" class="text-right text-sm text-white font-light bg-green-700 px-6 py-4 dark:bg-gray-800">
                             S/. {{ formDetails.quantity_total*formDetails.sale_prices.medium-(formDetails.quantity_total*formDetails.purchase_prices) }}
                           </td>
-                          <td class="text-right text-sm text-white font-light bg-green-700 px-6 py-4 dark:bg-gray-800">
+                          <td v-if="formDetails.sale_prices.under" class="text-right text-sm text-white font-light bg-green-700 px-6 py-4 dark:bg-gray-800">
                             S/. {{ formDetails.quantity_total*formDetails.sale_prices.under-(formDetails.quantity_total*formDetails.purchase_prices) }}
                           </td>
                           <td class="text-sm text-white font-light bg-green-700 px-6 py-4 dark:bg-gray-800">
@@ -772,7 +785,7 @@
                   <div class="col-span-3 sm:col-span-1">
                     <InputLabel for="stablishment" value="Establecimiento Origen" />
                     <select v-model="formReLocate.local_id_origin"  v-on:change="getProductByLocal()" id="stablishment" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <template v-for="(establishment, index) in props.establishments" :key="index">
+                      <template v-for="(establishment, kk) in props.establishments" :key="kk">
                           <option :value="establishment.id">{{ establishment.description }}</option>
                       </template>
                     </select>
@@ -782,7 +795,7 @@
                   <div class="col-span-3 sm:col-span-1">
                     <InputLabel for="stablishment" value="Establecimiento Destino" />
                     <select v-model="formReLocate.local_id_destiny" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <template v-for="(establishment, index) in props.establishments" :key="index">
+                      <template v-for="(establishment, gg) in props.establishments" :key="gg">
                           <option :value="establishment.id">{{ establishment.description }}</option>
                       </template>
                     </select>
@@ -799,68 +812,88 @@
                     />
                     <InputError :message="formReLocate.errors.description" class="mt-2" />
                   </div>
-                  <div class="col-span-3">
+                  <div v-if="formReLocate.presentations" class="col-span-3">
                       <label>
                           Tallas Disponibles en el local de origen
                       </label>
                       <div v-for="(item, index) in formReLocate.sizes" v-bind:key="index">
                           <table style="width: 100%;">
                               <tr>
-                                  <td style="padding: 4px;">
-                                      <div class="col-span-3 sm:col-span-2">
-                                          <InputLabel value="Talla" />
-                                          <TextInput
-                                              readonly
-                                              v-model="item.size"
-                                              type="text"
-                                              class="bg-gray-200 block w-full mt-1"
-                                              autofocus
-                                          />
+                                  <td style="padding-right: 4px;">
+                                    <InputLabel value="Talla" />
+                                    <TextInput
+                                    disabled
+                                        v-model="item.size"
+                                        type="text"
+                                        class="bg-gray-200 block w-full mt-1"
+                                        
+                                    />
 
-                                      </div>
                                   </td>
-                                  <td style="padding: 4px;">
-                                      <div class="col-span-3 sm:col-span-2">
-                                          <InputLabel value="Cantidad" />
-                                          <TextInput
+                                  <td style="padding-right: 4px;padding-left: 4px;">
+                                    <InputLabel value="Cantidad" />
+                                    <TextInput
 
-                                            readonly
-                                              v-model="item.quantity"
-                                              type="number"
-                                              class="bg-gray-200 block w-full mt-1"
-                                              autofocus
-                                          />
-
-                                      </div>
+                                      disabled
+                                      v-model="item.quantity"
+                                      type="number"
+                                      class="bg-gray-200 block w-full mt-1"
+                                        
+                                    />
                                   </td>
-                                  <td style="padding: 4px;" valign="bottom">
-                                    <div class="col-span-3 sm:col-span-2">
-                                          <InputLabel value="Cantidad a trasladar" />
-                                          <TextInput
-                                          v-model="item.quantity_relocate"
-                                              type="text"
-                                              class="block w-full mt-1"
-                                              autofocus/>
-                                              <InputError :message="formReLocate[`sizes.${index}.quantity_relocate`]" class="mt-2" />
-                                      </div>
+                                  <td style="padding-left: 4px;" valign="bottom">
+                                      <InputLabel value="Cantidad a trasladar" />
+                                      <TextInput
+                                      v-model="item.quantity_relocate"
+                                          type="text"
+                                          class="block w-full mt-1"
+                                          autofocus/>
+                                      <InputError :message="formReLocate.errors[`sizes.${index}.quantity_relocate`]" class="mt-2" />
                                   </td>
                               </tr>
                           </table>
                       </div>
                   </div>
+                  
+                  <div v-else class="col-span-3">
+                    <table style="width: 100%;">
+                      <tr>
+                        <td style="padding-right: 4px;" valign="bottom">
+                          <InputLabel value="Stock" />
+                          <TextInput
+                            v-model="formReLocate.stock"
+                            type="text"
+                            class="block w-full mt-1"
+                            disabled
+                            />
+                            <InputError :message="formReLocate.errors.quantity" class="mt-2" />
+                        </td>
+                        <td style="padding-left: 4px;" valign="bottom">
+                          <InputLabel value="Cantidad a trasladar" />
+                          <TextInput
+                            v-model="formReLocate.quantity"
+                            type="text"
+                            class="block w-full mt-1"
+                            autofocus/>
+                            <InputError :message="formReLocate.errors.quantity" class="mt-2" />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
             </template>
 
             <template #footer>
-                
-
                 <DangerButton
-                    
-                    :class="{ 'opacity-25': formInput.processing }"
-                    :disabled="formInput.processing"
+                    :class="{ 'opacity-25': formReLocate.processing }"
+                    :disabled="formReLocate.processing"
                     @click="saveRelocate()"
                 >
-                    Guardar
+                  <svg v-show="formReLocate.processing" aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
+                  </svg>
+                  Guardar
                 </DangerButton>
                 <SecondaryButton class="ml-3" @click="closeModalTrasladoMercaderia()">
                     Cancel
@@ -959,5 +992,6 @@
             </DangerButton>
           </template>
         </ModalSmall>
+      </ConfigProvider>
     </AppLayout>
 </template>

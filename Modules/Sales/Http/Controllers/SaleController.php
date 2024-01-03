@@ -38,21 +38,8 @@ class SaleController extends Controller
 
         $search = request()->input('search');
 
-        if (request()->query('sort')) {
-            $attribute = request()->query('sort');
-            $sort_order = 'ASC';
-            if (strncmp($attribute, '-', 1) === 0) {
-                $sort_order = 'DESC';
-                $attribute = substr($attribute, 1);
-            }
-            $sales->orderBy($attribute, $sort_order);
-        } else {
-            $sales->latest();
-        }
-
-        $current_date = Carbon::now()->format('Y-m-d');
-
         $isAdmin = Auth::user()->hasRole('admin');
+
         $sales = $sales->join('people', 'client_id', 'people.id')
             ->join('sale_documents', 'sale_documents.sale_id', 'sales.id')
             ->join('series', 'sale_documents.serie_id', 'series.id')
@@ -63,21 +50,23 @@ class SaleController extends Controller
                 'advancement',
                 'total_discount',
                 'payments',
-                'sales.created_at',
+                DB::raw("DATE_FORMAT(sales.created_at, '%Y-%m-%d') AS fecha"),
                 'sales.local_id',
                 'sales.status',
                 'series.description AS serie',
-                'sale_documents.number'
+                'sale_documents.number',
+                DB::raw("(SELECT CONCAT(invoice_serie,'-',LPAD(invoice_correlative, 8, '0')) FROM sale_documents WHERE sale_documents.sale_id=sales.id AND invoice_serie IS NOT NULL) AS name_document"),
+                DB::raw("(SELECT COUNT(sale_id) FROM sale_documents WHERE sale_documents.sale_id=sales.id) AS have_document")
             )
             ->where('series.document_type_id', 5)
-            //->whereDate('sales.created_at', '=', $current_date)
             ->when(!$isAdmin, function ($q) use ($search) {
                 return $q->where('sales.user_id', Auth::id());
             })
             ->when($search, function ($q) use ($search) {
-                return $q->whereRaw('CONCAT("series.description","-",sale_documents.number) = ?', [$search])
+                return $q->whereRaw('CONCAT(series.description,"-",sale_documents.number) = ?', [$search])
                     ->orWhere('people.full_name', 'like', '%' . $search . '%');
             })
+            ->orderBy('sales.created_at', 'DESC')
             ->paginate(10)
             ->onEachSide(2);
 
@@ -149,6 +138,7 @@ class SaleController extends Controller
                 $serie_id = $serie->id;
 
                 $sale = Sale::create([
+                    'sale_date' => Carbon::now()->format('Y-m-d'),
                     'user_id' => Auth::id(),
                     'client_id' => $request->get('client')['id'],
                     'local_id' => $local_id,
@@ -156,7 +146,8 @@ class SaleController extends Controller
                     'advancement' => $request->get('total'),
                     'total_discount' => 0,
                     'payments' => json_encode($request->get('payments')),
-                    'petty_cash_id' => $petty_cash->id
+                    'petty_cash_id' => $petty_cash->id,
+                    'physical' => 1
                 ]);
 
                 $document = SaleDocument::create([
@@ -173,7 +164,9 @@ class SaleController extends Controller
                     SaleProduct::create([
                         'sale_id' => $sale->id,
                         'product_id' => $produc['id'],
-                        'product' => json_encode($produc),
+                        'product' => json_encode(Product::find($produc['id'])),
+                        'saleProduct' => json_encode($produc),
+                        'size'      => $produc['size'],
                         'price' => $produc['price'],
                         'discount' => $produc['discount'],
                         'quantity' => $produc['quantity'],
@@ -230,11 +223,6 @@ class SaleController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => $e]);
         }
-        //return response()->json(['message' => 'Success']);
-
-        // return redirect()->route('sales.index')
-        //     ->with('message', __('Venta creada con éxito'));
-
     }
 
     public function destroy(Sale $sale)

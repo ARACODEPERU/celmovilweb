@@ -16,6 +16,8 @@ class SalesDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call([
+            PermissionsTableSeeder::class
+        ]);
     }
 }

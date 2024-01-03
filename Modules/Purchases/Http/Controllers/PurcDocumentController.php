@@ -182,6 +182,7 @@ class PurcDocumentController extends Controller
                     if ($produc['id']) {
                         $product_id = $produc['id'];
                         $interne = $produc['interne'];
+                        Product::find($product_id)->increment('stock', $produc['quantity']);
                     } else {
                         $length = 9; // Longitud del número aleatorio
                         $randomNumber = random_int(0, 999999999); // Genera un número aleatorio entre 0 y 999999999
@@ -196,7 +197,7 @@ class PurcDocumentController extends Controller
                             'interne'                       => $randomNumberPadded,
                             'description'                   => $produc['description'],
                             'image'                         => $path,
-                            'purchase_prices'               => 0,
+                            'purchase_prices'               => $produc['unit_price'],
                             'sale_prices'                   => json_encode(array('high' => $produc['unit_price'], 'under' => null, 'medium' => null)),
                             'stock_min'                     => 1,
                             'stock'                         => $produc['quantity'],
@@ -308,7 +309,8 @@ class PurcDocumentController extends Controller
                         'total_charge'              => 0,
                         'total_discount'            => $mto_discount ?? 0,
                         'total'                     => round($total_item, 2),
-                        'discounts'                 => json_encode($array_discounts)
+                        'discounts'                 => json_encode($array_discounts),
+                        'size'                      => $produc['size'] ?? null
                     ]);
 
                     if ($produc['is_product']) {
@@ -326,13 +328,15 @@ class PurcDocumentController extends Controller
                         if ($product->presentations) {
                             KardexSize::create([
                                 'kardex_id' => $k->id,
-                                'product_id' => $product_id,
-                                'local_id' => $local_id,
+                                'product_id' => $produc['id'],
+                                'local_id'  => $local_id,
                                 'size'      => $produc['size'],
-                                'quantity'  => ($produc['quantity'])
+                                'quantity'  => $produc['quantity']
                             ]);
+
                             $tallas = $product->sizes;
                             $n_tallas = [];
+
                             foreach (json_decode($tallas, true) as $k => $talla) {
                                 if ($talla['size'] == $produc['size']) {
                                     $n_tallas[$k] = array(
@@ -346,11 +350,11 @@ class PurcDocumentController extends Controller
                                     );
                                 }
                             }
+
                             $product->update([
                                 'sizes' => json_encode($n_tallas)
                             ]);
                         }
-                        Product::find($product_id)->decrement('stock', $produc['quantity']);
                     }
 
 
@@ -425,13 +429,81 @@ class PurcDocumentController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
+    public function anular($id)
     {
-        //
+        try {
+            $res = DB::transaction(function () use ($id) {
+
+                $purchase = PurcDocument::find($id);
+                $purchase->update([
+                    'status' => 'A'
+                ]);
+
+                $products = PurcDocumentItems::where('purchase_id', $id)->get();
+
+                foreach ($products as $produc) {
+
+                    $pro = Product::find($produc->product_id);
+                    $t = $pro->stock;
+
+                    if ($pro->is_product) {
+                        $k = Kardex::create([
+                            'date_of_issue' => Carbon::now()->format('Y-m-d'),
+                            'motion' => 'purchase',
+                            'product_id' => $produc->product_id,
+                            'local_id' => $purchase->local_id,
+                            'quantity' => (-$produc->quantity),
+                            'document_id' => $purchase->id,
+                            'document_entity' => PurcDocument::class,
+                            'description' => 'Compra Anulada'
+                        ]);
+
+                        if ($pro->presentations) {
+                            KardexSize::create([
+                                'kardex_id' => $k->id,
+                                'product_id' => $produc->product_id,
+                                'local_id' => $purchase->local_id,
+                                'size'      => $produc['size'],
+                                'quantity'  => (-$produc['quantity'])
+                            ]);
+
+                            $tallas = $pro->sizes;
+
+                            $n_tallas = [];
+                            foreach (json_decode($tallas, true) as $k => $talla) {
+                                if ($talla['size'] == $produc['size']) {
+                                    $n_tallas[$k] = array(
+                                        'size' => $talla['size'],
+                                        'quantity' => ($talla['quantity'] - $produc['quantity'])
+                                    );
+                                } else {
+                                    $n_tallas[$k] = array(
+                                        'size' => $talla['size'],
+                                        'quantity' => $talla['quantity']
+                                    );
+                                }
+                            }
+                        }
+                    }
+                    $pro->update([
+                        'stock' => $t - $produc->quantity,
+                        'sizes' => json_encode($n_tallas)
+                    ]);
+                }
+
+
+                return $purchase;
+            });
+
+            return response()->json([
+                'success' => true,
+                'message' => 'El Docuemtno fue anulado'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 }

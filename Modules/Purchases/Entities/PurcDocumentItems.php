@@ -32,7 +32,8 @@ class PurcDocumentItems extends Model
         'total_charge',
         'total_discount',
         'total',
-        'discounts'
+        'discounts',
+        'size'
     ];
 
     protected static function newFactory()

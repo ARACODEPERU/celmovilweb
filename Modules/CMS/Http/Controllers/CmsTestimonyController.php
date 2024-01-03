@@ -11,17 +11,21 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Modules\CMS\Entities\CmsTestimony;
 use Modules\Onlineshop\Entities\OnliItem;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class CmsTestimonyController extends Controller
 {
     protected $P000009;
     protected $reg;
+    protected $P000010; ///token Tiny
 
     public function __construct()
     {
         $vallue = Parameter::where('parameter_code', 'P000009')->value('value_default');
         $this->P000009 = $vallue ?? 1;
         $this->reg = env('RECORDS_PAGE_TABLE');
+        $this->P000010  = Parameter::where('parameter_code', 'P000010')->value('value_default');
     }
 
     public function index()
@@ -71,7 +75,7 @@ class CmsTestimonyController extends Controller
         return Inertia::render('CMS::Testimonies/Create', [
             'venture'  => $this->P000009,
             'items' => $items,
-            'tiny_api_key' => env('TINY_API_KEY')
+            'tiny_api_key' => $this->P000010
         ]);
     }
 
@@ -80,6 +84,7 @@ class CmsTestimonyController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate(
             $request,
             [
@@ -99,33 +104,45 @@ class CmsTestimonyController extends Controller
             ]
         );
 
-        $destination = 'uploads/cms/testimonies';
-        $file = $request->file('image');
-        $path = null;
-
-        if ($file) {
-            $original_name = strtolower(trim($file->getClientOriginalName()));
-            $original_name = str_replace(" ", "_", $original_name);
-            $extension = $file->getClientOriginalExtension();
-            $file_name = date('YmdHis') . '.' . $extension;
-            $img = $request->file('image')->storeAs(
-                $destination,
-                $file_name,
-                'public'
-            );
-
-            $path  = asset('storage/' . $img);
-        }
-
-        CmsTestimony::create([
+        $testimony = CmsTestimony::create([
             'item_id'           => $request->get('item_id'),
             'entitie'           => OnliItem::class,
             'title'             => $request->get('title'),
             'description'       => $request->get('description'),
-            'image'             => $path,
             'video'             => $request->get('video'),
             'status'            => $request->get('status') ? true : false
         ]);
+
+        $destination = 'uploads/cms/testimonies';
+        $base64Image = $request->get('image');
+        $path = null;
+
+        if ($base64Image) {
+            $fileData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
+            if (PHP_OS == 'WINNT') {
+                $tempFile = tempnam(sys_get_temp_dir(), 'img');
+            } else {
+                $tempFile = tempnam('/var/www/html', 'img');
+            }
+            file_put_contents($tempFile, $fileData);
+            $mime = mime_content_type($tempFile);
+
+            $name = uniqid('', true) . '.' . str_replace('image/', '', $mime);
+            $file = new UploadedFile(realpath($tempFile), $name, $mime, null, true);
+
+
+            if ($file) {
+                // $original_name = strtolower(trim($file->getClientOriginalName()));
+                // $file_name = time() . rand(100, 999) . $original_name;
+                $original_name = strtolower(trim($file->getClientOriginalName()));
+                $original_name = str_replace(" ", "_", $original_name);
+                $extension = $file->getClientOriginalExtension();
+                $file_name = $testimony->id . '.' . $extension;
+                $path = Storage::disk('public')->putFileAs($destination, $file, $file_name);
+                $testimony->image = $path;
+                $testimony->save();
+            }
+        }
     }
 
     public function edit($id)
@@ -145,7 +162,7 @@ class CmsTestimonyController extends Controller
             'venture'  => $this->P000009,
             'testimony' => CmsTestimony::find($id),
             'items' => $items,
-            'tiny_api_key' => env('TINY_API_KEY')
+            'tiny_api_key' => $this->P000010
         ]);
     }
 
@@ -180,20 +197,30 @@ class CmsTestimonyController extends Controller
         $testimony->status = $request->get('status') ? true : false;
 
         $destination = 'uploads/cms/testimonies';
-        $file = $request->file('image');
+        $base64Image = $request->get('image');
+        $path = null;
 
-        if ($file) {
-            $original_name = strtolower(trim($file->getClientOriginalName()));
-            $original_name = str_replace(" ", "_", $original_name);
-            $extension = $file->getClientOriginalExtension();
-            $file_name = date('YmdHis') . '.' . $extension;
-            $img = $request->file('image')->storeAs(
-                $destination,
-                $file_name,
-                'public'
-            );
+        if ($base64Image) {
+            $fileData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
+            if (PHP_OS == 'WINNT') {
+                $tempFile = tempnam(sys_get_temp_dir(), 'img');
+            } else {
+                $tempFile = tempnam('/var/www/html', 'img');
+            }
+            file_put_contents($tempFile, $fileData);
+            $mime = mime_content_type($tempFile);
 
-            $testimony->image = asset('storage/' . $img);
+            $name = uniqid('', true) . '.' . str_replace('image/', '', $mime);
+            $file = new UploadedFile(realpath($tempFile), $name, $mime, null, true);
+
+            if ($file) {
+                $original_name = strtolower(trim($file->getClientOriginalName()));
+                $original_name = str_replace(" ", "_", $original_name);
+                $extension = $file->getClientOriginalExtension();
+                $file_name = $testimony->id . '.' . $extension;
+                $path = Storage::disk('public')->putFileAs($destination, $file, $file_name);
+                $testimony->image = $path;
+            }
         }
 
         $testimony->save();
