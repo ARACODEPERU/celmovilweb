@@ -9,8 +9,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/favicon.ico') }}">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/celmovil_favicon.ico') }}">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
     <!-- style css -->

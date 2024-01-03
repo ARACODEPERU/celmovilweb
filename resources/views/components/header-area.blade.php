@@ -28,7 +28,7 @@
                                 </li>
                                 <li>
                                     <i class="fa fa-user"></i>
-                                    <a href="my-account.html">Account</a>
+                                    <a href="my-account.html">Cuenta</a>
                                 </li>
                             </ul>
                         </div>
@@ -41,13 +41,14 @@
                 <div class="row">
                     <div class="col-xs-12 header-bottom-bg">
                         <div class="logo floatleft">
-                            <a href="index.html">
-                                <img src="{{ asset('themes/celmovil/img/logo.png') }}" alt="Rideo" />
+                            <a href="{{ route('web_inicio') }}">
+                                <img style="width: 139px;" src="{{ asset('themes/celmovil/img/celmovil_logo_negativo.png') }}" alt="celmovil_logo" />
                             </a>
                         </div>
                         <div class="mainmenu text-center floatleft">
                             <nav>
                                 <ul>
+                                    <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
                                     <!--
                                     <li>
                                         <a href="index.html">Home</a>
@@ -281,6 +282,8 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul>
+                                        <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                        <!--
                                         <li><a href="index.html">Home</a>
                                             <ul>
                                                 <li>
@@ -440,6 +443,7 @@
                                         <li>
                                             <a href="contact.html">contact</a>
                                         </li>
+                                        -->
                                     </ul>
                                 </nav>
                             </div>
