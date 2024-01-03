@@ -1,6 +1,6 @@
 @extends('layouts.celmovil')
 @section('content')
-    <!-- Preloader Start -->
+    <!-- Preloader Start
     <div class="preloader">
         <div class="loading-center">
             <div class="loading-center-absolute">
@@ -9,7 +9,7 @@
                 <div class="object object_three"></div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Preloader End -->
 
     <!-- header section start -->
@@ -56,13 +56,15 @@
                     <div class="col-xs-12 header-bottom-bg">
                         <div class="logo floatleft">
                             <a href="index.html">
-                                <img src="img/logo.png" alt="Rideo" />
+                                <img src="{{ asset('themes/celmovil/img/logo.png') }}" alt="Rideo" />
                             </a>
                         </div>
                         <div class="mainmenu text-center floatleft">
                             <nav>
                                 <ul>
-                                    <li><a href="index.html">Home</a>
+                                    <!--
+                                    <li>
+                                        <a href="index.html">Home</a>
                                         <ul>
                                             <li>
                                                 <a href="index.html">Home Version One</a>
@@ -284,6 +286,7 @@
                                     <li>
                                         <a href="contact.html">contact</a>
                                     </li>
+                                -->
                                 </ul>
                             </nav>
                         </div>
@@ -461,7 +464,7 @@
                                 <li><a href="#"><i class="pe-7s-shopbag"></i> <span>2</span></a>
                                     <ul class="cart-menu">
                                         <li>
-                                            <a href="cart.html"><img src="img/cart/1.png" alt="" /></a>
+                                            <a href="cart.html"><img src="{{ asset('themes/celmovil/img/cart/1.png') }}" alt="" /></a>
                                             <div class="cart-menu-title">
                                                 <a href="cart.html">
                                                     <h5>Mount POW C058 FG </h5>
@@ -471,7 +474,7 @@
                                             <span class="cancel-item"><i class="fa fa-close"></i></span>
                                         </li>
                                         <li>
-                                            <a href="cart.html"><img src="img/cart/1.png" alt="" /></a>
+                                            <a href="cart.html"><img src="{{ asset('themes/celmovil/img/cart/1.png') }}" alt="" /></a>
                                             <div class="cart-menu-title">
                                                 <a href="cart.html">
                                                     <h5>Mount POW C058 FG </h5>
@@ -497,7 +500,7 @@
     <!-- slider section start -->
     <div class="slider-area slider-one clearfix">
         <div class="slider" id="mainslider">
-            <div data-src="img/slider/1.jpg">
+            <div data-src="{{ asset('themes/celmovil/img/slider/1.jpg') }}">
                 <div class="d-table">
                     <div class="d-tablecell">
                         <div class="container">
@@ -554,7 +557,7 @@
                                 <div class="link-icon">
                                     <a href="product-details.html"><i class="fa fa-link"></i></a>
                                     <div class="zoom-gallery">
-                                        <a href="{{ asset('themes/celmovil/img/products/1.jpg') }}"><img src="img/icon/plus.png" alt="Product" /></a>
+                                        <a href=""><img src="{{ asset('themes/celmovil/img/icon/plus.png') }}" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
