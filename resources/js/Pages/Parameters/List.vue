@@ -1,14 +1,10 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
-    import { useForm } from '@inertiajs/vue3';
-    import { faTimes, faCopy, faPrint, faWarehouse } from "@fortawesome/free-solid-svg-icons";
+    import { faGears } from "@fortawesome/free-solid-svg-icons";
     import Pagination from '@/Components/Pagination.vue';
     import Keypad from '@/Components/Keypad.vue';
-    import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import { ref } from 'vue';
-    import ModalSmall from '@/Components/ModalSmall.vue';
-    import swal from "sweetalert";
-    import { Link } from '@inertiajs/vue3';
+    import { Link, router, useForm } from '@inertiajs/vue3';
+    import { Dropdown, Menu, MenuItem, Input, Select, Textarea, message } from 'ant-design-vue';
 
     const props = defineProps({
         parameters: {
@@ -23,10 +19,16 @@
     const form = useForm({
         search: props.filters.search,
     });
+
+    const updateDefaultValue = (id, value) => {
+        axios.get(route('parameters_update_default_value',[id,value])).then(()=>{
+            message.success('Se actualizó correctamente');
+        });
+    }
 </script>
 
 <template>
-    <AppLayout title="Ventas">
+    <AppLayout title="Parametros">
         <div class="max-w-screen-2xl  mx-auto p-4 md:p-6 2xl:p-10">
             <!-- Breadcrumb Start -->
             <nav class="flex px-4 py-3 border border-stroke text-gray-700 mb-4 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
@@ -55,8 +57,8 @@
             <!-- ====== Table Section Start -->
             <div class="flex flex-col gap-10">
                 <!-- ====== Table One Start -->
-                <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-                    <div class="w-full p-4 border-b border-gray-200 bg-gray-50 rounded-t-xl dark:border-gray-600 dark:bg-gray-700">
+                <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="w-full p-4 border-b border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
                         <div class="grid grid-cols-3">
                             <div class="col-span-3 sm:col-span-1">
                                 <form @submit.prevent="form.get(route('parameters'))">
@@ -72,7 +74,6 @@
                             <div class="col-span-3 sm:col-span-2">
                                 <Keypad>
                                     <template #botones>
-                                        
                                         <Link :href="route('parameters_create')" class="inline-block px-6 py-2.5 bg-blue-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Nuevo</Link>
                                     </template>
                                 </Keypad>
@@ -98,21 +99,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(parameter, index) in parameters.data" :key="parameter.id" >
+                                <tr v-for="(parameter, index) in parameters" :key="parameter.id" >
                                     <td class="text-center border-b border-stroke py-4 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                                        <button @click="printTicket(parameter.id)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            <font-awesome-icon :icon="faPrint" />
-                                        </button>
-                                        <button v-role="'admin'" type="button" class="px-3 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                                            @click="deleteSale(parameter.id)"
-                                            >
-                                            <font-awesome-icon :icon="faTimes" />
-                                        </button>
-                                        <Link v-role="'admin'" type="button" class="px-2.5 text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-                                            :href="route('saledocuments_create_from_ticket',parameter.id)"
-                                            >
-                                            <font-awesome-icon :icon="faCopy" />
-                                        </Link>
+                                        <Dropdown :placement="'bottomLeft'" arrow>
+                                            <button class="border py-1.5 px-2 dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm" type="button">
+                                                <font-awesome-icon :icon="faGears" />
+                                            </button>
+                                            <template #overlay>
+                                            <Menu>
+                                                <MenuItem>
+                                                    <Link :href="route('parameters_edit',parameter.id)" type="Link">Editar</Link>
+                                                </MenuItem>
+                                                <MenuItem>
+                                                    <a href="javascript:;">Eliminar</a>
+                                                </MenuItem>
+                                            </Menu>
+                                            </template>
+                                        </Dropdown>
                                     </td>
                                     <td class="text-center border-b border-stroke py-4 px-4 pl-9 dark:border-strokedark xl:pl-11">
                                         <pre>{{ parameter.parameter_code }}</pre>
@@ -120,16 +123,48 @@
                                     <td class="border-b border-stroke py-4 px-4 dark:border-strokedark">
                                         {{ parameter.description }}
                                     </td>
-                                    <td class="text-right border-b border-stroke py-4 px-4 dark:border-strokedark">
-                                        {{ parameter.value_default }}
+                                    <td class="border-b border-stroke py-4 px-4 dark:border-strokedark">
+                                        <template v-if="parameter.control_type == 'in'">
+                                            <Input 
+                                                v-model:value="parameter.value_default"
+                                                @pressEnter="updateDefaultValue(parameter.id, parameter.value_default)"
+                                            />
+                                            <small>presionar enter para guardar cambios</small>
+                                        </template>
+                                        <template v-else-if="parameter.control_type == 'sq'">
+                                            <Select
+                                                v-model:value="parameter.value_default"
+                                                style="width: 100%"
+                                                :options="JSON.parse(parameter.json_query_data).map((obj) => ({value: obj.id, label:obj.description}))"
+                                                @change="updateDefaultValue(parameter.id, parameter.value_default)"
+                                            />
+                                        </template>
+                                        <template v-else-if="parameter.control_type == 'sa'">
+                                            <Select
+                                                v-model:value="parameter.value_default"
+                                                style="width: 100%"
+                                                :options="JSON.parse(parameter.json_query_data)"
+                                                @change="updateDefaultValue(parameter.id, parameter.value_default)"
+                                            />
+                                        </template>
+                                        <template v-else-if="parameter.control_type == 'tx'">
+                                            <Textarea
+                                                v-model:value="parameter.value_default"
+                                                style="width: 100%"
+                                                show-count 
+                                                :maxlength="5000"
+                                                @change="updateDefaultValue(parameter.id, parameter.value_default)"
+                                                >
+                                            </Textarea>
+                                        </template>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <Pagination :data="parameters" />
                     </div>
                 </div>
             </div>
         </div>
+        
     </AppLayout>
 </template>

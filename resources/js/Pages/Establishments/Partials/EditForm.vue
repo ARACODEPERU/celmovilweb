@@ -7,7 +7,7 @@
     import TextInput from '@/Components/TextInput.vue';
     import Keypad from '@/Components/Keypad.vue';
     import swal from 'sweetalert';
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
 
     const props = defineProps({
         users: {
@@ -54,10 +54,13 @@
         });
     };
 
-    if(form.ubigeo){
-        const ubigeo = props.ubigeo.find(row => row.district_id.toLowerCase() === form.ubigeo.toLowerCase());
-        form.ubigeo_description = ubigeo ? ubigeo.department_name+'-'+ubigeo.province_name+'-'+ubigeo.district_name : '';
-    }
+    onMounted(() => {
+        if(form.ubigeo){
+            const ubigeo = props.ubigeo.find(row => row.district_id.toLowerCase() === form.ubigeo.toLowerCase());
+            form.ubigeo_description = ubigeo ? ubigeo.department_name+'-'+ubigeo.province_name+'-'+ubigeo.district_name : '';
+        }
+    })
+    
 
     const searchUbigeos = ref([]); // Inicializa searchUbigeos como una matriz vacía en lugar de null
 

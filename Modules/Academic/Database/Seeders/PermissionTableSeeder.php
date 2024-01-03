@@ -41,6 +41,8 @@ class PermissionTableSeeder extends Seeder
         array_push($permissions, Permission::create(['name' => 'aca_cursos_eliminar']));
         array_push($permissions, Permission::create(['name' => 'aca_cursos_modulos']));
 
+        array_push($permissions, Permission::create(['name' => 'aca_miscursos']));
+
         foreach ($permissions as $permission) {
             $role->givePermissionTo($permission->name);
         }

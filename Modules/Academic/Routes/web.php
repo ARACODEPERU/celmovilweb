@@ -11,7 +11,7 @@
 |
 */
 
-Route::middleware(['auth', 'verified'])->prefix('academic')->group(function () {
+Route::middleware(['auth', 'verified', 'invalid_updated_information'])->prefix('academic')->group(function () {
     Route::middleware(['middleware' => 'permission:aca_dashboard'])
         ->get('dashboard', 'AcademicController@index')
         ->name('aca_dashboard');
@@ -138,4 +138,12 @@ Route::middleware(['auth', 'verified'])->prefix('academic')->group(function () {
     Route::post('agreement/store', 'AcaAgreementController@store')->name('aca_agreements_store');
     Route::post('brochure/store', 'AcaBrochureController@store')->name('aca_brochure_store');
     Route::post('aca-upload-image', 'AcaBrochureController@uploadImage')->name('aca_upload_image_tiny');
+
+    Route::middleware(['middleware' => 'permission:aca_miscursos'])
+        ->get('mycourses/student', 'AcaStudentController@myCourses')
+        ->name('aca_mycourses');
+
+
+    Route::get('courses_teacher_null', 'AcaCourseController@getCoursesTeacherNull')
+        ->name('courses_teacher_null');
 });

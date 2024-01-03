@@ -6,6 +6,14 @@
         product: {
             type: Object,
             default: () => ({}),
+        },
+        categories: {
+            type: Object,
+            default: () => ({}),
+        },
+        brands: {
+            type: Object,
+            default: () => ({}),
         }
     });
 </script>
@@ -44,6 +52,8 @@
             </nav>
             <EditProductForm 
                 :product="product"
+                :categories="categories" 
+                :brands="brands"
             />
         </div>
     </AppLayout>

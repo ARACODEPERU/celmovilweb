@@ -112,6 +112,7 @@
         getCurrentDate();
         startTaxes();
     });
+    
     const taxes = ref({});
     const startTaxes = () => {
         
@@ -201,13 +202,12 @@
         }
         formDocument.items.push(item);
     }
+    
     const removeItem = (key) => {
         let t = parseFloat(formDocument.items[key].total);
         formDocument.total = parseFloat(formDocument.total) - t;
         formDocument.items.splice(key,1);
     }
-
-   
 
     const calculateTotals = (key) => {
         let c = parseFloat(formDocument.items[key].quantity) ?? 0;

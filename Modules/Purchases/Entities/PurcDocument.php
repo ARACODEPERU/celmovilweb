@@ -41,7 +41,8 @@ class PurcDocument extends Model
         'total_value',
         'total',
         'total_canceled',
-        'legends'
+        'legends',
+        'status'
     ];
 
     protected static function newFactory()

@@ -1,12 +1,12 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
-    import { useForm } from '@inertiajs/vue3';
+    import { useForm, Link, router } from '@inertiajs/vue3';
     import Keypad from '@/Components/Keypad.vue';
     import Pagination from '@/Components/Pagination.vue';
 
     import Swal2 from "sweetalert2";
-    import { Link, router } from '@inertiajs/vue3';
-    import { faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
+    import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
     const props = defineProps({
         institutions: {
@@ -91,7 +91,7 @@
                     <div class="w-full p-4 border-b border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
                         <div class="grid grid-cols-3">
                             <div class="col-span-3 sm:col-span-1">
-                                <form id="form-search-items" @submit.prevent="form.get(route('cms_items_list'))">
+                                <form id="form-search-items" @submit.prevent="form.get(route('aca_institutions_list'))">
                                     <label for="table-search" class="sr-only">Search</label>
                                     <div class="relative">
                                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -104,7 +104,7 @@
                             <div class="col-span-3 sm:col-span-2">
                                 <Keypad>
                                     <template #botones>
-                                        <Link v-can="'cms_items'" :href="route('aca_institutions_create')" class="flex items-center justify-center inline-block px-6 py-2.5 bg-blue-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <Link v-can="'aca_institucion_nuevo'" :href="route('aca_institutions_create')" class="flex items-center justify-center inline-block px-6 py-2.5 bg-blue-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Nuevo
                                         </Link>
                                     </template>

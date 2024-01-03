@@ -48,7 +48,7 @@
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div class="col-span-6 p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <div class="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
-                        <form @submit.prevent="form.get(route('roles.index'))">
+                        <form @submit.prevent="form.get(route('permissions.index'))">
                             <label for="table-search" class="sr-only">Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

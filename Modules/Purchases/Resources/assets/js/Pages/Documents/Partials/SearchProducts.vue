@@ -97,7 +97,7 @@
     const emit = defineEmits(['eventdata']);
 
     const addProduct = (pre) => {
-        if(form.data.stock > 0 && form.data.stock >= form.data.quantity){
+
             if (pre){
                 if(form.data.size){
                     if(form.data.price){
@@ -158,9 +158,7 @@
                     swal('Seleccionar Precio')
                 }
             }
-        }else{
-            swal('Stock insuficiente')
-        }
+       
     }
 </script>
 

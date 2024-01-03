@@ -7,7 +7,8 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Keypad from '@/Components/Keypad.vue';
 import Swal2 from 'sweetalert2';
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
+
 
 const props = defineProps({
     identityDocumentTypes: {
@@ -89,6 +90,163 @@ const loadFile = (event) => {
         URL.revokeObjectURL(imageFile); // libera memoria
     }
 };
+
+
+const createFormSearch = () => {
+
+    const formHTML = document.createElement('form');
+    formHTML.classList.add('max-w-sm', 'mx-auto');
+
+    const selectLabel = document.createElement('label');
+    selectLabel.setAttribute('for', 'identityDocument');
+    selectLabel.classList.add('block', 'mb-2', 'text-sm', 'font-medium', 'text-gray-900', 'dark:text-white');
+    selectLabel.textContent = 'Tipo de documento de identidad';
+
+    const typeSelect = document.createElement('select');
+    typeSelect.id = 'identityDocument';
+    typeSelect.classList.add(
+        'mb-2',
+        'bg-gray-50',
+        'border',
+        'border-gray-300',
+        'text-gray-900',
+        'text-sm',
+        'rounded-lg',
+        'focus:ring-blue-500',
+        'focus:border-blue-500',
+        'block',
+        'w-full',
+        'p-2.5',
+        'dark:bg-gray-700',
+        'dark:border-gray-600',
+        'dark:placeholder-gray-400',
+        'dark:text-white',
+        'dark:focus:ring-blue-500',
+        'dark:focus:border-blue-500'
+    );
+
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Seleccionar tipo de documento';
+    typeSelect.appendChild(defaultOption);
+
+    // Crear opciones dinámicamente
+    for (const [key, value] of Object.entries(props.identityDocumentTypes)) {
+        const option = document.createElement('option');
+        option.value = value.id;
+        option.textContent = value.description;
+        typeSelect.appendChild(option);
+    }
+
+    const dniLabel = document.createElement('label');
+    dniLabel.setAttribute('for', 'txtdni');
+    dniLabel.classList.add('block', 'mb-2', 'text-sm', 'font-medium', 'text-gray-900', 'dark:text-white');
+    dniLabel.textContent = 'Número de DNI';
+
+    const dnilInput = document.createElement('input');
+    dnilInput.type = 'text';
+    dnilInput.id = 'txtdni';
+    dnilInput.classList.add(
+        'bg-gray-50',
+        'border',
+        'border-gray-300',
+        'text-gray-900',
+        'text-sm',
+        'rounded-lg',
+        'focus:ring-blue-500',
+        'focus:border-blue-500',
+        'block',
+        'w-full',
+        'p-2.5',
+        'dark:bg-gray-700',
+        'dark:border-gray-600',
+        'dark:placeholder-gray-400',
+        'dark:text-white',
+        'dark:focus:ring-blue-500',
+        'dark:focus:border-blue-500'
+    );
+
+    dnilInput.placeholder = 'Escribir número de identificación';
+    dnilInput.required = true;
+
+    formHTML.appendChild(selectLabel);
+    formHTML.appendChild(typeSelect);
+    formHTML.appendChild(dniLabel);
+    formHTML.appendChild(dnilInput);
+
+    return formHTML;
+
+}
+
+onMounted(() => {
+    openSwal2Search();
+});
+
+const openSwal2Search = () => {
+    Swal2.fire({
+        title: "Verificar DNI",
+        text: 'Por favor, ingrese el número de DNI para verificar si la persona ya está registrada.',
+        html: createFormSearch(),
+        showCancelButton: true,
+        confirmButtonText: 'Buscar',
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        icon: "question",
+        preConfirm: async (login) => {
+            let data = {
+                document_type: document.getElementById("identityDocument").value,
+                number: document.getElementById("txtdni").value
+            }
+            return axios.post(route('search_person_number'),data).then((res) => {
+                if (!res.data.status) {
+                    form.document_type_id = data.document_type,
+                    form.number = data.number,
+                    Swal2.showValidationMessage(res.data.alert)
+                }
+                return res
+            });
+        },
+        allowOutsideClick: () => !Swal2.isLoading()
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal2.fire({
+                allowOutsideClick: false,
+                title: result.value.data.person.full_name,
+                imageUrl: result.value.data.person.image,
+                text: `Ya fue registrado con el DNI ` + result.value.data.person.number,
+                imageHeight: 180,
+                imageWidth: 180,
+                customClass: {
+                    image: 'rounded-full',  
+                },
+            }).then((res) => {
+                if (res.isConfirmed) {
+                    getPersonData(result.value.data.person);
+                }
+            });
+        }
+    });
+}
+const getPersonData = (newValues) => {
+    form.id = newValues.id,
+    form.teacher_id = newValues.teacher_id,
+    form.document_type_id = newValues.document_type_id,
+    form.number = newValues.number,
+    form.telephone = newValues.telephone,
+    form.email = newValues.email,
+    form.image = null,
+    form.image_preview = newValues.image,
+    form.address = newValues.address,
+    form.ubigeo = newValues.ubigeo,
+    form.birthdate = newValues.birthdate,
+    form.names = newValues.names,
+    form.father_lastname = newValues.father_lastname,
+    form.mother_lastname = newValues.mother_lastname,
+    form.ubigeo_description = newValues.city
+    form.presentacion = newValues.presentacion
+};
 </script>
 
 <template>
@@ -138,14 +296,10 @@ const loadFile = (event) => {
                         <img id='preview_img' class="h-16 w-16 object-cover rounded-full" :src="form.image_preview" alt="Current profile photo" />
                     </div>
                     <label class="block ml-1">
-                        <span class="sr-only">Elige foto</span>
-                        <input  type="file" @change="loadFile" class="block w-full text-sm text-slate-500
-                            mr-4 py-2 px-4
-                            rounded-full border-0
-                            text-sm font-semibold
-                            bg-violet-50 text-violet-700
-                            hover:bg-violet-100
-                        " />
+                        <input @change="loadFile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+                        id="file_input" 
+                        type="file"
+                        >
                     </label>
                 </div>
             </div>

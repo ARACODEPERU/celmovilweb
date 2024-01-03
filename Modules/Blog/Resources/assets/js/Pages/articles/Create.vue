@@ -6,6 +6,10 @@ const props = defineProps({
     categories: {
         type: Object,
         default: () => ({})
+    },
+    tiny_api_key: {
+        type: String,
+        default: null,
     }
 });
 </script>
@@ -20,7 +24,7 @@ const props = defineProps({
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <CreateForm :categories="categories"></CreateForm>
+                <CreateForm :tiny_api_key="tiny_api_key" :categories="categories"></CreateForm>
             </div>
         </div>
     </AppLayout>

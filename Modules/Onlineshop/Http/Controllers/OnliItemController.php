@@ -22,11 +22,13 @@ class OnliItemController extends Controller
     use ValidatesRequests;
 
     protected $P000009;
+    protected $P000010; ///token Tiny
 
     public function __construct()
     {
         $vallue = Parameter::where('parameter_code', 'P000009')->value('value_default');
         $this->P000009 = $vallue ?? 1;
+        $this->P000010  = Parameter::where('parameter_code', 'P000010')->value('value_default');
     }
 
     public function index()
@@ -69,19 +71,20 @@ class OnliItemController extends Controller
                 $query->select('item_id')
                     ->from('onli_items');
             })
+            ->orderBy('id', 'DESC')
             ->get();
 
         $products = Product::whereNotIn('id', function ($query) {
             $query->select('item_id')
                 ->from('onli_items')
                 ->where('onli_items.entitie', 'App-Models-Product');
-        })->get();
+        })->orderBy('id', 'DESC')->get();
 
 
         return Inertia::render('Onlineshop::Items/Create', [
             'courses'   => $courses,
             'products'  => $products,
-            'tiny_api_key' => env('TINY_API_KEY'),
+            'tiny_api_key' => $this->P000010,
             'type'  => $this->P000009
         ]);
     }
@@ -101,7 +104,7 @@ class OnliItemController extends Controller
             ///'description'               => 'required|max:255',
             'description'               => 'required',
 
-            'image'                     => 'required|image|mimes:jpeg,png,gif|max:2048'
+            //'image'                     => 'required|image|mimes:jpeg,png,gif|max:2048'
         ], [
             'item_id.required' => 'Elija un Curso',
             'item_id.unique'   => 'Ya existe como item para la web',
@@ -117,7 +120,9 @@ class OnliItemController extends Controller
 
         // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
         // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
-        $path = null;
+        $image_url = $request->get('image_view');
+        $path = str_replace(asset('storage/'), "", $image_url);
+
         $destination = 'uploads/onlineshop/items';
         $file = $request->file('image');
         if ($file) {
@@ -175,7 +180,7 @@ class OnliItemController extends Controller
         return Inertia::render('Onlineshop::Items/Edit', [
             'item' => $item,
             'type'  => $this->P000009,
-            'tiny_api_key' => env('TINY_API_KEY'),
+            'tiny_api_key' => $this->P000010,
         ]);
     }
 
@@ -193,7 +198,7 @@ class OnliItemController extends Controller
             'name'                      => 'required|max:255',
             ///'description'               => 'required|max:255',
             'description'               => 'required',
-            'image'                     => 'required|image|mimes:jpeg,png,gif|max:2048'
+            //'image'                     => 'required|image|mimes:jpeg,png,gif|max:2048'
         ], [
             'item_id.required' => 'Elija un Curso',
             'item_id.unique'   => 'Ya existe como item para la web',
@@ -219,7 +224,7 @@ class OnliItemController extends Controller
 
         // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
         // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
-        $path = null;
+        $path = $request->get('image_view');
         $destination = 'uploads/onlineshop/items';
         $file = $request->file('image');
         if ($file) {

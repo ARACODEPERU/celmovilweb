@@ -8,16 +8,22 @@ const menuRestaurant = {
     permissions: "res_dashboard",
     items: [
         {
-            route: route("aca_institutions_list"),
+            route: route("res_comandas_list"),
             status: false,
-            text: "Instituciones",
-            permissions: "aca_institucion_listado",
+            text: "Comandas",
+            permissions: "res_comandas",
         },
         {
-            route: route("aca_teachers_list"),
+            route: route("res_menu_list"),
             status: false,
-            text: "Docentes",
-            permissions: "aca_docente_listado",
+            text: "Menu Del Día",
+            permissions: "res_menu",
+        },
+        {
+            route: route("res_sales_create"),
+            status: false,
+            text: "Vender",
+            permissions: "res_venta_nuevo",
         },
     ],
 };

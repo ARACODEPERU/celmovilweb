@@ -91,7 +91,7 @@
             if(form.data.size){
                 if(form.data.price){
                     let total = parseFloat(form.data.quantity)*(parseFloat(form.data.price)-parseFloat(form.data.discount))
-                    form.data.total = total;
+                    form.data.total = total.toFixed(2);
                     let data = {
                         id: form.data.id,
                         interne: form.data.interne,
@@ -116,7 +116,7 @@
         }else{
             if(form.data.price){
                 let total = parseFloat(form.data.quantity)*(parseFloat(form.data.price)-parseFloat(form.data.discount))
-                form.data.total = total;
+                form.data.total = total.toFixed(2);
                 let data = {
                     id: form.data.id,
                     interne: form.data.interne,
@@ -160,7 +160,7 @@
             </div>
         </form>
         <div v-show="displayResultSearch" id="result" style="position: absolute; width: 100%;z-index: 999;">
-            <div class="mt-1 border border-stroke" style="max-height: 300px;overflow-y: auto;">
+            <div class="mt-1 border border-stroke" style="max-height: 100%;overflow-y: auto;">
                 <ul class="max-w-md divide-y bg-white">
                     <li v-for="(product, index) in form.products" class="p-4 border-b border-stroke bg-gray-100 pb-3 sm:pb-4 dark:border-strokedark dark:bg-boxdark" >
                         <div @click="openModalSelectProduct(product)" style="cursor: pointer;" class="flex items-center space-x-4">
@@ -223,19 +223,19 @@
                         </label>
                         <div class="flex">
                             <div v-if="!form.product.local_prices">
-                                <div class="form-check">
+                                <div v-if="JSON.parse(form.product.sale_prices).high"  class="form-check">
                                     <input v-model="form.data.price" :value="JSON.parse(form.product.sale_prices).high" class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                     <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault1">
                                         Precio Normal {{ JSON.parse(form.product.sale_prices).high  }}
                                     </label>
                                 </div>
-                                <div v-show="JSON.parse(form.product.sale_prices).medium" class="form-check">
+                                <div v-if="JSON.parse(form.product.sale_prices).medium" class="form-check">
                                     <input v-model="form.data.price" :value="JSON.parse(form.product.sale_prices).medium" class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                                     <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault2">
                                         Precio Medio {{ JSON.parse(form.product.sale_prices).medium  }}
                                     </label>
                                 </div>
-                                <div v-show="JSON.parse(form.product.sale_prices).under" class="form-check">
+                                <div v-if="JSON.parse(form.product.sale_prices).under" class="form-check">
                                     <input v-model="form.data.price" :value="JSON.parse(form.product.sale_prices).under" class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
                                     <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault3">
                                         Precio Minimo {{ JSON.parse(form.product.sale_prices).under  }}

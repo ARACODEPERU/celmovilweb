@@ -18,24 +18,23 @@ class RestaurantPermissionSeeder extends Seeder
         $permissions = [];
 
         array_push($permissions, Permission::create(['name' => 'res_dashboard']));
-        array_push($permissions, Permission::create(['name' => 'aca_institucion_listado']));
-        array_push($permissions, Permission::create(['name' => 'aca_institucion_nuevo']));
-        array_push($permissions, Permission::create(['name' => 'aca_institucion_editar']));
-        array_push($permissions, Permission::create(['name' => 'aca_institucion_eliminar']));
-        array_push($permissions, Permission::create(['name' => 'aca_docente_listado']));
-        array_push($permissions, Permission::create(['name' => 'aca_docente_nuevo']));
-        array_push($permissions, Permission::create(['name' => 'aca_docente_editar']));
-        array_push($permissions, Permission::create(['name' => 'aca_docente_eliminar']));
-        array_push($permissions, Permission::create(['name' => 'aca_estudiante_listado']));
-        array_push($permissions, Permission::create(['name' => 'aca_estudiante_nuevo']));
-        array_push($permissions, Permission::create(['name' => 'aca_estudiante_editar']));
-        array_push($permissions, Permission::create(['name' => 'aca_estudiante_eliminar']));
-        array_push($permissions, Permission::create(['name' => 'aca_estudiante_certificados_crear']));
-        array_push($permissions, Permission::create(['name' => 'aca_cursos_listado']));
-        array_push($permissions, Permission::create(['name' => 'aca_cursos_nuevo']));
-        array_push($permissions, Permission::create(['name' => 'aca_cursos_editar']));
-        array_push($permissions, Permission::create(['name' => 'aca_cursos_eliminar']));
-        array_push($permissions, Permission::create(['name' => 'aca_cursos_modulos']));
+        array_push($permissions, Permission::create(['name' => 'res_categorias']));
+        array_push($permissions, Permission::create(['name' => 'res_comandas']));
+        array_push($permissions, Permission::create(['name' => 'res_comandas_agregar_categoria']));
+        array_push($permissions, Permission::create(['name' => 'res_comandas_nuevo']));
+        array_push($permissions, Permission::create(['name' => 'res_comandas_editar']));
+        array_push($permissions, Permission::create(['name' => 'res_comandas_eliminar']));
+        array_push($permissions, Permission::create(['name' => 'res_menu']));
+        array_push($permissions, Permission::create(['name' => 'res_menu_verimprimir']));
+        array_push($permissions, Permission::create(['name' => 'res_menu_agregar_comandas']));
+        array_push($permissions, Permission::create(['name' => 'res_menu_nuevo']));
+        array_push($permissions, Permission::create(['name' => 'res_menu_editar']));
+        array_push($permissions, Permission::create(['name' => 'res_menu_eliminar']));
+        array_push($permissions, Permission::create(['name' => 'res_venta']));
+        array_push($permissions, Permission::create(['name' => 'res_venta_nuevo']));
+        array_push($permissions, Permission::create(['name' => 'res_venta_editar']));
+        array_push($permissions, Permission::create(['name' => 'res_venta_eliminar']));
+        array_push($permissions, Permission::create(['name' => 'res_reporte_venta']));
 
         foreach ($permissions as $permission) {
             $role->givePermissionTo($permission->name);

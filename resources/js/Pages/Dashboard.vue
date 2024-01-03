@@ -3,6 +3,7 @@ import Welcome from '@/Components/Welcome.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import Shortcuts from '@/Components/Shortcuts.vue';
+
 </script>
 
 <template>
@@ -22,6 +23,7 @@ import Shortcuts from '@/Components/Shortcuts.vue';
                     <Shortcuts />
                 </div>
             </div> -->
+
         </div>
     </AppLayout>
 </template>

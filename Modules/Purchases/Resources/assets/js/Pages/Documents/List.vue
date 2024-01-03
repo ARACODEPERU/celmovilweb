@@ -5,6 +5,8 @@
     import { faXmark, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
     import Keypad from '@/Components/Keypad.vue';
     import Pagination from '@/Components/Pagination.vue';
+    import { Badge } from 'flowbite-vue'
+    import { ConfigProvider, Popconfirm, Button, message } from 'ant-design-vue';
 
     const props = defineProps({
         documents: {
@@ -30,6 +32,19 @@
         form.search = null
         form.get(route('purc_documents_list'))
         btnAll.value = false
+    }
+
+    const CancelPurchase = (id) => {
+        return axios.get(route('purc_documents_anular', id)).then((res) => {
+            if (!res.data.success) {
+                message.error(res.data.message);
+            }else{
+                message.success(res.data.message);
+            }
+            router.visit(route('purc_documents_list'), {
+                method: 'get'
+            });
+        });
     }
     
 </script>
@@ -96,61 +111,74 @@
                         </div>
                     </div>
                     <div class="max-w-full overflow-x-auto">
-                        <table class="w-full table-auto">
-                            <thead class="border-b border-stroke">
-                                <tr class="bg-gray-50 text-left dark:bg-meta-4">
-                                    <th style="width: 75px;" class="py-1 px-4 text-center font-medium text-black dark:text-white">
-                                        Acciones
-                                    </th>
-                                    <th class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Tipo
-                                    </th>
-                                    <th class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Nmr. Documento
-                                    </th>
-                                    <th class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Fecha
-                                    </th>
-                                    <th class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Proveedor
-                                    </th>
-                                    <th class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Total
-                                    </th>
-                                    <!-- <th class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Estado
-                                    </th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <template v-for="(document, index) in documents.data" :key="document.id">
-                                    <tr >
-                                        <td>
-                                            
-                                        </td>
-                                        <td class="w-32 py-1 dark:border-strokedark">
-                                            {{ document.type.description }}
-                                        </td>
-                                        <td class="w-32 py-1 dark:border-strokedark">
-                                            {{ document.serie }}-{{ document.number }}
-                                        </td>
-                                        <td class="py-1 px-4 dark:border-strokedark">
-                                            {{ document.created_at }}
-                                        </td>
-                                        <td class="py-1 px-4 dark:border-strokedark">
-                                            {{ document.provider.full_name }}
-                                        </td>
-                                        <td class="text-right py-1 px-4 dark:border-strokedark">
-                                            {{ document.total }}
-                                        </td>
-                                        <!-- <td  class="text-center py-1 px-4 dark:border-strokedark">
-                                            <span v-if="document.status == 1" class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">Activa</span>
-                                            <span v-else class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">Anulado</span>
-                                        </td> -->
+                        <ConfigProvider>
+                            <table class="w-full table-auto">
+                                <thead class="border-b border-stroke">
+                                    <tr class="bg-gray-50 text-left dark:bg-meta-4">
+                                        <th style="width: 75px;" class="py-1 px-4 text-center font-medium text-black dark:text-white">
+                                            Acciones
+                                        </th>
+                                        <th class="py-2 px-2 font-medium text-black dark:text-white">
+                                            Tipo
+                                        </th>
+                                        <th class="py-2 px-2 font-medium text-black dark:text-white">
+                                            Nmr. Documento
+                                        </th>
+                                        <th class="py-2 px-2 font-medium text-black dark:text-white">
+                                            Fecha
+                                        </th>
+                                        <th class="py-2 px-2 font-medium text-black dark:text-white">
+                                            Proveedor
+                                        </th>
+                                        <th class="py-2 px-2 font-medium text-black dark:text-white">
+                                            Total
+                                        </th>
+                                        <th class="py-2 px-2 font-medium text-black dark:text-white">
+                                            Estado
+                                        </th>
                                     </tr>
-                                </template>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <template v-for="(document, index) in documents.data" :key="document.id">
+                                        <tr >
+                                            <td class="py-2 px-4 dark:border-strokedark">
+                                                <Popconfirm
+                                                    placement="right"
+                                                    title="Are you sure delete this task?"
+                                                    ok-text="Si"
+                                                    cancel-text="No"
+                                                    @confirm="CancelPurchase(document.id)"
+                                                    
+                                                >
+                                                    <Button type="dashed">Anular</Button>
+                                                </Popconfirm>
+                                            </td>
+                                            <td class="py-2 px-4 dark:border-strokedark">
+                                                {{ document.type.description }}
+                                            </td>
+                                            <td class="py-2 px-4 dark:border-strokedark">
+                                                {{ document.serie }}-{{ document.number }}
+                                            </td>
+                                            <td class="py-2 px-2 dark:border-strokedark">
+                                                {{ document.date_of_issue }}
+                                            </td>
+                                            <td class="py-2 px-2 dark:border-strokedark">
+                                                {{ document.provider.full_name }}
+                                            </td>
+                                            <td class="text-right py-2 px-2 dark:border-strokedark">
+                                                {{ document.total }}
+                                            </td>
+                                            <td  class="text-center py-1 px-4 dark:border-strokedark">
+                                                <Badge v-if="document.status == 'R'" type="default">Registrado</Badge>
+                                                <Badge v-else-if="document.status == 'A'" type="red">Anulado</Badge>
+                                                <Badge v-else-if="document.status == 'E'" type="purple">Enviado</Badge>
+                                                <Badge v-else-if="document.status == 'Ap'" type="yellow">Aprobado</Badge>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </ConfigProvider>
                         <Pagination :data="documents" />
                     </div>
                 </div>

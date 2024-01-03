@@ -64,8 +64,6 @@ class AcaInstitutionController extends Controller
             ]
         );
 
-        $destination = 'uploads/articles';
-
         $path = null;
 
         $destination = 'uploads/institutions';
@@ -83,6 +81,7 @@ class AcaInstitutionController extends Controller
 
             $path = asset('storage/' . $img);
         }
+
         AcaInstitution::create([
             'name'      => $request->get('name'),
             'image'     => $path,

@@ -39,7 +39,8 @@
     });
 
     const getDataTable = async (data) => {
-        form.total = parseFloat(data.total) + parseFloat(form.total);
+        let xtotal = parseFloat(data.total) + parseFloat(form.total);
+        form.total = xtotal.toFixed(2);
         form.products.push(data);
         form.payments[0].amount = form.total;
     }
@@ -88,6 +89,16 @@
                         printPdf(res.data.id);
                     }
                 });
+            }).catch((error) => {
+                let validationErrors = error.response.data.errors;
+                if (validationErrors && validationErrors.payments) {
+                    const paymentsErrors = validationErrors.payments;
+                    for (let i = 0; i < paymentsErrors.length; i++) {
+                        form.setError('payments.'+index+'.amount', paymentsErrors[i]);
+                    }
+                }
+                
+                Swal2.close();
             });
         }else{
             swal('Agregar Productos para realizar la venta');

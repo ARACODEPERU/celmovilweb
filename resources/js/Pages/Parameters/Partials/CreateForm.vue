@@ -62,17 +62,27 @@ const createParameter = () => {
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                     <option value="in">Texto</option>
-                    <option value="ra">Elegir una opción</option>
                     <option value="sq">Lista (consulta a una tabla de la BD)</option>
                     <option value="sa">Lista (desde un arreglo json)</option>
-                    <option value="ch">Elegir varias opciones</option>
+                    <option value="chq">Elegir varias opciones (consulta a una tabla de la BD)</option>
+                    <option value="chj">Elegir varias opciones (desde un arreglo json)</option>
                     <option value="tx">Texto amplio</option>
-                    <option value="rg">Rango entre dos valores</option>
+                    <option value="rgq">Rango entre dos valores(consulta a una tabla de la BD)</option>
+                    <option value="rgj">Rango entre dos valores(desde un arreglo json)</option>
                     <option value="fl">Archivo</option>
                 </select>
                 <InputError :message="form.errors.control_type" class="mt-2" />
             </div>
-            <div class="col-span-6 sm:col-span-2 ">
+            <div v-if="form.control_type == 'tx'" class="col-span-6">
+                <InputLabel for="value_default" value="Valor *" />
+                <textarea
+                    class="mt-1 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="value_default"
+                    v-model="form.value_default"
+                ></textarea>
+                <InputError :message="form.errors.value_default" class="mt-2" />
+            </div>
+            <div v-else class="col-span-6 sm:col-span-2 ">
                 <InputLabel for="value_default" value="Valor *" />
                 <TextInput
                     id="value_default"
@@ -92,7 +102,7 @@ const createParameter = () => {
                 ></textarea>
                 <InputError :message="form.errors.description" class="mt-2" />
             </div>
-            <div class="col-span-6 " v-show="form.control_type == 'sq' || form.control_type == 'sa'">
+            <div class="col-span-6 " v-show="form.control_type == 'sq' || form.control_type == 'sa' ||  form.control_type == 'chq' || form.control_type == 'chj' || form.control_type == 'rgq' || form.control_type == 'rgj'">
                 <InputLabel for="json_query_data" value="Contenido de la lista *" />
                 <textarea
                     rows="10"
@@ -101,6 +111,9 @@ const createParameter = () => {
                     v-model="form.json_query_data"
                 ></textarea>
                 <InputError :message="form.errors.json_query_data" class="mt-2" />
+                <code>[{"value": "1","label":"ejemplo"},{"value": "2","label":"ejemplo"}]</code><br>
+                <code>Cuando el id es String: SELECT id, description FROM tutabla</code><br />
+                <code>Cuando el id es Integer: SELECT CAST(id AS CHAR) AS id, description FROM tutabla</code>
             </div>
 
         </template>

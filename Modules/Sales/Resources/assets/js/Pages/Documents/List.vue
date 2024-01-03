@@ -1,7 +1,7 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
     import { useForm } from '@inertiajs/vue3';
-    import { faGear } from "@fortawesome/free-solid-svg-icons";
+    import { faGears } from "@fortawesome/free-solid-svg-icons";
     import Pagination from '@/Components/Pagination.vue';
     import Keypad from '@/Components/Keypad.vue';
     import GreenButton from '@/Components/GreenButton.vue';
@@ -15,6 +15,7 @@
     import DialogModal from '@/Components/DialogModal.vue';
     import Swal from "sweetalert2";
     import { Link, router } from '@inertiajs/vue3';
+    import { ConfigProvider, Dropdown,Menu,MenuItem,Button } from 'ant-design-vue';
 
     const props = defineProps({
         documents: {
@@ -289,7 +290,7 @@
             <!-- ====== Table Section Start -->
             <div class="flex flex-col gap-10">
                 <!-- ====== Table One Start -->
-                <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+                <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                     <div class="w-full p-4 border-b border-gray-200 bg-gray-50 rounded-t-xl dark:border-gray-600 dark:bg-gray-700">
                         <div class="grid grid-cols-3">
                             <div class="col-span-3 sm:col-span-1">
@@ -313,6 +314,7 @@
                         </div>
                     </div>
                     <div class="max-w-full overflow-x-auto">
+                        <ConfigProvider>
                         <table class="w-full table-auto">
                             <thead class="border-b border-stroke">
                                 <tr class="bg-gray-50 text-left dark:bg-meta-4">
@@ -340,80 +342,38 @@
                                 <template v-for="(document, index) in documents.data" :key="document.id">
                                     <tr :style="document.invoice_status ==='registrado' || document.invoice_status ==='Pendiente' ? '' : document.invoice_status ==='Rechazada' ? 'color: #CF1504': 'color: #051BC6'" :class="document.invoice_status ==='registrado' || document.invoice_status ==='Pendiente' ? 'border-b border-stroke' : ''">
                                         <td :rowspan="document.invoice_status ==='registrado' || document.invoice_status ==='Pendiente' ? 1 : 2" class="text-center py-1 px-4 dark:border-strokedark">
-                                            <div style="position: relative;" class="flex justify-center">
-                                                <button
-                                                    :id="'dropdownButton'+index"
-                                                    @click="toggleDropdown(index)"
-                                                    class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
-                                                    type="button"
-                                                >
-                                                <font-awesome-icon :icon="faGear" />
+                                            <Dropdown :placement="'bottomLeft'">
+                                                <button class="border py-1.5 px-2 dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm" type="button">
+                                                    <font-awesome-icon :icon="faGears" />
                                                 </button>
-                                                <!-- Dropdown menu -->
-                                                <div
-                                                    :id="'dropdown-'+index"
-                                                    v-show="dropdownItems[index]?.showDropdown"
-                                                    style="margin-top: 44px;position: absolute;z-index: 9999;"
-                                                    class="text-base rounded-lg list-none border border-blue-700 bg-gray-100 divide-y divide-gray-100 shadow dark:bg-gray-700"
-                                                >
-                                                    <ul :aria-labelledby="'dropdownButton'+index">
-                                                        <template v-if="document.invoice_status != 'Aceptada'">
-                                                            <li class="border-b border-blue-700" v-can="'help_tableros_editar'">
-                                                                <button @click="showModalEditDocument(document)"
+                                                <template #overlay>
+                                                    <Menu>
+                                                        <MenuItem v-if="document.invoice_status != 'Aceptada'">
+                                                            <Button @click="showModalEditDocument(document)" type="button" >Editar</Button>
+                                                        </MenuItem>
+                                                        <MenuItem v-if="document.invoice_status != 'Aceptada'">
+                                                            <Button v-can="'invo_documento_envio_sunat'" @click="sendSunatDocument(document)" type="button" >Enviar a Sunat</Button>
+                                                        </MenuItem>
+                                                        <MenuItem>
+                                                            <Button @click="opemModalDetails(document)" type="button" >Detalles</Button>
+                                                        </MenuItem>
+                                                        <MenuItem v-if="document.invoice_status != 'Aceptada'">
+                                                            <Button @click="deletePanel(index,board.id)" type="button" >Eliminar</Button>
+                                                        </MenuItem>
+                                                        <MenuItem v-if="document.invoice_status === 'Aceptada'">
+                                                            <Button @click="downloadDocument(document.document_id,document.invoice_type_doc,'PDF')"
                                                                 type="button"
-                                                                class="rounded-lg block px-4 py-1 text-xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                                                >Editar</button>
-                                                            </li>
-                                                        </template>
-                                                        <template v-if="document.invoice_status != 'Aceptada'">
-                                                            <li class="border-b border-blue-700" v-can="'help_tableros_editar'">
-                                                                <button v-can="'invo_documento_envio_sunat'" @click="sendSunatDocument(document)"
-                                                                type="button"
-                                                                class="rounded-lg block px-4 py-1 text-xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                                                >Enviar a Sunat</button>
-                                                            </li>
-                                                        </template>
-                                                        <template v-if="document.invoice_status != 'Aceptada'">
-                                                            <li class="border-b border-blue-700" v-can="'help_tableros_eliminar'">
-                                                                <button @click="deletePanel(index,board.id)"
-                                                                type="button"
-                                                                class="rounded-lg px-4 py-1 text-xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                                                >Eliminar</button>
-                                                            </li>
-                                                        </template>
-                                                        <li class="text-center">
-                                                            <button @click="opemModalDetails(document)"
-                                                            type="button"
-                                                            class="rounded-lg block px-4 py-1 text-xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                                            >Detalles</button>
-                                                        </li>
-                                                        <template v-if="document.invoice_status === 'Aceptada'">
-                                                            <li class="border-t border-blue-700">
-                                                                <button @click="downloadDocument(document.document_id,document.invoice_type_doc,'PDF')"
-                                                                type="button"
-                                                                class="rounded-lg block px-4 py-1 text-xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                                                >Imprimir PDF</button>
-                                                            </li>
-                                                        </template>
-                                                        <template v-if="document.invoice_status === 'Aceptada'">
-                                                            <li class="border-t border-blue-700">
-                                                                <button @click="downloadDocument(document.document_id,document.invoice_type_doc,'XML')"
-                                                                type="button"
-                                                                class="rounded-lg block px-4 py-1 text-xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                                                >Descargar XML</button>
-                                                            </li>
-                                                        </template>
-                                                        <template v-if="document.invoice_status === 'Aceptada'">
-                                                            <li class="border-t border-blue-700">
-                                                                <button @click="downloadDocument(document.document_id,document.invoice_type_doc,'CDR')"
-                                                                type="button"
-                                                                class="rounded-lg block px-4 py-1 text-xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                                                >Descargar CDR</button>
-                                                            </li>
-                                                        </template>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                                                >Imprimir PDF</Button>
+                                                        </MenuItem>
+                                                        <MenuItem v-if="document.invoice_status === 'Aceptada'">
+                                                            <Button @click="downloadDocument(document.document_id,document.invoice_type_doc,'XML')" type="button" >Descargar XML</Button>
+                                                        </MenuItem>
+                                                        <MenuItem v-if="document.invoice_status === 'Aceptada'" >
+                                                            <Button @click="downloadDocument(document.document_id,document.invoice_type_doc,'CDR')" type="button" >Descargar CDR</Button>
+                                                        </MenuItem>
+                                                    </Menu>
+                                                </template>
+                                            </Dropdown>
                                         </td>
                                         <td class="w-32 py-1 dark:border-strokedark">
                                             {{ document.serie }}-{{ document.number }}
@@ -452,6 +412,7 @@
                             </tbody>
                         </table>
                         <Pagination :data="documents" />
+                        </ConfigProvider>
                     </div>
                 </div>
             </div>

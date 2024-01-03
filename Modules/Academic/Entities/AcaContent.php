@@ -17,4 +17,8 @@ class AcaContent extends Model
     {
         return \Modules\Academic\Database\factories\AcaContentFactory::new();
     }
+    public function getContentAttribute($value)
+    {
+        return html_entity_decode($value, ENT_QUOTES, "UTF-8");
+    }
 }

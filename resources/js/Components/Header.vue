@@ -2,8 +2,10 @@
 import { ref } from 'vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import { faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
-const dropdownOpen = ref(false)
 import { Link } from '@inertiajs/vue3';
+import GLobalRegister from '../../../resources/js/Pages/Helpdesk/Tickets/GlobalRegister.vue';
+
+const dropdownOpen = ref(false)
 
 const props = defineProps({
     sidebarToggle: {
@@ -17,6 +19,8 @@ const emit = defineEmits(['displaySidebarToggle'])
 const showSidebarToggle = async () => {
     emit('displaySidebarToggle', true)
 }
+
+const xhttp =  assetUrl;
 </script>
 <template>
     <header class="sticky top-0 z-99 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
@@ -56,9 +60,12 @@ const showSidebarToggle = async () => {
             </div>
 
             <div class="flex items-center gap-3 2xsm:gap-7">
+                <!-- boton de ayuda y registro de insidencias en el sistema -->
+                <!-- <GLobalRegister /> -->
 
                 <!-- User Area -->
                 <div class="relative">
+
                     <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
                         <span class="hidden text-right lg:block">
                             <span class="block text-sm font-medium text-black dark:text-white">{{ $page.props.auth.user.name }}</span>
@@ -66,7 +73,8 @@ const showSidebarToggle = async () => {
                         </span>
 
                         <span class="h-12 w-12 rounded-full">
-                            <img :src="'https://ui-avatars.com/api/?name='+ $page.props.auth.user.name+'&size=48&rounded=true'" alt="User" />
+                            <img v-if="$page.props.auth.user.avatar" :src="xhttp+'storage/'+$page.props.auth.user.avatar" alt="User" class="rounded-full" />
+                            <img v-else :src="'https://ui-avatars.com/api/?name='+ $page.props.auth.user.name+'&size=48&rounded=true'"  alt="User" />
                         </span>
 
                         <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block" width="12" height="8"

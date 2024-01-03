@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Modules\Sales\Entities\SaleProductBrand;
+use Modules\Sales\Entities\SaleProductCategory;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ProductController extends Controller
@@ -81,8 +83,13 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $categories = SaleProductCategory::whereNull('category_id')->get();
+        $brands = SaleProductBrand::get();
+
         return Inertia::render('Sales::Products/Create', [
             'establishments' => LocalSale::all(),
+            'categories'     => $categories ?? [],
+            'brands'         => $brands ?? []
         ]);
     }
     public function createService()
@@ -132,7 +139,7 @@ class ProductController extends Controller
             $original_name = strtolower(trim($file->getClientOriginalName()));
             $original_name = str_replace(" ", "_", $original_name);
             $extension = $file->getClientOriginalExtension();
-            $file_name = date('YmdHis') . '.' . $extension;
+            $file_name = trim($request->get('interne')) . '.' . $extension;
             $path = $request->file('image')->storeAs(
                 $destination,
                 $file_name,
@@ -145,11 +152,9 @@ class ProductController extends Controller
                 $total = $total + $item['quantity'];
             }
         } else {
-            $total = $request->get('stock');
+            $total = $request->get('stock') ?? 1;
         }
 
-
-        //dd($request->get('sale_prices'));
         $pr = Product::create([
             'usine' => $request->get('usine'),
             'interne' => $request->get('interne'),
@@ -165,7 +170,9 @@ class ProductController extends Controller
             'type_sale_affectation_id' => '10',
             'type_purchase_affectation_id' => '10',
             'type_unit_measure_id' => 'NIU',
-            'status' => true
+            'status' => true,
+            'category_id' => $request->get('category_id') ?? null,
+            'brand_id' => $request->get('brand_id') ?? null
         ]);
 
         $k = Kardex::create([
@@ -230,8 +237,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $categories = SaleProductCategory::whereNull('category_id')->get();
+        $brands = SaleProductBrand::get();
+
         return Inertia::render('Sales::Products/Edit', [
-            'product' => $product,
+            'product'       => $product,
+            'categories'    => $categories,
+            'brands'        => $brands
         ]);
     }
 
@@ -258,6 +270,8 @@ class ProductController extends Controller
         $product->purchase_prices = $request->get('purchase_prices');
         $product->sale_prices = $request->get('sale_prices');
         $product->sizes = $request->get('sizes');
+        $product->category_id = $request->get('category_id') ?? null;
+        $product->brand_id = $request->get('brand_id') ?? null;
         $product->save();
 
         return redirect()->route('products.edit', $product->id)
@@ -439,6 +453,7 @@ class ProductController extends Controller
         ]);
 
         $json_pro_sizes = null;
+        $pt = 0;
 
         if ($presentations) {
             $c = 0;
@@ -489,7 +504,7 @@ class ProductController extends Controller
                 }
             }
 
-            $pt = 0;
+
             for ($r = 0; $r < count($pro_sizes); $r++) {
                 $pt = $pt + $pro_sizes[$r]['quantity'];
             }
@@ -517,7 +532,7 @@ class ProductController extends Controller
         if (PHP_OS == 'WINNT') {
             $tempFile = tempnam(sys_get_temp_dir(), 'img');
         } else {
-            $tempFile = tempnam('/var/www/html/store-calzado/public', 'img');
+            $tempFile = tempnam('/var/www/html', 'img');
         }
         file_put_contents($tempFile, $fileData);
         $mime = mime_content_type($tempFile);
@@ -639,18 +654,31 @@ class ProductController extends Controller
             'description.required' => 'Debe ingresar el Motivo del traslado',
         ]);
 
+        if ($request->get('presentations')) {
+            $this->validate($request, [
+                'item.*.quantity_relocate' => 'required',
+            ], [
+                'item.*.quantity_relocate.required' => 'Ingrese cantidad de traslado'
+            ]);
+        }
+
         try {
             DB::beginTransaction();
-            $tallas = $request->get('sizes');
 
-            $t = 0;
-            foreach ($request->get('sizes') as $item) {
-                if ($item['quantity'] >= $item['quantity_relocate']) {
-                    $t += $item['quantity_relocate'];
-                } else {
-                    return Inertia::location('/products/');
-                    break;
+            if ($request->get('presentations')) {
+                $tallas = $request->get('sizes');
+
+                $t = 0;
+                foreach ($request->get('sizes') as $item) {
+                    if ($item['quantity'] >= $item['quantity_relocate']) {
+                        $t += $item['quantity_relocate'];
+                    } else {
+                        return Inertia::location('/products/');
+                        break;
+                    }
                 }
+            } else {
+                $t = $request->get('quantity');
             }
 
             $kardex_id_origin = 0;
@@ -677,24 +705,26 @@ class ProductController extends Controller
                     'description' => $request->get('description'),
                 ]);
 
-                $kardex_id_destiny = $kardex->id;
+                if ($request->get('presentations')) {
+                    $kardex_id_destiny = $kardex->id;
 
-                foreach ($tallas as $talla) {
-                    if ($talla['quantity_relocate'] > 0) {
-                        KardexSize::create([
-                            'kardex_id' => $kardex_id_origin,
-                            'product_id' => $request->get('product_id'),
-                            'local_id' => $request->get('local_id_origin'),
-                            'size' => $talla['size'],
-                            'quantity' => -$talla['quantity_relocate'],
-                        ]);
-                        KardexSize::create([
-                            'kardex_id' => $kardex_id_destiny,
-                            'product_id' => $request->get('product_id'),
-                            'local_id' => $request->get('local_id_destiny'),
-                            'size' => $talla['size'],
-                            'quantity' => $talla['quantity_relocate'],
-                        ]);
+                    foreach ($tallas as $talla) {
+                        if ($talla['quantity_relocate'] > 0) {
+                            KardexSize::create([
+                                'kardex_id' => $kardex_id_origin,
+                                'product_id' => $request->get('product_id'),
+                                'local_id' => $request->get('local_id_origin'),
+                                'size' => $talla['size'],
+                                'quantity' => -$talla['quantity_relocate'],
+                            ]);
+                            KardexSize::create([
+                                'kardex_id' => $kardex_id_destiny,
+                                'product_id' => $request->get('product_id'),
+                                'local_id' => $request->get('local_id_destiny'),
+                                'size' => $talla['size'],
+                                'quantity' => $talla['quantity_relocate'],
+                            ]);
+                        }
                     }
                 }
             }
@@ -765,7 +795,7 @@ class ProductController extends Controller
                 'is_product' => true,
                 'type_sale_affectation_id' => $data[6],
                 'type_purchase_affectation_id' => $data[8],
-                'type_unit_measure_id' => $data[8],
+                'type_unit_measure_id' => $data[10],
                 'status' => true
             ]);
 

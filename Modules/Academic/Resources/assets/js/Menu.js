@@ -31,6 +31,12 @@ const menuAcademic = {
             text: "Cursos",
             permissions: "aca_cursos_listado",
         },
+        {
+            route: route("aca_mycourses"),
+            status: false,
+            text: "Mis Cursos",
+            permissions: "aca_miscursos",
+        },
     ],
 };
 

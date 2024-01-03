@@ -2,6 +2,8 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import CreateForm from './Partials/CreateForm.vue';
 import { Link } from '@inertiajs/vue3';
+import { onMounted, ref } from 'vue';
+import Swal2 from 'sweetalert2';
 
 const props = defineProps({
     identityDocumentTypes: {
@@ -13,7 +15,6 @@ const props = defineProps({
         default: () => ({})
     }
 });
-
 </script>
 
 <template>
@@ -48,7 +49,10 @@ const props = defineProps({
                     </li>
                 </ol>
             </nav>
-            <CreateForm :identityDocumentTypes="identityDocumentTypes" :ubigeo="ubigeo" /> 
+            <CreateForm 
+                :identityDocumentTypes="identityDocumentTypes" 
+                :ubigeo="ubigeo"
+             /> 
         </div>
     </AppLayout>
 </template>
