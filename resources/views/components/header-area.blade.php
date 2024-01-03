@@ -49,6 +49,46 @@
                             <nav>
                                 <ul>
                                     <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                    <li>
+                                        <a href="">Repuestos</a>
+                                        <ul>
+                                            <li>
+                                                <a href="">Llantas</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Baterias</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Cargadores</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Espejos</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="">Accesorios</a>
+                                        <ul>
+                                            <li>
+                                                <a href="">Cascos</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Seguridad</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Guantes</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Lentes</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Covertor</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Rodilleras / Coderas</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <!--
                                     <li>
                                         <a href="index.html">Home</a>
@@ -65,212 +105,6 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="shop.html">products</a>
-                                        <ul class="mega-menu">
-                                            <li>
-                                                <h5>men’s bikes</h5>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> T Mounten
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> M Mounten
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> T Mounten
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> L Mounten
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> T Mounten
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> T Mounten
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> T Mounten
-                                                            bike</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <h5>Accessories</h5>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Giro
-                                                            Cipher Helmet</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mountain
-                                                            Helmet</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mountain
-                                                            Helmet</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Giro
-                                                            Cipher Helmet</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Giro
-                                                            Helmet</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Giro
-                                                            Helmet</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mountain
-                                                            Helmet</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <h5>women’s bikes</h5>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mount POW
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mount POW
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mount POW
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mount POW
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mount POW
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mount POW
-                                                            bike</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-arrow-circle-o-up"></i> Mount POW
-                                                            bike</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="banner-hover">
-                                                    <a href="#"><img alt="Banner" src="img/banner.jpg"></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about.html">about</a></li>
-                                    <li><a href="#">shortcode</a>
-                                        <ul>
-                                            <li>
-                                                <a href="shortcode/alerts.html">alerts</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/buttons.html">buttons</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/blog.html">blog</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/collapse.html">collapse</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/service.html">service</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/form.html">form</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/map.html">map</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/tab.html">tab</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/team.html">team</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/product-slider.html">product slider</a>
-                                            </li>
-                                            <li>
-                                                <a href="shortcode/video.html">video</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog-1.html">blog</a>
-                                        <ul>
-                                            <li>
-                                                <a href="blog-1.html">Blog Style One</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-2.html">Blog Style Two</a>
-                                            </li>
-                                            <li>
-                                                <a href="single-blog.html">Single Blog</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Pages</a>
-                                        <ul>
-                                            <li>
-                                                <a href="login.html">Login</a>
-                                            </li>
-                                            <li>
-                                                <a href="my-account.html">My account</a>
-                                            </li>
-                                            <li>
-                                                <a href="checkout.html">CheckOut</a>
-                                            </li>
-                                            <li>
-                                                <a href="wishlist.html">Wishlist</a>
-                                            </li>
-                                            <li>
-                                                <a href="cart.html">Cart</a>
-                                            </li>
-                                            <li>
-                                                <a href="about.html">About</a>
-                                            </li>
-                                            <li>
-                                                <a href="contact.html">Contact</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">Shop</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-list-left.html">Shop Left List View</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-list-right.html">Shop Right List View</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-gird-left.html">Shop Left Gird View</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-gird-right.html">Shop Right Gird View</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details.html">Product Details</a>
-                                            </li>
-                                            <li>
-                                                <a href="error-404.html">404 Error</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
                                         <a href="contact.html">contact</a>
                                     </li>
                                 -->
@@ -283,6 +117,46 @@
                                 <nav id="dropdown">
                                     <ul>
                                         <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                        <li>
+                                            <a href="">Repuestos</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="">Llantas</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Baterias</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Cargadores</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Espejos</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="">Accesorios</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="">Cascos</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Seguridad</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Guantes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Lentes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Covertor</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Rodilleras / Coderas</a>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         <!--
                                         <li><a href="index.html">Home</a>
                                             <ul>
