@@ -16,6 +16,8 @@ class HelpdeskDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call([
+            PermissionHelpdeskSeeder::class
+        ]);
     }
 }

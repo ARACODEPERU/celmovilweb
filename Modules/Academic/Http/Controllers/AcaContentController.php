@@ -29,7 +29,7 @@ class AcaContentController extends Controller
             'theme_id'      => $request->get('theme_id'),
             'position'      => $request->get('position'),
             'description'   => $request->get('description'),
-            'content'       => $request->get('content'),
+            'content'       => htmlentities($request->get('content'), ENT_QUOTES, "UTF-8"),
             'is_file'       => $request->get('is_file')
         ]);
 
@@ -51,7 +51,7 @@ class AcaContentController extends Controller
         AcaContent::find($id)->update([
             'position'      => $request->get('position'),
             'description'   => $request->get('description'),
-            'content'       => $request->get('content'),
+            'content'       => htmlentities($request->get('content'), ENT_QUOTES, "UTF-8"),
             'is_file'       => $request->get('is_file')
         ]);
 

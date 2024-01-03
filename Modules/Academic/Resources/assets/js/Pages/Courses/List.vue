@@ -2,7 +2,6 @@
     import AppLayout from '@/Layouts/AppLayout.vue';
     import Keypad from '@/Components/Keypad.vue';
     import Pagination from '@/Components/Pagination.vue';
-    import { Dropdown } from 'flowbite-vue'
     import Swal2 from "sweetalert2";
     import { Link, router, useForm } from '@inertiajs/vue3';
     import { faXmark, faGears, faTrashAlt, faCheck, faSpellCheck, faDownload, faPlay, faFile, faFilm } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +9,7 @@
     import { ref } from 'vue';
     import DangerButton from '@/Components/DangerButton.vue';
     import InputError from '@/Components/InputError.vue';
-    
+    import { ConfigProvider, Dropdown,Menu,MenuItem,Button } from 'ant-design-vue';
     import ModuleForm from './Partials/ModuleForm.vue';
 
     const props = defineProps({
@@ -202,7 +201,7 @@ const openModalModules = (course) =>{
                     <div class="w-full p-4 border-b border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
                         <div class="grid grid-cols-3">
                             <div class="col-span-3 sm:col-span-1">
-                                <form id="form-search-items" @submit.prevent="form.get(route('cms_items_list'))">
+                                <form id="form-search-items" @submit.prevent="form.get(route('aca_courses_list'))">
                                     <label for="table-search" class="sr-only">Search</label>
                                     <div class="relative">
                                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -223,7 +222,8 @@ const openModalModules = (course) =>{
                             </div>
                         </div>
                     </div>
-                    <div class="max-w-full">
+                    <div class="max-w-full overflow-x-auto">
+                        <ConfigProvider>
                         <table class="w-full table-auto">
                             <thead class="border-b border-stroke">
                                 <tr class="bg-gray-50 text-left dark:bg-meta-4">
@@ -251,31 +251,29 @@ const openModalModules = (course) =>{
                                 <template v-for="(course, index) in courses.data" :key="course.id">
                                     <tr class="border-b border-stroke">
                                         <td class="relative text-center py-2 dark:border-strokedark">
-                                            <Dropdown text="Top">
-                                                <template #trigger="{ toggle }">
-                                                    <button class="border py-1.5 px-2 dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm" type="button" @click="toggle">
-                                                        <font-awesome-icon :icon="faGears" />
-                                                    </button>
+                                            <Dropdown :placement="'bottomLeft'">
+                                                <button class="border py-1.5 px-2 dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm" type="button">
+                                                    <font-awesome-icon :icon="faGears" />
+                                                </button>
+                                                <template #overlay>
+                                                <Menu>
+                                                    <MenuItem>
+                                                        <Link :href="route('aca_courses_edit',course.id)" class="dark:text-gray-200 dark:hover:text-white">Editar</Link>
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                        <Link :href="route('aca_courses_information',course.id)" class="dark:text-gray-200 dark:hover:text-white">Información</Link>
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                        <a @click="openModalAgreements(course)" href="#" class="dark:text-gray-200 dark:hover:text-white">Convenios</a>
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                        <a @click="openModalModules(course)" href="#" >Módulos</a>
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                        <a @click="destroyCourse(course.id)" href="#" class="text-red-700 dark:text-gray-200 dark:hover:text-white">Eliminar</a>
+                                                    </MenuItem>
+                                                </Menu>
                                                 </template>
-                                                <div class="dropdown-div z-9999 absolute text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
-                                                        <li>
-                                                            <Link :href="route('aca_courses_edit',course.id)" class="text-left block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Editar</Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link :href="route('aca_courses_information',course.id)" class="text-left block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Información</Link>
-                                                        </li>
-                                                        <li>
-                                                            <a @click="openModalAgreements(course)" href="#" class="text-left block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Convenios</a>
-                                                        </li>
-                                                        <li>
-                                                            <a @click="openModalModules(course)" href="#" class="text-left block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Módulos</a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="py-2">
-                                                        <a @click="destroyCourse(course.id)" href="#" class="text-left block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Eliminar</a>
-                                                    </div>
-                                                </div>
                                             </Dropdown>
                                         </td>
                                         <td class="py-2 px-2 dark:border-strokedark">
@@ -300,8 +298,10 @@ const openModalModules = (course) =>{
                                 </template>
                             </tbody>
                         </table>
+                        <Pagination :data="courses" />
+                        </ConfigProvider>
                     </div>
-                    <Pagination :data="courses" />
+                    
                 </div>
             </div>
         </div>

@@ -61,7 +61,7 @@ const xhttp =  assetUrl;
 
             <div class="flex items-center gap-3 2xsm:gap-7">
                 <!-- boton de ayuda y registro de insidencias en el sistema -->
-                <GLobalRegister />
+                <!-- <GLobalRegister /> -->
 
                 <!-- User Area -->
                 <div class="relative">

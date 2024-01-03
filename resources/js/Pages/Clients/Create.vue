@@ -1,6 +1,18 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import CreateClientForm from '@/Pages/Clients/Partials/CreateClientForm.vue';
+
+const props = defineProps({
+    identityDocumentTypes: {
+        type: Object,
+        default: () => ({}),
+    },
+    ubigeo: {
+        type: Object,
+        default: () => ({}),
+    }
+});
+
 </script>
 
 <template>
@@ -13,7 +25,7 @@ import CreateClientForm from '@/Pages/Clients/Partials/CreateClientForm.vue';
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <CreateClientForm />
+                <CreateClientForm :identityDocumentTypes="identityDocumentTypes" :ubigeo="ubigeo" />
             </div>
         </div>
     </AppLayout>

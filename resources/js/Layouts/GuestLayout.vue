@@ -4,12 +4,12 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <div class="bg-white dark:bg-boxdark h-screen overflow-hidden">
+    <div class="bg-white dark:bg-boxdark min-h-screen">
         <div class="flex flex-wrap items-center">
             <div class="hidden w-full xl:block xl:w-1/2">
-                <div class="py-17.5 px-26 text-center">
+                <div class="py-10.5 px-26 text-center">
                   <a class="mb-5.5 inline-block" :href="route('login')">
-                    <img class="hidden dark:block" src="themes/tailadmin/src/images/logo/logo.svg" alt="Logo" />
+                    <img class="hidden dark:block" :src="$page.props.company.logo" alt="Logo" />
                     <img style="width: 242px; height: 53.0667px;" class="dark:hidden" :src="$page.props.company.logo" alt="Logo" />
                   </a>
 

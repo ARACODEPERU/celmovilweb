@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Http\Controllers;
 
+use App\Models\Parameter;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -19,6 +20,13 @@ class BlogArticlesController extends Controller
      * @return Renderable
      */
     use ValidatesRequests;
+
+    protected $P000010; ///token Tiny
+
+    public function __construct()
+    {
+        $this->P000010  = Parameter::where('parameter_code', 'P000010')->value('value_default');
+    }
 
     public function index()
     {
@@ -56,6 +64,7 @@ class BlogArticlesController extends Controller
     {
         $categories = BlogCategory::all();
         return Inertia::render('Blog::articles/Create', [
+            'tiny_api_key' => $this->P000010,
             'categories' => $categories
         ]);
     }
@@ -119,6 +128,7 @@ class BlogArticlesController extends Controller
     {
         $categories = BlogCategory::all();
         return Inertia::render('Blog::articles/Edit', [
+            'tiny_api_key' => $this->P000010,
             'categories' => $categories,
             'article' => $blogArticle
         ]);

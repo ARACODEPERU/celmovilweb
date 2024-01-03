@@ -94,8 +94,9 @@ class AcaTeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $update_id = null;
-
+        $update_id = $request->get('id');
+        $user = User::where('person_id', $request->get('id'))->first();
+        // dd($user);
         $this->validate(
             $request,
             [
@@ -104,18 +105,44 @@ class AcaTeacherController extends Controller
                 'number'            => 'unique:people,number,' . $update_id . ',id,document_type_id,' . $request->get('document_type_id'),
                 'telephone'         => 'required|max:12',
                 'email'             => 'required|max:255',
-                'email'             => 'unique:people,email',
+                'email'             => 'unique:people,email,' . $update_id . ',id',
+                'email'             => 'unique:users,email,' . $user->id . ',id',
                 'address'           => 'required|max:255',
                 'ubigeo'            => 'required|max:255',
                 'birthdate'         => 'required|',
                 'names'             => 'required|max:255',
                 'father_lastname'   => 'required|max:255',
                 'mother_lastname'   => 'required|max:255',
+            ],
+            [
+                'email.unique' => 'El email ya esta en uso en usuario o en persona'
             ]
         );
 
-        // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
-        // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
+        $per = Person::updateOrCreate(
+            [
+                'document_type_id'      => $request->get('document_type_id'),
+                'number'                => $request->get('number'),
+            ],
+            [
+
+                'short_name'            => $request->get('names'),
+                'full_name'             => $request->get('father_lastname') . ' ' .  $request->get('mother_lastname') . ' ' . $request->get('names'),
+                'description'           => $request->get('description'),
+                'telephone'             => $request->get('telephone'),
+                'email'                 => $request->get('email'),
+                'address'               => $request->get('address'),
+                'is_provider'           => false,
+                'is_client'             => true,
+                'ubigeo'                => $request->get('ubigeo'),
+                'birthdate'             => $request->get('birthdate'),
+                'names'                 => $request->get('names'),
+                'father_lastname'       => $request->get('father_lastname'),
+                'mother_lastname'       => $request->get('mother_lastname'),
+                'presentacion'          => $request->get('presentacion')
+            ]
+        );
+
         $path = null;
         $destination = 'uploads/teachers';
         $file = $request->file('image');
@@ -123,7 +150,7 @@ class AcaTeacherController extends Controller
             $original_name = strtolower(trim($file->getClientOriginalName()));
             $original_name = str_replace(" ", "_", $original_name);
             $extension = $file->getClientOriginalExtension();
-            $file_name = date('YmdHis') . '.' . $extension;
+            $file_name = $per->id . '.' . $extension;
             $path = $request->file('image')->storeAs(
                 $destination,
                 $file_name,
@@ -131,42 +158,30 @@ class AcaTeacherController extends Controller
             );
 
             $path = asset("storage/" . $path); //guardar la ruta COMPLETA
+            $per->image = $path;
+            $per->save();
         }
 
+        $user = User::updateOrCreate(
+            [
+                'email'         => $request->get('email'),
+                'person_id'     => $per->id
+            ],
+            [
+                'name'          => $request->get('names'),
+                'password'      => Hash::make($request->get('number')),
+                'information'   => $request->get('description'),
+                'avatar'        => $path,
 
-        $per = Person::create([
-            'document_type_id'      => $request->get('document_type_id'),
-            'short_name'            => $request->get('names'),
-            'full_name'             => $request->get('father_lastname') . ' ' .  $request->get('mother_lastname') . ' ' . $request->get('names'),
-            'description'           => $request->get('description'),
-            'number'                => $request->get('number'),
-            'telephone'             => $request->get('telephone'),
-            'email'                 => $request->get('email'),
-            'image'                 => $path,
-            'address'               => $request->get('address'),
-            'is_provider'           => false,
-            'is_client'             => true,
-            'ubigeo'                => $request->get('ubigeo'),
-            'birthdate'             => $request->get('birthdate'),
-            'names'                 => $request->get('names'),
-            'father_lastname'       => $request->get('father_lastname'),
-            'mother_lastname'       => $request->get('mother_lastname')
-        ]);
+            ]
+        );
 
-        User::create([
-            'name'          => $request->get('names'),
-            'email'         => $request->get('email'),
-            'password'      => Hash::make($request->get('number')),
-            'information'   => $request->get('description'),
-            'avatar'        => $path,
-            'person_id'     => $per->id
-        ]);
+        $user->assignRole('Docente');
 
         AcaTeacher::create([
             'person_id'     => $per->id,
             'teacher_code'  => $request->get('number'),
         ]);
-
         return redirect()->route('aca_teachers_list')
             ->with('message', __('Docente creado con éxito'));
     }
@@ -221,6 +236,7 @@ class AcaTeacherController extends Controller
     {
         $person_id = $request->get('id');
         $student_id = $request->get('teacher_id');
+        $user = User::where('person_id', $request->get('id'))->first();
 
         $this->validate(
 
@@ -232,6 +248,7 @@ class AcaTeacherController extends Controller
                 'telephone'         => 'required|max:12',
                 'email'             => 'required|max:255',
                 'email'             => 'unique:people,email,' . $person_id . ',id',
+                'email'             => 'unique:users,email,' . $user->id . ',id',
                 'address'           => 'required|max:255',
                 'ubigeo'            => 'required|max:255',
                 'birthdate'         => 'required|',
@@ -241,23 +258,24 @@ class AcaTeacherController extends Controller
             ]
         );
 
-        // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
-        // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
-        $path = null;
-        $destination = 'uploads/students';
+        $path = $request->get('image_preview');
+        $destination = 'uploads/teachers';
         $file = $request->file('image');
+
         if ($file) {
             $original_name = strtolower(trim($file->getClientOriginalName()));
             $original_name = str_replace(" ", "_", $original_name);
             $extension = $file->getClientOriginalExtension();
-            $file_name = date('YmdHis') . '.' . $extension;
+            $file_name = $person_id . '.' . $extension;
             $path = $request->file('image')->storeAs(
                 $destination,
                 $file_name,
                 'public'
             );
+
+            $path = asset("storage/" . $path); //RUTA COMPLETA
         }
-        $path = asset("storage/" . $path); //RUTA COMPLETA
+
         Person::find($person_id)->update([
             'document_type_id'      => $request->get('document_type_id'),
             'short_name'            => $request->get('names'),
@@ -274,17 +292,18 @@ class AcaTeacherController extends Controller
             'birthdate'             => $request->get('birthdate'),
             'names'                 => $request->get('names'),
             'father_lastname'       => $request->get('father_lastname'),
-            'mother_lastname'       => $request->get('mother_lastname')
+            'mother_lastname'       => $request->get('mother_lastname'),
+            'presentacion'          => $request->get('presentacion')
         ]);
 
-        User::where('person_id', $person_id)->update([
+        $user->update([
             'name'          => $request->get('names'),
             'email'         => $request->get('email'),
             'password'      => Hash::make($request->get('number')),
             'information'   => $request->get('description'),
             'avatar'        => $path
         ]);
-
+        //dd($request->get('presentacion'));
         AcaTeacher::find($student_id)->update([
             'teacher_code'  => $request->get('number'),
         ]);

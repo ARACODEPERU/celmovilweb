@@ -14,6 +14,10 @@
         categories: {
             type: Object,
             default: () => ({})
+        },
+        tiny_api_key: {
+            type: String,
+            default: null,
         }
     });
 
@@ -127,7 +131,7 @@
             <div class="col-span-6 sm:col-span-6">
                 <InputLabel for="content" value="Contenido *" />
                 <Editor
-                    api-key="qv97v3surg08i8vhwvqxnj7ek17sk8xx2aqimzrrsgav6003"
+                    :api-key="tiny_api_key"
                     v-model="form.content_text"
                     :init="{
                         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',

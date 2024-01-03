@@ -109,7 +109,7 @@ class AcaBrochureController extends Controller
         }
 
 
-        return redirect()->route('aca_courses_information', $request->get('course_id'));
+        return redirect()->route('aca_courses_list', $request->get('course_id'));
     }
 
     /**

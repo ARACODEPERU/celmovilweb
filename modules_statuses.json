@@ -9,5 +9,6 @@
     "Health": true,
     "Dental": true,
     "Academic": true,
-    "Restaurant": true
+    "Restaurant": true,
+    "Socialevents": true
 }

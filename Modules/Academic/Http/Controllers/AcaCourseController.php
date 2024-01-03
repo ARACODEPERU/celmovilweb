@@ -2,6 +2,7 @@
 
 namespace Modules\Academic\Http\Controllers;
 
+use App\Models\Parameter;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -15,6 +16,7 @@ use Modules\Academic\Entities\AcaModality;
 use Modules\Academic\Entities\AcaTeacher;
 use Modules\Academic\Entities\AcaTeacherCourse;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class AcaCourseController extends Controller
 {
@@ -23,11 +25,14 @@ class AcaCourseController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    protected $P000010; ///token Tiny
+
     protected $RPTABLE;
 
     public function __construct()
     {
         $this->RPTABLE = env('RECORDS_PAGE_TABLE') ?? 10;
+        $this->P000010  = Parameter::where('parameter_code', 'P000010')->value('value_default');
     }
 
     public function index()
@@ -142,7 +147,7 @@ class AcaCourseController extends Controller
         return Inertia::render('Academic::Courses/Information', [
             'brochure' => AcaBrochure::where('course_id', $id)->first(),
             'course' => AcaCourse::find($id),
-            'tiny_api_key' => env('TINY_API_KEY'),
+            'tiny_api_key' => $this->P000010,
             'teachers' => $teachers,
             'course_teachers' => $course_teachers
         ]);
@@ -253,6 +258,19 @@ class AcaCourseController extends Controller
         return response()->json([
             'success' => $success,
             'message' => $message
+        ]);
+    }
+
+    public function getCoursesTeacherNull()
+    {
+        $courses = [];
+        if (Auth::user()->hasAnyRole(['admin', 'Docente', 'Administrador'])) {
+            $courses = AcaCourse::whereNull('teacher_id')->get();
+        }
+
+
+        return response()->json([
+            'courses' => $courses
         ]);
     }
 }

@@ -4,7 +4,8 @@
     import { faTrashAlt, faPencilAlt, faPrint, faCashRegister, faFileExcel, faMoneyBill1Wave} from "@fortawesome/free-solid-svg-icons";
     import Pagination from '@/Components/Pagination.vue';
     import Keypad from '@/Components/Keypad.vue';
-    import swal from 'sweetalert2';
+    import Swal2 from 'sweetalert2';
+    import { ConfigProvider, Dropdown,Menu,MenuItem,Button } from 'ant-design-vue';
 
     const props = defineProps({
         students: {
@@ -20,23 +21,6 @@
     const form = useForm({
         search: props.filters.search,
     });
-
-    const activeDropdown = (index) => {
-
-        const dropdowns = document.querySelectorAll('.dropdown-div');
-        dropdowns.forEach((dropdown) => {
-            dropdown.classList.add('hidden');
-        });
-
-        // Mostrar el menú desplegable específico
-        let dropdownMenu = document.getElementById('dropdown' + index);
-        dropdownMenu.classList.remove('hidden');
-    }
-    const hideDropdown = (index) => {
-        let dropdownMenu = document.getElementById('dropdown' + index);
-        dropdownMenu.classList.add('hidden');
-    }
-
 
 </script>
 
@@ -97,28 +81,34 @@
                     </div>
                 </div>
                 <!-- ====== Table One Start -->
+                
                 <template v-if="students.data && students.data.length > 0">
+                    <ConfigProvider>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div v-for="(student, index) in students.data">
                             <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex justify-end px-4 pt-4">
-                                    <button @click="activeDropdown(index)" data-dropdown-toggle="dropdown" class="dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
-                                        <span class="sr-only">Open dropdown</span>
-                                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                                        </svg>
-                                    </button>
-                                    <!-- Dropdown menu -->
-                                    <div :id="'dropdown'+index" class="dropdown-div z-10 hidden absolute text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                        <ul class="py-2" aria-labelledby="dropdownButton">
-                                        <li>
-                                            <Link :href="route('aca_students_edit',student.id)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Editar</Link>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                                        </li>
-                                        </ul>
-                                    </div>
+                                    <Dropdown :placement="'bottomLeft'">
+                                        <button class="dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                                            </svg>
+                                        </button>
+                                        <template #overlay>
+                                        <Menu>
+                                            <MenuItem>
+                                                <Link :href="route('aca_students_edit',student.id)" type="Button">
+                                                    Editar
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <button>
+                                                    Eliminar
+                                                </button>
+                                            </MenuItem>
+                                        </Menu>
+                                        </template>
+                                    </Dropdown>
                                 </div>
                                 <div class="flex flex-col items-center pb-10">
                                     <template v-if="student.people_image">
@@ -140,7 +130,9 @@
                     <div>
                         <Pagination :data="students" />
                     </div>
+                    </ConfigProvider>
                 </template>
+
                 <template v-else>
                     <div class="flex items-center p-4 mb-4 text-gray-800 border-t-2 border-gray-300 bg-white dark:text-blue-400 dark:bg-gray-800 dark:border-blue-800" role="alert">
                         <span class="font-medium">Aun la tabla esta vacía</span> puede registrar datos.

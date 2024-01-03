@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/helpdesk', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->prefix('helpdesk')->group(function () {
+    Route::get('client/records',  'HelpdeskController@getRecords')->name('api_helpdesk_client_records');
+    Route::get('client/themes/{id}/questions',  'HelpdeskController@getThemesQuestions')->name('api_helpdesk_client_themes_questions');
 });

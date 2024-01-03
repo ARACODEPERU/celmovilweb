@@ -3,12 +3,13 @@ import { ref, onMounted } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import Sidebar from '@/Components/Sidebar.vue';
 import Header from '@/Components/Header.vue';
-
+import BannerMessage from '../../../Modules/Academic/Resources/assets/js/Components/BannerMessage.vue';
 const sidebarToggle = ref(false);
 
 const eventSidebarToggle = (parmt) => {
     sidebarToggle.value = parmt;
 };
+
 defineProps({
     title: String,
 });
@@ -16,6 +17,7 @@ defineProps({
 </script>
 
 <template>
+    <!-- <BannerMessage />  -->
     <Head :title="title" />
     <div class="flex h-screen overflow-hidden">
         <Sidebar :sidebarToggle="sidebarToggle" @activateCakeButton="eventSidebarToggle"></Sidebar>
@@ -24,8 +26,6 @@ defineProps({
             <main>
                 <slot />
             </main>
-        
         </div>
-        
     </div>
 </template>

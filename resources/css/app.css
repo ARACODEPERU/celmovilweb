@@ -213,3 +213,66 @@ span.flatpickr-weekday,
 .colored-toast .swal2-html-container {
   color: white;
 }
+
+/* stilos del paquete de componentes ant */
+.ant-transfer .ant-transfer-operation {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-self: center;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+.ant-btn.ant-btn-sm.ant-btn-icon-only {
+  width: 24px;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+}
+.ant-btn:first-child {
+  margin-bottom: 4px;
+}
+.ant-btn.ant-btn-sm {
+  font-size: 14px;
+  height: 24px;
+  padding: 0px 7px;
+  border-radius: 4px;
+}
+.ant-btn-primary{
+  color: #fff;
+  background-color: #1677ff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+}
+.anticon {
+  display: inline-block;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-input{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    list-style: none;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    background-color: #ffffff;
+    background-image: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+    border-radius: 6px;
+    transition: all 0.2s;
+}

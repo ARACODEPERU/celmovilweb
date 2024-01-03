@@ -22,21 +22,6 @@
         search: props.filters.search,
     });
 
-    const activeDropdown = (index) => {
-
-        const dropdowns = document.querySelectorAll('.dropdown-div');
-        dropdowns.forEach((dropdown) => {
-            dropdown.classList.add('hidden');
-        });
-
-        // Mostrar el menú desplegable específico
-        let dropdownMenu = document.getElementById('dropdown' + index);
-        dropdownMenu.classList.remove('hidden');
-    }
-    const hideDropdown = (index) => {
-        let dropdownMenu = document.getElementById('dropdown' + index);
-        dropdownMenu.classList.add('hidden');
-    }
 
     const destroyTeacher = (id) => {
         swal.fire({
@@ -105,7 +90,7 @@
                     <div class="w-full p-4 bg-gray-50 dark:bg-gray-700">
                         <div class="grid grid-cols-3">
                             <div class="col-span-3 sm:col-span-1">
-                                <form id="form-search-items" @submit.prevent="form.get(route('aca_students_list'))">
+                                <form id="form-search-items" @submit.prevent="form.get(route('aca_teachers_list'))">
                                     <label for="table-search" class="sr-only">Search</label>
                                     <div class="relative">
                                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

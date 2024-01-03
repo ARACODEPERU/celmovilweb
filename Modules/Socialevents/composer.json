@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/socialevents",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Socialevents\\": "",
+            "Modules\\Socialevents\\App\\": "app/",
+            "Modules\\Socialevents\\Database\\Factories\\": "database/factories/",
+            "Modules\\Socialevents\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Socialevents\\Tests\\": "tests/"
+        }
+    }
+}
