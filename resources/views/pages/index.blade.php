@@ -557,7 +557,7 @@
                                 <div class="link-icon">
                                     <a href="product-details.html"><i class="fa fa-link"></i></a>
                                     <div class="zoom-gallery">
-                                        <a href=""><img src="{{ asset('themes/celmovil/img/icon/plus.png') }}" alt="Product" /></a>
+                                        <a href="{{ asset('themes/celmovil/img/products/1.jpg') }}"><img src="{{ asset('themes/celmovil/img/icon/plus.png') }}" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -572,11 +572,11 @@
                         </div>
                         <div class="product-item margin-top">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="img/products/2.jpg" alt="Product" /></a>
+                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/2.jpg') }}" alt="Product" /></a>
                                 <div class="link-icon">
                                     <a href="product-details.html"><i class="fa fa-link"></i></a>
                                     <div class="zoom-gallery">
-                                        <a href="img/products/2.jpg"><img src="img/icon/plus.png" alt="Product" /></a>
+                                        <a href="{{ asset('themes/celmovil/img/products/2.jpg') }}"><img src="{{ asset('themes/celmovil/img/icon/plus.png') }}" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -595,11 +595,11 @@
                     <div class="single-mata middel">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="img/products/3.jpg" alt="Product" /></a>
+                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/3.jpg') }}" alt="Product" /></a>
                                 <div class="link-icon">
                                     <a href="product-details.html"><i class="fa fa-link"></i></a>
                                     <div class="zoom-gallery">
-                                        <a href="img/products/3.jpg"><img src="img/icon/plus.png" alt="Product" /></a>
+                                        <a href="{{ asset('themes/celmovil/img/products/3.jpg') }}"><img src="{{ asset('themes/celmovil/img/icon/plus.png') }}" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -618,11 +618,11 @@
                     <div class="single-mata right">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="img/products/4.jpg" alt="Product" /></a>
+                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/4.jpg') }}" alt="Product" /></a>
                                 <div class="link-icon">
                                     <a href="product-details.html"><i class="fa fa-link"></i></a>
                                     <div class="zoom-gallery">
-                                        <a href="img/products/4.jpg"><img src="img/icon/plus.png" alt="Product" /></a>
+                                        <a href="{{ asset('themes/celmovil/img/products/4.jpg') }}"><img src="{{ asset('themes/celmovil/img/icon/plus.png') }}" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -637,11 +637,11 @@
                         </div>
                         <div class="product-item margin-top">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="img/products/5.jpg" alt="Product" /></a>
+                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/5.jpg') }}" alt="Product" /></a>
                                 <div class="link-icon">
                                     <a href="product-details.html"><i class="fa fa-link"></i></a>
                                     <div class="zoom-gallery">
-                                        <a href="img/products/5.jpg"><img src="img/icon/plus.png" alt="Product" /></a>
+                                        <a href="{{ asset('themes/celmovil/img/products/5.jpg') }}"><img src="{{ asset('themes/celmovil/img/icon/plus.png') }}" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -668,7 +668,7 @@
                     <div class="section-title text-center">
                         <h3><span>Featured</span> products</h3>
                         <div class="shape">
-                            <img src="img/icon/t-shape.png" alt="Title Shape" />
+                            <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                         </div>
                         <p>It is a long established fact that a reader will be distracted by the readable content page when
                             looking at its layout.</p>
@@ -681,7 +681,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="img/products/1.png" alt="" /></a>
+                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/1.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -710,7 +710,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="img/products/3.png" alt="" /></a>
+                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/3.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -739,7 +739,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="img/products/2.png" alt="" /></a>
+                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/2.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -768,7 +768,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="img/products/1.png" alt="" /></a>
+                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/1.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -797,7 +797,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="img/products/3.png" alt="" /></a>
+                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/3.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
