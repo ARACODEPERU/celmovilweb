@@ -8,11 +8,11 @@
                             <ul>
                                 <li>
                                     <i class="fa fa-phone"></i>
-                                    +11 (019) 25184203
+                                    (+51) 921 197 459
                                 </li>
                                 <li>
                                     <i class="fa fa-envelope-o"></i>
-                                    raid@mail.com
+                                    ventas@celmovil.pe
                                 </li>
                             </ul>
                         </div>
