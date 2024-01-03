@@ -1,7 +1,7 @@
 <div>
     <div class="slider-area slider-one clearfix">
         <div class="slider" id="mainslider">
-            <div data-src="{{ asset('themes/celmovil/img/slider/1.jpg') }}">
+            <div data-src="{{ asset('themes/celmovil/img/slider/slider_01.jpeg') }}">
                 <div class="d-table">
                     <div class="d-tablecell">
                         <div class="container">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div data-src="{{ asset('themes/celmovil/img/slider/2.jpg') }}">
+            <div data-src="{{ asset('themes/celmovil/img/slider/celmovil-portada.jpg') }}">
                 <div class="d-table">
                     <div class="d-tablecell">
                         <div class="container">
