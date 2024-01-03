@@ -160,7 +160,7 @@
     <x-popular-product-area />
     <!-- popular-product section end -->
 
-    <!-- blog section start -->
+    <!-- blog section start 
     <section class="blog-area blog-two section-padding">
         <div class="container">
             <div class="row">
@@ -238,7 +238,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
     <!-- blog section end -->
     
     <!-- quick view start -->
@@ -354,6 +354,7 @@
     </div>
     <!-- quick view end -->
     
+    <br><br>
     <!-- footer - section start -->
     <x-footer-area />
     <!-- footer - section end -->
