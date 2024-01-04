@@ -52,7 +52,7 @@
         <!-- contact area end -->
         <div class="footer-logo-text">
             <div class="container text-center">
-                <a href="index.html"><img src="{{ asset('themes/celmovil/img/logo2.png') }}" alt="Logo" /></a>
+                <a href="index.html"><img style="width: 175px;" src="{{ asset('themes/celmovil/img/celmovil_logo_positivo.png') }}" alt="Logo" /></a>
                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have</p>
                 <p> suffered alteration in some form, by injected humour, or randomised</p>
             </div>

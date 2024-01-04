@@ -50,7 +50,47 @@
                                 <ul>
                                     <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
                                     <li>
-                                        <a href="">Repuestos</a>
+                                        <a href="">VMPS, BICIMOTOS, BIOS</a>
+                                        <ul>
+                                            <li>
+                                                <a href="">Baterias Plomo Acido</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Baterias Plomo Lítio</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="">MOTOS</a>
+                                        <ul>
+                                            <li>
+                                                <a href="">Scooter Moped</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Scooter Vintage</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Deportivos</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Chopper</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="">TRIMOTOS</a>
+                                        <ul>
+                                            <li>
+                                                <a href="">Baterias Plomo Acido</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Baterias Plomo Lítio</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="">CUATRIMOTOS</a></li>
+                                    <li>
+                                        <a href="">REPUESTOS</a>
                                         <ul>
                                             <li>
                                                 <a href="">Llantas</a>
@@ -67,7 +107,7 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">Accesorios</a>
+                                        <a href="">ACCESORIOS</a>
                                         <ul>
                                             <li>
                                                 <a href="">Cascos</a>

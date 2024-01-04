@@ -12,6 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/celmovil_favicon.ico') }}">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
+    
     <!-- style css -->
     <link rel="stylesheet" href="{{ asset('themes/celmovil/style.css') }}">
     <!-- modernizr js -->

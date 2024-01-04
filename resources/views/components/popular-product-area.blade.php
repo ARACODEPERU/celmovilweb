@@ -43,7 +43,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span><del>$1800</del></p>
@@ -73,7 +73,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -103,7 +103,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -135,7 +135,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -154,7 +154,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -165,7 +165,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -184,7 +184,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -195,7 +195,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -214,7 +214,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -231,7 +231,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -250,7 +250,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -261,7 +261,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -280,7 +280,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -291,7 +291,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -310,7 +310,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span><del>$1800</del></p>
@@ -323,7 +323,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -342,7 +342,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -353,7 +353,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -372,7 +372,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -383,7 +383,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/16.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/16.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -402,7 +402,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -419,7 +419,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -438,7 +438,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -449,7 +449,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -468,7 +468,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span><del>$1800</del></p>
@@ -479,7 +479,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -498,7 +498,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -511,7 +511,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -530,7 +530,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span><del>$1800</del></p>
@@ -541,7 +541,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -560,7 +560,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -571,7 +571,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -590,7 +590,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -607,7 +607,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -626,7 +626,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span><del>$1800</del></p>
@@ -637,7 +637,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -656,7 +656,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -667,7 +667,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -686,7 +686,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -699,7 +699,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -718,7 +718,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -729,7 +729,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -748,7 +748,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -759,7 +759,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -778,7 +778,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span><del>$1800</del></p>
@@ -795,7 +795,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/9.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -814,7 +814,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -825,7 +825,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/12.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -844,7 +844,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -855,7 +855,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -874,7 +874,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -887,7 +887,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/10.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -906,7 +906,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span><del>$1800</del></p>
@@ -917,7 +917,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -936,7 +936,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
@@ -947,7 +947,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
+                                        <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/17.png') }}"
                                                 alt="Product" /></a>
                                     </div>
                                     <div class="actions-btn">
@@ -966,7 +966,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="product-details.html">
+                                            <a href="{{  route('web_producto_descripcion') }}">
                                                 <h5>T Mounten bike S900</h5>
                                             </a>
                                             <p>Price: <span>$1500 </span></p>
