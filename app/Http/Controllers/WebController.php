@@ -21,4 +21,9 @@ class WebController extends Controller
     {
         return view('pages/producto-descripcion');
     }
+
+    public function carrito()
+    {
+        return view('pages/carrito');
+    }
 }

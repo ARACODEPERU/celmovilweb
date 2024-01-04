@@ -115,10 +115,10 @@
 								<div class="actions-btn">
 									<ul class="clearfix text-center">
 										<li>
-											<a href="cart.html"><i class="fa fa-shopping-cart"></i> add to cart</a>
+											<a href="{{ route('web_carrito') }}"><i class="fa fa-shopping-cart"></i> add to cart</a>
 										</li>
 										<li>
-											<a href="cart.html"><i class="fa fa-heart-o"></i></a>
+											<a href="{{ route('web_carrito') }}"><i class="fa fa-heart-o"></i></a>
 										</li>
 										<li>
 											<a href="#"><i class="fa fa-share-alt"></i></a>
