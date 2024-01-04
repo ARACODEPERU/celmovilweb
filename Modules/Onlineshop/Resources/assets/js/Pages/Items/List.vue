@@ -313,8 +313,8 @@
                                 <div style="margin-top: 8px">Upload</div>
                             </div>
                         </Upload>
-                        <Modal :zIndex="9999999" :open="previewVisible" :title="previewTitle" :footer="null" @cancel="handleCancel">
-                            <img alt="example" style="width: 100%" :src="previewImage" />
+                        <Modal :zIndex="9999999" style="top: 20px" :open="previewVisible" :title="previewTitle" :footer="null" @cancel="handleCancel">
+                            <img alt="example" style="width: 100%;" :src="previewImage" />
                         </Modal>
                     </div>
                 </template>
