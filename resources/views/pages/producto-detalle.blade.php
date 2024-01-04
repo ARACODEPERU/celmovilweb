@@ -121,9 +121,6 @@
 											<a href="cart.html"><i class="fa fa-heart-o"></i></a>
 										</li>
 										<li>
-											<a href="#"><i class="fa fa-compress"></i></a>
-										</li>
-										<li>
 											<a href="#"><i class="fa fa-share-alt"></i></a>
 										</li>
 									</ul>
@@ -134,10 +131,6 @@
 										<li>
 											CATEGORIES: 
 											<a href="#">Bike,</a> <a href="#">Cycle,</a> <a href="#">Ride,</a> <a href="#">Mountain</a>
-										</li>
-										<li>
-											TAG: 
-											<a href="#">Ride,</a> <a href="#">Helmet,</a> <a href="#">cycle,</a> <a href="#">bike</a> 
 										</li>
 									</ul>
 								</div>
@@ -166,12 +159,13 @@
 											<span>Shifters</span>
 											<p>SRAM GX 11 Speed Trigger Shifter</p>
 										</li>
-										<li>
-											<span>Front Derailleur</span>
-											<p>n\a</p>
-										</li>
 									</ul>
 								</div>
+                                <div class="row" style="padding: 15px 0px;">
+                                    <div class="col-md-12">
+                                        <a href="" class="btn btn-primary">Más información</a>
+                                    </div>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -182,85 +176,74 @@
 							<div class="tab-menu">
 								<ul>
 									<li class="active">
-										<a data-toggle="tab" href="#des">PRODUCT DESCRIPTION</a>
+										<a data-toggle="tab" href="#des">DESCRIPCIÓN</a>
 									</li>
 									<li>
-										<a data-toggle="tab" href="#reviews">REVIEWS</a>
+										<a data-toggle="tab" href="#ficha">FICHA TECNICA</a>
 									</li>
 									<li>
-										<a data-toggle="tab" href="#tags">TAGS</a>
+										<a data-toggle="tab" href="#manual">MANUAL</a>
 									</li>
 									<li>
-										<a data-toggle="tab" href="#size">SIZE GUIDE</a>
-									</li>
-									<li>
-										<a data-toggle="tab" href="#custom">CUSTOM TAB</a>
+										<a data-toggle="tab" href="#legal">LEGAL</a>
 									</li>
 								</ul>
 							</div>
 							<div class="tab-content margin50">
 								<div class="tab-pane fade in active" id="des">
-									<div class="des-text">
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero.</p><br />
-										<p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
-									</div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div>
+                                                <img src="{{ asset('themes/celmovil/img/products/l1.jpg') }}" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="des-text">
+                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero.</p><br />
+                                                <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
 								</div>
-								<div class="tab-pane fade in single-blog-page" id="reviews">
+								<div class="tab-pane fade in single-blog-page" id="ficha">
 									<div class="leave-comment">
-										<h4>leave your review</h4>
-										<form action="mail.php" method="post">
-											<div class="row">
-												<div class="col-xs-12 col-sm-6">
-													<div class="input-text">
-														<input type="text" name="name" placeholder="Your Name">
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6">
-													<div class="input-text">
-														<input type="text" name="email" placeholder="Email" required="">
-													</div>
-												</div>
-												<div class="col-xs-12">
-													<div class="input-text">
-														<textarea name="comment" id="comment" placeholder="Comment" rows="4"></textarea>
-													</div>
-												</div>
-												<div class="col-xs-12">
-													<div class="submit-text">
-														<input type="submit" name="submit" value="submit comments">
-													</div>
-												</div>
-											</div>
-										</form>
+                                        <img style="width: 100%;" src="{{ asset('themes/celmovil/img/products/l1.jpg') }}" alt="" />
 									</div>
 								</div>
-								<div class="tab-pane fade in" id="tags">
-									<div class="tag-btn clearfix">
-										<a href="#">Bike</a>
-										<a href="#">Wheel</a>
-										<a href="#">Aparel</a>
-										<a href="#">GPS</a>
-										<a href="#">Track</a>
-										<a href="#">Accessories</a>
-										<a href="#">Men</a>
-										<a href="#">Women</a>
-										<a href="#">Power</a>
-									</div>
+								<div class="tab-pane fade in" id="manual">
+                                    <a href="" class="btn btn-primary" style="padding: 20px; font-size: 16px;"> Descargar Manual</a>
 								</div>
-								<div class="tab-pane fade in" id="size">
-									<div class="size-btn clearfix">
-										<a href="#">X</a>
-										<a href="#">m</a>
-										<a href="#">l</a>
-										<a href="#">Xm</a>
-										<a href="#">xxl</a>
-									</div>
-								</div>
-								<div class="tab-pane fade in" id="custom">
-									<div class="des-text">
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero.</p><br />
-										<p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
-									</div>
+								<div class="tab-pane fade in" id="legal">
+                                    <div class="row" style="padding-bottom: 30px;">
+                                        <div class="col-md-3">
+                                            <h3>Aviso</h3>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a 
+                                                type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
+                                                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing 
+                                                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions 
+                                                of Lorem Ipsum
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-bottom: 30px;">
+                                        <div class="col-md-3">
+                                            <h3>Aviso</h3>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a 
+                                                type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
+                                                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing 
+                                                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions 
+                                                of Lorem Ipsum
+                                            </p>
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 						</div>
