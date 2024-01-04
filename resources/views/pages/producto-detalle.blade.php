@@ -256,7 +256,7 @@
 		<section class="related-area riding-one">
 			<div class="container">
 				<div class="related-title">
-					<h5>Related Products</h5>
+					<h5>Related Products s</h5>
 				</div>
 				<div class="row text-center margin50">
 					<div class="related-slider single-products">
