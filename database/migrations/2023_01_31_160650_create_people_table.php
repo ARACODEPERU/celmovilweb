@@ -53,6 +53,7 @@ return new class extends Migration
                 'full_name' => 'Clientes Varios',
                 'number' => '99999999',
                 'is_client' => true,
+                'ubigeo' => '021801',
             ]
         ]);
     }

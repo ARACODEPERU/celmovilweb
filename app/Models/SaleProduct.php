@@ -16,7 +16,8 @@ class SaleProduct extends Model
         'price',
         'discount',
         'quantity',
-        'total'
+        'total',
+        'saleProduct'
     ];
 
     public function sale()

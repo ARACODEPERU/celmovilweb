@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('parameter_code')->unique();
             $table->string('description');
-            $table->char('control_type', 2)->nullable()->comment('in=text,ra=radio,sq=select(query),sa=select(json),ch=checkbox,tx=textarea,rg=range,fl=file');
+            $table->char('control_type', 3)->nullable()->comment('in=text,sq=select(query),sa=select(json),chq=checkbox(query),chj=checkbox(json),tx=textarea,rgq=range(query),rgj=range(json),fl=file');
             $table->text('json_query_data')->nullable();
             $table->text('value_default')->nullable();
             $table->timestamps();
@@ -76,6 +76,22 @@ return new class extends Migration
             'control_type'      => 'se',
             'json_query_data'   => null,
             'value_default'     => '10'
+        ]);
+
+        Parameter::create([
+            'parameter_code'    => 'P000009',
+            'description'       => 'Tipo de negocio o empresa',
+            'control_type'      => 'in',
+            'json_query_data'   => '[{"value": "1","label":"Cursos"},{"value": "2","label":"Productos"}]',
+            'value_default'     => 1
+        ]);
+
+        Parameter::create([
+            'parameter_code'    => 'P000010',
+            'description'       => 'Token de Editor en linea Tiny',
+            'control_type'      => 'tx',
+            'json_query_data'   => null,
+            'value_default'     => 'xmpsrss1dh49by6nnf83jicfv477cz0o31h0xu3ejsnnhsnz'
         ]);
     }
 

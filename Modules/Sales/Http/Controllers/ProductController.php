@@ -121,7 +121,7 @@ class ProductController extends Controller
             $this->validate(
                 $request,
                 [
-                    'sizes.*.size' => 'required|numeric',
+                    'sizes.*.size' => 'required',
                     'sizes.*.quantity' => 'required|numeric',
                 ],
                 [
@@ -130,22 +130,7 @@ class ProductController extends Controller
                 ]
             );
         }
-        // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
-        // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
-        $path = 'img/imagen-no-disponible.jpg';
-        $destination = 'uploads/products';
-        $file = $request->file('image');
-        if ($file) {
-            $original_name = strtolower(trim($file->getClientOriginalName()));
-            $original_name = str_replace(" ", "_", $original_name);
-            $extension = $file->getClientOriginalExtension();
-            $file_name = trim($request->get('interne')) . '.' . $extension;
-            $path = $request->file('image')->storeAs(
-                $destination,
-                $file_name,
-                'public'
-            );
-        }
+
         $total = 0;
         if ($presentations) {
             foreach ($request->get('sizes') as $k => $item) {
@@ -155,11 +140,11 @@ class ProductController extends Controller
             $total = $request->get('stock') ?? 1;
         }
 
+
         $pr = Product::create([
             'usine' => $request->get('usine'),
             'interne' => $request->get('interne'),
             'description' => $request->get('description'),
-            'image' => $path,
             'purchase_prices' => $request->get('purchase_prices'),
             'sale_prices' => json_encode($request->get('sale_prices')),
             'sizes' => $presentations ? json_encode($request->get('sizes')) : null,
@@ -174,6 +159,26 @@ class ProductController extends Controller
             'category_id' => $request->get('category_id') ?? null,
             'brand_id' => $request->get('brand_id') ?? null
         ]);
+
+        $path = 'img/imagen-no-disponible.jpg';
+        $destination = 'uploads/products';
+        $file = $request->file('image');
+        if ($file) {
+            $original_name = strtolower(trim($file->getClientOriginalName()));
+            $original_name = str_replace(" ", "_", $original_name);
+            $extension = $file->getClientOriginalExtension();
+            $file_name = $pr->id . '.' . $extension;
+            $path = $request->file('image')->storeAs(
+                $destination,
+                $file_name,
+                'public'
+            );
+
+            $pr->image = $path;
+            $pr->save();
+        }
+
+
 
         $k = Kardex::create([
             'date_of_issue' => Carbon::now()->format('Y-m-d'),
@@ -543,7 +548,9 @@ class ProductController extends Controller
         $path = null;
         if ($file) {
             $original_name = strtolower(trim($file->getClientOriginalName()));
-            $file_name = time() . rand(100, 999) . $original_name;
+            $original_name = str_replace(" ", "_", $original_name);
+            $extension = $file->getClientOriginalExtension();
+            $file_name = $product_id . '_up.' . $extension;
             $path = Storage::disk('public')->putFileAs($destination, $file, $file_name);
         }
         $product = [];

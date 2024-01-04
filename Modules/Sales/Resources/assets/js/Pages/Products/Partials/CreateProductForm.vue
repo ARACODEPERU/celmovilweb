@@ -337,12 +337,12 @@ const addBrand = () => {
                 <div class="col-span-6 sm:col-span-3">
                     <div class="flex items-center">
                         <input v-model="form.presentations" id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">¿Tiene diferentes tallas?</label>
+                        <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">¿Tiene presentaciones?</label>
                     </div>
                 </div>
                 <div v-show="form.presentations" class="col-span-6 sm:col-span-6">
                     <label>
-                        Tallas
+                        Colores
                         <button @click="addSize" type="button" class="inline-block px-6 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out">Agregar</button>
                     </label>
                     <div v-for="(item, index) in form.sizes" v-bind:key="index">
@@ -350,7 +350,7 @@ const addBrand = () => {
                             <tr>
                                 <td style="padding: 4px;">
                                     <div class="col-span-3 sm:col-span-2">
-                                        <InputLabel value="Talla" />
+                                        <InputLabel value="Descripcion" />
                                         <TextInput
                                             v-model="item.size"
                                             type="text"

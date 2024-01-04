@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('people', function (Blueprint $table) {
-            $table->text('ocupacion')->nullable();
-            $table->text('presentacion')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('updated_information')->default(false)->comment('en falso si el usuario aun no actualiza sus datos');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('people', function (Blueprint $table) {
-            $table->dropColumn('ocupacion');
-            $table->dropColumn('presentacion');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('updated_information');
         });
     }
 };

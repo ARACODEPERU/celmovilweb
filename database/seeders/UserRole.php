@@ -80,18 +80,6 @@ class UserRole extends Seeder
         array_push($permissions, Permission::create(['name' => 'blog_articulos_eliminar']));
 
 
-        array_push($permissions, Permission::create(['name' => 'help_dashboard']));
-        array_push($permissions, Permission::create(['name' => 'help_tableros']));
-        array_push($permissions, Permission::create(['name' => 'help_tableros_nuevo']));
-        array_push($permissions, Permission::create(['name' => 'help_tableros_editar']));
-        array_push($permissions, Permission::create(['name' => 'help_tableros_eliminar']));
-        array_push($permissions, Permission::create(['name' => 'help_tableros_ticket']));
-        array_push($permissions, Permission::create(['name' => 'help_nivel']));
-        array_push($permissions, Permission::create(['name' => 'help_nivel_nuevo']));
-        array_push($permissions, Permission::create(['name' => 'help_nivel_editar']));
-        array_push($permissions, Permission::create(['name' => 'help_nivel_eliminar']));
-        array_push($permissions, Permission::create(['name' => 'help_nivel_miembros']));
-
         foreach ($permissions as $permission) {
             $role->givePermissionTo($permission->name);
         }

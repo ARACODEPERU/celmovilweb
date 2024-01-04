@@ -85,6 +85,17 @@ const setItemsData = (data,type) => {
         titles.value.additional = 'Recomendación'
         titles.value.additional1 = 'Video'
         form.entitie = 'App-Models-Product'
+
+        let prices = JSON.parse(data.sale_prices);
+
+        if(prices.high){
+            form.price = prices.high;
+        }else if(prices.medium){
+            form.price = prices.medium;
+        }else if(prices.under){
+            form.price = prices.under;
+        }
+        
     }
 
 
@@ -234,7 +245,7 @@ const loadFile = (event) => {
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG or GIF (RECOMENDADO. 800x400px).</p>
                         <InputError :message="form.errors.image" class="mt-2" />
                     </div>
-                    <div v-if="form.type == 1" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div  class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="mt-2">
                             <InputLabel for="price" value="Precio" />
                             <TextInput

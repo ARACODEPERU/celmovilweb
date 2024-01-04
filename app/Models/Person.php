@@ -32,7 +32,9 @@ class Person extends Model
         'birthdate',
         'names',
         'father_lastname',
-        'mother_lastname'
+        'mother_lastname',
+        'ocupacion',
+        'presentacion'
     ];
     // se esta guardando la ruta completa por eso se comento
     // public function getImageAttribute($value)

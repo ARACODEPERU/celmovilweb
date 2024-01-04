@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('people', function (Blueprint $table) {
-            $table->text('ocupacion')->nullable();
-            $table->text('presentacion')->nullable();
+        Schema::table('sales', function (Blueprint $table) {
+            $table->date('sale_date')->nullable();
+            $table->integer('physical')->default(1)->comment('1=nota,2=electronica,3=fisica');
         });
     }
 
@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('people', function (Blueprint $table) {
-            $table->dropColumn('ocupacion');
-            $table->dropColumn('presentacion');
+        Schema::table('sales', function (Blueprint $table) {
+            $table->dropColumn('physical');
+            $table->dropColumn('sale_date');
         });
     }
 };

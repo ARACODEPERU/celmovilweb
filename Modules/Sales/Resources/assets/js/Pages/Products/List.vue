@@ -422,8 +422,8 @@
               </div>
               <div class="max-w-full overflow-x-auto">
                 <table class="w-full table-auto">
-                  <thead class="border-b border-stroke">
-                    <tr class="bg-gray-50 text-left dark:bg-meta-4">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
                       <th class="w-20 py-2 px-2 text-sm font-medium text-black dark:text-white xl:pl-11">
                           Acción
                       </th>
@@ -447,9 +447,9 @@
                                     <font-awesome-icon :icon="faGears" />
                                 </button>
                               <template #overlay>
-                                <Menu>
+                                <Menu >
                                   <MenuItem>
-                                    <Link v-permission="'productos_editar'" :href="route('products.edit',product.id)" class="text-left block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
+                                    <Link v-permission="'productos_editar'" :href="route('products.edit',product.id)" class="text-left block px-4 py-2 text-sm text-blue-700 hover:bg-gray-100" >
                                       Editar
                                     </Link>
                                   </MenuItem>
@@ -488,7 +488,7 @@
                             :src="product.image"
                             />
                         </td>
-                        <td class="text-sm border-b border-stroke py-2 px-2 dark:border-strokedark">
+                        <td class="text-right text-sm border-b border-stroke py-2 px-2 dark:border-strokedark">
                             {{ product.interne }}
                         </td>
                         <td class="text-sm border-b border-stroke py-2 px-2 dark:border-strokedark">
@@ -520,7 +520,7 @@
                     <thead class="bg-white border-b">
                       <tr class="text-xs text-white bg-blue-700 border-b dark:text-white dark:bg-gray-800">
                         <th v-if="formDetails.presentations" class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
-                          Tallas
+                          Presentación
                         </th>
                         <th :colspan="formDetails.presentations ? 0 : 2" class="text-lg font-medium  px-6 py-4 text-left italic hover:not-italic dark:text-white dark:bg-gray-800">
                           Cantidad

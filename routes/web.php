@@ -118,6 +118,9 @@ Route::middleware('auth')->group(function () {
     Route::get('parameters/list', [ParametersController::class, 'index'])->name('parameters');
     Route::get('parameters/create', [ParametersController::class, 'create'])->name('parameters_create');
     Route::post('parameters/store', [ParametersController::class, 'store'])->name('parameters_store');
+    Route::get('parameters/{id}/edit', [ParametersController::class, 'edit'])->name('parameters_edit');
+    Route::put('parameters/update/{id}', [ParametersController::class, 'update'])->name('parameters_update');
+    Route::get('parameters/{id}/{val}/default', [ParametersController::class, 'updateDefaultValue'])->name('parameters_update_default_value');
 });
 
 require __DIR__ . '/auth.php';

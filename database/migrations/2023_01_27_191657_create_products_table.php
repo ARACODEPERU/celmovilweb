@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('usine')->nullable();
             $table->string('interne');
             $table->string('description', 300)->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->decimal('purchase_prices', 12, 2);
             $table->json('sale_prices')->comment('guarda un json cuando el producto precios');
             $table->json('sizes')->nullable()->comment('guarda un json cuando el producto maneja tallas');

@@ -15,7 +15,7 @@ class EstablishmentSeeder extends Seeder
     {
         LocalSale::create([
             'description'   => 'Local Principal',
-            'address'       => 'Viru',
+            'address'       => 'Chimbote',
             'phone'         => '99999999',
             'ubigeo'        => '021801',
             'sunat_code'    => '0000'

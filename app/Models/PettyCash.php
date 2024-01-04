@@ -29,4 +29,8 @@ class PettyCash extends Model
     {
         return Carbon::parse($value)->format('d-m-Y');
     }
+    public function getDateClosedAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
 }
