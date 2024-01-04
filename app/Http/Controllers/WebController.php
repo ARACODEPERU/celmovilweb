@@ -16,4 +16,9 @@ class WebController extends Controller
     {
         return view('pages/index');
     }
+
+    public function productodetalle()
+    {
+        return view('pages/producto-detalle');
+    }
 }
