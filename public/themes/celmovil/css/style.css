@@ -30,6 +30,7 @@
 /*Google Fonts*/
 @import 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,400,500,700,900';
 
+
 /*-------------------------------------
 [ 1. theme default CSS ]
 ---------------------------------------*/
@@ -355,6 +356,7 @@ a.shop-btn:hover::after,.discount-left a.shop-btn:hover::after,.view-more  a.sho
 a.shop-btn:hover,a.btn-style:hover {color: #fff;}
 /* mainmenu */
 .mobile-menu-area{display:none;}
+
 .mainmenu nav > ul {
   display: inline-block;
   padding-top: 3px;
@@ -365,6 +367,7 @@ a.shop-btn:hover,a.btn-style:hover {color: #fff;}
     width: 83%;
     position: relative;
 }
+/*
 .mainmenu nav> ul> li> a {
     color: #fff;
     font-size: 14px;
@@ -373,7 +376,18 @@ a.shop-btn:hover,a.btn-style:hover {color: #fff;}
     padding: 0 25px;
 	position:relative;
 	display:block;
+}*/
+
+.mainmenu nav> ul> li> a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 94px;
+    padding: 0 15px;
+	position:relative;
+	display:block;
 }
+
 .mainmenu nav > ul> li> a::after {
     background: #fff none repeat scroll 0 0;
     content: "";
