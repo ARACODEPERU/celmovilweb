@@ -20,7 +20,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/9.png') }}" alt="Product" /></a>
+                                <a href="{{ route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/9.png') }}" alt="Product" /></a>
                             </div>
                             <div class="actions-btn">
                                 <ul class="clearfix">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Road Diggeo ST-5001</h5>
                                     </a>
                                     <p>Price: <span>$1000.00 </span><del>1200.00</del></p>
@@ -49,7 +49,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/10.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/10.png') }}" alt="Product" /></a>
                             </div>
                             <div class="actions-btn">
                                 <ul class="clearfix">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Road Diggeo ST-5001</h5>
                                     </a>
                                     <p>Price: <span>$1000.00 </span><del>1200.00</del></p>
@@ -78,7 +78,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/11.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/11.png') }}" alt="Product" /></a>
                             </div>
                             <div class="actions-btn">
                                 <ul class="clearfix">
@@ -96,7 +96,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Road Diggeo ST-5001</h5>
                                     </a>
                                     <p>Price: <span>$1000.00 </span><del>1200.00</del></p>
@@ -107,7 +107,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/12.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/12.png') }}" alt="Product" /></a>
                             </div>
                             <div class="actions-btn">
                                 <ul class="clearfix">
@@ -125,7 +125,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Road Diggeo ST-5001</h5>
                                     </a>
                                     <p>Price: <span>$1000.00 </span><del>1200.00</del></p>
@@ -136,7 +136,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/10.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/10.png') }}" alt="Product" /></a>
                             </div>
                             <div class="actions-btn">
                                 <ul class="clearfix">
@@ -154,7 +154,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Road Diggeo ST-5001</h5>
                                     </a>
                                     <p>Price: <span>$1000.00 </span><del>1200.00</del></p>

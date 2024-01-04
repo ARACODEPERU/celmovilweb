@@ -6,7 +6,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/13.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/13.png') }}" alt="Product" /></a>
                                 <div class="tag-n-s">
                                     <span>-18%</span>
                                 </div>
@@ -27,7 +27,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Bike Shirt diov 15</h5>
                                     </a>
                                     <p>Price: <span>$90.00 </span></p>
@@ -38,7 +38,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/14.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/14.png') }}" alt="Product" /></a>
                                 <div class="tag-n-s">
                                     <span>-15%</span>
                                 </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Bike Shirt diov 15</h5>
                                     </a>
                                     <p>Price: <span>$90.00 </span></p>
@@ -70,7 +70,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/15.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/15.png') }}" alt="Product" /></a>
                             </div>
                             <div class="actions-btn">
                                 <ul class="clearfix">
@@ -88,7 +88,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Bike Shirt diov 15</h5>
                                     </a>
                                     <p>Price: <span>$90.00 </span></p>
@@ -99,7 +99,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/16.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/16.png') }}" alt="Product" /></a>
                                 <div class="tag-n-s">
                                     <span>-20%</span>
                                 </div>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Bike Shirt diov 15</h5>
                                     </a>
                                     <p>Price: <span>$90.00 </span></p>
@@ -131,7 +131,7 @@
                     <div class="col-xs-12">
                         <div class="product-item">
                             <div class="pro-img">
-                                <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/14.png') }}" alt="Product" /></a>
+                                <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/14.png') }}" alt="Product" /></a>
                             </div>
                             <div class="actions-btn">
                                 <ul class="clearfix">
@@ -149,7 +149,7 @@
                             </div>
                             <div class="riding-title clearfix">
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Bike Shirt diov 15</h5>
                                     </a>
                                     <p>Price: <span>$90.00 </span></p>

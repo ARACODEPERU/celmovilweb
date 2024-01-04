@@ -21,7 +21,7 @@ use Modules\Blog\Http\Controllers\BlogController;
 
 Route::get('/', [WebController::class, 'index'])->name('cms_principal');
 Route::get('/inicio', [WebController::class, 'index'])->name('web_inicio');
-Route::get('/producto-detalle', [WebController::class, 'productodetalle'])->name('web_producto_detalle');
+Route::get('/producto-descripcion', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
 
 
 

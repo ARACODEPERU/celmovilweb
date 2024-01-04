@@ -19,7 +19,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/1.png') }}" alt="" /></a>
+                                    <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/1.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -36,7 +36,7 @@
                                     </ul>
                                 </div>
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Mount POW C058 FG</h5>
                                     </a>
                                     <p>Price <span>$730</span></p>
@@ -48,7 +48,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/3.png') }}" alt="" /></a>
+                                    <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/3.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -65,7 +65,7 @@
                                     </ul>
                                 </div>
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Mount POW C058 FG</h5>
                                     </a>
                                     <p>Price <span>$730</span></p>
@@ -77,7 +77,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/2.png') }}" alt="" /></a>
+                                    <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/2.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -94,7 +94,7 @@
                                     </ul>
                                 </div>
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Mount POW C058 FG</h5>
                                     </a>
                                     <p>Price <span>$730</span></p>
@@ -106,7 +106,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/1.png') }}" alt="" /></a>
+                                    <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/1.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -123,7 +123,7 @@
                                     </ul>
                                 </div>
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Mount POW C058 FG</h5>
                                     </a>
                                     <p>Price <span>$730</span></p>
@@ -135,7 +135,7 @@
                         <div class="padding30">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/products/3.png') }}" alt="" /></a>
+                                    <a href="{{  route('web_producto_descripcion') }}"><img src="{{ asset('themes/celmovil/img/products/3.png') }}" alt="" /></a>
                                 </div>
                                 <div class="actions-btn">
                                     <ul class="clearfix">
@@ -152,7 +152,7 @@
                                     </ul>
                                 </div>
                                 <div class="product-title">
-                                    <a href="product-details.html">
+                                    <a href="{{  route('web_producto_descripcion') }}">
                                         <h5>Mount POW C058 FG</h5>
                                     </a>
                                     <p>Price <span>$730</span></p>

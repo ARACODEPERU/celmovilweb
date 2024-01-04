@@ -17,8 +17,8 @@ class WebController extends Controller
         return view('pages/index');
     }
 
-    public function productodetalle()
+    public function productodescripcion()
     {
-        return view('pages/producto-detalle');
+        return view('pages/producto-descripcion');
     }
 }
