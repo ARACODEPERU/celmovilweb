@@ -48,13 +48,15 @@ class OnliItemController extends Controller
         } else {
             $items->latest();
         }
-
+        $items = $items->with('images');
         $items = $items->paginate(20)->onEachSide(2);
+        $csrfToken = csrf_token();
 
         return Inertia::render('Onlineshop::Items/List', [
             'items' => $items,
             'filters' => request()->all('search'),
-            'type'  => $this->P000009
+            'type'  => $this->P000009,
+            'csrfToken' => $csrfToken
         ]);
     }
 

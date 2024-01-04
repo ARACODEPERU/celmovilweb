@@ -4,6 +4,7 @@ namespace Modules\Onlineshop\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class OnliItem extends Model
 {
@@ -33,5 +34,9 @@ class OnliItem extends Model
     public function getImageAttribute($value)
     {
         return ($value ? asset('storage/' . $value) : asset($value));
+    }
+    public function images(): HasMany
+    {
+        return $this->hasMany(OnliItemImage::class, 'item_id');
     }
 }

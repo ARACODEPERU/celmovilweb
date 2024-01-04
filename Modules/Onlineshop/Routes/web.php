@@ -16,10 +16,12 @@ Route::middleware(['auth', 'verified'])->prefix('onlineshop')->group(function ()
     Route::get('items', 'OnliItemController@index')->name('onlineshop_items');
     Route::get('items/create', 'OnliItemController@create')->name('onlineshop_items_create');
     Route::post('items/store', 'OnliItemController@store')->name('onlineshop_items_store');
-    Route::get('items/edit/{id}', 'OnliItemController@edit')->name('onlineshop_items_edit');
+    Route::get('items/{id}/edit', 'OnliItemController@edit')->name('onlineshop_items_edit');
     Route::post('items/update', 'OnliItemController@update')->name('onlineshop_items_update');
     Route::delete('items/destroy/{id}', 'OnliItemController@destroy')->name('onlineshop_items_destroy');
     Route::get('sales', 'OnliSaleController@index')->name('onlineshop_sales');
+    Route::post('items/images', 'OnliItemImageController@upload')->name('onlineshop_items_images_upload');
+    Route::delete('items/images/destroy/{id}', 'OnliItemImageController@destroy')->name('onlineshop_items_images_destroy');
 });
 
 Route::get('mercadopago/preference/{id}', 'OnliSaleController@getPreference')->name('onlineshop_mercadopago_preference');
