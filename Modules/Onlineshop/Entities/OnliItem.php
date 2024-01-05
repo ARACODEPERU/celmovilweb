@@ -2,9 +2,11 @@
 
 namespace Modules\Onlineshop\Entities;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OnliItem extends Model
 {
@@ -38,5 +40,9 @@ class OnliItem extends Model
     public function images(): HasMany
     {
         return $this->hasMany(OnliItemImage::class, 'item_id');
+    }
+    public function product(): HasOne
+    {
+        return $this->hasOne(Product::class, 'id', 'item_id');
     }
 }
