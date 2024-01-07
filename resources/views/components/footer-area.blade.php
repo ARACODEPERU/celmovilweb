@@ -36,15 +36,16 @@
                 <div id="googleMap"></div>
             </div>
             <div class="footer-contact half-width">
-                <form action="mail.php">
+                <form id="pageContactForm">
                     <div class="input-text">
-                        <input type="text" name="name" placeholder="Your Name" />
-                        <input type="text" name="email" placeholder="Email" required />
-                        <input type="text" name="subject" placeholder="Subject" />
-                        <textarea name="message" placeholder="Message" rows="4"></textarea>
+                        <input type="text" name="full_name" id="full_name" placeholder="Nombres" required />
+                        <input name="phone" id="phone" type="telephone" required placeholder="Teléfono" />
+                        <input type="text" name="email" id="email" type="email" required placeholder="Correo Electrónico" />
+                        <input type="text" name="subject" placeholder="Asunto" />
+                        <textarea name="message" id="message" rows="4" required placeholder="Mensaje" rows="4"></textarea>
                     </div>
                     <div class="submit-text">
-                        <input type="submit" name="submit" value="submit" />
+                        <button id="submitPageContactButton">Envíar</button>
                     </div>
                 </form>
             </div>
@@ -200,6 +201,68 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let form = document.getElementById('pageContactForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                var formulario = document.getElementById('pageContactForm');
+                var formData = new FormData(formulario);
+
+                // Deshabilitar el botón
+                var submitButton = document.getElementById('submitPageContactButton');
+                submitButton.disabled = true;
+                submitButton.style.opacity = 0.25;
+
+                // Crear una nueva solicitud XMLHttpRequest
+                var xhr = new XMLHttpRequest();
+
+                // Configurar la solicitud POST al servidor
+                xhr.open('POST', "{{ route('apisubscriber') }}", true);
+
+                // Configurar la función de callback para manejar la respuesta
+                xhr.onload = function() {
+                    // Habilitar nuevamente el botón
+                    submitButton.disabled = false;
+                    submitButton.style.opacity = 1;
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Enhorabuena',
+                            text: response.message,
+                            customClass: {
+                                container: 'sweet-modal-zindex' // Clase personalizada para controlar el z-index
+                            }
+                        });
+                        formulario.reset();
+                    } else if (xhr.status === 422) {
+                        var errorResponse = JSON.parse(xhr.responseText);
+                        // Maneja los errores de validación aquí, por ejemplo, mostrando los mensajes de error en algún lugar de tu página.
+                        var errorMessages = errorResponse.errors;
+                        var errorMessageContainer = document.getElementById('messagePageContact');
+                        errorMessageContainer.innerHTML = 'Errores de validación:<br>';
+                        for (var field in errorMessages) {
+                            if (errorMessages.hasOwnProperty(field)) {
+                                errorMessageContainer.innerHTML += field + ': ' + errorMessages[field]
+                                    .join(', ') +
+                                    '<br>';
+                            }
+                        }
+                    } else {
+                        console.error('Error en la solicitud: ' + xhr.status);
+                    }
+
+
+                };
+
+                // Enviar la solicitud al servidor
+                xhr.send(formData);
+            });
+        });
+    </script>
         <!-- footer bottom end -->
     </footer>
 </div>
