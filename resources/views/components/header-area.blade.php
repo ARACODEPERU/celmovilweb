@@ -8,11 +8,11 @@
                             <ul>
                                 <li>
                                     <i class="fa fa-phone"></i>
-                                    (+51) 921 197 459
+                                    {{ $tel_email[0]->content }}
                                 </li>
                                 <li>
                                     <i class="fa fa-envelope-o"></i>
-                                    ventas@celmovil.pe
+                                    {{ $tel_email[1]->content }}
                                 </li>
                             </ul>
                         </div>
