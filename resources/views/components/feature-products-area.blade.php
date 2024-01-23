@@ -22,7 +22,7 @@
                                 <div class="padding30">
                                     <div class="product-item">
                                         <div class="pro-img">
-                                            <a href="{{ route('web_producto_descripcion') }}"><img
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}"><img
                                                     src="{{ $product->image }}" style="max-height: 237px"
                                                     alt="" /></a>
                                         </div>
@@ -37,12 +37,13 @@
                                                 <li>
                                                     <a href="#"
                                                         onclick="openModalProductDetails(event, {{ json_encode($product) }})"><i
-                                                            class="fa fa-eye"></i></a>
+                                                            class="fa fa-eye"></i>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="product-title">
-                                            <a href="{{ route('web_producto_descripcion') }}">
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                 <h5>{{ $product->name }}</h5>
                                             </a>
                                             <p>Precio <span>S/. {{ $product->price }}</span></p>

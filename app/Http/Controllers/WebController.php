@@ -17,9 +17,16 @@ class WebController extends Controller
         return view('pages/index');
     }
 
-    public function productodescripcion()
+    public function productodescripcion($id)
     {
-        return view('pages/producto-descripcion');
+        $product = OnliItem::with('images')
+            ->with('product')
+            ->where('id', $id)
+            ->first();
+        //dd($product);
+        return view('pages/producto-descripcion', [
+            'product' => $product
+        ]);
     }
 
     public function carrito()

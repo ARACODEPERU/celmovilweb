@@ -21,13 +21,10 @@ use Modules\Blog\Http\Controllers\BlogController;
 
 Route::get('/', [WebController::class, 'index'])->name('cms_principal');
 Route::get('/inicio', [WebController::class, 'index'])->name('web_inicio');
-Route::get('/producto-descripcion', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
+Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
 Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');
 
 
-
-
-Route::get('/download/brochure/{id}', [CapperuController::class, 'download_brochure'])->name('download_brochure');
 
 Route::get('/blog/home', [BlogController::class, 'index'])->name('blog_principal');
 Route::get('/article/{url}', [BlogController::class, 'article'])->name('blog_article_by_url');

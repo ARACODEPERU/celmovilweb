@@ -85,7 +85,7 @@ const setItemsData = (data,type) => {
         titles.value.additional = 'Recomendación'
         titles.value.additional1 = 'Video'
         form.entitie = 'App-Models-Product'
-
+        form.category_description = data.category ? data.category.description : null;
         let prices = JSON.parse(data.sale_prices);
 
         if(prices.high){
@@ -190,6 +190,17 @@ const loadFile = (event) => {
                             <option value="Publico">Público</option>
                             <!-- Agrega más opciones según tus necesidades -->
                         </select>
+                        <InputError :message="form.errors.category_description" class="mt-2" />
+                    </div>
+                    <div v-else class="mt-2">
+                        <InputLabel for="category_description" value="Sector" />                       
+                        <TextInput
+                            id="category_description"
+                            v-model="form.category_description"
+                            type="text"
+                            class="block w-full mt-1"
+                            autocomplete="off"
+                        />
                         <InputError :message="form.errors.category_description" class="mt-2" />
                     </div>
 

@@ -130,13 +130,24 @@ const loadFile = (event) => {
             </div>
             <div v-if="form.type == 1" class="col-span-6 sm:col-span-6">
                 <InputLabel for="category_description" value="Sector" />
-                        <select id="category_description" v-model="form.category_description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected value="">Seleccionar Sector</option>
-                            <option value="Derecho">Derecho</option>
-                            <option value="Empresarial">Empresarial</option>
-                            <option value="Publico">Público</option>
-                            <!-- Agrega más opciones según tus necesidades -->
-                        </select>
+                <select id="category_description" v-model="form.category_description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected value="">Seleccionar Sector</option>
+                    <option value="Derecho">Derecho</option>
+                    <option value="Empresarial">Empresarial</option>
+                    <option value="Publico">Público</option>
+                    <!-- Agrega más opciones según tus necesidades -->
+                </select>
+                <InputError :message="form.errors.category_description" class="mt-2" />
+            </div>
+            <div v-else class="col-span-6 sm:col-span-6">
+                <InputLabel for="category_description" value="Sector" />                       
+                <TextInput
+                    id="category_description"
+                    v-model="form.category_description"
+                    type="text"
+                    class="block w-full mt-1"
+                    autocomplete="off"
+                />
                 <InputError :message="form.errors.category_description" class="mt-2" />
             </div>
 
@@ -239,7 +250,7 @@ const loadFile = (event) => {
                         </svg>
                         Actualizar
                     </PrimaryButton>
-                    <Link :href="route('onlineshop_items')"  class="ml-2 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Ir al Listado</Link>
+                    <Link :href="route('onlineshop_items')" class="ml-2 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Ir al Listado</Link>
                 </template>
             </Keypad>
         </template>

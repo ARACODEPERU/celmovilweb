@@ -41,6 +41,7 @@ class OnliItem extends Model
     {
         return $this->hasMany(OnliItemImage::class, 'item_id');
     }
+
     public function product(): HasOne
     {
         return $this->hasOne(Product::class, 'id', 'item_id');
