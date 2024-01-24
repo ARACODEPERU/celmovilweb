@@ -292,6 +292,40 @@ const addBrand = () => {
                     />
                     <InputError :message="form.errors.purchase_prices" class="mt-2" />
                 </div>
+                
+                <div class="col-span-6 sm:col-span-2">
+                    <InputLabel for="sale_prices" value="Precio de venta" />
+                    <TextInput
+                        id="sale_prices_high"
+                        v-model="form.sale_prices.high"
+                        type="text"
+                        class="block w-full mt-1"
+                    />
+                    <small>Solo Numeros</small>
+                    <InputError :message="form.errors[`sale_prices.high`]" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-2">
+                    <InputLabel for="sale_prices_medium" value="Precio de venta Medio" />
+                    <TextInput
+                        id="sale_prices_medium"
+                        v-model="form.sale_prices.medium"
+                        type="text"
+                        class="block w-full mt-1"
+                    />
+                    <small>Solo Numeros</small>
+                    <InputError :message="form.errors[`sale_prices.medium`]" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-2">
+                    <InputLabel for="sale_prices_under" value="Precio de venta Minimo" />
+                    <TextInput
+                        id="sale_prices_under"
+                        v-model="form.sale_prices.under"
+                        type="text"
+                        class="block w-full mt-1"
+                    />
+                    <small>Solo Numeros</small>
+                    <InputError :message="form.errors[`sale_prices.under`]" class="mt-2" />
+                </div>
                 <div class="col-span-6 sm:col-span-2">
                     <InputLabel for="sale_prices_under" value="Stock" />
                     <TextInput
@@ -303,36 +337,6 @@ const addBrand = () => {
                         :readonly="form.presentations"
                     />
                     <InputError :message="form.errors.stock" class="mt-2" />
-                </div>
-                <div class="col-span-6 sm:col-span-2">
-                    <InputLabel for="sale_prices" value="Precio de venta" />
-                    <TextInput
-                        id="sale_prices_high"
-                        v-model="form.sale_prices.high"
-                        type="text"
-                        class="block w-full mt-1"
-                    />
-                    <InputError :message="form.errors[`sale_prices.high`]" class="mt-2" />
-                </div>
-                <div class="col-span-6 sm:col-span-2">
-                    <InputLabel for="sale_prices_medium" value="Precio de venta Medio" />
-                    <TextInput
-                        id="sale_prices_medium"
-                        v-model="form.sale_prices.medium"
-                        type="text"
-                        class="block w-full mt-1"
-                    />
-                    <InputError :message="form.errors[`sale_prices.medium`]" class="mt-2" />
-                </div>
-                <div class="col-span-6 sm:col-span-2">
-                    <InputLabel for="sale_prices_under" value="Precio de venta Minimo" />
-                    <TextInput
-                        id="sale_prices_under"
-                        v-model="form.sale_prices.under"
-                        type="text"
-                        class="block w-full mt-1"
-                    />
-                    <InputError :message="form.errors[`sale_prices.under`]" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-3">
                     <div class="flex items-center">

@@ -21,6 +21,7 @@
     import { 
       ConfigProvider, Dropdown, Menu, MenuItem, Button, Select, Image
     } from 'ant-design-vue';
+    import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
     const props = defineProps({
         products: {
@@ -92,6 +93,23 @@
         openModalDetilsProduct.value = true;
     }
 
+    const formInput = useForm({
+        type: 1,
+        motion: 'purchase',
+        product_id: '',
+        presentations: false,
+        stock: null,
+        local_id: 1,
+        local_id_destino:1,
+        local_id_origen:1,
+        quantity: null,
+        description: '',
+        sizes: [{
+            size:'',
+            quantity: ''
+        }],
+    });
+
     function destroy(id) {
         if (confirm("¿Estás seguro de que quieres eliminar?")) {
             formDelete.delete(route('products.destroy', id));
@@ -116,22 +134,7 @@
       openModalEntrada.value = true;
     }
 
-    const formInput = useForm({
-        type: 1,
-        motion: 'purchase',
-        product_id: '',
-        presentations: false,
-        stock: null,
-        local_id: 1,
-        local_id_destino:1,
-        local_id_origen:1,
-        quantity: null,
-        description: '',
-        sizes: [{
-            size:'',
-            quantity: ''
-        }],
-    });
+    
 
     const dataProducts= useForm({
       products: [],
@@ -163,11 +166,17 @@
     }
 
     const selectProducts = (product) => {
-      formInput.product_id = product.id;
-      formInput.presentations = product.presentations == 1 ? true : false ;
-      formInput.stock = product.stock;
-      dataProducts.search = product.interne+ ' - '+ product.description;
-      document.getElementById('resultSearch').style.display = 'none';
+        formInput.product_id = product.id;
+        formInput.presentations = product.presentations == 1 ? true : false ;
+        formInput.stock = product.stock;
+        dataProducts.search = product.interne+ ' - '+ product.description;
+
+        if(formInput.presentations){
+          formInput.sizes = JSON.parse(product.sizes);
+          console.log(formInput.sizes)
+        }
+
+        document.getElementById('resultSearch').style.display = 'none';
     }
 
     const addSize = () => {

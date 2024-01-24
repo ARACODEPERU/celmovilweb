@@ -9,6 +9,9 @@
     import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
     import Keypad from '@/Components/Keypad.vue';
     import swal from 'sweetalert';
+    import { 
+        ConfigProvider, Select
+    } from 'ant-design-vue';
 
     const props = defineProps({
         establishments: {
@@ -42,7 +45,6 @@
             errorBag: 'updateUser',
             preserveScroll: true,
             onSuccess: () => {
-                form.reset();
                 swal('Usuario Modificado con éxito');
             }
         });
@@ -63,55 +65,59 @@
         </template>
 
         <template #form>
-            <div class="col-span-6 sm:col-span-3">
-                <InputLabel for="stablishment" value="Establecimiento" />
-                <select v-model="form.local_id" id="stablishment" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <template v-for="(establishment, index) in props.establishments" :key="index">
-                        <option :value="establishment.id">{{ establishment.description }}</option>
-                    </template>
-                </select>
-                <InputError :message="form.errors.local_id" class="mt-2" />
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-                <InputLabel for="name" value="Nombre" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="block w-full mt-1"
-                />
-                <InputError :message="form.errors.name" class="mt-2" />
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="text"
-                    class="block w-full mt-1"
-                />
-                <InputError :message="form.errors.email" class="mt-2" />
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-                <InputLabel for="password" value="Contraseña" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="text"
-                    class="block w-full mt-1"
-                    autofocus
-                />
-                <InputError :message="form.errors.password" class="mt-2" />
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-                <InputLabel for="rol" value="Rol" />
-                <select v-model="form.role" id="rol" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <template v-for="(row, g) in props.roles" :key="g">
-                        <option :value="row.name">{{ row.name }}</option>
-                    </template>
-                </select>
-                <InputError :message="form.errors.rol" class="mt-2" />
-            </div>
+            <ConfigProvider>
+                <div class="col-span-6 sm:col-span-3">
+                    <InputLabel for="stablishment" value="Establecimiento" />
+                    <select v-model="form.local_id" id="stablishment" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <template v-for="(establishment, index) in props.establishments" :key="index">
+                            <option :value="establishment.id">{{ establishment.description }}</option>
+                        </template>
+                    </select>
+                    <InputError :message="form.errors.local_id" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    <InputLabel for="name" value="Nombre" />
+                    <TextInput
+                        id="name"
+                        v-model="form.name"
+                        type="text"
+                        class="block w-full mt-1"
+                    />
+                    <InputError :message="form.errors.name" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    <InputLabel for="email" value="Email" />
+                    <TextInput
+                        id="email"
+                        v-model="form.email"
+                        type="text"
+                        class="block w-full mt-1"
+                    />
+                    <InputError :message="form.errors.email" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    <InputLabel for="password" value="Contraseña" />
+                    <TextInput
+                        id="password"
+                        v-model="form.password"
+                        type="text"
+                        class="block w-full mt-1"
+                        autofocus
+                    />
+                    <InputError :message="form.errors.password" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    <InputLabel for="rol" value="Rol" />
+                    <Select
+                        v-model:value="form.role"
+                        mode="multiple"
+                        style="width: 100%"
+                        placeholder="Please select"
+                        :options="roles.map((obj) => ({ value: obj.name, label: obj.name }))"
+                    ></Select>
+                    <InputError :message="form.errors.rol" class="mt-2" />
+                </div>
+            </ConfigProvider>
         </template>
 
         <template #actions>
