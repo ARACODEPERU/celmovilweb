@@ -365,7 +365,7 @@
                         <!-- mobile menu end -->
                         <div class="cart-menu-area floatright">
                             <ul>
-                                <li><a href="#"><i class="pe-7s-shopbag"></i> <span>2</span></a>
+                                <li><a href="#"><i class="pe-7s-shopbag"></i> <span id="contadorCarritoWeb"></span></a>
                                     <ul class="cart-menu">
                                         <li>
                                             <a href="cart.html"><img src="{{ asset('themes/celmovil/img/cart/1.png') }}" alt="" /></a>
