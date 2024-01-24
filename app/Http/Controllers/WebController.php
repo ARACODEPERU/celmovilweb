@@ -42,4 +42,9 @@ class WebController extends Controller
     {
         return view('pages/carrito');
     }
+
+    public function pagar()
+    {
+        return view('pages/pagar');
+    }
 }
