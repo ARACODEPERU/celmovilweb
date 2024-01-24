@@ -21,6 +21,7 @@
     <!-- slider - section end -->
 
     <!-- mata section start -->
+    <!--
     <section class="mata-area mata-one section-padding-top">
         <div class="container">
             <div class="row">
@@ -146,6 +147,7 @@
             </div>
         </div>
     </section>
+    -->
     <!-- mata section end -->
 
     <!-- feature products - section start -->
@@ -153,15 +155,21 @@
     <!-- feature products - section end -->
 
     <!-- promotional - section start -->
+    <!--
     <x-promotional-area />
+    -->
     <!-- promotional - section end -->
 
     <!-- promotional two - section start -->
+    <!--
     <x-promotional-two-area />
+    -->
     <!-- promotional two - section end -->
 
     <!-- new arival - section start -->
+    <!--
     <x-new-arival-area />
+    -->
     <!-- new arival - section end -->
 
     <!-- product desc - section start -->
