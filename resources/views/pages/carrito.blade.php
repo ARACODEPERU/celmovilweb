@@ -45,7 +45,10 @@
                                                 <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
                                             </a>
 											<div class="">
-												<p><a href="#">Sensor Carbon Jenson GX1 Bike</a></p>
+												<p>
+                                                    <a href="#">Sensor Carbon Jenson GX1 Bike</a><br>
+                                                    <b>Color:</b> Negro
+                                                </p>
 											</div>
 										</td>
 										<td>$56.00</td>
@@ -67,51 +70,10 @@
                                                 <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
                                             </a>
 											<div class="">
-												<p><a href="#">Sensor Carbon Jenson GX1 Bike</a></p>
-											</div>
-										</td>
-										<td>$56.00</td>
-										<td>
-											<form action="#" method="POST">
-												<div class="plus-minus">
-													<a class="dec qtybutton">-</a>
-													<input type="text" value="02" name="qtybutton" class="plus-minus-box">
-													<a class="inc qtybutton">+</a>
-												</div>
-											</form>
-										</td>
-										<td>$112.00</td>
-										<td><i class="fa fa-trash" title="Remove this product"></i></td>
-									</tr>
-									<tr>
-										<td class="td-img text-left">
-											<a href="#">
-                                                <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
-                                            </a>
-											<div class="">
-												<p><a href="#">Sensor Carbon Jenson GX1 Bike</a></p>
-											</div>
-										</td>
-										<td>$56.00</td>
-										<td>
-											<form action="#" method="POST">
-												<div class="plus-minus">
-													<a class="dec qtybutton">-</a>
-													<input type="text" value="02" name="qtybutton" class="plus-minus-box">
-													<a class="inc qtybutton">+</a>
-												</div>
-											</form>
-										</td>
-										<td>$112.00</td>
-										<td><i class="fa fa-trash" title="Remove this product"></i></td>
-									</tr>
-									<tr>
-										<td class="td-img text-left">
-											<a href="#">
-                                                <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
-                                            </a>
-											<div class="">
-												<p><a href="#">Sensor Carbon Jenson GX1 Bike</a></p>
+												<p>
+                                                    <a href="#">Sensor Carbon Jenson GX1 Bike</a><br>
+                                                    <b>Color:</b> Negro
+                                                </p>
 											</div>
 										</td>
 										<td>$56.00</td>
