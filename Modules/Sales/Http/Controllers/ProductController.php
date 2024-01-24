@@ -112,9 +112,16 @@ class ProductController extends Controller
             $request,
             [
                 'interne' => 'required|unique:products,interne',
-                'description' => 'required',
+                'description' => 'required|max:300',
                 'purchase_prices' => 'required',
-                'sale_prices.high' => 'required'
+                'sale_prices.high' => 'required|numeric',
+                'sale_prices.medium' => 'nullable|numeric',
+                'sale_prices.under' => 'nullable|numeric',
+            ],
+            [
+                'sale_prices.high.numeric' => 'Ingrese solo numeros',
+                'sale_prices.medium.numeric' => 'Ingrese solo numeros',
+                'sale_prices.under.numeric' => 'Ingrese solo numeros',
             ]
         );
         if ($presentations) {
@@ -264,7 +271,7 @@ class ProductController extends Controller
         //dd($request->all());
         $this->validate($request, [
             'interne' => 'required|unique:products,interne,' . $product->id,
-            'description' => 'required',
+            'description' => 'required|max:300',
             'purchase_prices' => 'required',
             'sale_prices.high' => 'required',
         ]);
@@ -298,15 +305,35 @@ class ProductController extends Controller
 
     public function searchProduct(Request $request)
     {
+        // dd($request->all());
         $local_id = Auth::user()->local_id;
         $search = $request->get('search');
         $products = [];
         $success = false;
         $message = null;
         if ($local_id) {
+            //dd($local_id);
             $products = DB::table('products as t1')
                 ->select(
-                    't1.*',
+                    't1.id',
+                    't1.usine',
+                    't1.interne',
+                    't1.description',
+                    't1.image',
+                    't1.purchase_prices',
+                    't1.sale_prices',
+                    't1.sizes',
+                    't1.stock_min',
+                    't1.stock',
+                    't1.presentations',
+                    't1.is_product',
+                    't1.type_sale_affectation_id',
+                    't1.type_purchase_affectation_id',
+                    't1.type_unit_measure_id',
+                    't1.status',
+                    't1.category_id',
+                    't1.brand_id',
+                    't1.icbper',
                     DB::raw(`
                 SELECT
                     JSON_ARRAYAGG(JSON_OBJECT('size', size, 'quantity', quantity_sum)) AS productos
@@ -329,7 +356,27 @@ class ProductController extends Controller
                         ->orWhere('t1.description', 'like', '%' . $search . '%');
                 })
                 ->where('kardexes.local_id', '=', $local_id)
-                ->groupBy('t1.id')
+                ->groupBy([
+                    't1.id',
+                    't1.usine',
+                    't1.interne',
+                    't1.description',
+                    't1.image',
+                    't1.purchase_prices',
+                    't1.sale_prices',
+                    't1.sizes',
+                    't1.stock_min',
+                    't1.stock',
+                    't1.presentations',
+                    't1.is_product',
+                    't1.type_sale_affectation_id',
+                    't1.type_purchase_affectation_id',
+                    't1.type_unit_measure_id',
+                    't1.status',
+                    't1.category_id',
+                    't1.brand_id',
+                    't1.icbper',
+                ])
                 ->get();
 
             if (count($products) > 0) {
@@ -537,7 +584,7 @@ class ProductController extends Controller
         if (PHP_OS == 'WINNT') {
             $tempFile = tempnam(sys_get_temp_dir(), 'img');
         } else {
-            $tempFile = tempnam('/var/www/html', 'img');
+            $tempFile = tempnam('/var/www/html/img_temp', 'img');
         }
         file_put_contents($tempFile, $fileData);
         $mime = mime_content_type($tempFile);
@@ -622,6 +669,7 @@ class ProductController extends Controller
         $products = Product::where('interne', $search)
             ->orWhere('description', 'like', '%' . $search . '%')
             ->get();
+
         $success = false;
 
         if (count($products) > 0) {
