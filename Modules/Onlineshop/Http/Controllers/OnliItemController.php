@@ -119,6 +119,12 @@ class OnliItemController extends Controller
             ]);
         }
 
+        if ($this->P000009 == 3) {
+            $this->validate($request, [
+                'specifications'      => 'required'
+            ]);
+        }
+
         $image_url = $request->get('image_view');
         $path = str_replace(asset('storage/'), "", $image_url);
 
@@ -156,9 +162,9 @@ class OnliItemController extends Controller
             $additional2 = null;
             $data_sheet = $request->file('additional2');
             if ($data_sheet) {
-                $original_name = strtolower(trim($file->getClientOriginalName()));
+                $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
-                $extension = $file->getClientOriginalExtension();
+                $extension = $data_sheet->getClientOriginalExtension();
                 $file_name = $onliItem->id . '.' . $extension;
                 $additional2 = $request->file('additional2')->storeAs(
                     $destination,
@@ -179,7 +185,7 @@ class OnliItemController extends Controller
         $specifications = $request->get('specifications');
         OnliItemSpecification::where('onli_item_id', $onliItem->id)->delete();
 
-        if (count($specifications) > 0) {
+        if ($specifications && count($specifications) > 0) {
             foreach ($specifications as $specification) {
                 OnliItemSpecification::create([
                     'onli_item_id'  => $onliItem->id,
@@ -247,6 +253,13 @@ class OnliItemController extends Controller
                 'price'                     => 'required|numeric'
             ]);
         }
+
+        if ($this->P000009 == 3) {
+            $this->validate($request, [
+                'specifications'      => 'required'
+            ]);
+        }
+
         $OnliItem = OnliItem::find($id);
 
         $OnliItem->name = $request->get('name');
@@ -309,7 +322,7 @@ class OnliItemController extends Controller
         $specifications = $request->get('specifications');
         OnliItemSpecification::where('onli_item_id', $OnliItem->id)->delete();
 
-        if (count($specifications) > 0) {
+        if ($specifications && count($specifications) > 0) {
             foreach ($specifications as $specification) {
                 OnliItemSpecification::create([
                     'onli_item_id'  => $OnliItem->id,
