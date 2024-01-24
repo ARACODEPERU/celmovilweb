@@ -9,6 +9,7 @@ import Keypad from '@/Components/Keypad.vue';
 import Swal2 from 'sweetalert2';
 import { ref, watch } from 'vue';
 import Editor from '@tinymce/tinymce-vue'
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const props = defineProps({
     item: {
@@ -27,7 +28,11 @@ const props = defineProps({
 
 const titles = ref({
     additional: props.type == 1 ? 'Tipo' : 'Recomendación',
-    additional1: props.type == 1 ? 'Modalidad' : 'Video'
+    additional1: props.type == 1 ? 'Modalidad' : 'Video',
+    additional2: props.type == 3 ? 'Ficha técnica' : 'Brochure',
+    additional3: props.type == 3 ? 'Manual' : null,
+    additional4: props.type == 3 ? 'Legal' : null,
+    additional5: props.type == 3 ? 'Tipo' : null,
 });
 
 const form = useForm({
@@ -43,8 +48,23 @@ const form = useForm({
     status: props.item.status == 1 ? true : false,
     additional: props.item.additional,
     additional1: props.item.additional1,
-    countCharacters: props.item.description.length
+    additional2: props.item.additional2,
+    additional3: props.item.additional3,
+    additional4: props.item.additional4,
+    additional5: props.item.additional5,
+    countCharacters: props.item.description.length,
+    specifications: []
 });
+
+if(props.item.specifications.length > 0){
+    props.item.specifications.forEach(objeto => {
+        form.specifications.push({
+            title: objeto.title,
+            description: objeto.description
+        });
+    });
+}
+
 
 watch(() => form.description, (newValue) => {
     form.countCharacters = newValue.length;
@@ -84,6 +104,25 @@ const loadFile = (event) => {
     }
 };
 
+const handleFileChange = (event) => {
+    try {
+        form.additional2 = event.target.files[0];
+    } catch (error) {
+        console.error("Error al manejar el cambio de archivo:", error);
+    }
+}
+
+const addSpecifications = () => {
+    form.specifications.push({
+        title: null,
+        description: null
+    });
+}
+
+const removeSpecifications= (key) => {
+    form.specifications.splice(key, 1);
+}
+
 </script>
 
 <template>
@@ -115,7 +154,7 @@ const loadFile = (event) => {
                 <span id="charCount">{{ form.countCharacters }}</span> caracteres de máximo 255
                 <InputError :message="form.errors.description" class="mt-2" />
             </div>
-            <div v-if="form.type == 2" class="col-span-6 sm:col-span-6 ">
+            <div v-if="form.type == 2 || form.type == 3" class="col-span-6 sm:col-span-6 ">
                 <InputLabel for="description" value="Descripción" />
                 <Editor
                     id="description"
@@ -152,7 +191,7 @@ const loadFile = (event) => {
             </div>
 
             <div v-if="form.type == 1"  class="col-span-6 sm:col-span-6">
-                <InputLabel for="additional1" value="Modalidad*" />
+                <InputLabel for="additional1" :value="titles.additional1+'*'" />
                 <select id="additional1" v-model="form.additional1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">Seleccionar modalidad</option>
                     <option value="En Vivo">En Vivo</option>
@@ -163,7 +202,7 @@ const loadFile = (event) => {
                 <InputError :message="form.errors.additional1" class="mt-2" />
             </div>
 
-            <div v-if="form.type == 2" class="col-span-6 sm:col-span-6">
+            <div v-if="form.type == 2 || form.type == 3" class="col-span-6 sm:col-span-6">
                 <InputLabel for="additional1" :value="titles.additional1+'*'" />
                 <textarea v-model="form.additional1" id="additional1" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                 <InputError :message="form.errors.additional1" class="mt-2" />
@@ -179,7 +218,7 @@ const loadFile = (event) => {
                 <InputError :message="form.errors.additional" class="mt-2" />
             </div>
            
-            <div v-if="form.type == 2" class="col-span-6 sm:col-span-6">
+            <div v-if="form.type == 2 || form.type == 3" class="col-span-6 sm:col-span-6">
                 <InputLabel for="additional" :value="titles.additional+'*'" />
                 <Editor
                     id="additional"
@@ -207,7 +246,42 @@ const loadFile = (event) => {
                 <InputError :message="form.errors.image" class="mt-2" />
             </div>
 
-            <div v-if="form.type == 1" class="col-span-6 sm:col-span-3">
+            <!-- agregado para celmovil -->
+            <div v-if="form.type == 3" class="col-span-6 sm:col-span-6">
+                <InputLabel for="additional2" :value="titles.additional2+'*'" />
+                <input @change="handleFileChange" accept=".pdf, image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                <InputError :message="form.errors.additional2" class="mt-2" />
+            </div>
+
+            <div v-if="form.type == 3" class="col-span-6 sm:col-span-6">
+                <InputLabel for="additional3" :value="titles.additional3+'*'" />
+                <input v-model="form.additional3" type="text" id="additional3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="link manual" required>
+                <InputError :message="form.errors.additional3" class="mt-2" />
+            </div>
+            <div v-if="form.type == 3" class="col-span-6 sm:col-span-6">
+                <InputLabel for="additional4" :value="titles.additional4+'*'" />
+                <Editor
+                    id="additional4"
+                    :api-key="tiny_api_key"
+                    v-model="form.additional4"
+                    :init="{
+                        plugins: 'anchor autolink charmap codesample emoticons link lists media searchreplace table visualblocks wordcount',
+                        language: 'es',
+                    }"
+                />
+                <InputError :message="form.errors.additional4" class="mt-2" />
+            </div>
+            <div v-if="form.type == 3" class="col-span-6 sm:col-span-6">
+                <InputLabel for="additional5" :value="titles.additional5+'*'" />
+                <select v-model="form.additional5" id="additional5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="NO">Venta Normal</option>
+                    <option value="PR">En Promoción</option>
+                    <option value="DE">Con Descuento</option>
+                </select>
+                <InputError :message="form.errors.additional5" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
                 <InputLabel for="price" value="Precio" />
                 <TextInput
                     id="price"
@@ -218,7 +292,7 @@ const loadFile = (event) => {
                 />
                 <InputError :message="form.errors.price" class="mt-2" />
             </div>
-            <!-- <div v-if="form.type == 1" class="col-span-6 sm:col-span-3">
+            <div v-if="form.type == 3 && form.additional5 == 'DE'" class="col-span-6 sm:col-span-3">
                 <InputLabel for="discount" value="Descuento" />
                 <TextInput
                     id="discount"
@@ -228,7 +302,40 @@ const loadFile = (event) => {
                     autocomplete="off"
                 />
                 <InputError :message="form.errors.discount" class="mt-2" />
-            </div> -->
+            </div>
+            <div v-if="form.type == 3"  class="col-span-6" >
+                <div class="relative overflow-x-auto border">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                            <tr class="px-6 py-3 bg-gray-200 dark:bg-gray-800">
+                                <th colspan="3" scope="col" class="px-6 py-3">
+                                    <div class="flex items-center justify-between">
+                                        <span>ESPECIFICACIONES DEL PRODUCTO</span> 
+                                        <button @click="addSpecifications" type="button" class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            Agregar
+                                        </button>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(del, ky) in form.specifications" class="border-b border-gray-50 dark:border-gray-700">
+                                <th scope="row" class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 dark:text-white dark:bg-gray-800">
+                                    <input v-model="del.title" type="text" :id="'input-title'+ky" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </th>
+                                <td class="px-2 py-4">
+                                    <input v-model="del.description" type="text" :id="'input-description'+ky" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </td>
+                                <td class="px-2 py-4">
+                                    <button @click="removeSpecifications(ky)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                        <font-awesome-icon :icon="faTrashAlt" />
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="col-span-6 sm:col-span-3">
                 <div class="flex items-center mb-4">
                     <input v-model="form.status" id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">

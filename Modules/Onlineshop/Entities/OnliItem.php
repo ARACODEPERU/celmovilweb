@@ -25,7 +25,10 @@ class OnliItem extends Model
         'status',
         'additional',
         'additional1',
-        'additional2'
+        'additional2',
+        'additional3',
+        'additional4',
+        'additional5'
     ];
 
     protected static function newFactory()
@@ -45,5 +48,10 @@ class OnliItem extends Model
     public function product(): HasOne
     {
         return $this->hasOne(Product::class, 'id', 'item_id');
+    }
+
+    public function specifications(): HasMany
+    {
+        return $this->hasMany(OnliItemSpecification::class, 'onli_item_id');
     }
 }

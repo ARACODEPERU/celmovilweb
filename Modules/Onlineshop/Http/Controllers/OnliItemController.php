@@ -13,9 +13,7 @@ use Modules\Onlineshop\Entities\OnliItem;
 use Modules\Onlineshop\Entities\AcaModality;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
-
-
-
+use Modules\Onlineshop\Entities\OnliItemSpecification;
 
 class OnliItemController extends Controller
 {
@@ -121,27 +119,10 @@ class OnliItemController extends Controller
             ]);
         }
 
-        // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
-        // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
         $image_url = $request->get('image_view');
         $path = str_replace(asset('storage/'), "", $image_url);
 
-        $destination = 'uploads/onlineshop/items';
-        $file = $request->file('image');
-        if ($file) {
-            $original_name = strtolower(trim($file->getClientOriginalName()));
-            $original_name = str_replace(" ", "_", $original_name);
-            $extension = $file->getClientOriginalExtension();
-            $file_name = date('YmdHis') . '.' . $extension;
-            $path = $request->file('image')->storeAs(
-                $destination,
-                $file_name,
-                'public'
-            );
-        }
-
-
-        OnliItem::create([
+        $onliItem =  OnliItem::create([
             'item_id'                   => $request->get('item_id'),
             'entitie'                   => $request->get('entitie'),
             'category_description'      => $request->get('category_description'),
@@ -154,8 +135,61 @@ class OnliItemController extends Controller
             'status'                    => true,
             'additional'                => $request->get('additional'),
             'additional1'                => $request->get('additional1'),
-            'additional2'                => $request->get('category_description')
         ]);
+
+        $destination = 'uploads/onlineshop/items';
+        $file = $request->file('image');
+        if ($file) {
+            $original_name = strtolower(trim($file->getClientOriginalName()));
+            $original_name = str_replace(" ", "_", $original_name);
+            $extension = $file->getClientOriginalExtension();
+            $file_name = $onliItem->id . '.' . $extension;
+            $path = $request->file('image')->storeAs(
+                $destination,
+                $file_name,
+                'public'
+            );
+            $onliItem->image = $path;
+        }
+
+        if ($this->P000009 == 3) {
+            $additional2 = null;
+            $data_sheet = $request->file('additional2');
+            if ($data_sheet) {
+                $original_name = strtolower(trim($file->getClientOriginalName()));
+                $original_name = str_replace(" ", "_", $original_name);
+                $extension = $file->getClientOriginalExtension();
+                $file_name = $onliItem->id . '.' . $extension;
+                $additional2 = $request->file('additional2')->storeAs(
+                    $destination,
+                    $file_name,
+                    'public'
+                );
+            }
+
+            $onliItem->additional2 = $additional2;
+        }
+
+        $onliItem->additional3 = $request->get('additional3');
+        $onliItem->additional4 = $request->get('additional4');
+        $onliItem->additional5 = $request->get('additional5');
+
+        $onliItem->save();
+
+        $specifications = $request->get('specifications');
+        OnliItemSpecification::where('onli_item_id', $onliItem->id)->delete();
+
+        if (count($specifications) > 0) {
+            foreach ($specifications as $specification) {
+                OnliItemSpecification::create([
+                    'onli_item_id'  => $onliItem->id,
+                    'product_id'    => $onliItem->item_id,
+                    'title'         => $specification['title'],
+                    'description'   => $specification['description'],
+                    'additonial'    => null
+                ]);
+            }
+        }
 
         return redirect()->route('onlineshop_items')
             ->with('message', __('Item creado con éxito'));
@@ -179,7 +213,7 @@ class OnliItemController extends Controller
     public function edit($id)
     {
 
-        $item = OnliItem::find($id);
+        $item = OnliItem::with('specifications')->where('id', $id)->first();
         return Inertia::render('Onlineshop::Items/Edit', [
             'item' => $item,
             'type'  => $this->P000009,
@@ -223,7 +257,10 @@ class OnliItemController extends Controller
         $OnliItem->status = $request->get('status') ? true : false;
         $OnliItem->additional = $request->get('additional');
         $OnliItem->additional1 = $request->get('additional1');
-        $OnliItem->additional2 = $request->get('category_description');
+        $OnliItem->additional2 = $request->get('additional2');
+        $OnliItem->additional3 = $request->get('additional3');
+        $OnliItem->additional4 = $request->get('additional4');
+        $OnliItem->additional5 = $request->get('additional5');
 
         // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
         // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
@@ -244,7 +281,45 @@ class OnliItemController extends Controller
             $OnliItem->image = $path;
         }
 
+        if ($this->P000009 == 3) {
+            $additional2 = null;
+            $data_sheet = $request->file('additional2');
+            //dd($data_sheet);
+            if ($data_sheet) {
+                $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
+                $original_name = str_replace(" ", "_", $original_name);
+                $extension = $data_sheet->getClientOriginalExtension();
+                $file_name = $OnliItem->id . '.' . $extension;
+                $additional2 = $request->file('additional2')->storeAs(
+                    $destination,
+                    $file_name,
+                    'public'
+                );
+            }
+
+            $OnliItem->additional2 = $additional2;
+        }
+
+        $OnliItem->additional3 = $request->get('additional3');
+        $OnliItem->additional4 = $request->get('additional4');
+        $OnliItem->additional5 = $request->get('additional5');
+
         $OnliItem->save();
+
+        $specifications = $request->get('specifications');
+        OnliItemSpecification::where('onli_item_id', $OnliItem->id)->delete();
+
+        if (count($specifications) > 0) {
+            foreach ($specifications as $specification) {
+                OnliItemSpecification::create([
+                    'onli_item_id'  => $OnliItem->id,
+                    'product_id'    => $OnliItem->item_id,
+                    'title'         => $specification['title'],
+                    'description'   => $specification['description'],
+                    'additonial'    => null
+                ]);
+            }
+        }
     }
 
     /**
