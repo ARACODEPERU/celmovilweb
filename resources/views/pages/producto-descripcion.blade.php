@@ -138,8 +138,11 @@
                                 </ul>
                             </div>
                             <div class="row" style="padding: 15px 0px;">
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="padding: 5px 0px;">
                                     <a href="" class="btn btn-primary">Más información</a>
+                                </div>
+                                <div class="col-md-12" style="padding: 5px 0px;">
+                                    <a href="" class="btn btn-success"> Whatsapp</a>
                                 </div>
                             </div>
                         </div>
