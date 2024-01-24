@@ -1,15 +1,15 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                        <div class="preloader">
-                                                                                            <div class="loading-center">
-                                                                                                <div class="loading-center-absolute">
-                                                                                                    <div class="object object_one"></div>
-                                                                                                    <div class="object object_two"></div>
-                                                                                                    <div class="object object_three"></div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div> -->
+                                                                                                                                                                                        <div class="preloader">
+                                                                                                                                                                                            <div class="loading-center">
+                                                                                                                                                                                                <div class="loading-center-absolute">
+                                                                                                                                                                                                    <div class="object object_one"></div>
+                                                                                                                                                                                                    <div class="object object_two"></div>
+                                                                                                                                                                                                    <div class="object object_three"></div>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -125,28 +125,16 @@
                             <div class="specific-pro">
                                 <ul>
                                     <li class="specific-pro-title">
-                                        Product Specifications
+                                        ESPECIFICACIONES DEL PRODUCTO
                                     </li>
-                                    <li>
-                                        <span>Frame</span>
-                                        <p>Optimized Construction carbon frame with 130mm travel.</p>
-                                    </li>
-                                    <li>
-                                        <span>Fork</span>
-                                        <p>RockShox Revelation RLT 27.5, 130mm, 15mm thru</p>
-                                    </li>
-                                    <li>
-                                        <span>Rear Shock</span>
-                                        <p>Fox Float CTD Boost Valve rear shock with Coat</p>
-                                    </li>
-                                    <li>
-                                        <span>Headset</span>
-                                        <p>Cane Creek 40</p>
-                                    </li>
-                                    <li>
-                                        <span>Shifters</span>
-                                        <p>SRAM GX 11 Speed Trigger Shifter</p>
-                                    </li>
+                                    @if (count($product->specifications) > 0)
+                                        @foreach ($product->specifications as $specification)
+                                            <li>
+                                                <span>{{ $specification->title }}</span>
+                                                <p>{{ $specification->description }}</p>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                             <div class="row" style="padding: 15px 0px;">
@@ -179,79 +167,30 @@
                         </div>
                         <div class="tab-content margin50">
                             <div class="tab-pane fade in active" id="des">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div>
-                                            <img src="{{ asset('themes/celmovil/img/products/l1.jpg') }}" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="des-text">
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                                nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut
-                                                wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                                lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
-                                                dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
-                                                dolore eu feugiat nulla facilisis at vero.</p><br />
-                                            <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum
-                                                claritatem. Investigationes demonstraverunt lectores legere me lius quod ii
-                                                legunt saepius. Claritas est etiam processus dynamicus, qui sequitur
-                                                mutationem consuetudium lectorum.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {!! $product->additional !!}
                             </div>
                             <div class="tab-pane fade in single-blog-page" id="ficha">
                                 <div class="leave-comment">
-                                    <img style="width: 100%;" src="{{ asset('themes/celmovil/img/products/l1.jpg') }}"
-                                        alt="" />
+                                    @php
+                                        $porciones = explode('.', $product->additional2);
+                                        $ext = $porciones[1];
+                                    @endphp
+                                    @if ($ext == 'pdf')
+                                        <iframe src="{{ asset('storage/' . $product->additional2) }}"
+                                            style="border: none;width: 100%;height: 1325px"></iframe>
+                                    @else
+                                        <img style="width: 100%;" src="{{ asset('storage/' . $product->additional2) }}"
+                                            alt="" />
+                                    @endif
                                 </div>
                             </div>
                             <div class="tab-pane fade in" id="manual">
-                                <a href="" class="btn btn-primary" style="padding: 20px; font-size: 16px;">
+                                <a href="{{ $product->additional3 }}" class="btn btn-primary"
+                                    style="padding: 20px; font-size: 16px;" target="_blank">
                                     Descargar Manual</a>
                             </div>
                             <div class="tab-pane fade in" id="legal">
-                                <div class="row" style="padding-bottom: 30px;">
-                                    <div class="col-md-3">
-                                        <h3>Aviso</h3>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                            Ipsum has been the industry's
-                                            standard dummy text ever since the 1500s, when an unknown printer took a galley
-                                            of type and scrambled it to make a
-                                            type specimen book. It has survived not only five centuries, but also the leap
-                                            into electronic typesetting,
-                                            remaining essentially unchanged. It was popularised in the 1960s with the
-                                            release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software like
-                                            Aldus PageMaker including versions
-                                            of Lorem Ipsum
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row" style="padding-bottom: 30px;">
-                                    <div class="col-md-3">
-                                        <h3>Aviso</h3>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                            Ipsum has been the industry's
-                                            standard dummy text ever since the 1500s, when an unknown printer took a galley
-                                            of type and scrambled it to make a
-                                            type specimen book. It has survived not only five centuries, but also the leap
-                                            into electronic typesetting,
-                                            remaining essentially unchanged. It was popularised in the 1960s with the
-                                            release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software like
-                                            Aldus PageMaker including versions
-                                            of Lorem Ipsum
-                                        </p>
-                                    </div>
-                                </div>
+                                {!! $product->additional4 !!}
                             </div>
                         </div>
                     </div>
