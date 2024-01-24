@@ -156,9 +156,9 @@ class OnliItemController extends Controller
             $additional2 = null;
             $data_sheet = $request->file('additional2');
             if ($data_sheet) {
-                $original_name = strtolower(trim($file->getClientOriginalName()));
+                $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
-                $extension = $file->getClientOriginalExtension();
+                $extension = $data_sheet->getClientOriginalExtension();
                 $file_name = $onliItem->id . '.' . $extension;
                 $additional2 = $request->file('additional2')->storeAs(
                     $destination,

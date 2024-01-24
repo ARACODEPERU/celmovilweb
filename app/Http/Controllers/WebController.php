@@ -14,7 +14,15 @@ class WebController extends Controller
 {
     public function index()
     {
-        return view('pages/index');
+
+        $products_main = OnliItem::with('product')
+            ->where('additional5', 'PR')
+            ->orderBy('id', 'DESC')
+            ->paginate(5);
+
+        return view('pages/index', [
+            'products_main' => $products_main
+        ]);
     }
 
     public function productodescripcion($id)
