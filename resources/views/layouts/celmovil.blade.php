@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/celmovil_favicon.ico') }}">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
-    
+
     <!-- style css -->
     <link rel="stylesheet" href="{{ asset('themes/celmovil/style.css') }}">
     <!-- modernizr js -->
@@ -26,6 +26,7 @@
     @yield('content')
 
     <!-- all js here -->
+    <script src="{{ asset('themes/celmovil/js/celmovil-carrito.js') }}"></script>
     <!-- jquery latest version -->
     <script src="{{ asset('themes/celmovil/js/vendor/jquery-1.12.3.min.js') }}"></script>
     <!-- bootstrap js -->
