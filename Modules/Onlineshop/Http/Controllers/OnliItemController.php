@@ -171,9 +171,8 @@ class OnliItemController extends Controller
                     $file_name,
                     'public'
                 );
+                $onliItem->additional2 = $additional2;
             }
-
-            $onliItem->additional2 = $additional2;
         }
 
         $onliItem->additional3 = $request->get('additional3');
@@ -308,9 +307,8 @@ class OnliItemController extends Controller
                     $file_name,
                     'public'
                 );
+                $OnliItem->additional2 = $additional2;
             }
-
-            $OnliItem->additional2 = $additional2;
         }
 
         $OnliItem->additional3 = $request->get('additional3');

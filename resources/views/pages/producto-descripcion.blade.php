@@ -1,15 +1,15 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                                        <div class="preloader">
-                                                                                                                                                                                            <div class="loading-center">
-                                                                                                                                                                                                <div class="loading-center-absolute">
-                                                                                                                                                                                                    <div class="object object_one"></div>
-                                                                                                                                                                                                    <div class="object object_two"></div>
-                                                                                                                                                                                                    <div class="object object_three"></div>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                    <div class="preloader">
+                                                                                                                                                                                                        <div class="loading-center">
+                                                                                                                                                                                                            <div class="loading-center-absolute">
+                                                                                                                                                                                                                <div class="object object_one"></div>
+                                                                                                                                                                                                                <div class="object object_two"></div>
+                                                                                                                                                                                                                <div class="object object_three"></div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -176,14 +176,17 @@
                                 <div class="leave-comment">
                                     @php
                                         $porciones = explode('.', $product->additional2);
-                                        $ext = $porciones[1];
+
+                                        $ext = is_array($porciones) ? $porciones[1] : null;
                                     @endphp
-                                    @if ($ext == 'pdf')
-                                        <iframe src="{{ asset('storage/' . $product->additional2) }}"
-                                            style="border: none;width: 100%;height: 1325px"></iframe>
-                                    @else
-                                        <img style="width: 100%;" src="{{ asset('storage/' . $product->additional2) }}"
-                                            alt="" />
+                                    @if ($ext)
+                                        @if ($ext == 'pdf')
+                                            <iframe src="{{ asset('storage/' . $product->additional2) }}"
+                                                style="border: none;width: 100%;height: 1325px"></iframe>
+                                        @else
+                                            <img style="width: 100%;" src="{{ asset('storage/' . $product->additional2) }}"
+                                                alt="" />
+                                        @endif
                                     @endif
                                 </div>
                             </div>
