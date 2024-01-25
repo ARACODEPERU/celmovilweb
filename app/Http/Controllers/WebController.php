@@ -25,6 +25,11 @@ class WebController extends Controller
         ]);
     }
 
+    public function nosotros()
+    {
+        return view('pages/nosotros');
+    }
+
     public function productodescripcion($id)
     {
         $product = OnliItem::with('images')

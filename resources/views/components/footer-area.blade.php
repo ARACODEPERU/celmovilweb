@@ -2,6 +2,7 @@
     <!-- footer section start -->
     <footer>
         <!-- brand logo area start -->
+        <!--
         <div class="brand-logo-area">
             <div class="container">
                 <div class="row">
@@ -29,11 +30,13 @@
                 </div>
             </div>
         </div>
+        -->
         <!-- brand logo area end -->
         <!-- contact area start -->
         <div class="map-contact clearfix">
             <div class="googleMap-info half-width">
-                <div id="googleMap"></div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.992244735301!2d-79.01367372520318!3d-8.102270681046402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad1625ab759b6d%3A0xca47db73dbf8502a!2sAv.%20Am%C3%A9rica%20Sur%20397%2C%20Trujillo%2013006!5e0!3m2!1ses-419!2spe!4v1706164769030!5m2!1ses-419!2spe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                
             </div>
             <div class="footer-contact half-width">
                 <form id="pageContactForm">
@@ -53,9 +56,8 @@
         <!-- contact area end -->
         <div class="footer-logo-text">
             <div class="container text-center">
-                <a href="index.html"><img style="width: 175px;" src="{{ asset('themes/celmovil/img/celmovil_logo_positivo.png') }}" alt="Logo" /></a>
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have</p>
-                <p> suffered alteration in some form, by injected humour, or randomised</p>
+                <a href="{{ route('web_inicio') }}"><img style="width: 250px;" src="{{ $logo[0]->content }}" alt="Logo" /></a>
+                <p>{{ $logo[1]->content }}</p>
             </div>
         </div>
         <!-- footer top start -->
@@ -65,7 +67,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <div class="s-footer-text">
                             <div class="footer-title">
-                                <h4>Socail Network</h4>
+                                <h4>Siguenos en:</h4>
                             </div>
                             <div class="social-link actions-btn clearfix">
                                 <ul>
@@ -97,20 +99,20 @@
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="s-footer-text">
                             <div class="footer-title">
-                                <h4>Contact</h4>
+                                <h4>Contacto:</h4>
                             </div>
                             <div class="contact-link">
                                 <ul>
                                     <li>
-                                        <span>Email:</span>
-                                        <p>Domain@email.com Name@company.info</p>
+                                        <span>E-mail:</span>
+                                        <p>ventas@celmovil.pe</p>
                                     </li>
                                     <li>
-                                        <span>Phone:</span>
-                                        <p>+111 (019) 25184203 +111 (018) 50950555</p>
+                                        <span>Teléfono:</span>
+                                        <p> (+51) 921 197 459</p>
                                     </li>
                                     <li>
-                                        <span>Address:</span>
+                                        <span>Dirección:</span>
                                         <p>777/a4 Bonosri Road, Danpura East USA. -25000</p>
                                     </li>
                                 </ul>

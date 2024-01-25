@@ -8,27 +8,19 @@
                             <ul>
                                 <li>
                                     <i class="fa fa-phone"></i>
-                                    {{ $tel_email[0]->content }}
+                                    {{ $tel_email_logo[0]->content }}
                                 </li>
                                 <li>
                                     <i class="fa fa-envelope-o"></i>
-                                    {{ $tel_email[1]->content }}
+                                    {{ $tel_email_logo[1]->content }}
                                 </li>
                             </ul>
                         </div>
                         <div class="right floatright">
                             <ul>
                                 <li>
-                                    <form action="#">
-                                        <button type="submit">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                        <input type="search" placeholder="Search" />
-                                    </form>
-                                </li>
-                                <li>
-                                    <i class="fa fa-user"></i>
-                                    <a href="my-account.html">Cuenta</a>
+                                    <i class="fa fa-gears"></i>
+                                    <a href="https://www.celmovil.pe/login">Intranet</a>
                                 </li>
                             </ul>
                         </div>
@@ -42,13 +34,14 @@
                     <div class="col-xs-12 header-bottom-bg">
                         <div class="logo floatleft">
                             <a href="{{ route('web_inicio') }}">
-                                <img style="width: 139px;" src="{{ asset('themes/celmovil/img/celmovil_logo_negativo.png') }}" alt="celmovil_logo" />
+                                <img style="width: 140px;" src="{{ $tel_email_logo[2]->content }}" alt="celmovil_logo" />
                             </a>
                         </div>
                         <div class="mainmenu text-center floatleft">
                             <nav>
                                 <ul>
                                     <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                    <li><a href="{{ route('web_inicio') }}">Nosotros</a></li>
                                     <li>
                                         <a href="">VMPS, BICIMOTOS, BIOS</a>
                                         <ul>
