@@ -171,9 +171,8 @@ class OnliItemController extends Controller
                     $file_name,
                     'public'
                 );
+                $onliItem->additional2 = $additional2;
             }
-
-            $onliItem->additional2 = $additional2;
         }
 
         $onliItem->additional3 = $request->get('additional3');
