@@ -23,7 +23,7 @@ Route::get('/', [WebController::class, 'index'])->name('cms_principal');
 Route::get('/inicio', [WebController::class, 'index'])->name('web_inicio');
 Route::get('/nosotros', [WebController::class, 'nosotros'])->name('web_nosotros');
 Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
-Route::get('/producto-categoria', [WebController::class, 'nosotros'])->name('web_producto_categoria');
+Route::get('/producto-categoria', [WebController::class, 'productocategoria'])->name('web_producto_categoria');
 Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');
 Route::get('/pagar', [WebController::class, 'pagar'])->name('web_pagar');
 
