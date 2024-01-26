@@ -120,7 +120,19 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
 
 
     ///////////nuevo cambios en productos
-    Route::post('category/products/store', [SaleProductCategoryController::class, 'store'])->name('sale_category_product_store');
+    Route::middleware(['middleware' => 'permission:sale_categorias'])
+        ->get('category/list', [SaleProductCategoryController::class, 'index'])
+        ->name('sale_category_product_list');
+    Route::middleware(['middleware' => 'permission:sale_categorias_nuevo'])
+        ->get('category/create', [SaleProductCategoryController::class, 'create'])
+        ->name('sale_category_product_create');
+    Route::middleware(['middleware' => 'permission:sale_categorias_editar'])
+        ->get('category/{id}/edit', [SaleProductCategoryController::class, 'edit'])
+        ->name('sale_category_product_edit');
+    Route::post('category/products/store/direct', [SaleProductCategoryController::class, 'storeDirect'])->name('sale_category_product_store');
+    Route::post('category/products/store', [SaleProductCategoryController::class, 'store'])->name('sale_category_product_store_2');
+    Route::post('category/products/update', [SaleProductCategoryController::class, 'update'])->name('sale_category_product_update_2');
+    Route::delete('category/products/destroy/{id}', [SaleProductCategoryController::class, 'destroy'])->name('sale_category_product_destroy');
 
     Route::post('brand/products/store', [SaleProductBrandController::class, 'store'])->name('sale_brand_product_store');
 
