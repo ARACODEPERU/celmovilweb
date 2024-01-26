@@ -30,6 +30,12 @@ class WebController extends Controller
         return view('pages/nosotros');
     }
 
+    public function productocategoria()
+    {
+        return view('pages/producto-categoria');
+    }
+
+
     public function productodescripcion($id)
     {
         $product = OnliItem::with('images')

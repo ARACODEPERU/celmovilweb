@@ -22,6 +22,7 @@
 			<img src="{{ asset('themes/celmovil/img/slider/bg2.jpg') }}" alt="Page Banner" />
 		</div>
 		<!-- page banner area end -->
+		
 		<!-- about us section start -->
 		<section class="about-area section-padding">
 			<div class="container">
