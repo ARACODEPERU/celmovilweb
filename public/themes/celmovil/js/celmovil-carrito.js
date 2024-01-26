@@ -103,6 +103,7 @@ function agregarAlCarrito(producto) {
                 }
             });
         }else{ //para productos con colores celmovil
+            console.log(producto.color);
             const json = producto.color;
             const colors = JSON.parse(json.product.sizes).map(size => size.size);
 
@@ -120,7 +121,7 @@ function agregarAlCarrito(producto) {
                   }, 1000);
                 });
                 const { value: color } = await Swal.fire({
-                  title: "Selecciona un color",
+                  title: "Escoge el color de " + producto.nombre,
                   input: "radio",
                   inputOptions,
                   inputValidator: (value) => {
@@ -130,7 +131,7 @@ function agregarAlCarrito(producto) {
                   }
                 });
                 if (color) {
-                  Swal.fire({ html: `Escogiste el color: ${color}` });
+                  Swal.fire({ html: `Escogiste ` + producto.nombre + ` de color: ${color}` });
                 }
               })();
 
