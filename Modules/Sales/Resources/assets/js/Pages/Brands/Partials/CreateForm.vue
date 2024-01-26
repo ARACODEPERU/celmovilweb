@@ -12,49 +12,25 @@ import { Select, TreeSelect } from 'ant-design-vue';
 import 'cropperjs/dist/cropper.css';
 import CropperImage from '@/Components/CropperImage.vue';
 
-const aurl = assetUrl;
-const props = defineProps({
-    categories: {
-        type: Object,
-        default: () => ({}),
-    },
-    category: {
-        type: Object,
-        default: () => ({}),
-    }
-});
-
-const categoriesData = ref([]);
-
-onMounted(() => {
-    categoriesData.value = props.categories.map(item => ({ value: item.id, label: item.description }));
-    // categoriesData.value = props.categories.map((obj) => ({
-    //     value: obj.id,
-    //     label: obj.description,
-    //     children: obj.subcategories.map(item => ({ value: item.id, label: item.description }))
-    // }));
-});
-
 const form = useForm({
-    id: props.category.id,
-    description: props.category.description,
+    description: null,
     image: null,
-    image_preview: props.category.image ? aurl+'storage/'+props.category.image : null,
-    category_id: props.category.category_id,
-    status: props.category.status == 1 ? true : false
+    image_preview: null,
+    status: true
 });
 
-const updateCategory = () => {
-    form.post(route('sale_category_product_update_2'), {
+const createBrand = () => {
+    form.post(route('sale_brand_product_store_2'), {
         forceFormData: true,
-        errorBag: 'updateCategory',
+        errorBag: 'createBrand',
         preserveScroll: true,
         onSuccess: () => {
             Swal2.fire({
                 title: 'Enhorabuena',
-                text: 'Se Actualizado correctamente',
+                text: 'Se registró correctamente',
                 icon: 'success',
             });
+            form.reset()
         },
     });
 }
@@ -66,45 +42,16 @@ const cropImageAndSave = (res) => {
 </script>
 
 <template>
-    <FormSection @submitted="updateCategory" class="">
+    <FormSection @submitted="createBrand" class="">
         <template #title>
-            Categoría Detalles
+            Marca Detalles
         </template>
 
         <template #description>
-            Crear editar Categoría, Los campos con * son obligatorios
+            Crear nueva Marca, Los campos con * son obligatorios
         </template>
 
         <template #form>
-            <div class="col-span-6 sm:col-span-3">
-                <InputLabel for="category_id" value="Categorías (Opcional)" class="mb-1" />
-                <!-- <TreeSelect
-                    v-model:value="form.category_id"
-                    show-search
-                    style="width: 100%"
-                    :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
-                    placeholder="Seleccionar Categoría"
-                    allow-clear
-                    :tree-data="categoriesData"
-                    tree-node-filter-prop="label"
-                    :height="233"
-                >
-                    <template #title="{ value: val, label }">
-                        <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
-                        <template v-else>{{ label }}</template>
-                    </template>
-                </TreeSelect> -->
-
-                <Select
-                    id="category_id"
-                    v-model:value="form.category_id"
-                    placeholder="Seleccionar Categoría"
-                    style="width: 100%"
-                    :options="categoriesData"
-                >
-                </Select>
-                <InputError :message="form.errors.category_id" class="mt-2" />
-            </div>
             <div class="col-span-6">
                 <InputLabel for="name" value="Nombre *" class="mb-1" />
                 <TextInput id="name" v-model="form.description"/>
@@ -113,7 +60,6 @@ const cropImageAndSave = (res) => {
             <div class="col-span-6">
                 <InputLabel for="file_input" value="Imagen *" />
                 <CropperImage
-                    :imgDefault="form.image_preview"
                     ref="cropper"
                     @onCrop="cropImageAndSave"
                 ></CropperImage>
@@ -138,9 +84,9 @@ const cropImageAndSave = (res) => {
                             <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
                             <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
                         </svg>
-                        Actualizar
+                        Guardar
                     </PrimaryButton>
-                    <Link :href="route('sale_category_product_list')"  class="ml-2 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Ir al Listado</Link>
+                    <Link :href="route('sale_brands_product_list')"  class="ml-2 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Ir al Listado</Link>
                 </template>
             </Keypad>
         </template>

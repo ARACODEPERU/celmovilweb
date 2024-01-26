@@ -134,7 +134,21 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     Route::post('category/products/update', [SaleProductCategoryController::class, 'update'])->name('sale_category_product_update_2');
     Route::delete('category/products/destroy/{id}', [SaleProductCategoryController::class, 'destroy'])->name('sale_category_product_destroy');
 
-    Route::post('brand/products/store', [SaleProductBrandController::class, 'store'])->name('sale_brand_product_store');
+    Route::middleware(['middleware' => 'permission:sale_marcas'])
+        ->get('brands/list', [SaleProductBrandController::class, 'index'])
+        ->name('sale_brands_product_list');
+    Route::middleware(['middleware' => 'permission:sale_marcas_nuevo'])
+        ->get('brands/create', [SaleProductBrandController::class, 'create'])
+        ->name('sale_brands_product_create');
+    Route::middleware(['middleware' => 'permission:sale_marcas_nuevo'])
+        ->get('brands/{id}/edit', [SaleProductBrandController::class, 'edit'])
+        ->name('sale_brands_product_edit');
+
+    Route::post('brand/products/store', [SaleProductBrandController::class, 'storeDirect'])->name('sale_brand_product_store');
+    Route::post('brands/store', [SaleProductBrandController::class, 'store'])->name('sale_brand_product_store_2');
+    Route::post('brands/update', [SaleProductBrandController::class, 'update'])->name('sale_brand_product_update');
+    Route::delete('brands/destroy/{id}', [SaleProductBrandController::class, 'destroy'])->name('sale_brand_product_destroy');
+
 
 
     ///////documentos fisico o de otra plataforma
@@ -142,4 +156,7 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     Route::get('physicaldocument/create', [SalePhysicalDocumentController::class, 'create'])->name('sale_physical_document_create');
     Route::post('physicaldocument/store', [SalePhysicalDocumentController::class, 'store'])->name('sale_physical_document_store');
     Route::delete('physicaldocument/destroy/{id}', [SalePhysicalDocumentController::class, 'destroy'])->name('sale_physical_document_destroy');
+
+
+    Route::get('services/list', [ServicesController::class, 'index'])->name('sales_services');
 });

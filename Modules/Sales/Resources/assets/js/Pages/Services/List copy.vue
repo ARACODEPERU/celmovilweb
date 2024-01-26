@@ -370,7 +370,7 @@
               <li aria-current="page">
                 <div class="flex items-center">
                   <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                  <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Productos</span>
+                  <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Productos & servicios</span>
                 </div>
               </li>
             </ol>
@@ -381,6 +381,20 @@
           <div class="flex flex-col gap-10">
             <!-- ====== Table One Start -->
             <div class="rounded-sm border border-stroke bg-white pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark">
+              <div class="border-b border-gray-200 dark:border-gray-700">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                  <li class="mr-2">
+                      <a @click="getProductsServices(true)" href="#" :class="[form.displayProduct ? 'border-b-2 text-blue-600' : 'border-transparent']" class="inline-flex p-4 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                        <img src="/img/24px/orden.png" class="mr-1" />Productos
+                      </a>
+                  </li>
+                  <li class="mr-2">
+                      <a @click="getProductsServices(false)" href="#" :class="[!form.displayProduct ? 'border-b-2 text-blue-600' : 'border-transparent']" class="inline-flex p-4  rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group" aria-current="page">
+                        <img src="/img/24px/public-service.png" class="mr-1" />Servicios
+                      </a>
+                  </li>
+                </ul>
+              </div>
               <div class="w-full p-4 border-b border-gray-200 bg-gray-50 rounded-t-xl dark:border-gray-600 dark:bg-gray-700">
                 <div class="grid grid-cols-3">
                   <div class="col-span-3 sm:col-span-1">
@@ -397,12 +411,19 @@
                   <div class="col-span-3 sm:col-span-2">
                     <Keypad>
                       <template #botones>
+                        <template v-if="form.displayProduct" >
                           <button v-can="'productos_salida'" @click="openModalEntradaSalida(0)" type="button" class="mr-1 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Salidas</button>
                           <button v-can="'productos_entrada'" @click="openModalEntradaSalida(1)" type="button" class="mr-1 inline-block px-6 py-2.5 bg-blue-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-800 hover:shadow-lg  focus:bg-green-600 focus:shadow-lg focus:outline-none  focus:ring-0 focus:ring-blue-300 active:shadow-lg dark:bg-blue-600 dark:hover:bg-blue-700 transition duration-150 ease-in-out">Entradas</button>
-                          <button v-can="'sale_productos_importar'" @click="openModalImport()" type="button" class="mr-1 inline-block px-6 py-2.5 bg-green-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-800 hover:shadow-lg focus:ring-green-300  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 transition duration-150 ease-in-out" >Importar</button>
+                          <button v-can="'productos_entrada'" @click="openModalImport()" type="button" class="mr-1 inline-block px-6 py-2.5 bg-green-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-800 hover:shadow-lg focus:ring-green-300  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 transition duration-150 ease-in-out" >Importar</button>
                           <Link v-can="'productos_nuevo'" :href="route('products.create')" class="flex items-center justify-center inline-block px-6 py-2.5 bg-blue-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                             Nuevo
                           </Link>
+                        </template>
+                        <template v-else >
+                          <Link v-can="'productos_nuevo'" :href="route('create_service')" class="flex items-center justify-center inline-block px-6 py-2.5 bg-blue-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                            Nuevo 
+                          </Link>
+                        </template>
                       </template>
                     </Keypad>
                   </div>

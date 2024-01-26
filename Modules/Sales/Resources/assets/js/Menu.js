@@ -16,7 +16,7 @@ const menuSales = {
             items: [
                 {
                     status: false,
-                    route: route("products.index"),
+                    route: route("sale_brands_product_list"),
                     text: "Marcas",
                     permissions: "sale_marcas",
                 },
@@ -34,9 +34,9 @@ const menuSales = {
                 },
                 {
                     status: false,
-                    route: route("products.index"),
+                    route: route("sales_services"),
                     text: "Servicios",
-                    permissions: "sale_marcas",
+                    permissions: "sale_servicios",
                 },
             ]
         },

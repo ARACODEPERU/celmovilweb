@@ -22,11 +22,12 @@ const props = defineProps({
 const categoriesData = ref([]);
 
 onMounted(() => {
-    categoriesData.value = props.categories.map((obj) => ({
-        value: obj.id,
-        label: obj.description,
-        children: obj.subcategories.map(item => ({ value: item.id, label: item.description }))
-    }));
+    categoriesData.value = props.categories.map(item => ({ value: item.id, label: item.description }));
+    // categoriesData.value = props.categories.map((obj) => ({
+    //     value: obj.id,
+    //     label: obj.description,
+    //     children: obj.subcategories.map(item => ({ value: item.id, label: item.description }))
+    // }));
 });
 
 const form = useForm({
@@ -72,7 +73,7 @@ const cropImageAndSave = (res) => {
         <template #form>
             <div class="col-span-6 sm:col-span-3">
                 <InputLabel for="category_id" value="Categorías (Opcional)" class="mb-1" />
-                <TreeSelect
+                <!-- <TreeSelect
                     v-model:value="form.category_id"
                     show-search
                     style="width: 100%"
@@ -86,13 +87,21 @@ const cropImageAndSave = (res) => {
                         <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
                         <template v-else>{{ label }}</template>
                     </template>
-                </TreeSelect>
+                </TreeSelect> -->
+                <Select
+                    id="category_id"
+                    v-model:value="form.category_id"
+                    placeholder="Seleccionar Categoría"
+                    style="width: 100%"
+                    :options="categoriesData"
+                >
+                </Select>
                 <InputError :message="form.errors.category_id" class="mt-2" />
             </div>
             <div class="col-span-6">
                 <InputLabel for="name" value="Nombre *" class="mb-1" />
                 <TextInput id="name" v-model="form.description"/>
-                <InputError :message="form.errors.presentation_id" class="mt-2" />
+                <InputError :message="form.errors.description" class="mt-2" />
             </div>
             <div class="col-span-6">
                 <InputLabel for="file_input" value="Imagen *" />

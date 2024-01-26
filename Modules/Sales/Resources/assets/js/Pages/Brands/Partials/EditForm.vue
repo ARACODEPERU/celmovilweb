@@ -14,40 +14,25 @@ import CropperImage from '@/Components/CropperImage.vue';
 
 const aurl = assetUrl;
 const props = defineProps({
-    categories: {
-        type: Object,
-        default: () => ({}),
-    },
-    category: {
+    brand: {
         type: Object,
         default: () => ({}),
     }
 });
 
-const categoriesData = ref([]);
-
-onMounted(() => {
-    categoriesData.value = props.categories.map(item => ({ value: item.id, label: item.description }));
-    // categoriesData.value = props.categories.map((obj) => ({
-    //     value: obj.id,
-    //     label: obj.description,
-    //     children: obj.subcategories.map(item => ({ value: item.id, label: item.description }))
-    // }));
-});
 
 const form = useForm({
-    id: props.category.id,
-    description: props.category.description,
+    id: props.brand.id,
+    description: props.brand.description,
     image: null,
-    image_preview: props.category.image ? aurl+'storage/'+props.category.image : null,
-    category_id: props.category.category_id,
-    status: props.category.status == 1 ? true : false
+    image_preview: props.brand.image ? aurl+'storage/'+props.brand.image : null,
+    status: props.brand.status == 1 ? true : false
 });
 
-const updateCategory = () => {
-    form.post(route('sale_category_product_update_2'), {
+const updateBrand = () => {
+    form.post(route('sale_brand_product_update'), {
         forceFormData: true,
-        errorBag: 'updateCategory',
+        errorBag: 'updateBrand',
         preserveScroll: true,
         onSuccess: () => {
             Swal2.fire({
@@ -66,49 +51,21 @@ const cropImageAndSave = (res) => {
 </script>
 
 <template>
-    <FormSection @submitted="updateCategory" class="">
+    <FormSection @submitted="updateBrand" class="">
         <template #title>
-            Categoría Detalles
+            Marca Detalles
         </template>
 
         <template #description>
-            Crear editar Categoría, Los campos con * son obligatorios
+            Crear editar Marca, Los campos con * son obligatorios
         </template>
 
         <template #form>
-            <div class="col-span-6 sm:col-span-3">
-                <InputLabel for="category_id" value="Categorías (Opcional)" class="mb-1" />
-                <!-- <TreeSelect
-                    v-model:value="form.category_id"
-                    show-search
-                    style="width: 100%"
-                    :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
-                    placeholder="Seleccionar Categoría"
-                    allow-clear
-                    :tree-data="categoriesData"
-                    tree-node-filter-prop="label"
-                    :height="233"
-                >
-                    <template #title="{ value: val, label }">
-                        <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
-                        <template v-else>{{ label }}</template>
-                    </template>
-                </TreeSelect> -->
 
-                <Select
-                    id="category_id"
-                    v-model:value="form.category_id"
-                    placeholder="Seleccionar Categoría"
-                    style="width: 100%"
-                    :options="categoriesData"
-                >
-                </Select>
-                <InputError :message="form.errors.category_id" class="mt-2" />
-            </div>
             <div class="col-span-6">
                 <InputLabel for="name" value="Nombre *" class="mb-1" />
                 <TextInput id="name" v-model="form.description"/>
-                <InputError :message="form.errors.description" class="mt-2" />
+                <InputError :message="form.errors.presentation_id" class="mt-2" />
             </div>
             <div class="col-span-6">
                 <InputLabel for="file_input" value="Imagen *" />
@@ -140,7 +97,7 @@ const cropImageAndSave = (res) => {
                         </svg>
                         Actualizar
                     </PrimaryButton>
-                    <Link :href="route('sale_category_product_list')"  class="ml-2 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Ir al Listado</Link>
+                    <Link :href="route('sale_brands_product_list')"  class="ml-2 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Ir al Listado</Link>
                 </template>
             </Keypad>
         </template>

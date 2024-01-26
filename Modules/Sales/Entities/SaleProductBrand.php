@@ -13,7 +13,7 @@ class SaleProductBrand extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['description'];
+    protected $fillable = ['description', 'image', 'status'];
 
     protected static function newFactory(): SaleProductBrandFactory
     {

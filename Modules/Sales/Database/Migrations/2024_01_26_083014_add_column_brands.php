@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sale_product_categories', function (Blueprint $table) {
+        Schema::table('sale_product_brands', function (Blueprint $table) {
             $table->string('image', 300)->nullable();
             $table->boolean('status')->default(true);
         });
 
         Schema::table('products', function (Blueprint $table) {
-            $table->foreign('category_id', 'products_category_fk')->references('id')->on('sale_product_categories');
+            $table->foreign('brand_id', 'product_brand_fk')->references('id')->on('sale_product_brands');
         });
     }
 
@@ -26,13 +26,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sale_product_categories', function (Blueprint $table) {
+        Schema::table('sale_product_brands', function (Blueprint $table) {
             $table->dropColumn('status');
             $table->dropColumn('image');
         });
 
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('products_category_fk');
+            $table->dropForeign('product_brand_fk');
         });
     }
 };
