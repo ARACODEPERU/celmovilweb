@@ -23,13 +23,10 @@
 					<div class="tab-content">
 						<div class="tab-pane fade in active text-center" id="grid">
 							<div class="single-products">
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/7.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>New</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -45,25 +42,15 @@
 											</div>
 										</div>
 										<div class="product-title">
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/8.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>Sell</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -78,26 +65,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/9.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>New</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -112,26 +89,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/10.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>Sell</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -146,23 +113,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/11.jpg" alt="Product" /></a>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -177,26 +137,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/12.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>New</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -211,23 +161,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/13.jpg" alt="Product" /></a>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -242,23 +185,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/14.jpg" alt="Product" /></a>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -273,26 +209,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/13.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>New</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -307,23 +233,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/7.jpg" alt="Product" /></a>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -338,26 +257,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/8.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>Sell</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -372,26 +281,16 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-md-3">
 									<div class="product-item margin40">
 										<div class="pro-img">
-											<a href="product-details.html"><img src="img/products/9.jpg" alt="Product" /></a>
-											<div class="tag-n-s">
-												<span>Sell</span>
-											</div>
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
 												<ul class="clearfix">
 													<li>
@@ -406,371 +305,130 @@
 												</ul>
 											</div>
 										</div>
-										<div class="product-title">  
-											<a href="product-details.html"><h5>Copenhagen Spitfire Chair</h5></a>
-											<div class="ratting">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star gray-star"></i>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
 											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="list-view tab-pane fade in" id="list">
-							<div class="col-xs-12 col-sm-8 col-md-9">
-								<div class="single-product margin40 clearfix">
-									<div class="left">
-										<div class="product-item margin-top">
-											<div class="pro-img">
-												<a href="product-details.html"><img src="img/products/15.jpg" alt="Product" /></a>
-												<div class="link-icon zoom-gallery">
-													<a href="img/products/15.jpg" ><img src="img/icon/w-zoom.png" alt="Product" /></a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="right">
-										<div class="product-item">
-											<div class="product-title">
-												<a href="product-details.html"><h4>Copenhagen Spitfire Chair</h4></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$1700.00</span><del>$170.00</del></p>
-												<hr />
-												<p class="list-p">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-												<hr />
-											</div>
+								<div class="col-md-3">
+									<div class="product-item margin40">
+										<div class="pro-img">
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
-												<ul class="clearfix text-center">
+												<ul class="clearfix">
 													<li>
 														<a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
 													</li>
 													<li>
-														<a href="cart.html"><i class="fa fa-heart-o"></i></a>
+														<a href="#"><i class="fa fa-heart"></i></a>
 													</li>
 													<li>
-														<a href="#"><i class="fa fa-compress"></i></a>
+														<a href="#" data-toggle="modal" data-target="#quick-view"><i class="fa fa-eye"></i></a>
 													</li>
 												</ul>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="single-product margin40 clearfix">
-									<div class="left">
-										<div class="product-item margin-top">
-											<div class="pro-img">
-												<a href="product-details.html"><img src="img/products/16.jpg" alt="Product" /></a>
-												<div class="link-icon zoom-gallery">
-													<a href="img/products/16.jpg" ><img src="img/icon/w-zoom.png" alt="Product" /></a>
-												</div>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
+											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
-									<div class="right">
-										<div class="product-item">
-											<div class="product-title">
-												<a href="product-details.html"><h4>Copenhagen Spitfire Chair</h4></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$1700.00</span><del>$170.00</del></p>
-												<hr />
-												<p class="list-p">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-												<hr />
-											</div>
+								</div>
+								<div class="col-md-3">
+									<div class="product-item margin40">
+										<div class="pro-img">
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
-												<ul class="clearfix text-center">
+												<ul class="clearfix">
 													<li>
 														<a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
 													</li>
 													<li>
-														<a href="cart.html"><i class="fa fa-heart-o"></i></a>
+														<a href="#"><i class="fa fa-heart"></i></a>
 													</li>
 													<li>
-														<a href="#"><i class="fa fa-compress"></i></a>
+														<a href="#" data-toggle="modal" data-target="#quick-view"><i class="fa fa-eye"></i></a>
 													</li>
 												</ul>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="single-product margin40 clearfix">
-									<div class="left">
-										<div class="product-item margin-top">
-											<div class="pro-img">
-												<a href="product-details.html"><img src="img/products/17.jpg" alt="Product" /></a>
-												<div class="link-icon zoom-gallery">
-													<a href="img/products/17.jpg" ><img src="img/icon/w-zoom.png" alt="Product" /></a>
-												</div>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
+											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
-									<div class="right">
-										<div class="product-item">
-											<div class="product-title">
-												<a href="product-details.html"><h4>Copenhagen Spitfire Chair</h4></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$1700.00</span><del>$170.00</del></p>
-												<hr />
-												<p class="list-p">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-												<hr />
-											</div>
+								</div>
+								<div class="col-md-3">
+									<div class="product-item margin40">
+										<div class="pro-img">
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
-												<ul class="clearfix text-center">
+												<ul class="clearfix">
 													<li>
 														<a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
 													</li>
 													<li>
-														<a href="cart.html"><i class="fa fa-heart-o"></i></a>
+														<a href="#"><i class="fa fa-heart"></i></a>
 													</li>
 													<li>
-														<a href="#"><i class="fa fa-compress"></i></a>
+														<a href="#" data-toggle="modal" data-target="#quick-view"><i class="fa fa-eye"></i></a>
 													</li>
 												</ul>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="single-product margin40 clearfix">
-									<div class="left">
-										<div class="product-item margin-top">
-											<div class="pro-img">
-												<a href="product-details.html"><img src="img/products/18.jpg" alt="Product" /></a>
-												<div class="link-icon zoom-gallery">
-													<a href="img/products/18.jpg" ><img src="img/icon/w-zoom.png" alt="Product" /></a>
-												</div>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
+											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
 									</div>
-									<div class="right">
-										<div class="product-item">
-											<div class="product-title">
-												<a href="product-details.html"><h4>Copenhagen Spitfire Chair</h4></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$1700.00</span><del>$170.00</del></p>
-												<hr />
-												<p class="list-p">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-												<hr />
-											</div>
+								</div>
+								<div class="col-md-3">
+									<div class="product-item margin40">
+										<div class="pro-img">
+											<a href=""><img src="{{ asset('themes/celmovil/img/products/7.jpg') }}" alt="Product" /></a>
 											<div class="actions-btn">
-												<ul class="clearfix text-center">
+												<ul class="clearfix">
 													<li>
 														<a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
 													</li>
 													<li>
-														<a href="cart.html"><i class="fa fa-heart-o"></i></a>
+														<a href="#"><i class="fa fa-heart"></i></a>
 													</li>
 													<li>
-														<a href="#"><i class="fa fa-compress"></i></a>
+														<a href="#" data-toggle="modal" data-target="#quick-view"><i class="fa fa-eye"></i></a>
 													</li>
 												</ul>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="single-product margin40 clearfix">
-									<div class="left">
-										<div class="product-item margin-top">
-											<div class="pro-img">
-												<a href="product-details.html"><img src="img/products/19.jpg" alt="Product" /></a>
-												<div class="link-icon zoom-gallery">
-													<a href="img/products/19.jpg" ><img src="img/icon/w-zoom.png" alt="Product" /></a>
-												</div>
-											</div>
+										<div class="product-title">
+											<a href=""><h5>Copenhagen Spitfire Chair</h5></a>
+											<p><span>$1700.00</span><del>$170.00</del></p>
 										</div>
-									</div>
-									<div class="right">
-										<div class="product-item">
-											<div class="product-title">
-												<a href="product-details.html"><h4>Copenhagen Spitfire Chair</h4></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$1700.00</span><del>$170.00</del></p>
-												<hr />
-												<p class="list-p">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-												<hr />
-											</div>
-											<div class="actions-btn">
-												<ul class="clearfix text-center">
-													<li>
-														<a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
-													</li>
-													<li>
-														<a href="cart.html"><i class="fa fa-heart-o"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa fa-compress"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-4 col-md-3">
-								<div class="sidebar left-sidebar">
-									<div class="category single-side">
-										<div class="sidebar-title">
-											<h3>Shop categories</h3>
-										</div>
-										<ul>
-											<li>
-												<a href="#">Bikes</a> <span class="floatright">(90)</span>
-											</li>
-											<li>
-												<a href="#">Components</a> <span class="floatright">(60)</span>
-											</li>
-											<li>
-												<a href="#">Apparel</a> <span class="floatright">(50)</span>
-											</li>
-											<li>
-												<a href="#">Accessories</a> <span class="floatright">(30)</span>
-											</li>
-										</ul>
-									</div>
-									<div class="p-filter single-side">
-										<div class="sidebar-title">
-											<h3>price FILTER</h3>
-										</div>
-										<p>Range:  $100.00 - 500.00 </p>
-										<div id="range-slider"></div>
-									</div>
-									<div class="single-side">
-										<div class="sidebar-title">
-											<h3>Sizes</h3>
-										</div>
-										<div class="size-btn clearfix">
-											<a href="#">X</a>
-											<a href="#">m</a>
-											<a href="#">l</a>
-											<a href="#">Xm</a>
-											<a href="#">xxl</a>
-										</div>
-									</div>
-									<div class="single-side clearfix">
-										<div class="sidebar-title">
-											<h3>RECENT ITEMS</h3>
-										</div>
-										<div class="recent-item">
-											<div class="img">
-												<a href="product-details.html"><img src="img/products/side1.png" alt="Resent Item" /></a>
-											</div>
-											<div class="text">
-												<a href="product-details.html"><h5>Kuat NV 2 Bike Tray</h5></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$170.00</span><del>$170.00</del></p>
-											</div>
-										</div>
-										<div class="recent-item">
-											<div class="img">
-												<a href="product-details.html"><img src="img/products/side2.png" alt="Resent Item" /></a>
-											</div>
-											<div class="text">
-												<a href="product-details.html"><h5>Shimano Pro Wrench</h5></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$170.00</span></p>
-											</div>
-										</div>
-										<div class="recent-item">
-											<div class="img">
-												<a href="product-details.html"><img src="img/products/side3.png" alt="Resent Item" /></a>
-											</div>
-											<div class="text">
-												<a href="product-details.html"><h5>Link Pliers</h5></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$170.00</span></p>
-											</div>
-										</div>
-										<div class="recent-item">
-											<div class="img">
-												<a href="product-details.html"><img src="img/products/side4.png" alt="Resent Item" /></a>
-											</div>
-											<div class="text">
-												<a href="product-details.html"><h5>Cable Cutter</h5></a>
-												<div class="ratting">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star gray-star"></i>
-												</div>
-												<p><span>$120.00</span></p>
-											</div>
-										</div>
-									</div>
-									<div class="single-side">
-										<div class="sidebar-title">
-											<h3>Popular Tags</h3>
-										</div>
-										<div class="tag-btn clearfix">
-											<a href="#">Bike</a>
-											<a href="#">Wheel</a>
-											<a href="#">Aparel</a>
-											<a href="#">GPS</a>
-											<a href="#">Track</a>
-											<a href="#">Accessories</a>
-											<a href="#">Men</a>
-											<a href="#">Women</a>
-											<a href="#">Power</a>
-										</div>
-									</div>
-									<div class="sidebar-banner banner-hover">
-										<a href="#"><img src="img/banner.jpg" alt="Banner" /></a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                              <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                              </li>
+                            </ul>
+                          </nav>
+                    </div>
+                    <div class="col-md-4"></div>
 				</div>
 			</div>
 		</section>
