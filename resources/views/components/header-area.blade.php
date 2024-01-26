@@ -41,7 +41,7 @@
                             <nav>
                                 <ul>
                                     <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
-                                    <li><a href="{{ route('web_inicio') }}">Nosotros</a></li>
+                                    <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
                                     <li>
                                         <a href="">VMPS, BICIMOTOS, BIOS</a>
                                         <ul>
@@ -150,8 +150,49 @@
                                 <nav id="dropdown">
                                     <ul>
                                         <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                        <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
                                         <li>
-                                            <a href="">Repuestos</a>
+                                            <a href="">VMPS, BICIMOTOS, BIOS</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="">Baterias Plomo Acido</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Baterias Plomo Lítio</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="">MOTOS</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="">Scooter Moped</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Scooter Vintage</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Deportivos</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Chopper</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="">TRIMOTOS</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="">Baterias Plomo Acido</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Baterias Plomo Lítio</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="">CUATRIMOTOS</a></li>
+                                        <li>
+                                            <a href="">REPUESTOS</a>
                                             <ul>
                                                 <li>
                                                     <a href="">Llantas</a>
@@ -168,7 +209,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="">Accesorios</a>
+                                            <a href="">ACCESORIOS</a>
                                             <ul>
                                                 <li>
                                                     <a href="">Cascos</a>
@@ -190,167 +231,6 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <!--
-                                        <li><a href="index.html">Home</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="index.html">Home Version One</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-2.html">Home Version Two</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-3.html">Home Version Three</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">products</a>
-                                            <ul>
-                                                <li>
-                                                    <h5>men’s bikes</h5>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">T Mounten bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">M Mounten bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">T Mounten bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">L Mounten bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">T Mounten bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">T Mounten bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">T Mounten bike</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <h5>Accessories</h5>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">Giro Cipher Helmet</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mountain Helmet</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mountain Helmet</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Giro Cipher Helmet</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Giro Helmet</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Giro Helmet</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mountain Helmet</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <h5>women’s bikes</h5>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">Mount POW bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mount POW bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mount POW bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mount POW bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mount POW bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mount POW bike</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Mount POW bike</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="about.html">about</a></li>
-                                        <li><a href="blog-1.html">blog</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="blog-1.html">Blog Style One</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-2.html">Blog Style Two</a>
-                                                </li>
-                                                <li>
-                                                    <a href="single-blog.html">Single Blog</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Pages</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="login.html">Login</a>
-                                                </li>
-                                                <li>
-                                                    <a href="my-account.html">My account</a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkout.html">CheckOut</a>
-                                                </li>
-                                                <li>
-                                                    <a href="wishlist.html">Wishlist</a>
-                                                </li>
-                                                <li>
-                                                    <a href="cart.html">Cart</a>
-                                                </li>
-                                                <li>
-                                                    <a href="about.html">About</a>
-                                                </li>
-                                                <li>
-                                                    <a href="contact.html">Contact</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop.html">Shop</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-list-left.html">Shop Left List View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-list-right.html">Shop Right List View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-gird-left.html">Shop Left Gird View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-gird-right.html">Shop Right Gird View</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-details.html">Product Details</a>
-                                                </li>
-                                                <li>
-                                                    <a href="error-404.html">404 Error</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html">contact</a>
-                                        </li>
-                                        -->
                                     </ul>
                                 </nav>
                             </div>

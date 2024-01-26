@@ -18,7 +18,7 @@
 
     <!-- page banner area start -->
     <div class="page-banner">
-        <img src="{{ asset('themes/celmovil/img/slider/bg1.jpg') }}" alt="Page Banner" />
+        <img width="100%;" src="{{ asset('themes/celmovil/img/banner_producto.jpeg') }}" alt="Page Banner" />
     </div>
     <!-- page banner area end -->
     <!-- product details area start -->
