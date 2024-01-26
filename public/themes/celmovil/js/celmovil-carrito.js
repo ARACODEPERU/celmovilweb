@@ -121,7 +121,8 @@ function agregarAlCarrito(producto) {
                   }, 1000);
                 });
                 const { value: color } = await Swal.fire({
-                  title: "Escoge el color de " + producto.nombre,
+                  title: "Escoge el color de " + producto.nombre +
+                  "<img width='320px' src='"+producto.color.image+"'></img>",
                   input: "radio",
                   inputOptions,
                   inputValidator: (value) => {
