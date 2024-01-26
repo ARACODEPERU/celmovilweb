@@ -75,32 +75,93 @@ function agregarAlCarrito(producto) {
     }
 
     if (agregar) {
-        Swal.fire({
-            //Consulta para agregar item al CARRITO
-            title: "Estas a punto de Aprender",
-            text: '¿Deseas agregar "' + producto.nombre + '" al Carrito?',
-            icon: "success",
-            showCancelButton: true,
-            confirmButtonText: "Sí",
-            cancelButtonText: "No",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Obtener el carrito actual del almacenamiento local
-                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        if(typeof producto.color === 'undefined' || producto.color == null){  //para productos tipo cursos capperu
+            Swal.fire({
+                //Consulta para agregar item al CARRITO
+                title: "Estas a punto de Aprender",
+                text: '¿Deseas agregar "' + producto.nombre + '" al Carrito?',
+                icon: "success",
+                showCancelButton: true,
+                confirmButtonText: "Sí",
+                cancelButtonText: "No",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Obtener el carrito actual del almacenamiento local
+                    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-                // Agregar el producto al carrito
-                carrito.push(producto);
+                    // Agregar el producto al carrito
+                    carrito.push(producto);
 
-                // Guardar el carrito actualizado en el almacenamiento local
-                localStorage.setItem("carrito", JSON.stringify(carrito));
-                getTotal();
-                cargarContadorCarrito();
-                cargarItemsCarritoBD();
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                // Acción a realizar si el usuario hace clic en "No" o cierra el diálogo
-                console.log("El usuario ha cancelado.");
-            }
-        });
+                    // Guardar el carrito actualizado en el almacenamiento local
+                    localStorage.setItem("carrito", JSON.stringify(carrito));
+                    getTotal();
+                    cargarContadorCarrito();
+                    cargarItemsCarritoBD();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // Acción a realizar si el usuario hace clic en "No" o cierra el diálogo
+                    console.log("El usuario ha cancelado.");
+                }
+            });
+        }else{ //para productos con colores celmovil
+            const json = producto.color;
+            const colors = JSON.parse(json.product.sizes).map(size => size.size);
+
+            const colorsObject = {};
+
+            colors.forEach(color => {
+              colorsObject[color] = color;
+            });
+
+            (async () => {
+                /* inputOptions can be an object or Promise */
+                const inputOptions = new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve(colorsObject); //objeto con los colores
+                  }, 1000);
+                });
+                const { value: color } = await Swal.fire({
+                  title: "Selecciona un color",
+                  input: "radio",
+                  inputOptions,
+                  inputValidator: (value) => {
+                    if (!value) {
+                      return "Debes escoger un color!";
+                    }
+                  }
+                });
+                if (color) {
+                  Swal.fire({ html: `Escogiste el color: ${color}` });
+                }
+              })();
+
+
+            // Swal.fire({
+            //     //Consulta para agregar item al CARRITO
+            //     title: "Estas a punto de Aprender",
+            //     text: '¿Deseas agregar "' + producto.nombre + '" al Carrito?',
+            //     icon: "success",
+            //     showCancelButton: true,
+            //     confirmButtonText: "Sí",
+            //     cancelButtonText: "No",
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         // Obtener el carrito actual del almacenamiento local
+            //         let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+            //         // Agregar el producto al carrito
+            //         carrito.push(producto);
+
+            //         // Guardar el carrito actualizado en el almacenamiento local
+            //         localStorage.setItem("carrito", JSON.stringify(carrito));
+            //         getTotal();
+            //         cargarContadorCarrito();
+            //         cargarItemsCarritoBD();
+            //     } else if (result.dismiss === Swal.DismissReason.cancel) {
+            //         // Acción a realizar si el usuario hace clic en "No" o cierra el diálogo
+            //         console.log("El usuario ha cancelado.");
+            //     }
+            // });
+        }
     }
 }
 

@@ -29,7 +29,7 @@
                                         <div class="actions-btn">
                                             <ul class="clearfix">
                                                 <li>
-                                                    <a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
+                                                    <a onclick="agregarAlCarrito({ id: 18, nombre: 'Producto 1', color: {{ json_encode($product) }}, precio: 250.00 })"><i class="fa fa-shopping-cart"></i></a>
                                                 </li>
                                                 <li>
                                                     <a href="#"><i class="fa fa-heart"></i></a>

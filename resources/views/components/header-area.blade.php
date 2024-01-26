@@ -1,4 +1,32 @@
 <div>
+    <style>
+        input[type="radio"] {
+        display: none;
+        }
+
+        input[type="radio"]:checked + .swal2-label {
+        animation: colorChange 2s infinite;
+        color: blue;
+        }
+
+        @keyframes colorChange {
+        0% {
+            color: red;
+        }
+        25% {
+            color: blue;
+        }
+        50% {
+            color: rgb(34, 2, 62);
+        }
+        75% {
+            color: rgb(79, 79, 79);
+        }
+        100% {
+            color: black;
+        }
+        }
+</style>
     <header>
         <div class="header-top">
             <div class="container">
