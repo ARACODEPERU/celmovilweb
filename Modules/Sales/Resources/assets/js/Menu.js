@@ -7,29 +7,44 @@ const menuSales = {
     route: null,
     permissions: "sale_dashboard",
     items: [
+        
+        {
+            status: false,
+            route: null,
+            text: "Administración",
+            permissions: "productos",
+            items: [
+                {
+                    status: false,
+                    route: route("products.index"),
+                    text: "Marcas",
+                    permissions: "sale_marcas",
+                },
+                {
+                    status: false,
+                    route: route("sale_category_product_list"),
+                    text: "Categoría",
+                    permissions: "sale_categorias",
+                },
+                {
+                    status: false,
+                    route: route("products.index"),
+                    text: "Productos",
+                    permissions: "sale_marcas",
+                },
+                {
+                    status: false,
+                    route: route("products.index"),
+                    text: "Servicios",
+                    permissions: "sale_marcas",
+                },
+            ]
+        },
         {
             route: route("establishments.index"),
             status: false,
             text: "Tiendas",
             permissions: "sale_tienda",
-        },
-        {
-            route: route("clients.index"),
-            status: false,
-            text: "Clientes",
-            permissions: "clientes",
-        },
-        {
-            route: route("pettycash.index"),
-            status: false,
-            text: "Caja Chica",
-            permissions: "caja_chica",
-        },
-        {
-            status: false,
-            route: route("products.index"),
-            text: "Gestión Productos & servicios",
-            permissions: "productos",
         },
         {
             route: route("sales.index"),

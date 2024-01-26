@@ -83,7 +83,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = SaleProductCategory::whereNull('category_id')->get();
+        $categories = SaleProductCategory::with('subcategories')->whereNull('category_id')->get();
         $brands = SaleProductBrand::get();
 
         return Inertia::render('Sales::Products/Create', [
@@ -249,7 +249,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = SaleProductCategory::whereNull('category_id')->get();
+        $categories = SaleProductCategory::with('subcategories')->whereNull('category_id')->get();
         $brands = SaleProductBrand::get();
 
         return Inertia::render('Sales::Products/Edit', [

@@ -13,7 +13,7 @@ import swal from 'sweetalert';
 import { watchEffect, defineComponent, ref, onMounted } from 'vue';
 
 import { 
-    ConfigProvider, Divider, Space, Button, Select, Input, message
+    ConfigProvider, Divider, Space, Button, Select, Input, message, TreeSelect
 } from 'ant-design-vue';
 
 import esES from 'ant-design-vue/es/locale/es_ES';
@@ -67,7 +67,13 @@ const categoriesData = ref([]);
 const brandsData = ref([]);
 
 onMounted(()=>{
-    categoriesData.value = props.categories.map(item => ({ value: item.id, label: item.description }));
+    // cuando las categorias no tiene sub niveles
+    // categoriesData.value = props.categories.map(item => ({ value: item.id, label: item.description }));
+    categoriesData.value = props.categories.map((obj) => ({
+        value: obj.id,
+        label: obj.description,
+        children: obj.subcategories.map(item => ({ value: item.id, label: item.description }))
+    }));
     brandsData.value = props.brands.map(item => ({ value: item.id, label: item.description }));
 });
 
@@ -151,7 +157,8 @@ const addBrand = () => {
             <ConfigProvider :locale="esES">
                 <div class="col-span-6 sm:col-span-3">
                     <InputLabel for="category_id" value="Categoría" />
-                    <Select
+                    <!-- cuando la categoria no tiene sub niveles -->
+                    <!-- <Select
                         id="category_id"
                         v-model:value="form.category_id"
                         placeholder="Seleccionar Categoría"
@@ -171,7 +178,24 @@ const addBrand = () => {
                                 </Button>
                             </Space>
                         </template>
-                    </Select>
+                    </Select> -->
+                    <!-- cuando tienes sub niveles -->
+                    <TreeSelect
+                        v-model:value="form.category_id"
+                        show-search
+                        style="width: 100%"
+                        :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
+                        placeholder="Seleccionar Categoría"
+                        allow-clear
+                        :tree-data="categoriesData"
+                        tree-node-filter-prop="label"
+                        :height="233"
+                    >
+                        <template #title="{ value: val, label }">
+                            <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
+                            <template v-else>{{ label }}</template>
+                        </template>
+                    </TreeSelect>
                     <InputError :message="form.errors.category_id" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-3">
@@ -280,13 +304,13 @@ const addBrand = () => {
                     </div>
                     <div v-if="form.presentations" class="mt-4">
                         <label>
-                            Tallas
+                            Presentaciones
                         </label>
                         <div  class="relative overflow-x-auto shadow-md sm:rounded-lg">
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                                     <tr>
-                                        <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800">Talla</th>
+                                        <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800">Descripción</th>
                                         <th class="px-6 py-3">Cantidad</th>
                                     </tr>
                                 </thead>
