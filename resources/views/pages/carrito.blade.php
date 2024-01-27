@@ -243,7 +243,7 @@
                     console.log("RESPUESTA", respuesta.product.sizes);
                     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
                     cart.innerHTML += `
-                                    <tr>
+                                    <tr id="` + id + `_pc">
 										<td class="td-img text-left">
 											<a>
                                                 <img style="width: 100px;" src="`+image+`" alt="Imagen Producto" />
