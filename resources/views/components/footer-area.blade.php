@@ -182,7 +182,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             let form = document.getElementById('pageContactForm');
             form.addEventListener('submit', function(e) {
@@ -242,7 +242,7 @@
                 xhr.send(formData);
             });
         });
-    </script>
+    </script> --}}
         <!-- footer bottom end -->
     </footer>
 </div>

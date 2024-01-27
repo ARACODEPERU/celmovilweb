@@ -195,7 +195,7 @@
                         <!-- mobile menu end -->
                         <div class="cart-menu-area floatright">
                             <ul>
-                                <li><a href="#"><i class="pe-7s-shopbag"></i> <span
+                                <li><a href="{{ route('web_carrito') }}"><i class="pe-7s-shopbag"></i> <span hidden
                                             id="contadorCarritoWeb"></span></a>
                                     <ul class="cart-menu">
                                         <li>
