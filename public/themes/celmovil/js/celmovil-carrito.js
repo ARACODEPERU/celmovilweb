@@ -132,7 +132,19 @@ function agregarAlCarrito(producto) {
                   }
                 });
                 if (color) {
-                  Swal.fire({ html: `Escogiste ` + producto.nombre + ` de color: ${color}` });
+                  Swal.fire({ html: `<h4> ` + producto.nombre + ` de color: ${color} fue agregado al carrito de compras.</h4>` });
+                                      // Obtener el carrito actual del almacenamiento local
+                                      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                                        producto.color = color;
+                                        producto.quantity = 1;
+                                      // Agregar el producto al carrito
+                                      carrito.push(producto);
+
+                                      // Guardar el carrito actualizado en el almacenamiento local
+                                      localStorage.setItem("carrito", JSON.stringify(carrito));
+                                      getTotal();
+                                      cargarContadorCarrito();
+                                      cargarItemsCarritoBD();
                 }
               })();
 
@@ -188,7 +200,7 @@ function getTotal() {
         carritoTemp = JSON.parse(localStorage.getItem("carrito")) || [];
         total = 0;
         for (let i = 0; i < carritoTemp.length; i++) {
-            total += carritoTemp[i].precio;
+            total += carritoTemp[i].precio*carritoTemp[i].quantity;
         }
         document.getElementById("totalid").textContent = "S/. " + total + ".00";
         total_productos = carritoTemp.length;
@@ -205,16 +217,17 @@ function cargarContadorCarrito() {
 // Actualizar el valor del contador
 function actualizarContador(valor) {
     // Obtener el elemento del contador
-    var contadorCarritoMovil = document.getElementById("contadorCarritoMovil");
+    //var contadorCarritoMovil = document.getElementById("contadorCarritoMovil");
     var contadorCarritoWeb = document.getElementById("contadorCarritoWeb");
 
     if (valor == 0) {
-        contadorCarritoMovil.setAttribute("hidden", true); // Ocultar el contador
+       // contadorCarritoMovil.setAttribute("hidden", true); // Ocultar el contador
         contadorCarritoWeb.setAttribute("hidden", true); // Ocultar el contador
     } else {
-        contadorCarritoMovil.removeAttribute("hidden"); // Mostrar el contador
+        //contadorCarritoMovil.removeAttribute("hidden"); // Mostrar el contador
         contadorCarritoWeb.removeAttribute("hidden"); // Mostrar el contador
     }
-    contadorCarritoMovil.innerHTML = valor;
+    console.log(valor);
+    //contadorCarritoMovil.innerHTML = valor;
     contadorCarritoWeb.innerHTML = valor;
 }

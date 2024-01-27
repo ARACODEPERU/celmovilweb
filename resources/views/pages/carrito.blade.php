@@ -28,18 +28,18 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="table-responsive table-one margin-minus section-padding-bottom">
-							<table class="spacing-table text-center">
+							<table class="spacing-table text-center" id="divCartHidden">
 								<thead>
 									<tr>
 										<th>Producto</th>
 										<th>Precio Unitario</th>
 										<th>Cantidad</th>
-										<th>QTY</th>
-										<th>Subtotal</th>
+										<th>SubTotal</th>
+										<th>Remover</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="cart">
+									{{--<tr>
 										<td class="td-img text-left">
 											<a href="#">
                                                 <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
@@ -63,32 +63,7 @@
 										</td>
 										<td>$112.00</td>
 										<td><i class="fa fa-trash" title="Remove this product"></i></td>
-									</tr>
-									<tr>
-										<td class="td-img text-left">
-											<a href="#">
-                                                <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
-                                            </a>
-											<div class="">
-												<p>
-                                                    <a href="#">Sensor Carbon Jenson GX1 Bike</a><br>
-                                                    <b>Color:</b> Negro
-                                                </p>
-											</div>
-										</td>
-										<td>$56.00</td>
-										<td>
-											<form action="#" method="POST">
-												<div class="plus-minus">
-													<a class="dec qtybutton">-</a>
-													<input type="text" value="02" name="qtybutton" class="plus-minus-box">
-													<a class="inc qtybutton">+</a>
-												</div>
-											</form>
-										</td>
-										<td>$112.00</td>
-										<td><i class="fa fa-trash" title="Remove this product"></i></td>
-									</tr>
+									</tr> --}}
 								</tbody>
 							</table>
 						</div>
@@ -104,8 +79,8 @@
                                     <div class="col-md-4">
                                         <div class="estimate-text responsive">
                                             <div class="subtotal clearfix">
-                                                <p>Subtotal: <span class="floatright">$156.87</span></p>
-                                                <p>Grandtotal: <span class="floatright">$156.87</span></p>
+                                                <p>Subtotal ELIMINAR NO VA: <span class="floatright" id="SubTotal">156.87</span></p>
+                                                <p>Grandtotal: <span class="floatright" id="totalid">156.87</span></p>
                                             </div>
                                         </div>
                                         <br>
@@ -143,6 +118,11 @@
                                             <div class="default-btn text-right">
                                                 <a class="btn-style" href="checkout.html">PROCEDER A VERIFICAR</a>
                                             </div>
+                                            <button class="btn btn-primary g-recaptcha" style="width: 100%;" id="btn-crear-cuenta"
+                                            disabled>
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                                &nbsp;Crear Cuenta
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +135,10 @@
 		<!-- cart page content section end -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            cargarItemsCarritoBD();
+            document.addEventListener("DOMContentLoaded", function() {
+                cargarItemsCarritoBD();
+            });
+
 
             function cargarItemsCarritoBD() {
                 document.getElementById('cart').innerHTML =
@@ -191,10 +174,10 @@
                     success: function(respuesta) {
                         // Obtén una referencia al elemento div por su ID
                         var divCartHidden = document.getElementById("divCartHidden");
-
+                        var index = 0;
                         respuesta.items.forEach(function(item) {
                             // Accede a las propiedades del objeto
-                            renderProducto(item);
+                            renderProducto(item, index++);
                             // Crea un elemento input oculto
                             let inputHidden = document.createElement("input");
                             // Establece los atributos del input
@@ -218,7 +201,7 @@
 
             }
 
-            function renderProducto(respuesta) {
+            function renderProducto(respuesta, i) {
 
                 var cart = document.getElementById('cart');
                 if (cart != null) {
@@ -232,62 +215,60 @@
                     var modalidad = respuesta.additional;
                     var url_campus = "";
                     var url_descripcion_programa = "/descripcion-programa/"+id; // esta ruta deberá corregirse si se cambia el el get de la RUTA :S
+                    console.log("RESPUESTA", respuesta.product.sizes);
+                    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
                     cart.innerHTML += `
-                <div class="col-md-12" style="padding: 10px;" id="` + id + `_pc">
-                                <div class="row contact-inner" style="padding: 10px; border: 1px solid #f2f2f2;">
-                                    <div class="col-md-2">
-                                        <div class="single-course-wrap">
-                                            <div class="thumb">
-                                                <img style="height: 90px; object-fit: cover;" src="` + image + `" alt="img">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h6><a href="`+url_descripcion_programa+`" target="_blank">` + name + `</a></h6>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 user-details">
-                                                <img style="width: 30px; height: 30px; border-radius: 50%;" src="` +
-                        url_campus + avatar + `" alt="img">
-                                                <a>` + teacher + `</a>
-                                            </div>
-                                            <div class="col-md-4">
-
-                                            </div>
-                                            <div class="col-md-4">
-                                                <a href="">
-                                                    <span style="color:orange;">
-                                                        <b>` + modalidad + `</b>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="single-course-wrap">
-                                                <div class="price-wrap">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-md-12">
-                                                            <b>S/. ` + price + `</b>&nbsp;&nbsp;
-                                                            <a onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
-                        name + `', precio: ` + price + ` });"  class="btn btn-danger">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            `;
+                                    <tr id="` + id + `_pc">
+										<td class="td-img text-left">
+											<a>
+                                                <img style="width: 100px;" src="`+image+`" alt="Imagen Producto" />
+                                            </a>
+											<div class="">
+												<p>
+                                                    <a>`+name+`</a><br>
+                                                    <b>Color:</b> `+carrito[i].color+`
+                                                </p>
+											</div>
+										</td>
+										<td>S/ `+price+`</td>
+										<td>
+											<form action="#" method="POST">
+												<div class="plus-minus">
+													<a class="dec qtybutton" onclick="quantity(` + i + `, 0, `+price+`)">-</a>
+													<input type="text" disabled id="`+i+`qty" value="`+carrito[i].quantity+`" name="qtybutton" class="plus-minus-box">
+													<a class="inc qtybutton" onclick="quantity(` + i + `, 1, `+price+`)">+</a>
+												</div>
+											</form>
+										</td>
+										<td id="`+i+`subTotal">S/ `+carrito[i].quantity*price+`</td>
+										<td><i class="fa fa-trash" title="Remover producto" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
+                                        name + `', precio: ` + price + ` });"></i></td>
+									</tr>
+                    `;
                 }
             }
         </script>
-
+    <script>
+        function quantity(index, masmen, price){
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            if(masmen == 1){
+                carrito[index].quantity += 1;
+            }
+            if(masmen == 0){
+                if(carrito[index].quantity > 1){
+                    carrito[index].quantity -= 1;
+                }
+            }
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            console.log(carrito[index].quantity);
+            console.log(carrito[index].quantity*price);
+            document.getElementById(index+"qty").value=carrito[index].quantity;
+            let tempSubTotal = carrito[index].quantity*price;
+            document.getElementById(index+"subTotal").innerHTML="S/ "+tempSubTotal;
+            getTotal();
+        }
+    </script>
     <script>
         function confirmSubmit(event) {
       event.preventDefault(); // Evita que el formulario se envíe automáticamente
@@ -308,6 +289,7 @@
           document.getElementById("CartForm").submit();
         }
       </script>
+
     <br><br>
     <!-- footer - section start -->
     <x-footer-area />

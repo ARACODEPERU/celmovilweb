@@ -375,26 +375,48 @@ class OnliItemController extends Controller
     {
         $ids = $request->get('ids');
         //dd($ids);
-        $items = OnliItem::join('aca_courses', 'onli_items.item_id', '=', 'aca_courses.id')
-            ->leftJoin('aca_teachers', 'aca_teachers.id', '=', 'aca_courses.teacher_id')
-            ->join('people', 'people.id', '=', 'aca_teachers.person_id')
-            ->join('users', 'users.person_id', '=', 'people.id')
-            ->whereIn('onli_items.id', $ids)
-            ->select(
-                'onli_items.id as id',
-                'onli_items.name as name',
-                'onli_items.image as image',
-                'onli_items.price as price',
-                'onli_items.category_description', ////sector publico, sector empresarial .....
-                'onli_items.additional as additional', ////tipo curso o diplomado
-                'onli_items.additional1 as additional1', //////modalidad envivo, elearnig.presencial
-                'people.names as teacher',
-                'aca_teachers.id as teacher_id',
-                'users.avatar as avatar',
-                'onli_items.description as description'
-            )
-            ->get();
+        // ----------------ACA COURSES-------------------
+        // $items = OnliItem::join('aca_courses', 'onli_items.item_id', '=', 'aca_courses.id')
+        //     ->leftJoin('aca_teachers', 'aca_teachers.id', '=', 'aca_courses.teacher_id')
+        //     ->join('people', 'people.id', '=', 'aca_teachers.person_id')
+        //     ->join('users', 'users.person_id', '=', 'people.id')
+        //     ->whereIn('onli_items.id', $ids)
+        //     ->select(
+        //         'onli_items.id as id',
+        //         'onli_items.name as name',
+        //         'onli_items.image as image',
+        //         'onli_items.price as price',
+        //         'onli_items.category_description', ////sector publico, sector empresarial .....
+        //         'onli_items.additional as additional', ////tipo curso o diplomado
+        //         'onli_items.additional1 as additional1', //////modalidad envivo, elearnig.presencial
+        //         'people.names as teacher',
+        //         'aca_teachers.id as teacher_id',
+        //         'users.avatar as avatar',
+        //         'onli_items.description as description'
+        //     )
+        //     ->get();
 
+        //------------------------------ PRODUCTOS --------------------
+        $items = OnliItem::with('product')->whereIn('id', $ids)->get();
+        // $items = OnliItem::join('aca_courses', 'onli_items.item_id', '=', 'aca_courses.id')
+        //     ->leftJoin('aca_teachers', 'aca_teachers.id', '=', 'aca_courses.teacher_id')
+        //     ->join('people', 'people.id', '=', 'aca_teachers.person_id')
+        //     ->join('users', 'users.person_id', '=', 'people.id')
+        //     ->whereIn('onli_items.id', $ids)
+        //     ->select(
+        //         'onli_items.id as id',
+        //         'onli_items.name as name',
+        //         'onli_items.image as image',
+        //         'onli_items.price as price',
+        //         'onli_items.category_description', ////sector publico, sector empresarial .....
+        //         'onli_items.additional as additional', ////tipo curso o diplomado
+        //         'onli_items.additional1 as additional1', //////modalidad envivo, elearnig.presencial
+        //         'people.names as teacher',
+        //         'aca_teachers.id as teacher_id',
+        //         'users.avatar as avatar',
+        //         'onli_items.description as description'
+        //     )
+        //     ->get();
         $preference_id = null;
         // Verificar si se encontró el ítem
         if (count($items) > 0) {
