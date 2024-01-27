@@ -9,6 +9,7 @@ use Intervention\Image\Facades\Image;
 use Intervention\Image\Font;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use Modules\CMS\Entities\CmsItem;
 
 class WebController extends Controller
 {
@@ -30,9 +31,19 @@ class WebController extends Controller
         return view('pages/nosotros');
     }
 
-    public function productocategoria()
+    public function productocategoria($id)
     {
-        return view('pages/producto-categoria');
+        $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
+            ->select(
+                'onli_items.*'
+            )
+            ->where('products.category_id', $id)
+            ->paginate(16)
+            ->onEachSide(2);
+
+        return view('pages/producto-categoria', [
+            'products' => $products
+        ]);
     }
 
 
