@@ -25,14 +25,12 @@ use Modules\Sales\Http\Controllers\SaleProductBrandController;
 use Modules\Sales\Http\Controllers\SaleProductCategoryController;
 use Modules\Sales\Http\Controllers\SaleSummaryController;
 use Modules\Sales\Http\Controllers\SerieController;
+use Modules\Sales\Http\Controllers\ServicesController;
 
 Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('pettycash', PettyCashController::class);
     Route::resource('providers', ProviderController::class);
-
-    Route::get('service/create', [ProductController::class, 'createService'])->name('create_service');
-    Route::post('service/store', [ProductController::class, 'storeService'])->name('store_service');
 
     Route::post('petty/cash/close/{petty_id}', [PettyCashController::class, 'close_petty'])->name('close_petty_cash');
 
@@ -159,4 +157,9 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
 
 
     Route::get('services/list', [ServicesController::class, 'index'])->name('sales_services');
+    Route::get('services/{id}/edit', [ServicesController::class, 'edit'])->name('sales_services_edit');
+    Route::get('services/create', [ServicesController::class, 'create'])->name('create_service');
+    Route::post('services/store', [ServicesController::class, 'store'])->name('store_service');
+    Route::put('services/update/{id}', [ServicesController::class, 'update'])->name('update_service');
+    Route::delete('services/destroy/{id}', [ServicesController::class, 'destroy'])->name('destroy_service');
 });

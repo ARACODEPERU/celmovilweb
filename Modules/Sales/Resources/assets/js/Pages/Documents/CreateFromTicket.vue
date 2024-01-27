@@ -436,6 +436,8 @@
             }
         });
     }
+
+    const asetUrl = assetUrl;
 </script>
 <template>
     <AppLayout title="Punto de Ventas">
@@ -470,7 +472,7 @@
                     <div class="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-gray-700 mb-3">
                         <div class="flex flex-col">
                             <div class="text-3xl font-bold mb-1">
-                                <img style="width: 242px;height: 53.2333px;" class="inline-block h-auto ltr:mr-2 rtl:ml-2" :src="company.logo">
+                                <img style="width: 242px;height: 53.2333px;" class="inline-block h-auto ltr:mr-2 rtl:ml-2" :src="asetUrl+'storage/'+company.logo">
                             </div>
                             <p class="text-sm">Ancash, Chimbote<br>{{ company.fiscal_address }}</p>
                         </div>

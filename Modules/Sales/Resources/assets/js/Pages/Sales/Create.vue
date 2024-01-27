@@ -3,11 +3,11 @@
     import SearchProducts from './Partials/SearchProducts.vue';
     import SearchClients from './Partials/SearchClients.vue';
     import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-    import { useForm } from '@inertiajs/vue3';
+    import { useForm, Link } from '@inertiajs/vue3';
     import InputError from '@/Components/InputError.vue';
     import Keypad from '@/Components/Keypad.vue';
     import Swal2 from 'sweetalert2';
-    import { Link } from '@inertiajs/vue3';
+    import { onMounted } from 'vue';
 
     const props = defineProps({
         payments: {
@@ -35,9 +35,23 @@
         client:{
             id: props.client.id,
             full_name: props.client.full_name
-        }
+        },
+        sale_date: null
     });
 
+    const getFormattedDate = () => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      //return `${year}-${month}-${day}`;
+      form.sale_date = `${year}-${month}-${day}`
+    }
+
+    onMounted(() => {
+        getFormattedDate();
+    });
+    
     const getDataTable = async (data) => {
         let xtotal = parseFloat(data.total) + parseFloat(form.total);
         form.total = xtotal.toFixed(2);
@@ -147,7 +161,7 @@
             </nav>
 
             <div class="grid grid-cols-2 gap-9">
-                <div class="mb-2 pr-4 col-span-2 gap-9 sm:col-span-1">
+                <div class="mb-2 pr-4 col-span-2 sm:col-span-1 md:col-span-1">
                     <div class="p-2 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                         <SearchProducts @eventdata="getDataTable" />
                         <div class="mt-4 relative overflow-x-auto">
@@ -223,10 +237,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-2 pr-4 col-span-2 gap-9 sm:col-span-1">
+                <div class="mb-2 pr-4 col-span-2 gap-9 sm:col-span-1 md:col-span-1">
                     <div class="p-2 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                         <SearchClients @clientId="getClient" :clientDefault="form.client" :documentTypes="documentTypes" />
                         <InputError :message="form.errors[`client.id`]" class="mt-2" />
+                        <div class="flex items-center me-4 mt-4 justify-between">
+                            <label for="sale_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de venta: </label>
+                            <input v-model="form.sale_date" id="sale_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                        </div>
+
                         <div class="mt-4">
                             <h4 class="italic font-bold mb-4">Medio de Pago</h4>
                             <table>

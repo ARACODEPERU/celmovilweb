@@ -115,7 +115,7 @@ class SaleController extends Controller
                 'payments.*.amount.required' => 'Ingrese monto',
             ]
         );
-
+        //dd($request->all());
         try {
             $res = DB::transaction(function () use ($request) {
 
@@ -138,7 +138,7 @@ class SaleController extends Controller
                 $serie_id = $serie->id;
 
                 $sale = Sale::create([
-                    'sale_date' => Carbon::now()->format('Y-m-d'),
+                    'sale_date' => $request->get('sale_date'),
                     'user_id' => Auth::id(),
                     'client_id' => $request->get('client')['id'],
                     'local_id' => $local_id,
@@ -173,48 +173,54 @@ class SaleController extends Controller
                         'total' => $produc['total']
                     ]);
 
-                    $k = Kardex::create([
-                        'date_of_issue' => Carbon::now()->format('Y-m-d'),
-                        'motion' => 'sale',
-                        'product_id' => $produc['id'],
-                        'local_id' => $local_id,
-                        'quantity' => - ($produc['quantity']),
-                        'document_id' => $document->id,
-                        'document_entity' => SaleDocument::class,
-                        'description' => 'Venta'
-                    ]);
-
                     $product = Product::find($produc['id']);
 
-                    if ($product->presentations) {
-                        KardexSize::create([
-                            'kardex_id' => $k->id,
+
+                    if ($product->is_product) {
+
+                        $k = Kardex::create([
+                            'date_of_issue' => Carbon::now()->format('Y-m-d'),
+                            'motion' => 'sale',
                             'product_id' => $produc['id'],
                             'local_id' => $local_id,
-                            'size'      => $produc['size'],
-                            'quantity'  => (-$produc['quantity'])
+                            'quantity' => - ($produc['quantity']),
+                            'document_id' => $document->id,
+                            'document_entity' => SaleDocument::class,
+                            'description' => 'Venta'
                         ]);
-                        $tallas = $product->sizes;
-                        $n_tallas = [];
-                        foreach (json_decode($tallas, true) as $k => $talla) {
-                            if ($talla['size'] == $produc['size']) {
-                                $n_tallas[$k] = array(
-                                    'size' => $talla['size'],
-                                    'quantity' => ($talla['quantity'] - $produc['quantity'])
-                                );
-                            } else {
-                                $n_tallas[$k] = array(
-                                    'size' => $talla['size'],
-                                    'quantity' => $talla['quantity']
-                                );
-                            }
-                        }
-                        $product->update([
-                            'sizes' => json_encode($n_tallas)
-                        ]);
-                    }
 
-                    Product::find($produc['id'])->decrement('stock', $produc['quantity']);
+
+
+                        if ($product->presentations) {
+                            KardexSize::create([
+                                'kardex_id' => $k->id,
+                                'product_id' => $produc['id'],
+                                'local_id' => $local_id,
+                                'size'      => $produc['size'],
+                                'quantity'  => (-$produc['quantity'])
+                            ]);
+                            $tallas = $product->sizes;
+                            $n_tallas = [];
+                            foreach (json_decode($tallas, true) as $k => $talla) {
+                                if ($talla['size'] == $produc['size']) {
+                                    $n_tallas[$k] = array(
+                                        'size' => $talla['size'],
+                                        'quantity' => ($talla['quantity'] - $produc['quantity'])
+                                    );
+                                } else {
+                                    $n_tallas[$k] = array(
+                                        'size' => $talla['size'],
+                                        'quantity' => $talla['quantity']
+                                    );
+                                }
+                            }
+                            $product->update([
+                                'sizes' => json_encode($n_tallas)
+                            ]);
+                        }
+
+                        Product::find($produc['id'])->decrement('stock', $produc['quantity']);
+                    }
                 }
                 return $sale;
             });

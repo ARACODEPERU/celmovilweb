@@ -92,12 +92,7 @@ class ProductController extends Controller
             'brands'         => $brands ?? []
         ]);
     }
-    public function createService()
-    {
-        return Inertia::render('Sales::Services/Create', [
-            'establishments' => LocalSale::all(),
-        ]);
-    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -211,34 +206,6 @@ class ProductController extends Controller
             ->with('message', __('Producto creado con éxito'));
     }
 
-    public function storeService(Request $request)
-    {
-        $this->validate(
-            $request,
-            [
-                'interne' => 'required|unique:products,interne',
-                'description' => 'required',
-                'sale_prices.high' => 'required'
-            ]
-        );
-        Product::create([
-            'usine' => $request->get('usine'),
-            'interne' => $request->get('interne'),
-            'description' => $request->get('description'),
-            'image' => 'img/imagen-no-disponible.jpg',
-            'purchase_prices' => 0,
-            'sale_prices' => json_encode($request->get('sale_prices')),
-            'sizes' => null,
-            'stock_min' => 1,
-            'stock' => 1,
-            'presentations' => false,
-            'is_product' => false,
-            'type_sale_affectation_id' => '10',
-            'type_purchase_affectation_id' => '10',
-            'type_unit_measure_id' => 'ZZ',
-            'status' => true
-        ]);
-    }
 
 
     /**
@@ -312,7 +279,7 @@ class ProductController extends Controller
         $success = false;
         $message = null;
         if ($local_id) {
-            //dd($local_id);
+
             $products = DB::table('products as t1')
                 ->select(
                     't1.id',
@@ -355,7 +322,11 @@ class ProductController extends Controller
                         ->orWhere('t1.usine', '=', $search)
                         ->orWhere('t1.description', 'like', '%' . $search . '%');
                 })
-                ->where('kardexes.local_id', '=', $local_id)
+                //->where('kardexes.local_id', '=', $local_id)
+                ->where(function ($query) use ($local_id) {
+                    $query->where('t1.is_product', '=', false)
+                        ->orWhere('kardexes.local_id', '=', $local_id);
+                })
                 ->groupBy([
                     't1.id',
                     't1.usine',

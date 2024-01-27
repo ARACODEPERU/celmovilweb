@@ -1,10 +1,14 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import CreateForm from './Partials/CreateForm.vue';
+import EditForm from './Partials/EditForm.vue';
 import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     establishments: {
+        type: Object,
+        default: () => ({}),
+    },
+    product: {
         type: Object,
         default: () => ({}),
     }
@@ -12,7 +16,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <AppLayout title="Crear Producto">
+    <AppLayout title="Crear Servicio">
         <div class="max-w-screen-2xl  mx-auto p-4 md:p-6 2xl:p-10">
             <nav class="flex px-4 py-3 border border-stroke text-gray-700 mb-4 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -43,7 +47,7 @@ const props = defineProps({
                     </li>
                 </ol>
             </nav>
-            <CreateForm :establishments="props.establishments" />
+            <EditForm :establishments="props.establishments" :product="product" />
         </div>
     </AppLayout>
 </template>

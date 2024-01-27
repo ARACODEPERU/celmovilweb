@@ -103,7 +103,7 @@
 </script>
 
 <template>
-    <div style="display: none;" >
+    <div  >
         <div style="position: relative;">
             <form @submit.prevent="searchClient()">
                 <div class="flex">
@@ -142,7 +142,7 @@
                 </template>
                 <template #content>
                     <div class="grid grid-cols-6 gap-4">
-                        <div class="col-span-6 sm:col-span-2">
+                        <div class="col-span-6 sm:col-span-2 md:col-span-2">
                             <InputLabel value="Tipo de Documento" class="mb-1" />
                             <select class="form-select appearance-none
                                     block
@@ -168,14 +168,14 @@
                             </select>
                             <InputError :message="form.errors.document_type" class="mt-2" />
                         </div>
-                        <div class="col-span-6 sm:col-span-2">
+                        <div class="col-span-6 sm:col-span-2 md:col-span-2">
                             <InputLabel for="number" value="Número de Doc." />
                             <TextInput id="number" v-model="form.number" type="number" class="block w-full mt-1"
                                 autofocus />
                             <InputError :message="form.errors.number" class="mt-2" />
                         </div>
 
-                        <div class="col-span-6 sm:col-span-2">
+                        <div class="col-span-6 sm:col-span-2 md:col-span-2">
                             <button @click="modalNewSearchClient()" type="button"
                                 class="block w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-6 
                                     dark:hover:bg-gray-800
@@ -185,25 +185,25 @@
                                 por Nro</button>
                         </div>
 
-                        <div class="col-span-6 sm:col-span-2">
+                        <div class="col-span-6 sm:col-span-2 md:col-span-2">
                             <InputLabel for="telephone" value="Teléfono" />
                             <TextInput id="telephone" v-model="form.telephone" type="text" class="block w-full mt-1"
                                 autofocus />
                             <InputError :message="form.errors.telephone" class="mt-2" />
                         </div>
-                        <div class="col-span-6 sm:col-span-4">
+                        <div class="col-span-6 sm:col-span-4 md:col-span-4">
                             <InputLabel v-if="form.document_type == 6" for="full_name" value="Razón Social" />
                             <InputLabel v-else for="full_name" value="Nombres" />
                             <TextInput id="full_name" v-model="form.full_name" type="text" class="block w-full mt-1"
                                 autofocus />
                             <InputError :message="form.errors.full_name" class="mt-2" />
                         </div>
-                        <div class="col-span-6 sm:col-span-3">
+                        <div class="col-span-6 sm:col-span-3 md:col-span-3">
                             <InputLabel for="email" value="Email" />
                             <TextInput id="email" v-model="form.email" type="email" class="block w-full mt-1" autofocus />
                             <InputError :message="form.errors.email" class="mt-2" />
                         </div>
-                        <div class="col-span-6 sm:col-span-3">
+                        <div class="col-span-6 sm:col-span-3 md:col-span-3">
                             <InputLabel for="address" value="Dirección" />
                             <TextInput id="address" v-model="form.address" type="text" class="block w-full mt-1"
                                 autofocus />

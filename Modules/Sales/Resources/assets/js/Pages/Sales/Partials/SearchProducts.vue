@@ -7,7 +7,7 @@
     import swal from 'sweetalert';
     import NumberInput from '@/Components/NumberInput.vue';
 
-
+    const astUrl = assetUrl;
     const displayModal = ref(false);
 
     const formScaner = useForm({
@@ -164,8 +164,8 @@
                 <ul class="max-w-md divide-y bg-white">
                     <li v-for="(product, index) in form.products" class="p-4 border-b border-stroke bg-gray-100 pb-3 sm:pb-4 dark:border-strokedark dark:bg-boxdark" >
                         <div @click="openModalSelectProduct(product)" style="cursor: pointer;" class="flex items-center space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" :src="'/storage/'+product.image" :alt="product.interne">
+                            <div class="flex-shrink-0" v-if="product.is_product">
+                                <img class="w-8 h-8 rounded-full" :src="astUrl+'storage/'+product.image" :alt="product.interne">
                             </div>
                             <div class="flex-1 min-w-0 ml-2">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -175,7 +175,7 @@
                                     {{ product.description }}
                                 </p>
                             </div>
-                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                            <div v-if="product.is_product" class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                                Stock {{ product.stock }}
                             </div>
                         </div>
@@ -203,20 +203,27 @@
             Detalles del Producto
         </template>
         <template #content>
-            <div class="grid grid-cols-3">
-                <div class="col-span-1">
+            <div class="grid grid-cols-6">
+                <div class="col-span-6 sm:col-span-2 md:col-span-2">
                     <div class="flex flex-wrap justify-center p-4">
-                        <img
-                        :src="'/storage/'+form.product.image"
+                        <img v-if="form.product.image=='img/imagen-no-disponible.jpg'"
+                        :src="astUrl+form.product.image"
+                        class="p-1 bg-white border rounded max-w-sm"
+                        :alt="form.product.description"
+                        style="width: 100%;"
+                        />
+
+                        <img v-else
+                        :src="astUrl+'storage/'+form.product.image"
                         class="p-1 bg-white border rounded max-w-sm"
                         :alt="form.product.description"
                         style="width: 100%;"
                         />
                     </div>
                 </div>
-                <div class="col-span-2">
+                <div class="col-span-6 sm:col-span-4 md:col-span-4">
                     <h4>{{ form.product.interne  }} - {{ form.product.description  }}</h4>
-                    <p class="my-4">Stock Actual : {{ form.data.stock  }}</p>
+                    <p v-if="form.product.is_product" class="my-4">Stock Actual : {{ form.data.stock  }}</p>
                     <div class="mb-4">
                         <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Precios Disponibles
@@ -295,7 +302,7 @@
                         <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Cantidad a vender
                         </label>
-                        <input v-model="form.data.quantity" type="number" id="quantity" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input v-model="form.data.quantity" type="number" id="quantity" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <div class="mb-4">
                         <label for="discount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
