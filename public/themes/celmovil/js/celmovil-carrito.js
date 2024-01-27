@@ -132,10 +132,11 @@ function agregarAlCarrito(producto) {
                   }
                 });
                 if (color) {
-                  Swal.fire({ html: `-> ` + producto.nombre + ` de color: ${color} fue agregado al carrito de compras.` });
+                  Swal.fire({ html: `<h4> ` + producto.nombre + ` de color: ${color} fue agregado al carrito de compras.</h4>` });
                                       // Obtener el carrito actual del almacenamiento local
                                       let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
                                         producto.color = color;
+                                        producto.quantity = 1;
                                       // Agregar el producto al carrito
                                       carrito.push(producto);
 
@@ -199,7 +200,7 @@ function getTotal() {
         carritoTemp = JSON.parse(localStorage.getItem("carrito")) || [];
         total = 0;
         for (let i = 0; i < carritoTemp.length; i++) {
-            total += carritoTemp[i].precio;
+            total += carritoTemp[i].precio*carritoTemp[i].quantity;
         }
         document.getElementById("totalid").textContent = "S/. " + total + ".00";
         total_productos = carritoTemp.length;

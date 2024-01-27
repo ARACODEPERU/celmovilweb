@@ -34,37 +34,12 @@
 										<th>Producto</th>
 										<th>Precio Unitario</th>
 										<th>Cantidad</th>
-										<th>QTY</th>
-										<th>Subtotal</th>
+										<th>SubTotal</th>
+										<th>Remover</th>
 									</tr>
 								</thead>
 								<tbody id="cart">
-									{{-- <tr>
-										<td class="td-img text-left">
-											<a href="#">
-                                                <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
-                                            </a>
-											<div class="">
-												<p>
-                                                    <a href="#">Sensor Carbon Jenson GX1 Bike</a><br>
-                                                    <b>Color:</b> Negro
-                                                </p>
-											</div>
-										</td>
-										<td>$56.00</td>
-										<td>
-											<form action="#" method="POST">
-												<div class="plus-minus">
-													<a class="dec qtybutton">-</a>
-													<input type="text" value="02" name="qtybutton" class="plus-minus-box">
-													<a class="inc qtybutton">+</a>
-												</div>
-											</form>
-										</td>
-										<td>$112.00</td>
-										<td><i class="fa fa-trash" title="Remove this product"></i></td>
-									</tr>
-									<tr>
+									{{--<tr>
 										<td class="td-img text-left">
 											<a href="#">
                                                 <img style="width: 100px;" src="{{ asset('themes/celmovil/img/cart/1.jpg') }}" alt="Add Product" />
@@ -104,8 +79,8 @@
                                     <div class="col-md-4">
                                         <div class="estimate-text responsive">
                                             <div class="subtotal clearfix">
-                                                <p>Subtotal: <span class="floatright">$156.87</span></p>
-                                                <p>Grandtotal: <span class="floatright">$156.87</span></p>
+                                                <p>Subtotal ELIMINAR NO VA: <span class="floatright" id="SubTotal">156.87</span></p>
+                                                <p>Grandtotal: <span class="floatright" id="totalid">156.87</span></p>
                                             </div>
                                         </div>
                                         <br>
@@ -259,13 +234,13 @@
 										<td>
 											<form action="#" method="POST">
 												<div class="plus-minus">
-													<a class="dec qtybutton">-</a>
-													<input type="text" value="02" name="qtybutton" class="plus-minus-box">
-													<a class="inc qtybutton">+</a>
+													<a class="dec qtybutton" onclick="quantity(` + i + `, 0, `+price+`)">-</a>
+													<input type="text" disabled id="`+i+`qty" value="`+carrito[i].quantity+`" name="qtybutton" class="plus-minus-box">
+													<a class="inc qtybutton" onclick="quantity(` + i + `, 1, `+price+`)">+</a>
 												</div>
 											</form>
 										</td>
-										<td>$112.00</td>
+										<td id="`+i+`subTotal">S/ `+carrito[i].quantity*price+`</td>
 										<td><i class="fa fa-trash" title="Remover producto" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
                                         name + `', precio: ` + price + ` });"></i></td>
 									</tr>
@@ -273,7 +248,27 @@
                 }
             }
         </script>
-
+    <script>
+        function quantity(index, masmen, price){
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            if(masmen == 1){
+                carrito[index].quantity += 1;
+            }
+            if(masmen == 0){
+                if(carrito[index].quantity > 1){
+                    carrito[index].quantity -= 1;
+                }
+            }
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            console.log(carrito[index].quantity);
+            console.log(carrito[index].quantity*price);
+            document.getElementById(index+"qty").value=carrito[index].quantity;
+            let tempSubTotal = carrito[index].quantity*price;
+            document.getElementById(index+"subTotal").innerHTML="S/ "+tempSubTotal;
+            getTotal();
+        }
+    </script>
     <script>
         function confirmSubmit(event) {
       event.preventDefault(); // Evita que el formulario se envíe automáticamente
