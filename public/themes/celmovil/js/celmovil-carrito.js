@@ -1,3 +1,9 @@
+var post_url;
+var token;
+function load_post_url(url, token_){
+    post_url = url;
+    token = token_
+}
 // Obtener el carrito actual del almacenamiento local
 carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 document.addEventListener("DOMContentLoaded", function() {
@@ -44,7 +50,11 @@ function eliminarproducto(producto) {
             }
             carrito = JSON.parse(localStorage.getItem("carrito")) || [];
             if(carrito.length<1){
+               try {
                 document.getElementById("btn-crear-cuenta").setAttribute("disabled", "disabled");
+               } catch (error) {
+
+               }
             }
             getTotal();
             cargarContadorCarrito();
@@ -244,7 +254,7 @@ function actualizarContador(valor) {
     contadorCarritoWeb.innerHTML = valor;
 }
 
-function cargarItemsCarritoBD(url_post, token) {
+function cargarItemsCarritoBD() {
     try {
         document.getElementById('cart').innerHTML =""; // BORRAR contenido de la vista, antes de cargar de la base de datos
     } catch (error) {
@@ -264,16 +274,16 @@ function cargarItemsCarritoBD(url_post, token) {
     } catch (error) {
 
     }
-    realizarConsulta(myIds, url_post, token);
+    realizarConsulta(myIds);
 }
 
-function realizarConsulta(ids, url_post, token) {
+function realizarConsulta(ids) {
     // Realizar la petición Ajax
     var csrfToken = token;
 
 
     $.ajax({
-        url: url_post,
+        url: post_url,
         type: 'POST',
         data: {
             ids: ids
@@ -301,8 +311,12 @@ function realizarConsulta(ids, url_post, token) {
                 }
             });
 
-            btnCrear = document.getElementById("btn-crear-cuenta");
+            try {
+                btnCrear = document.getElementById("btn-crear-cuenta");
                 btnCrear.removeAttribute("disabled");
+            } catch (error) {
+
+            }
 
         },
         error: function(xhr) {
