@@ -79,14 +79,13 @@
                                     <div class="col-md-4">
                                         <div class="estimate-text responsive">
                                             <div class="subtotal clearfix">
-                                                <p>Subtotal ELIMINAR NO VA: <span class="floatright" id="SubTotal">156.87</span></p>
-                                                <p>Grandtotal: <span class="floatright" id="totalid">156.87</span></p>
+                                                <p>TOTAL: <span class="floatright" id="totalid">156.87</span></p>
                                             </div>
                                         </div>
                                         <br>
                                         <br>
                                         <div class="check-title">
-										    <h3>Billing Address</h3>
+										    <h3>Datos del Comprador</h3>
 									    </div>
                                         <div class="row">
                                             <div class="col-md-12">

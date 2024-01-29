@@ -30,11 +30,16 @@ function eliminarproducto(producto) {
                 //codigo que elimine el producto o curso de la vista
                 // Seleccionar el elemento con el ID "1pc" el id + la cadena ya especificada en la BD ejemplo id+"pc"
                 const elemento = document.getElementById(producto.id + "_pc");
+                const elemento_menu = document.getElementById(producto.id + "_mpc");
 
                 // Verificar si el elemento existe antes de eliminarlo
                 if (elemento) {
                     // Eliminar el elemento y su contenido
                     elemento.remove();
+                }
+                if (elemento_menu) {
+                    // Eliminar el elemento y su contenido
+                    elemento_menu.remove();
                 }
             }
             carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -291,7 +296,9 @@ function realizarConsulta(ids, url_post, token) {
                 inputHidden.name = "item_id[]"; // Asigna el nombre que desees
                 inputHidden.value = item.id; // Asigna el valor que desees
                 // Agrega el input al div
-                divCartHidden.appendChild(inputHidden);
+                if(divCartHidden){
+                    divCartHidden.appendChild(inputHidden);
+                }
             });
 
             btnCrear = document.getElementById("btn-crear-cuenta");
@@ -357,7 +364,7 @@ function renderProducto(respuesta, i) {
     }
     if (cart_menu) {
         cart_menu.innerHTML +=`
-                                        <li>
+                                        <li id="` + id + `_mpc">
                                             <a><img
                                                     src="`+image+`"
                                                     alt="" /></a>
