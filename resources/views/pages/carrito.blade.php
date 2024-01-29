@@ -134,14 +134,7 @@
 		</section>
 		<!-- cart page content section end -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                post_url = "{{ route('onlineshop_get_item_carrito') }}";
-                token = "{{ csrf_token() }}";
-                cargarItemsCarritoBD(post_url, token);
-            });
 
-        </script>
     <script>
         function quantity(index, masmen, price){
             let carrito = JSON.parse(localStorage.getItem('carrito')) || [];

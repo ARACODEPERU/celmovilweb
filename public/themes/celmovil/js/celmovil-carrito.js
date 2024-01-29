@@ -240,8 +240,11 @@ function actualizarContador(valor) {
 }
 
 function cargarItemsCarritoBD(url_post, token) {
-    document.getElementById('cart').innerHTML =
-        ""; // BORRAR contenido de la vista, antes de cargar de la base de datos
+    try {
+        document.getElementById('cart').innerHTML =""; // BORRAR contenido de la vista, antes de cargar de la base de datos
+    } catch (error) {
+
+    }
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     myIds = [];
     carrito.forEach(function(item) {
@@ -250,8 +253,12 @@ function cargarItemsCarritoBD(url_post, token) {
         myIds.push(parseInt(item.id));
     });
 
-    btnCrear = document.getElementById("btn-crear-cuenta");
+    try {
+        btnCrear = document.getElementById("btn-crear-cuenta");
                 btnCrear.setAttribute("disabled", "disabled");
+    } catch (error) {
+
+    }
     realizarConsulta(myIds, url_post, token);
 }
 

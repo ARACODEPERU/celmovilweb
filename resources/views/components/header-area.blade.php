@@ -210,5 +210,13 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                post_url = "{{ route('onlineshop_get_item_carrito') }}";
+                token = "{{ csrf_token() }}";
+                cargarItemsCarritoBD(post_url, token);
+            });
+
+        </script>
     </header>
 </div>
