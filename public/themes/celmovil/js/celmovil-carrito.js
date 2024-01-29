@@ -296,6 +296,8 @@ function realizarConsulta(ids) {
             // Obtén una referencia al elemento div por su ID
             var divCartHidden = document.getElementById("divCartHidden");
             var index = 0;
+            if(document.getElementById('cart'))document.getElementById('cart').innerHTML=null;
+            if(document.getElementById('cart-menu'))document.getElementById('cart-menu').innerHTML=null;
             respuesta.items.forEach(function(item) {
                 // Accede a las propiedades del objeto
                 renderProducto(item, index++);
