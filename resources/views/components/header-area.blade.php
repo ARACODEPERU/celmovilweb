@@ -197,31 +197,7 @@
                             <ul>
                                 <li><a href="{{ route('web_carrito') }}"><i class="pe-7s-shopbag"></i> <span hidden
                                             id="contadorCarritoWeb"></span></a>
-                                    <ul class="cart-menu">
-                                        <li>
-                                            <a href="cart.html"><img
-                                                    src="{{ asset('themes/celmovil/img/cart/1.png') }}"
-                                                    alt="" /></a>
-                                            <div class="cart-menu-title">
-                                                <a href="cart.html">
-                                                    <h5>Mount POW C058 FG </h5>
-                                                </a>
-                                                <span>1 x $2500</span>
-                                            </div>
-                                            <span class="cancel-item"><i class="fa fa-close"></i></span>
-                                        </li>
-                                        <li>
-                                            <a href="cart.html"><img
-                                                    src="{{ asset('themes/celmovil/img/cart/1.png') }}"
-                                                    alt="" /></a>
-                                            <div class="cart-menu-title">
-                                                <a href="cart.html">
-                                                    <h5>Mount POW C058 FG </h5>
-                                                </a>
-                                                <span>1 x $2500</span>
-                                            </div>
-                                            <span class="cancel-item"><i class="fa fa-close"></i></span>
-                                        </li>
+                                    <ul class="cart-menu" id="cart-menu">
                                         <li class="cart-menu-btn">
                                             <a href="cart.html">view cart</a>
                                             <a href="checkout.html">checkout</a>
