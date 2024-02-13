@@ -1,3 +1,9 @@
+var post_url;
+var token;
+function load_post_url(url, token_){
+    post_url = url;
+    token = token_
+}
 // Obtener el carrito actual del almacenamiento local
 carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 document.addEventListener("DOMContentLoaded", function() {
@@ -30,16 +36,25 @@ function eliminarproducto(producto) {
                 //codigo que elimine el producto o curso de la vista
                 // Seleccionar el elemento con el ID "1pc" el id + la cadena ya especificada en la BD ejemplo id+"pc"
                 const elemento = document.getElementById(producto.id + "_pc");
+                const elemento_menu = document.getElementById(producto.id + "_mpc");
 
                 // Verificar si el elemento existe antes de eliminarlo
                 if (elemento) {
                     // Eliminar el elemento y su contenido
                     elemento.remove();
                 }
+                if (elemento_menu) {
+                    // Eliminar el elemento y su contenido
+                    elemento_menu.remove();
+                }
             }
             carrito = JSON.parse(localStorage.getItem("carrito")) || [];
             if(carrito.length<1){
+               try {
                 document.getElementById("btn-crear-cuenta").setAttribute("disabled", "disabled");
+               } catch (error) {
+
+               }
             }
             getTotal();
             cargarContadorCarrito();
@@ -144,7 +159,16 @@ function agregarAlCarrito(producto) {
                                       localStorage.setItem("carrito", JSON.stringify(carrito));
                                       getTotal();
                                       cargarContadorCarrito();
-                                      cargarItemsCarritoBD();
+                                      try {
+                                        load_cart_menu();
+                                      } catch (error) {
+
+                                      }
+                                      try {
+                                        cargarItemsCarritoBD();
+                                      } catch (error) {
+
+                                      }
                 }
               })();
 
@@ -203,9 +227,7 @@ function getTotal() {
             total += carritoTemp[i].precio*carritoTemp[i].quantity;
         }
         document.getElementById("totalid").textContent = "S/. " + total + ".00";
-        total_productos = carritoTemp.length;
-        document.getElementById("total_productos").innerHTML =
-            total_productos + " programas en el carrito.";
+
     }
 }
 function cargarContadorCarrito() {
@@ -230,4 +252,155 @@ function actualizarContador(valor) {
     console.log(valor);
     //contadorCarritoMovil.innerHTML = valor;
     contadorCarritoWeb.innerHTML = valor;
+}
+
+function cargarItemsCarritoBD() {
+    try {
+        document.getElementById('cart').innerHTML =""; // BORRAR contenido de la vista, antes de cargar de la base de datos
+    } catch (error) {
+
+    }
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    myIds = [];
+    carrito.forEach(function(item) {
+        // Hacer algo con cada elemento del carrito
+
+        myIds.push(parseInt(item.id));
+    });
+
+    try {
+        btnCrear = document.getElementById("btn-crear-cuenta");
+                btnCrear.setAttribute("disabled", "disabled");
+    } catch (error) {
+
+    }
+    realizarConsulta(myIds);
+}
+
+function realizarConsulta(ids) {
+    // Realizar la petición Ajax
+    var csrfToken = token;
+
+
+    $.ajax({
+        url: post_url,
+        type: 'POST',
+        data: {
+            ids: ids
+        },
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        success: function(respuesta) {
+            // Obtén una referencia al elemento div por su ID
+            var divCartHidden = document.getElementById("divCartHidden");
+            var index = 0;
+            if(document.getElementById('cart'))document.getElementById('cart').innerHTML=null;
+            if(document.getElementById('cart-menu'))document.getElementById('cart-menu').innerHTML=null;
+            respuesta.items.forEach(function(item) {
+                // Accede a las propiedades del objeto
+                renderProducto(item, index++);
+                // Crea un elemento input oculto
+                let inputHidden = document.createElement("input");
+                // Establece los atributos del input
+                inputHidden.type = "hidden";
+                inputHidden.name = "item_id[]"; // Asigna el nombre que desees
+                inputHidden.value = item.id; // Asigna el valor que desees
+                // Agrega el input al div
+                if(divCartHidden){
+                    divCartHidden.appendChild(inputHidden);
+                }
+            });
+
+            try {
+                btnCrear = document.getElementById("btn-crear-cuenta");
+                btnCrear.removeAttribute("disabled");
+            } catch (error) {
+
+            }
+
+        },
+        error: function(xhr) {
+            // Ocurrió un error al realizar la consulta
+            console.log(xhr.responseText);
+            // Aquí puedes manejar el error de alguna manera
+        }
+    });
+
+}
+
+function renderProducto(respuesta, i) {
+
+    var cart = document.getElementById('cart');
+    var cart_menu = document.getElementById('cart-menu');
+    var id = respuesta.id;
+        var teacher = respuesta.teacher;
+        var teacher_id = respuesta.teacher_id;
+        var avatar = respuesta.avatar;
+        var image = respuesta.image;
+        var name = respuesta.name;
+        var price = respuesta.price;
+        var modalidad = respuesta.additional;
+        var url_campus = "";
+        var url_descripcion_programa = "/descripcion-programa/"+id; // esta ruta deberá corregirse si se cambia el el get de la RUTA :S
+        console.log("RESPUESTA", respuesta.product.sizes);
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    if (cart != null) {
+
+        cart.innerHTML += `
+                        <tr id="` + id + `_pc">
+                            <td class="td-img text-left">
+                                <a>
+                                    <img style="width: 100px;" src="`+image+`" alt="Imagen Producto" />
+                                </a>
+                                <div class="">
+                                    <p>
+                                        <a>`+name+`</a><br>
+                                        <b>Color:</b> `+carrito[i].color+`
+                                    </p>
+                                </div>
+                            </td>
+                            <td>S/ `+price+`</td>
+                            <td>
+                                <form action="#" method="POST">
+                                    <div class="plus-minus">
+                                        <a class="dec qtybutton" onclick="quantity(` + i + `, 0, `+price+`)">-</a>
+                                        <input type="text" disabled id="`+i+`qty" value="`+carrito[i].quantity+`" name="qtybutton" class="plus-minus-box">
+                                        <a class="inc qtybutton" onclick="quantity(` + i + `, 1, `+price+`)">+</a>
+                                    </div>
+                                </form>
+                            </td>
+                            <td id="`+i+`subTotal">S/ `+carrito[i].quantity*price+`</td>
+                            <td><i class="fa fa-trash" title="Remover producto" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
+                            name + `', precio: ` + price + ` });"></i></td>
+                        </tr>
+        `;
+    }
+    if (cart_menu) {
+        cart_menu.innerHTML +=`
+                                        <li id="` + id + `_mpc">
+                                            <a><img
+                                                    src="`+image+`"
+                                                    alt="" /></a>
+                                            <div class="cart-menu-title">
+                                                <a>
+                                                    <h5>`+name+`</h5>
+                                                </a>
+                                                <span>`+carrito[i].quantity+` x S/. `+price+`</span>
+                                            </div>
+                                            <span class="cancel-item" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
+                                            name + `', precio: ` + price + ` });"><i class="fa fa-close"></i></span>
+                                        </li>`
+      }
+}
+
+function load_cart_menu(){
+    try {
+        cart_menu = document.getElementById('cart-menu');
+        //cart_menu.innerHTML = null;
+    } catch (error) {
+
+    }
 }

@@ -79,14 +79,13 @@
                                     <div class="col-md-4">
                                         <div class="estimate-text responsive">
                                             <div class="subtotal clearfix">
-                                                <p>Subtotal ELIMINAR NO VA: <span class="floatright" id="SubTotal">156.87</span></p>
-                                                <p>Grandtotal: <span class="floatright" id="totalid">156.87</span></p>
+                                                <p>TOTAL: <span class="floatright" id="totalid">156.87</span></p>
                                             </div>
                                         </div>
                                         <br>
                                         <br>
                                         <div class="check-title">
-										    <h3>Billing Address</h3>
+										    <h3>Datos del Comprador</h3>
 									    </div>
                                         <div class="row">
                                             <div class="col-md-12">
@@ -134,120 +133,7 @@
 		</section>
 		<!-- cart page content section end -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                cargarItemsCarritoBD();
-            });
 
-
-            function cargarItemsCarritoBD() {
-                document.getElementById('cart').innerHTML =
-                    ""; // BORRAR contenido de la vista, antes de cargar de la base de datos
-                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-                myIds = [];
-                carrito.forEach(function(item) {
-                    // Hacer algo con cada elemento del carrito
-
-                    myIds.push(parseInt(item.id));
-                });
-
-                btnCrear = document.getElementById("btn-crear-cuenta");
-                            btnCrear.setAttribute("disabled", "disabled");
-                realizarConsulta(myIds);
-            }
-
-            function realizarConsulta(ids) {
-                // Realizar la petición Ajax
-                var csrfToken = "{{ csrf_token() }}";
-
-
-                $.ajax({
-                    url: "{{ route('onlineshop_get_item_carrito') }}",
-                    type: 'POST',
-                    data: {
-                        ids: ids
-                    },
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function(respuesta) {
-                        // Obtén una referencia al elemento div por su ID
-                        var divCartHidden = document.getElementById("divCartHidden");
-                        var index = 0;
-                        respuesta.items.forEach(function(item) {
-                            // Accede a las propiedades del objeto
-                            renderProducto(item, index++);
-                            // Crea un elemento input oculto
-                            let inputHidden = document.createElement("input");
-                            // Establece los atributos del input
-                            inputHidden.type = "hidden";
-                            inputHidden.name = "item_id[]"; // Asigna el nombre que desees
-                            inputHidden.value = item.id; // Asigna el valor que desees
-                            // Agrega el input al div
-                            divCartHidden.appendChild(inputHidden);
-                        });
-
-                        btnCrear = document.getElementById("btn-crear-cuenta");
-                            btnCrear.removeAttribute("disabled");
-
-                    },
-                    error: function(xhr) {
-                        // Ocurrió un error al realizar la consulta
-                        console.log(xhr.responseText);
-                        // Aquí puedes manejar el error de alguna manera
-                    }
-                });
-
-            }
-
-            function renderProducto(respuesta, i) {
-
-                var cart = document.getElementById('cart');
-                if (cart != null) {
-                    var id = respuesta.id;
-                    var teacher = respuesta.teacher;
-                    var teacher_id = respuesta.teacher_id;
-                    var avatar = respuesta.avatar;
-                    var image = respuesta.image;
-                    var name = respuesta.name;
-                    var price = respuesta.price;
-                    var modalidad = respuesta.additional;
-                    var url_campus = "";
-                    var url_descripcion_programa = "/descripcion-programa/"+id; // esta ruta deberá corregirse si se cambia el el get de la RUTA :S
-                    console.log("RESPUESTA", respuesta.product.sizes);
-                    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-                    cart.innerHTML += `
-                                    <tr id="` + id + `_pc">
-										<td class="td-img text-left">
-											<a>
-                                                <img style="width: 100px;" src="`+image+`" alt="Imagen Producto" />
-                                            </a>
-											<div class="">
-												<p>
-                                                    <a>`+name+`</a><br>
-                                                    <b>Color:</b> `+carrito[i].color+`
-                                                </p>
-											</div>
-										</td>
-										<td>S/ `+price+`</td>
-										<td>
-											<form action="#" method="POST">
-												<div class="plus-minus">
-													<a class="dec qtybutton" onclick="quantity(` + i + `, 0, `+price+`)">-</a>
-													<input type="text" disabled id="`+i+`qty" value="`+carrito[i].quantity+`" name="qtybutton" class="plus-minus-box">
-													<a class="inc qtybutton" onclick="quantity(` + i + `, 1, `+price+`)">+</a>
-												</div>
-											</form>
-										</td>
-										<td id="`+i+`subTotal">S/ `+carrito[i].quantity*price+`</td>
-										<td><i class="fa fa-trash" title="Remover producto" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
-                                        name + `', precio: ` + price + ` });"></i></td>
-									</tr>
-                    `;
-                }
-            }
-        </script>
     <script>
         function quantity(index, masmen, price){
             let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
