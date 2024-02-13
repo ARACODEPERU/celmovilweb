@@ -308,7 +308,7 @@
                             :data="{item_id: itemImages.item_id}"
                             @change="handleChangeImages"
                         >
-                            <div v-if="itemImages.images.length < 6">
+                            <div v-if="itemImages.images.length < 11">
                                 <plus-outlined />
                                 <div style="margin-top: 8px">Upload</div>
                             </div>
