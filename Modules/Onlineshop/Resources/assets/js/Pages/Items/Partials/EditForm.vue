@@ -33,6 +33,7 @@ const titles = ref({
     additional3: props.type == 3 ? 'Manual' : null,
     additional4: props.type == 3 ? 'Legal' : null,
     additional5: props.type == 3 ? 'Tipo' : null,
+    additional6: props.type == 3 ? 'Información adicional' : null,
 });
 
 const form = useForm({
@@ -52,6 +53,7 @@ const form = useForm({
     additional3: props.item.additional3,
     additional4: props.item.additional4,
     additional5: props.item.additional5,
+    additional6: props.item.additional6,
     countCharacters: props.item.description.length,
     specifications: []
 });
@@ -123,6 +125,13 @@ const removeSpecifications= (key) => {
     form.specifications.splice(key, 1);
 }
 
+const handleFileChange2 = (event) => {
+    try {
+        form.additional6 = event.target.files[0];
+    } catch (error) {
+        console.error("Error al manejar el cambio de archivo:", error);
+    }
+}
 </script>
 
 <template>
@@ -168,9 +177,9 @@ const removeSpecifications= (key) => {
                 <InputError :message="form.errors.description" class="mt-2" />
             </div>
             <div v-if="form.type == 1" class="col-span-6 sm:col-span-6">
-                <InputLabel for="category_description" value="Sector" />
+                <InputLabel for="category_description" value="Categoría" />
                 <select id="category_description" v-model="form.category_description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected value="">Seleccionar Sector</option>
+                    <option selected value="">Seleccionar Categoría</option>
                     <option value="Derecho">Derecho</option>
                     <option value="Empresarial">Empresarial</option>
                     <option value="Publico">Público</option>
@@ -179,7 +188,7 @@ const removeSpecifications= (key) => {
                 <InputError :message="form.errors.category_description" class="mt-2" />
             </div>
             <div v-else class="col-span-6 sm:col-span-6">
-                <InputLabel for="category_description" value="Sector" />                       
+                <InputLabel for="category_description" value="Categoría" />                       
                 <TextInput
                     id="category_description"
                     v-model="form.category_description"
@@ -249,10 +258,17 @@ const removeSpecifications= (key) => {
             <!-- agregado para celmovil -->
             <div v-if="form.type == 3" class="col-span-6 sm:col-span-6">
                 <InputLabel for="additional2" :value="titles.additional2+'*'" />
-                <input @change="handleFileChange" accept=".pdf, image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                <input @change="handleFileChange" accept=".pdf, image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="additional2" type="file">
                 <InputError :message="form.errors.additional2" class="mt-2" />
             </div>
-
+            <!-- fin -->
+            <!-- agregado para celmovil -->
+            <div v-if="form.type == 3" class="col-span-6 sm:col-span-6">
+                <InputLabel for="additional6" :value="titles.additional6+'*'" />
+                <input @change="handleFileChange2" accept=".pdf, image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="additional6" type="file">
+                <InputError :message="form.errors.additional6" class="mt-2" />
+            </div>
+            <!-- fin -->
             <div v-if="form.type == 3" class="col-span-6 sm:col-span-6">
                 <InputLabel for="additional3" :value="titles.additional3+'*'" />
                 <input v-model="form.additional3" type="text" id="additional3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="link manual" required>

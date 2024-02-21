@@ -175,6 +175,23 @@ class OnliItemController extends Controller
             }
         }
 
+        if ($this->P000009 == 3) {
+            $additional6 = null;
+            $data_sheet = $request->file('additional6');
+            if ($data_sheet) {
+                $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
+                $original_name = str_replace(" ", "_", $original_name);
+                $extension = $data_sheet->getClientOriginalExtension();
+                $file_name = $onliItem->id . '.' . $extension;
+                $additional6 = $request->file('additional6')->storeAs(
+                    $destination,
+                    $file_name,
+                    'public'
+                );
+                $onliItem->additional6 = $additional6;
+            }
+        }
+
         $onliItem->additional3 = $request->get('additional3');
         $onliItem->additional4 = $request->get('additional4');
         $onliItem->additional5 = $request->get('additional5');
@@ -308,6 +325,24 @@ class OnliItemController extends Controller
                     'public'
                 );
                 $OnliItem->additional2 = $additional2;
+            }
+        }
+
+        if ($this->P000009 == 3) {
+            $additional6 = null;
+            $data_sheet = $request->file('additional6');
+            //dd($data_sheet);
+            if ($data_sheet) {
+                $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
+                $original_name = str_replace(" ", "_", $original_name);
+                $extension = $data_sheet->getClientOriginalExtension();
+                $file_name = $OnliItem->id . '.' . $extension;
+                $additional6 = $request->file('additional6')->storeAs(
+                    $destination,
+                    $file_name,
+                    'public'
+                );
+                $OnliItem->additional6 = $additional6;
             }
         }
 

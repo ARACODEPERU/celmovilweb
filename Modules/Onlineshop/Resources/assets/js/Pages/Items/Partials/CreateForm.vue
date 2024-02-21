@@ -36,6 +36,7 @@ const titles = ref({
     additional3: props.type == 3 ? 'Manual' : null,
     additional4: props.type == 3 ? 'Legal' : null,
     additional5: props.type == 3 ? 'Tipo' : null,
+    additional6: props.type == 3 ? 'Información adicional' : null,
 });
 
 const form = useForm({
@@ -55,6 +56,7 @@ const form = useForm({
     additional3: null,
     additional4: null,
     additional5: null,
+    additional6: null,
     countCharacters: 0,
     specifications: [{
         editable: true,
@@ -102,6 +104,7 @@ const setItemsData = (data,type) => {
         titles.value.additional3 = 'Manual'
         titles.value.additional4 = 'Legal'
         titles.value.additional5 = 'Tipo'
+        titles.value.additional6 = 'Información adicional'
 
         form.entitie = 'App-Models-Product'
         form.category_description = data.category ? data.category.description : null;
@@ -145,6 +148,14 @@ const loadFile = (event) => {
 const handleFileChange = (event) => {
     try {
         form.additional2 = event.target.files[0];
+    } catch (error) {
+        console.error("Error al manejar el cambio de archivo:", error);
+    }
+}
+
+const handleFileChange2 = (event) => {
+    try {
+        form.additional6 = event.target.files[0];
     } catch (error) {
         console.error("Error al manejar el cambio de archivo:", error);
     }
@@ -222,7 +233,7 @@ const removeSpecifications= (key) => {
                     <div v-if="form.type == 1" class="mt-2">
                         <InputLabel for="category_description" value="Categoría" />                       
                         <select id="category_description" v-model="form.category_description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected value="">Seleccionar Sector</option>
+                            <option selected value="">Seleccionar Categoría</option>
                             <option value="Derecho">Derecho</option>
                             <option value="Empresarial">Empresarial</option>
                             <option value="Publico">Público</option>
@@ -298,10 +309,17 @@ const removeSpecifications= (key) => {
                     <!-- agregado para celmovil -->
                     <div v-if="form.type == 3" class="mt-2">
                         <InputLabel for="additional2" :value="titles.additional2+'*'" />
-                        <input @change="handleFileChange" accept=".pdf, image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                        <input @change="handleFileChange" accept=".pdf, image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="additional2" type="file">
                         <InputError :message="form.errors.additional2" class="mt-2" />
                     </div>
-
+                    <!-- fin -->
+                    <!-- agregado para celmovil -->
+                    <div v-if="form.type == 3" class="mt-2">
+                        <InputLabel for="additional6" :value="titles.additional6+'*'" />
+                        <input @change="handleFileChange2" accept=".pdf, image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="additional6" type="file">
+                        <InputError :message="form.errors.additional6" class="mt-2" />
+                    </div>
+                    <!-- fin -->
                     <div v-if="form.type == 3" class="mt-2">
                         <InputLabel for="additional3" :value="titles.additional3+'*'" />
                         <input v-model="form.additional3" type="text" id="additional3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="link manual" required>

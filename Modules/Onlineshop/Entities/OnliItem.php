@@ -28,7 +28,9 @@ class OnliItem extends Model
         'additional2',
         'additional3',
         'additional4',
-        'additional5'
+        'additional5',
+        'additional6',
+        'additional7'
     ];
 
     protected static function newFactory()
