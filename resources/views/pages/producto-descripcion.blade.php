@@ -1,8 +1,8 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                        <div class="preloader">                                                                                                                                                                              </div>
-                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                <div class="preloader">                                                                                                                                                                              </div>
+                                                                                                                                                                                                            </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -121,23 +121,24 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="specific-pro">
-                                <ul>
-                                    <li class="specific-pro-title">
-                                        ESPECIFICACIONES DEL PRODUCTO
-                                    </li>
-                                    @if (count($product->specifications) > 0)
-                                        @foreach ($product->specifications as $specification)
-                                            <li>
-                                                <span>{{ $specification->title }}</span>
-                                                <p>{{ $specification->description }}</p>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </div>
-                            
-                            
+
+                            @if (count($product->specifications) > 0)
+                                <div class="specific-pro">
+                                    <ul>
+                                        <li class="specific-pro-title">
+                                            ESPECIFICACIONES DEL PRODUCTO
+                                        </li>
+                                        @if (count($product->specifications) > 0)
+                                            @foreach ($product->specifications as $specification)
+                                                <li>
+                                                    <span>{{ $specification->title }}</span>
+                                                    <p>{{ $specification->description }}</p>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="row" style="padding: 15px 0px;">
                                 <div class="col-md-12" style="padding: 5px 0px;">
                                     <a href="" class="btn btn-primary">Más información</a>
