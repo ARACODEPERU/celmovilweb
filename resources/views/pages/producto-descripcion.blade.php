@@ -62,6 +62,11 @@
                             <hr />
                             {!! $product->description !!}
                             <hr />
+                            <div class="row">
+                                <div class="col-md-12" style="padding: 10px;">
+                                    <iframe width="100%" height="300" src="https://www.youtube.com/embed/VqZlWWcf07s?si=i1QB4Vm5zQSMKTZ7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                            </div>
                             <div class="color-brand clearfix">
                                 <div class="s-select">
                                     <div class="custom-select">
@@ -98,23 +103,25 @@
                                         <a href="{{ route('web_carrito') }}"><i class="fa fa-shopping-cart"></i> add to
                                             cart</a>
                                     </li>
+                                    <!--
                                     <li>
                                         <a href="{{ route('web_carrito') }}"><i class="fa fa-heart-o"></i></a>
                                     </li>
                                     <li>
                                         <a href="#"><i class="fa fa-share-alt"></i></a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                             <hr />
                             <div class="categ-tag">
                                 <ul class="clearfix">
                                     <li>
-                                        CATEGORÍAS:
+                                        CATEGORIA:
                                         <a href="#">{{ $product->category_description }}</a>
                                     </li>
                                 </ul>
                             </div>
+
                             @if (count($product->specifications) > 0)
                                 <div class="specific-pro">
                                     <ul>
@@ -156,6 +163,9 @@
                                     <a data-toggle="tab" href="#ficha">FICHA TECNICA</a>
                                 </li>
                                 <li>
+                                    <a data-toggle="tab" href="#info">INFORMACIÓN ADICIONAL</a>
+                                </li>
+                                <li>
                                     <a data-toggle="tab" href="#manual">MANUAL</a>
                                 </li>
                                 <li>
@@ -167,7 +177,7 @@
                             <div class="tab-pane fade in active" id="des">
                                 {!! $product->additional !!}
                             </div>
-                            <div class="tab-pane fade in single-blog-page" id="ficha">
+                            <div class="tab-pane fade in" id="ficha">
                                 <div class="leave-comment">
                                     @php
                                         $porciones = explode('.', $product->additional2);
@@ -183,6 +193,11 @@
                                                 alt="" />
                                         @endif
                                     @endif
+                                </div>
+                            </div>
+                            <div class="tab-pane fade in" id="info">
+                                <div class="leave-comment">
+                                    <img style="width: 100%;" src="{{ asset('themes/celmovil/img/nosotros_2024.jpg') }}" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane fade in" id="manual">
