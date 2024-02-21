@@ -220,7 +220,7 @@ const removeSpecifications= (key) => {
                     </div>
                     <!-- para cursos -->
                     <div v-if="form.type == 1" class="mt-2">
-                        <InputLabel for="category_description" value="Sector" />                       
+                        <InputLabel for="category_description" value="Categoría" />                       
                         <select id="category_description" v-model="form.category_description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected value="">Seleccionar Sector</option>
                             <option value="Derecho">Derecho</option>
@@ -231,13 +231,14 @@ const removeSpecifications= (key) => {
                         <InputError :message="form.errors.category_description" class="mt-2" />
                     </div>
                     <div v-else class="mt-2">
-                        <InputLabel for="category_description" value="Sector" />                       
+                        <InputLabel for="category_description" value="Categoría" />                       
                         <TextInput
                             id="category_description"
                             v-model="form.category_description"
                             type="text"
                             class="block w-full mt-1"
                             autocomplete="off"
+                            readonly
                         />
                         <InputError :message="form.errors.category_description" class="mt-2" />
                     </div>
