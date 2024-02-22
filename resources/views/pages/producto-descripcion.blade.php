@@ -1,8 +1,8 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                                        <div class="preloader">                                                                                                                                                                              </div>
-                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                            <div class="preloader">                                                                                                                                                                              </div>
+                                                                                                                                                                                                                        </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -108,12 +108,12 @@
                                             cart</a>
                                     </li>
                                     <!--
-                                            <li>
-                                                <a href="{{ route('web_carrito') }}"><i class="fa fa-heart-o"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="fa fa-share-alt"></i></a>
-                                            </li>-->
+                                                <li>
+                                                    <a href="{{ route('web_carrito') }}"><i class="fa fa-heart-o"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-share-alt"></i></a>
+                                                </li>-->
                                 </ul>
                             </div>
                             <hr />
@@ -200,18 +200,20 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade in" id="info">
-                                @php
-                                    $porciones6 = explode('.', $product->additional6);
+                                @if ($product->additional6)
+                                    @php
+                                        $porciones6 = explode('.', $product->additional6);
 
-                                    $ext6 = is_array($porciones6) ? $porciones6[1] : null;
-                                @endphp
-                                @if ($ext6)
-                                    @if ($ext6 == 'pdf')
-                                        <iframe src="{{ asset('storage/' . $product->additional6) }}"
-                                            style="border: none;width: 100%;height: 1325px"></iframe>
-                                    @else
-                                        <img style="width: 100%;" src="{{ asset('storage/' . $product->additional6) }}"
-                                            alt="" />
+                                        $ext6 = is_array($porciones6) ? $porciones6[1] : null;
+                                    @endphp
+                                    @if ($ext6)
+                                        @if ($ext6 == 'pdf')
+                                            <iframe src="{{ asset('storage/' . $product->additional6) }}"
+                                                style="border: none;width: 100%;height: 1325px"></iframe>
+                                        @else
+                                            <img style="width: 100%;"
+                                                src="{{ asset('storage/' . $product->additional6) }}" alt="" />
+                                        @endif
                                     @endif
                                 @endif
                             </div>
