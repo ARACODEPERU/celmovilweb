@@ -1,8 +1,8 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                                            <div class="preloader">                                                                                                                                                                              </div>
-                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                    <div class="preloader">                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -64,11 +64,13 @@
                             <hr />
                             <div class="row">
                                 <div class="col-md-12" style="padding: 10px;">
-                                    <iframe width="100%" height="300"
+                                    {{-- <iframe width="100%" height="300"
                                         src="https://www.youtube.com/embed/VqZlWWcf07s?si=i1QB4Vm5zQSMKTZ7"
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen></iframe>
+                                        allowfullscreen></iframe> --}}
+
+                                    {!! $product->additional1 !!}
                                 </div>
                             </div>
                             <div class="color-brand clearfix">
@@ -108,12 +110,12 @@
                                             cart</a>
                                     </li>
                                     <!--
-                                                <li>
-                                                    <a href="{{ route('web_carrito') }}"><i class="fa fa-heart-o"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fa fa-share-alt"></i></a>
-                                                </li>-->
+                                                        <li>
+                                                            <a href="{{ route('web_carrito') }}"><i class="fa fa-heart-o"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-share-alt"></i></a>
+                                                        </li>-->
                                 </ul>
                             </div>
                             <hr />
@@ -193,8 +195,8 @@
                                             <iframe src="{{ asset('storage/' . $product->additional2) }}"
                                                 style="border: none;width: 100%;height: 1325px"></iframe>
                                         @else
-                                            <img style="width: 100%;"
-                                                src="{{ asset('storage/' . $product->additional2) }}" alt="" />
+                                            <img style="width: 100%;" src="{{ asset('storage/' . $product->additional2) }}"
+                                                alt="" />
                                         @endif
                                     @endif
                                 </div>
