@@ -59,8 +59,22 @@
                         <div class="singl-pro-title">
                             <h3>{{ $product->name }}</h3>
                             <h1>S/ {{ $product->price }}</h1>
+                            <div class="categ-tag">
+                                <ul class="clearfix">
+                                    <li>
+                                        CATEGORIA:
+                                        <a href="#">{{ $product->category_description }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <hr />
                             {!! $product->description !!}
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="" class="btn btn-success"> Whatsapp</a>
+                                </div>
+                            </div>
                             <hr />
                             <div class="row">
                                 <div class="col-md-12" style="padding: 10px;">
@@ -73,59 +87,52 @@
                                     {!! $product->additional1 !!}
                                 </div>
                             </div>
-                            <div class="color-brand clearfix">
-                                <div class="s-select">
-                                    <div class="custom-select">
-                                        <select class="form-control">
-                                            @foreach (json_decode($product->product->sizes) as $color)
-                                                <option value="{{ $color->size }}">{{ $color->size }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                {{-- <div class="s-select">
-                                    <div class="custom-select">
-                                        <select class="form-control">
-                                            <option>Brend</option>
-                                            <option>Men </option>
-                                            <option>Fashion </option>
-                                            <option>Shirt</option>
-                                        </select>
-                                    </div>
-                                </div> --}}
-                                <div class="s-select s-plus-minus">
-                                    <form action="#" method="POST">
-                                        <div class="plus-minus">
-                                            <a class="dec qtybutton">-</a>
-                                            <input type="text" value="1" name="qtybutton" class="plus-minus-box">
-                                            <a class="inc qtybutton">+</a>
+                            <div class="row">
+                                <div class="col-md-12" style="padding: 10px;">
+                                    <div class="color-brand clearfix">
+                                        <div class="s-select">
+                                            <div class="custom-select">
+                                                <select class="form-control">
+                                                    @foreach (json_decode($product->product->sizes) as $color)
+                                                        <option value="{{ $color->size }}">{{ $color->size }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
-                                    </form>
+                                        {{-- <div class="s-select">
+                                            <div class="custom-select">
+                                                <select class="form-control">
+                                                    <option>Brend</option>
+                                                    <option>Men </option>
+                                                    <option>Fashion </option>
+                                                    <option>Shirt</option>
+                                                </select>
+                                            </div>
+                                        </div> --}}
+                                        <div class="s-select s-plus-minus">
+                                            <form action="#" method="POST">
+                                                <div class="plus-minus">
+                                                    <a class="dec qtybutton">-</a>
+                                                    <input type="text" value="1" name="qtybutton" class="plus-minus-box">
+                                                    <a class="inc qtybutton">+</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="actions-btn">
-                                <ul class="clearfix text-center">
-                                    <li>
-                                        <a href="{{ route('web_carrito') }}"><i class="fa fa-shopping-cart"></i> add to
-                                            cart</a>
-                                    </li>
-                                    <!--
-                                                        <li>
-                                                            <a href="{{ route('web_carrito') }}"><i class="fa fa-heart-o"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-share-alt"></i></a>
-                                                        </li>-->
-                                </ul>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="{{ route('web_carrito') }}" class="btn btn-primary">
+                                        <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
+                                        <b>Agregar al Carrito</b>
+                                    </a>
+                                </div>
                             </div>
                             <hr />
-                            <div class="categ-tag">
-                                <ul class="clearfix">
-                                    <li>
-                                        CATEGORIA:
-                                        <a href="#">{{ $product->category_description }}</a>
-                                    </li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-md-12">
+                                </div>
                             </div>
 
                             @if (count($product->specifications) > 0)
@@ -145,14 +152,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <div class="row" style="padding: 15px 0px;">
-                                <div class="col-md-12" style="padding: 5px 0px;">
-                                    <a href="" class="btn btn-primary">Más información</a>
-                                </div>
-                                <div class="col-md-12" style="padding: 5px 0px;">
-                                    <a href="" class="btn btn-success"> Whatsapp</a>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

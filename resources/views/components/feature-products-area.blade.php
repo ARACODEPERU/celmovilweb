@@ -2,15 +2,15 @@
     <section class="featured-area featured-one section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
+                <div class="col-md-10 col-text-center">
                     <div class="section-title text-center">
-                        <h3><span>Productos</span> Destacados</h3>
+                        <h3><span>Productos</span> Nuevos</h3>
                         <div class="shape">
                             <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                         </div>
-                        <p>It is a long established fact that a reader will be distracted by the readable content page
-                            when
-                            looking at its layout.</p>
+                        <p>
+                            Presentamos las últimas incorporaciones diseñadas para los amantes de la aventura y la adrenalina, nuestras motocicletas combinan potencia, estilo y rendimiento para ofrecerte una experiencia de conducción inigualable.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -35,11 +35,17 @@
                                                     <a href="#"><i class="fa fa-heart"></i></a>
                                                 </li>
                                                 <li>
+                                                    <a href="{{ route('web_producto_descripcion', $product->id) }}"><i class="fa fa-eye"></i>
+                                                    </a>
+                                                </li>
+                                                <!--
+                                                <li>
                                                     <a href="#"
                                                         onclick="openModalProductDetails(event, {{ json_encode($product) }})"><i
                                                             class="fa fa-eye"></i>
                                                     </a>
                                                 </li>
+                                                -->
                                             </ul>
                                         </div>
                                         <div class="product-title">
@@ -57,7 +63,8 @@
             </div>
         </div>
     </section>
-    <!-- quick view start -->
+
+    <!-- quick view start 
     <div class="product-details quick-view modal animated zoomIn" id="quick-view-product">
         <div class="container">
             <div class="row">
@@ -72,11 +79,9 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="left">
-                                                <!-- Single-pro-slider Big-photo start -->
                                                 <div class="quick-img">
                                                     <img id="modal-image-product-view" alt="" />
                                                 </div>
-                                                <!-- Single-pro-slider Big-photo end -->
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -163,7 +168,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
+
     <!-- quick view end -->
     <script>
         function openModalProductDetails(event, productObject) {

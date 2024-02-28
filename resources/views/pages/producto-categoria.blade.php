@@ -11,11 +11,11 @@
 
     <!-- page banner area start -->
     <div class="page-banner">
-        <img src="{{ asset('themes/celmovil/img/slider/bg2.jpg') }}" alt="Page Banner" />
+        <img width="100%;" src="{{ asset('themes/celmovil/img/banner_producto.jpeg') }}" alt="Page Banner" />
     </div>
     <!-- page banner area end -->
 
-
+hola
     <!-- product content section start -->
     <section class="product-content section-padding">
         <div class="container">
