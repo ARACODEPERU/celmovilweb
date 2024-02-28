@@ -72,23 +72,27 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="" class="btn btn-success"> Whatsapp</a>
+                                    <a href="https://api.whatsapp.com/send?phone=51921197459&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?" target="_blanck" class="btn btn-success">
+                                        <div style="justify-content: space-between;">
+                                            <div style="float: left; padding: 5px;">
+                                                <img style="width: 40px;" src="{{ asset('themes/celmovil/img/isotipo.png') }}" alt="">
+                                            </div> 
+                                            <div style="float: left; padding: 5px;">
+                                                Para cotizar un producto <br>
+                                                <b>¡Escribenos al whatsapp!</b>
+                                             </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <hr />
                             <div class="row">
                                 <div class="col-md-12" style="padding: 10px;">
-                                    {{-- <iframe width="100%" height="300"
-                                        src="https://www.youtube.com/embed/VqZlWWcf07s?si=i1QB4Vm5zQSMKTZ7"
-                                        title="YouTube video player" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen></iframe> --}}
-
                                     {!! $product->additional1 !!}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12" style="padding: 10px;">
+                                <div class="col-md-12" style="padding: 10px 17px; margin-top: -40px;">
                                     <div class="color-brand clearfix">
                                         <div class="s-select">
                                             <div class="custom-select">
@@ -123,9 +127,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="{{ route('web_carrito') }}" class="btn btn-primary">
+                                    <a href="{{ route('web_carrito') }}" class="btn btn-celmovil" style="padding: 10px 35px;">
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
-                                        <b>Agregar al Carrito</b>
+                                        <b>AGREGAR AL CARRITO</b>
                                     </a>
                                 </div>
                             </div>
@@ -238,7 +242,7 @@
     <section class="related-area riding-one">
         <div class="container">
             <div class="related-title">
-                <h5>Related Products s</h5>
+                <h5>También te recomendamos</h5>
             </div>
             <div class="row text-center margin50">
                 <div class="related-slider single-products">

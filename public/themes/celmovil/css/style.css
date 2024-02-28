@@ -31,6 +31,15 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,400,500,700,900';
 
 
+.btn-celmovil{
+    background: #ff6600;
+    color: #fff;
+}
+.btn-celmovil:hover{
+    background: #000;
+    color: #fff;
+}
+
 /*-------------------------------------
 [ 1. theme default CSS ]
 ---------------------------------------*/
@@ -56,7 +65,7 @@ a {
 	text-decoration:none;
 	font-weight:400;
 	color:#555;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	font-family: 'Montserrat', sans-serif;
 }
 a:hover,a:hover, a:focus {

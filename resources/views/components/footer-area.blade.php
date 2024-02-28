@@ -159,7 +159,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="left floatleft">
-                            <p>Copyright &copy; 2024 - Template Powered By <a href="#">RIDEO</a></p>
+                            <p>Copyright &copy; 2024 - Desarrollado por <a href="#">ARACODE SMART SOLUTIÓN</a></p>
                         </div>
                         <div class="right mayment-card floatright">
                             <ul>
