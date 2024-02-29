@@ -250,24 +250,14 @@
                         <div class="product-item">
                             <div class="pro-img">
                                 <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r1.jpg') }}" alt="Product" /></a>
-                                <div class="tag-n-s">
-                                    <span>New</span>
-                                </div>
+                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
                             </div>
                             <div class="riding-title clearfix">
-                                <div class="product-title text-left floatleft">
+                                <div class="product-title">
                                     <a href="#">
                                         <h5>Copenhagen Spitfire Chair</h5>
                                     </a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                    </div>
-                                    <p><span>$170</span> <del>$175</del></p>
+                                    <p>Precio: <span>S/ 1450</span></p>
                                 </div>
                             </div>
                         </div>
@@ -279,18 +269,11 @@
                                         src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
                             </div>
                             <div class="riding-title clearfix">
-                                <div class="product-title text-left floatleft">
+                                <div class="product-title">
                                     <a href="#">
                                         <h5>Copenhagen Spitfire Chair</h5>
                                     </a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                    </div>
-                                    <p><span>$170</span> <del>$175</del></p>
+                                    <p>Precio: <span>S/ 1450</span></p>
                                 </div>
                             </div>
                         </div>
@@ -299,24 +282,14 @@
                         <div class="product-item">
                             <div class="pro-img">
                                 <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r3.jpg') }}" alt="Product" /></a>
-                                <div class="tag-n-s">
-                                    <span>Sell</span>
-                                </div>
+                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
                             </div>
                             <div class="riding-title clearfix">
-                                <div class="product-title text-left floatleft">
+                                <div class="product-title">
                                     <a href="#">
                                         <h5>Copenhagen Spitfire Chair</h5>
                                     </a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                    </div>
-                                    <p><span>$170</span> <del>$175</del></p>
+                                    <p>Precio: <span>S/ 1450</span></p>
                                 </div>
                             </div>
                         </div>
@@ -325,21 +298,14 @@
                         <div class="product-item">
                             <div class="pro-img">
                                 <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r4.jpg') }}" alt="Product" /></a>
+                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
                             </div>
                             <div class="riding-title clearfix">
-                                <div class="product-title text-left floatleft">
+                                <div class="product-title">
                                     <a href="#">
                                         <h5>Copenhagen Spitfire Chair</h5>
                                     </a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                    </div>
-                                    <p><span>$170</span> <del>$175</del></p>
+                                    <p>Precio: <span>S/ 1450</span></p>
                                 </div>
                             </div>
                         </div>
@@ -348,24 +314,14 @@
                         <div class="product-item">
                             <div class="pro-img">
                                 <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r3.jpg') }}" alt="Product" /></a>
-                                <div class="tag-n-s">
-                                    <span>Sell</span>
-                                </div>
+                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
                             </div>
                             <div class="riding-title clearfix">
-                                <div class="product-title text-left floatleft">
+                                <div class="product-title">
                                     <a href="#">
                                         <h5>Copenhagen Spitfire Chair</h5>
                                     </a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star gray-star"></i>
-                                    </div>
-                                    <p><span>$170</span> <del>$175</del></p>
+                                    <p>Precio: <span>S/ 1450</span></p>
                                 </div>
                             </div>
                         </div>
