@@ -224,9 +224,11 @@
                                 @endif
                             </div>
                             <div class="tab-pane fade in" id="manual">
-                                <a href="{{ $product->additional3 }}" class="btn btn-primary"
+                                <a href="{{ $product->additional3 }}" class="btn btn-celmovil"
                                     style="padding: 20px; font-size: 16px;" target="_blank">
-                                    Descargar Manual</a>
+                                    <i class="fa fa-download" aria-hidden="true"></i> &nbsp;
+                                    Descargar Manual de Uso
+                                </a>
                             </div>
                             <div class="tab-pane fade in" id="legal">
                                 {!! $product->additional4 !!}

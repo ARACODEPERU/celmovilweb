@@ -45,31 +45,33 @@
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <div class="s-footer-text">
                             <div class="footer-title">
-                                <h4>Siguenos en:</h4>
+                                <h4>Siguenos en :</h4>
                             </div>
                             <div class="social-link actions-btn clearfix">
                                 <ul>
                                     <li>
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.facebook.com/Motoselectricastrujillo" target="_blank"><i class="fa fa-facebook"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="https://www.instagram.com/celmovil_2/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="https://www.tiktok.com/@celmovil_motos?lang=es"><i class="fa fa-tiktok"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.youtube.com/channel/UClkH7YMr5QhaCkx-VqB375w"><i class="fa fa-youtube"></i></a>
                                     </li>
                                 </ul>
                             </div>
-                            <h4>Newsletter</h4>
-                            <form action="mail.php">
+                            <h4>Boletin informativo</h4>
+                            <form action="">
                                 <div class="input-text">
-                                    <input type="text" name="email" placeholder="Email Address" />
+                                    <input type="text" name="email" placeholder="Correp Electrónico" />
                                 </div>
                                 <div class="submit-text">
-                                    <input type="submit" name="submit" value="submit" />
+                                    <button class="btn btn-celmovil" type="submit" name="submit" style="padding: 12px 15px;">
+                                        <b>Enviar</b>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -77,7 +79,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="s-footer-text">
                             <div class="footer-title">
-                                <h4>Contacto:</h4>
+                                <h4>Contacto :</h4>
                             </div>
                             <div class="contact-link">
                                 <ul>
@@ -100,7 +102,7 @@
                     <div class="col-xs-12 col-sm-2 col-md-2">
                         <div class="s-footer-text">
                             <div class="footer-title">
-                                <h4>INFORMATION</h4>
+                                <h4>NAVEGAR :</h4>
                             </div>
                             <div class="footer-menu">
                                 <ul>
