@@ -56,10 +56,10 @@
                                         <a href="https://www.instagram.com/celmovil_2/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://www.tiktok.com/@celmovil_motos?lang=es"><i class="fa fa-tiktok"></i></a>
+                                        <a href="https://www.tiktok.com/@celmovil_motos?lang=es" target="_blank"><i class="fa fa-tiktok"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://www.youtube.com/channel/UClkH7YMr5QhaCkx-VqB375w"><i class="fa fa-youtube"></i></a>
+                                        <a href="https://www.youtube.com/channel/UClkH7YMr5QhaCkx-VqB375w" target="_blank"><i class="fa fa-youtube"></i></a>
                                     </li>
                                 </ul>
                             </div>
