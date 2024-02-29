@@ -15,10 +15,67 @@
     <!-- header - section start -->
     <x-header-area />
     <!-- header - section end -->
-
-    <!-- slider - section start -->
-    <x-slider-home />
-    <!-- slider - section end -->
+    <div>
+        <div class="slider-area slider-one clearfix">
+            <div class="slider" id="mainslider">
+                @foreach ($sliders as $slide)
+                    <div data-src="{{ $slide->content }}">
+                        <div class="d-table">
+                            <div class="d-tablecell">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="slide-text">
+                                                <div class="shape animated flipInX">
+                                                    <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <!--
+                <div data-src="{{ asset('themes/celmovil/img/slider/slider_01.jpeg') }}">
+                    <div class="d-table">
+                        <div class="d-tablecell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="slide-text">
+                                            <div class="shape animated flipInX">
+                                                <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-src="{{ asset('themes/celmovil/img/slider/celmovil-portada.jpg') }}">
+                    <div class="d-table">
+                        <div class="d-tablecell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="slide-text">
+                                            <div class="shape animated flipInX">
+                                                <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
 
 
     <!-- feature products - section start -->
