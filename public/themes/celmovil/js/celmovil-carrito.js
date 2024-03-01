@@ -258,7 +258,7 @@ function agregarAlCarrito_w_color(producto) { //agregar al carrito con un color 
         }else{ //para productos con colores celmovil
 
                 if (color) {
-                  Swal.fire({ html: `<h4> ` + producto.nombre + ` de color: ${color} fue agregado al carrito de compras.</h4>` });
+                  Swal.fire({ html: `<h4> ` + producto.nombre + ` de color: ${color} fue agregado al carrito de compras.</h4>` + "<img width='320px' src='"+producto.color.image+"'></img>" });
                                       // Obtener el carrito actual del almacenamiento local
                                       let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
                                         producto.color = color;
