@@ -14,9 +14,10 @@ use Modules\CMS\Entities\CmsSection;
 
 class WebController extends Controller
 {
+
     public function index()
     {
-        
+
         $sliders = CmsSection::where('component_id', 'slider_3')  //siempre cambiar el id del componente
             ->join('cms_section_items', 'section_id', 'cms_sections.id')
             ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')

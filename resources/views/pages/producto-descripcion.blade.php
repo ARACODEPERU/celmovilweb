@@ -76,7 +76,7 @@
                                         <div style="justify-content: space-between;">
                                             <div style="float: left; padding: 5px;">
                                                 <img style="width: 40px;" src="{{ asset('themes/celmovil/img/isotipo.png') }}" alt="">
-                                            </div> 
+                                            </div>
                                             <div style="float: left; padding: 5px;">
                                                 Para cotizar un producto <br>
                                                 <b>¡Escribenos al whatsapp!</b>
@@ -96,7 +96,7 @@
                                     <div class="color-brand clearfix">
                                         <div class="s-select">
                                             <div class="custom-select">
-                                                <select class="form-control">
+                                                <select class="form-control" id="color_selected">
                                                     @foreach (json_decode($product->product->sizes) as $color)
                                                         <option value="{{ $color->size }}">{{ $color->size }}</option>
                                                     @endforeach
@@ -117,7 +117,7 @@
                                             <form action="#" method="POST">
                                                 <div class="plus-minus">
                                                     <a class="dec qtybutton">-</a>
-                                                    <input type="text" value="1" name="qtybutton" class="plus-minus-box">
+                                                    <input type="text" value="1" name="qtybutton" class="plus-minus-box" id="quantity">
                                                     <a class="inc qtybutton">+</a>
                                                 </div>
                                             </form>
@@ -127,7 +127,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="{{ route('web_carrito') }}" class="btn btn-celmovil" style="padding: 10px 35px;">
+                                    <a onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"'.$product->name.'"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
+                                    class="btn btn-celmovil" style="padding: 10px 35px;">
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
                                     </a>
@@ -156,7 +157,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            
+
                         </div>
                     </div>
                 </div>
