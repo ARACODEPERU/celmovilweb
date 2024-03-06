@@ -15,7 +15,6 @@
     </div>
     <!-- page banner area end -->
 
-hola
     <!-- product content section start -->
     <section class="product-content section-padding">
         <div class="container">
