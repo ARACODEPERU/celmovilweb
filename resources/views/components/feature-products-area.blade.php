@@ -22,9 +22,11 @@
                                 <div class="padding30">
                                     <div class="product-item">
                                         <div class="pro-img">
-                                            <a href="{{ route('web_producto_descripcion', $product->id) }}"><img
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                <img
                                                     src="{{ $product->image }}" style="max-height: 237px"
-                                                    alt="" /></a>
+                                                    alt="" />
+                                            </a>
                                         </div>
                                         <div class="actions-btn">
                                             <ul class="clearfix">

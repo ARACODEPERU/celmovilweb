@@ -28,7 +28,7 @@
                                         <div class="product-item margin40">
                                             <div class="pro-img">
                                                 <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                    <img src="{{ asset('storage/' . $product->image) }}"
+                                                    <img src="{{ $product->image }}"
                                                         alt="{{ $product->name }}" />
                                                 </a>
                                                 <div class="actions-btn">
