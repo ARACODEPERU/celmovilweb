@@ -37,7 +37,7 @@
                                         <div class="product-item">
                                             <div class="pro-img">
                                                 <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 100%;">
+                                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 220px; height: 220px;">
                                                 </a>
                                             </div>
                                             <div class="actions-btn">
@@ -55,7 +55,7 @@
                                             </div>
                                             <div class="riding-title clearfix">
                                                 <div class="product-title">
-                                                    <a href="{{ route('web_producto_descripcion', $product->id) }}"><h5>{{ $product->name }}</h5></a>
+                                                    <a href="{{ route('web_producto_descripcion', $product->id) }}"><h6>{{ $product->name }}</h6></a>
                                                     <p>Precio: <span>S/. {{ $product->price }} </span>
                                                         @if ($product->discount > 0)
                                                             <del>S/ {{ $product->price - ($product->discount ?? 0) }}</del>
