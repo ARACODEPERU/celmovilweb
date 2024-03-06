@@ -37,7 +37,7 @@
                                         <div class="product-item">
                                             <div class="pro-img">
                                                 <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                    <img src="{{ $product->image }}" alt="{{ $product->name }}">
+                                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 100%;">
                                                 </a>
                                             </div>
                                             <div class="actions-btn">
