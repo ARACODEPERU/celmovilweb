@@ -77,8 +77,8 @@
 	  centerMode: true,
 	  centerPadding: '0px',
 	  slidesToShow: 3,
-	  prevArrow: '<img class="prev" src="img/icon/prev.png" alt="prev" />',
-	  nextArrow: '<img class="next" src="img/icon/next.png" alt="next" />',
+	  prevArrow: '<img class="prev" src="/themes/celmovil/img/icon/prev.png" alt="prev" />',
+	  nextArrow: '<img class="next" src="/themes/celmovil/img/icon/next.png" alt="next" />',
 	  responsive: [
 		{ breakpoint: 1169, settings: { slidesToShow: 3 } },
 		{ breakpoint: 969, settings: { slidesToShow: 3 } },
@@ -88,13 +88,13 @@
 	});
 	
 	$('.sell-up-right').slick({
-		prevArrow: '<img class="prev" src="img/icon/prev.png" alt="prev" />',
-		nextArrow: '<img class="next" src="img/icon/next.png" alt="next" />',
+		prevArrow: '<img class="prev" src="/themes/celmovil/img/icon/prev.png" alt="prev" />',
+		nextArrow: '<img class="next" src="/themes/celmovil/img/icon/next.png" alt="next" />',
 	});
 	$('.four-item').slick({
 			slidesToShow: 4,
-			prevArrow: '<img class="prev" src="img/icon/prev.png" alt="prev" />',
-			nextArrow: '<img class="next" src="img/icon/next.png" alt="next" />',
+			prevArrow: '<img class="prev" src="/themes/celmovil/img/icon/prev.png" alt="prev" />',
+			nextArrow: '<img class="next" src="/themes/celmovil/img/icon/next.png" alt="next" />',
 			responsive: [
 				{ breakpoint: 1169, settings: { slidesToShow: 3 } },
 				{ breakpoint: 969, settings: { slidesToShow: 3 } },
@@ -104,8 +104,8 @@
 	});
 	$('.four-item-w').slick({
 			slidesToShow: 4,
-			prevArrow: '<img class="prev" src="img/icon/w-prev.png" alt="prev" />',
-			nextArrow: '<img class="next" src="img/icon/w-next.png" alt="next" />',
+			prevArrow: '<img class="prev" src="/themes/celmovil/img/icon/w-prev.png" alt="prev" />',
+			nextArrow: '<img class="next" src="/themes/celmovil/img/icon/w-next.png" alt="next" />',
 			responsive: [
 				{ breakpoint: 1169, settings: { slidesToShow: 3 } },
 				{ breakpoint: 969, settings: { slidesToShow: 3 } },
