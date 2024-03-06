@@ -165,7 +165,7 @@ class OnliItemController extends Controller
                 $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
                 $extension = $data_sheet->getClientOriginalExtension();
-                $file_name = $onliItem->id . '.' . $extension;
+                $file_name = $onliItem->id . 'additional2.' . $extension;
                 $additional2 = $request->file('additional2')->storeAs(
                     $destination,
                     $file_name,
@@ -182,7 +182,7 @@ class OnliItemController extends Controller
                 $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
                 $extension = $data_sheet->getClientOriginalExtension();
-                $file_name = $onliItem->id . '.' . $extension;
+                $file_name = $onliItem->id . 'additional6.' . $extension;
                 $additional6 = $request->file('additional6')->storeAs(
                     $destination,
                     $file_name,
@@ -318,7 +318,7 @@ class OnliItemController extends Controller
                 $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
                 $extension = $data_sheet->getClientOriginalExtension();
-                $file_name = $OnliItem->id . '.' . $extension;
+                $file_name = $OnliItem->id . 'additional2.' . $extension;
                 $additional2 = $request->file('additional2')->storeAs(
                     $destination,
                     $file_name,
@@ -336,7 +336,7 @@ class OnliItemController extends Controller
                 $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
                 $extension = $data_sheet->getClientOriginalExtension();
-                $file_name = $OnliItem->id . '.' . $extension;
+                $file_name = $OnliItem->id . 'additional6.' . $extension;
                 $additional6 = $request->file('additional6')->storeAs(
                     $destination,
                     $file_name,

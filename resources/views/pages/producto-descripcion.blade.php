@@ -1,8 +1,8 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                                                    <div class="preloader">                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                </div> -->
+                                                                                                                                                                                                        <div class="preloader">                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                    </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -72,15 +72,17 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="https://api.whatsapp.com/send?phone=51921197459&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?" target="_blanck" class="btn btn-success">
+                                    <a href="https://api.whatsapp.com/send?phone=51921197459&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?"
+                                        target="_blanck" class="btn btn-success">
                                         <div style="justify-content: space-between;">
                                             <div style="float: left; padding: 5px;">
-                                                <img style="width: 40px;" src="{{ asset('themes/celmovil/img/isotipo.png') }}" alt="">
+                                                <img style="width: 40px;"
+                                                    src="{{ asset('themes/celmovil/img/isotipo.png') }}" alt="">
                                             </div>
                                             <div style="float: left; padding: 5px;">
                                                 Para cotizar un producto <br>
                                                 <b>¡Escribenos al whatsapp!</b>
-                                             </div>
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -117,7 +119,8 @@
                                             <form action="#" method="POST">
                                                 <div class="plus-minus">
                                                     <a class="dec qtybutton">-</a>
-                                                    <input type="text" value="1" name="qtybutton" class="plus-minus-box" id="quantity">
+                                                    <input type="text" value="1" name="qtybutton"
+                                                        class="plus-minus-box" id="quantity">
                                                     <a class="inc qtybutton">+</a>
                                                 </div>
                                             </form>
@@ -127,8 +130,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"'.$product->name.'"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
-                                    class="btn btn-celmovil" style="padding: 10px 35px;">
+                                    <a onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
+                                        class="btn btn-celmovil" style="padding: 10px 35px;">
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
                                     </a>
@@ -200,8 +203,8 @@
                                             <iframe src="{{ asset('storage/' . $product->additional2) }}"
                                                 style="border: none;width: 100%;height: 1325px"></iframe>
                                         @else
-                                            <img style="width: 100%;" src="{{ asset('storage/' . $product->additional2) }}"
-                                                alt="" />
+                                            <img style="width: 100%;"
+                                                src="{{ asset('storage/' . $product->additional2) }}" alt="" />
                                         @endif
                                     @endif
                                 </div>
@@ -242,97 +245,7 @@
     </section>
     <!-- product details area end -->
     <!-- related product section start -->
-    <section class="related-area riding-one">
-        <div class="container">
-            <div class="related-title">
-                <h5>También te recomendamos</h5>
-            </div>
-            <div class="row text-center margin50">
-                <div class="related-slider single-products">
-                    <div class="related-item col-xs-12">
-                        <div class="product-item">
-                            <div class="pro-img">
-                                <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
-                            </div>
-                            <div class="riding-title clearfix">
-                                <div class="product-title">
-                                    <a href="#">
-                                        <h5>Copenhagen Spitfire Chair</h5>
-                                    </a>
-                                    <p>Precio: <span>S/ 1450</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="related-item col-xs-12">
-                        <div class="product-item">
-                            <div class="pro-img">
-                                <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
-                            </div>
-                            <div class="riding-title clearfix">
-                                <div class="product-title">
-                                    <a href="#">
-                                        <h5>Copenhagen Spitfire Chair</h5>
-                                    </a>
-                                    <p>Precio: <span>S/ 1450</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="related-item col-xs-12">
-                        <div class="product-item">
-                            <div class="pro-img">
-                                <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
-                            </div>
-                            <div class="riding-title clearfix">
-                                <div class="product-title">
-                                    <a href="#">
-                                        <h5>Copenhagen Spitfire Chair</h5>
-                                    </a>
-                                    <p>Precio: <span>S/ 1450</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="related-item col-xs-12">
-                        <div class="product-item">
-                            <div class="pro-img">
-                                <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
-                            </div>
-                            <div class="riding-title clearfix">
-                                <div class="product-title">
-                                    <a href="#">
-                                        <h5>Copenhagen Spitfire Chair</h5>
-                                    </a>
-                                    <p>Precio: <span>S/ 1450</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="related-item col-xs-12">
-                        <div class="product-item">
-                            <div class="pro-img">
-                                <a href="product-details.html"><img
-                                        src="{{ asset('themes/celmovil/img/products/r2.jpg') }}" alt="Product" /></a>
-                            </div>
-                            <div class="riding-title clearfix">
-                                <div class="product-title">
-                                    <a href="#">
-                                        <h5>Copenhagen Spitfire Chair</h5>
-                                    </a>
-                                    <p>Precio: <span>S/ 1450</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-products-recommended />
     <!-- related product section end -->
 
     <br><br>
