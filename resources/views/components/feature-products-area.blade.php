@@ -55,6 +55,8 @@
                                                 <h5>{{ $product->name }}</h5>
                                             </a>
                                             <p>Precio <span>S/. {{ $product->price }}</span></p>
+                                            
+                                            <span style="color: #000;">Agotado </span>
                                         </div>
                                     </div>
                                 </div>

@@ -61,6 +61,7 @@
                                                             <del>S/ {{ $product->price - ($product->discount ?? 0) }}</del>
                                                         @endif
                                                     </p>
+                                                    <span style="color: #000;">Agotado </span>
                                                 </div>
                                             </div>
                                         </div>

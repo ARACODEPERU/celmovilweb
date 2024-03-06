@@ -66,6 +66,7 @@
                                         <a href="#">{{ $product->category_description }}</a>
                                     </li>
                                 </ul>
+                                <span style="color: orange;"><b>Agotado </b></span>
                             </div>
                             <hr />
                             {!! $product->description !!}
