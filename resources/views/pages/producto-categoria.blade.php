@@ -21,7 +21,7 @@
                     <div class="section-title text-center">
                         <h3><span>Título de Sub Categoria</span></h3>
                         <div class="shape">
-                            <img src="img/icon/t-shape.png" alt="Title Shape">
+                            <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape">
                         </div>
                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                     </div>
