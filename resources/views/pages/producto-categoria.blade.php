@@ -14,24 +14,32 @@
         <img width="100%;" src="{{ asset('themes/celmovil/img/banner_producto.jpeg') }}" alt="Page Banner" />
     </div>
     <!-- page banner area end -->
-
-    <!-- product content section start -->
-    <section class="product-content section-padding">
+    <section class="best-sell-area popular-product section-padding-top">
         <div class="container">
-                <div class="tab-content">
-                    <div class="tab-pane fade in active text-center" id="grid">
-                        <div class="single-products">
-                            <div class="row">
-                                
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
+                    <div class="section-title text-center">
+                        <h3><span>Título de Sub Categoria</span></h3>
+                        <div class="shape">
+                            <img src="img/icon/t-shape.png" alt="Title Shape">
+                        </div>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center tab-content">
+                <div class="tab-pane fade active in">
+                    <div class="single-products">
+                        <div class="row">
                             @if (count($products) > 0)
-                            @foreach ($products as $product)
-                                <div class="col-md-3" style="padding: 20px;">
-                                    <div class="product-item">
-                                        <div class="pro-img">
-                                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                <img src="{{ $product->image }}"
-                                                    alt="{{ $product->name }}" />
-                                            </a>
+                                @foreach ($products as $product)
+                                    <div class="col-xs-12 col-sm-4" style="padding: 15px;">
+                                        <div class="product-item">
+                                            <div class="pro-img">
+                                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                    <img src="{{ $product->image }}" alt="{{ $product->name }}">
+                                                </a>
+                                            </div>
                                             <div class="actions-btn">
                                                 <ul class="clearfix">
                                                     <li>
@@ -41,41 +49,31 @@
                                                         <a href="#"><i class="fa fa-heart"></i></a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" data-toggle="modal"
-                                                            data-target="#quick-view"><i class="fa fa-eye"></i></a>
+                                                        <a href="#" data-toggle="modal" data-target="#quick-view"><i class="fa fa-eye"></i></a>
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="product-title">
-                                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                <h5>{{ $product->name }}</h5>
-                                            </a>
-                                            <p>
-                                                <span>S/. {{ $product->price }}</span>
-                                                @if ($product->discount > 0)
-                                                    <del>S/ {{ $product->price - ($product->discount ?? 0) }}</del>
-                                                @endif
-                                            </p>
+                                            <div class="riding-title clearfix">
+                                                <div class="product-title">
+                                                    <a href="{{ route('web_producto_descripcion', $product->id) }}"><h5>{{ $product->name }}</h5></a>
+                                                    <p>Precio: <span>S/. {{ $product->price }} </span>
+                                                        @if ($product->discount > 0)
+                                                            <del>S/ {{ $product->price - ($product->discount ?? 0) }}</del>
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        @endif
-                            </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    {{ $products->links('vendor.pagination.bootstrap-4') }}
-                </div>
-                <div class="col-md-4"></div>
             </div>
         </div>
     </section>
-    <!-- product content section end -->
+
 
     <!-- quick view start -->
     <div class="product-details quick-view modal animated zoomIn" id="quick-view">
