@@ -138,11 +138,11 @@
         function quantity(index, masmen, price){
             let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             if(masmen == 1){
-                carrito[index].quantity += 1;
+                carrito[index].quantity = parseInt(carrito[index].quantity) + 1;
             }
             if(masmen == 0){
                 if(carrito[index].quantity > 1){
-                    carrito[index].quantity -= 1;
+                    carrito[index].quantity = parseInt(carrito[index].quantity) - 1;
                 }
             }
             localStorage.setItem('carrito', JSON.stringify(carrito));
