@@ -10,7 +10,8 @@
     import { 
       ConfigProvider, Image,
       Tooltip, Upload, Modal,
-      message
+      message,
+      Switch
     } from 'ant-design-vue';
     import esES from 'ant-design-vue/es/locale/es_ES';
     import { PlusOutlined } from '@ant-design/icons-vue';
@@ -149,6 +150,17 @@
             });
         }
     }
+
+    const updateStockItem = (id, state) => {
+        let st = state ? 1 : 0;
+        axios.get(route('onlineshop_items_update_stock', [id, st])).then(() => {
+            message.info('Actualizado correctamente');
+        }).then(()=>{
+            router.visit(route('onlineshop_items'), { preserveState: true, method: 'get' });
+        });
+    }
+
+    const desdes = 1;
 </script>
 
 <template>
@@ -233,6 +245,9 @@
                                             Precio
                                         </th>
                                         <th class="py-2 px-4 font-medium text-black dark:text-white">
+                                            Existencia
+                                        </th>
+                                        <th class="py-2 px-4 font-medium text-black dark:text-white">
                                             Estado
                                         </th>
                                     </tr>
@@ -268,10 +283,12 @@
                                                 {{ item.description }}
                                             </td>
                                             <td v-if="type == 1" class="py-2 px-2 dark:border-strokedark">
-                                                {{ item.additional }}
                                             </td>
                                             <td v-if="type == 1" class="py-2 px-2 text-right dark:border-strokedark">
                                                 {{ item.price }}
+                                                                  </td>
+                                            <td class="text-center py-2 px-2 dark:border-strokedark">
+                                                <Switch :checkedValue="1" @change="updateStockItem(item.id,item.existence)" v-model:checked="item.existence"  checked-children="Disponible" un-checked-children="Agotado" class="bg-gray-700" />
                                             </td>
                                             <td class="text-center py-2 px-2 dark:border-strokedark">
                                                 <span v-if="item.status" class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">Activo</span>

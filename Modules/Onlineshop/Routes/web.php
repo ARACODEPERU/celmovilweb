@@ -22,6 +22,7 @@ Route::middleware(['auth', 'verified'])->prefix('onlineshop')->group(function ()
     Route::get('sales', 'OnliSaleController@index')->name('onlineshop_sales');
     Route::post('items/images', 'OnliItemImageController@upload')->name('onlineshop_items_images_upload');
     Route::delete('items/images/destroy/{id}', 'OnliItemImageController@destroy')->name('onlineshop_items_images_destroy');
+    Route::get('items/stock/empty/{id}/{state}', 'OnliItemController@updateStock')->name('onlineshop_items_update_stock');
 });
 
 Route::get('mercadopago/preference/{id}', 'OnliSaleController@getPreference')->name('onlineshop_mercadopago_preference');

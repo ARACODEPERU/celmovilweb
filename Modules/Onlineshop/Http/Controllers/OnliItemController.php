@@ -463,4 +463,13 @@ class OnliItemController extends Controller
             return response()->json(['error' => 'Ítem no encontrado'], 404);
         }
     }
+
+    public function updateStock($id, $state)
+    {
+        OnliItem::find($id)->update([
+            'existence' => $state
+        ]);
+
+        return response()->json(['success' => true]);
+    }
 }
