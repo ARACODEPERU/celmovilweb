@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12" style="padding: 10px 17px; margin-top: -40px;">
+                                <div class="col-md-12" style="padding: 10px 17px; margin-top: -10px;">
                                     <div class="color-brand clearfix">
                                         <div class="s-select">
                                             <div class="custom-select">
