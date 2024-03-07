@@ -107,13 +107,10 @@
                             <div class="footer-menu">
                                 <ul>
                                     <li>
-                                        <a href="about.html">About Us</a>
+                                        <a href="{{ route('web_inicio') }}">Inicio</a>
                                     </li>
                                     <li>
-                                        <a href="#">Our Store</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Order history</a>
+                                        <a href="{{ route('web_nosotros') }}">Home</a>
                                     </li>
                                     <li>
                                         <a href="#">Help</a>
