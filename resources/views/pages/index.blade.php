@@ -82,34 +82,12 @@
     <x-feature-products-area />
     <!-- feature products - section end -->
 
-    <!-- promotional - section start -->
-    <!--
-        <x-promotional-area />
-        -->
-    <!-- promotional - section end -->
-
-    <!-- promotional two - section start -->
-    <!--
-        <x-promotional-two-area />
-        -->
-    <!-- promotional two - section end -->
-
-    <!-- new arival - section start -->
-    <!--
-        <x-new-arival-area />
-        -->
-    <!-- new arival - section end -->
-
-    <!-- product desc - section start -->
-    <x-product-desc-area />
-    <!-- product desc - section end -->
-
     <!-- popular-product section start -->
-    {{-- <x-popular-product-area /> --}}
+    <x-popular-product-area /> 
     <!-- popular-product section end -->
 
     <!-- blog section start
-                                                <section class="blog-area blog-two section-padding">
+        <section class="blog-area blog-two section-padding">
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
@@ -186,7 +164,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </section>-->
+        </section>-->
     <!-- blog section end -->
 
     <br><br>
@@ -202,19 +180,7 @@
 
         </div>
         <div class="footer-contact half-width">
-            <form id="pageContactForm">
-                <div class="input-text">
-                    <input type="text" name="full_name" id="full_name" placeholder="Nombres" required />
-                    <input name="phone" id="phone" type="telephone" required placeholder="Teléfono" />
-                    <input type="text" name="email" id="email" type="email" required
-                        placeholder="Correo Electrónico" />
-                    <input type="text" name="subject" placeholder="Asunto" />
-                    <textarea name="message" id="message" rows="4" required placeholder="Mensaje" rows="4"></textarea>
-                </div>
-                <div class="submit-text">
-                    <button id="submitPageContactButton">Envíar</button>
-                </div>
-            </form>
+            Tienda
         </div>
     </div>
     <!-- contact area end -->

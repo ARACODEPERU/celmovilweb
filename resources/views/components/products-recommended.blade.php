@@ -10,12 +10,13 @@
                         <div class="related-item col-xs-12">
                             <div class="product-item">
                                 <div class="pro-img">
-                                    <a href="{{ route('web_producto_descripcion', $product->id) }}"><img
-                                            src="{{ asset($product->image) }}" alt="{{ $product->name }}" /></a>
+                                    <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
+                                    </a>
                                 </div>
                                 <div class="riding-title clearfix">
                                     <div class="product-title">
-                                        <a href="#">
+                                        <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                             <h5>{{ $product->name }}</h5>
                                         </a>
                                         <p>Precio: <span>S/ {{ $product->price - ($product->discount ?? 0) }}</span></p>
