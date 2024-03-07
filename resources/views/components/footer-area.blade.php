@@ -110,13 +110,13 @@
                                         <a href="{{ route('web_inicio') }}">Inicio</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('web_nosotros') }}">Home</a>
+                                        <a href="{{ route('web_nosotros') }}">Nosotros</a>
                                     </li>
                                     <li>
-                                        <a href="#">Help</a>
+                                        <a href="#">Politicas de Privacidad</a>
                                     </li>
                                     <li>
-                                        <a href="#">FAQ</a>
+                                        <a href="#">Preguntas Frecuentes</a>
                                     </li>
                                 </ul>
                             </div>
