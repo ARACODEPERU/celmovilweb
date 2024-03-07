@@ -20,7 +20,9 @@
                                             <h5>{{ $product->name }}</h5>
                                         </a>
                                         <p>Precio: <span>S/ {{ $product->price - ($product->discount ?? 0) }}</span></p>
+                                        <!--
                                         <span style="color: orange;"><b>Agotado </b></span>
+                                        -->
                                     </div>
                                 </div>
                             </div>
