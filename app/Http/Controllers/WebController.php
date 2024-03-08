@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Modules\Onlineshop\Entities\OnliItem;
 
 use Intervention\Image\Facades\Image;
 use Intervention\Image\Font;
@@ -11,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Modules\CMS\Entities\CmsItem;
 use Modules\CMS\Entities\CmsSection;
+use Modules\Onlineshop\Entities\OnliItem;
+
 
 class WebController extends Controller
 {
@@ -73,8 +74,9 @@ class WebController extends Controller
         ]);
     }
 
-    public function carrito()
+    public function carrito(Request $request)
     {
+
         return view('pages/carrito');
     }
 

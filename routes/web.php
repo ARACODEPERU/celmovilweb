@@ -25,7 +25,7 @@ Route::get('/nosotros', [WebController::class, 'nosotros'])->name('web_nosotros'
 Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
 Route::get('/producto-categoria/{id}/list', [WebController::class, 'productocategoria'])->name('web_producto_categoria');
 Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');
-Route::get('/pagar', [WebController::class, 'pagar'])->name('web_pagar');
+Route::post('/pagar', [WebController::class, 'pagar'])->name('web_pagar');
 
 
 
