@@ -111,6 +111,7 @@
                     carrito[index].quantity = parseInt(carrito[index].quantity) - 1;
                 }
             }
+            document.getElementById("p_q_"+carrito[index].id).value = carrito[index].quantity; //cambiar valor en el los inputHidden del form pay
             localStorage.setItem('carrito', JSON.stringify(carrito));
             carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             console.log(carrito[index].quantity);

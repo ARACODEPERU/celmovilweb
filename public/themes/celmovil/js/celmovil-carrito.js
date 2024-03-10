@@ -408,6 +408,7 @@ function realizarConsulta(ids) {
             var index = 0;
             if(document.getElementById('cart'))document.getElementById('cart').innerHTML=null;
             if(document.getElementById('cart-menu'))document.getElementById('cart-menu').innerHTML=null;
+            document.getElementById("input-hidden").innerHTML = null; // borrando inputs del form pay
             respuesta.items.forEach(function(item) {
                 // Accede a las propiedades del objeto
                 renderProducto(item, index++);
@@ -421,6 +422,50 @@ function realizarConsulta(ids) {
                 if(divCartHidden){
                     divCartHidden.appendChild(inputHidden);
                 }
+                //Colocando items en Formulario de Pay
+                //----------------------------------------------------------------------product_id
+                inputHidden = document.createElement("input");
+                inputHidden.type = "hidden";
+                inputHidden.name = "product_id[]"; // Asigna el nombre que desees
+                inputHidden.value = item.id; // Asigna el valor que desees
+                document.getElementById("input-hidden").appendChild(inputHidden);
+                //----------------------------------------------------------------------product_name
+                inputHidden = document.createElement("input");
+                inputHidden.type = "hidden";
+                inputHidden.name = "product_name[]"; // Asigna el nombre que desees
+                inputHidden.value = item.name; // Asigna el valor que desees
+                document.getElementById("input-hidden").appendChild(inputHidden);
+                //---------------------------------------------------------------------product_category_id
+                inputHidden = document.createElement("input");
+                inputHidden.type = "hidden";
+                inputHidden.name = "product_category_id[]"; // Asigna el nombre que desees
+                inputHidden.value = item.id; // Asigna el valor que desees
+                document.getElementById("input-hidden").appendChild(inputHidden);
+                //---------------------------------------------------------------------product_quantity
+                var dataString = localStorage.getItem("carrito");
+                var data = JSON.parse(dataString);
+                var quantity;
+
+                for (var i = 0; i < data.length; i++) {
+                if (data[i].id === item.id) {
+                    quantity = data[i].quantity;
+                    break;
+                }
+                }
+                inputHidden = document.createElement("input");
+                inputHidden.id = "p_q_"+item.id;
+                inputHidden.type = "hidden";
+                inputHidden.name = "product_quantity[]"; // Asigna el nombre que desees
+                inputHidden.value = quantity; // obtener dato de carrito
+                document.getElementById("input-hidden").appendChild(inputHidden);
+                //---------------------------------------------------------------------product_price
+                inputHidden = document.createElement("input");
+                inputHidden.type = "hidden";
+                inputHidden.name = "product_price[]"; // Asigna el nombre que desees
+                inputHidden.value = item.price; // Asigna el valor que desees
+                document.getElementById("input-hidden").appendChild(inputHidden);
+                console.log("ITEM: ",item);
+
             });
 
             try {
