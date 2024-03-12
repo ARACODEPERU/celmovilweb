@@ -1,15 +1,6 @@
 @extends('layouts.celmovil')
 @section('content')
-    <!-- Preloader Start
-                                                                                                                                                                                        <div class="preloader">
-                                                                                                                                                                                            <div class="loading-center">
-                                                                                                                                                                                                <div class="loading-center-absolute">
-                                                                                                                                                                                                    <div class="object object_one"></div>
-                                                                                                                                                                                                    <div class="object object_two"></div>
-                                                                                                                                                                                                    <div class="object object_three"></div>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div> -->
+    <!-- Preloader Start                                                                                                                                    </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -19,7 +10,7 @@
     
 		<!-- page banner area start -->
 		<div class="page-banner">
-			<img src="{{ asset('themes/celmovil/img/slider/bg2.jpg') }}" alt="Page Banner" />
+			<img style="width: 100%; height: 250px;" src="{{ $banner[0]->content }}" alt="Page Banner" />
 		</div>
 		<!-- page banner area end -->
 		

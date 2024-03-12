@@ -124,6 +124,13 @@ ul.mega-menu > li {
 }
 
 }
+
+@media (max-width: 970px){
+  .header-bottom-bg{
+    width: 100%;
+  }
+}
+
 /* Normal desktop :992px. */
 @media (min-width: 970px) and (max-width: 1169px) {
 .box-wrapper,.box-wrapper .container,.box-layout .header-bottom.sticky {width:970px;}

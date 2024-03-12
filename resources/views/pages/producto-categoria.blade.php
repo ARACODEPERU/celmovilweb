@@ -11,7 +11,7 @@
 
     <!-- page banner area start -->
     <div class="page-banner">
-        <img width="100%;" src="{{ asset('themes/celmovil/img/banner_producto.jpeg') }}" alt="Page Banner" />
+        <img style="width: 100%; height: 250px;" src="{{ $banner[0]->content }}" alt="Page Banner" />
     </div>
     <!-- page banner area end -->
     <section class="best-sell-area popular-product section-padding-top">

@@ -42,11 +42,33 @@ class WebController extends Controller
 
     public function nosotros()
     {
-        return view('pages/nosotros');
+        $banner = CmsSection::where('component_id', 'banner_nosotros_6')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+        
+        return view('pages/nosotros', [
+            'banner' => $banner
+        ]);
     }
 
     public function productocategoria($id)
     {
+        $banner = CmsSection::where('component_id', 'banner_productos_categoria_4')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+
         $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
             ->select(
                 'onli_items.*'
@@ -56,6 +78,7 @@ class WebController extends Controller
             ->onEachSide(2);
 
         return view('pages/producto-categoria', [
+            'banner' => $banner,
             'products' => $products
         ]);
     }
@@ -63,6 +86,16 @@ class WebController extends Controller
 
     public function productodescripcion($id)
     {
+        $banner = CmsSection::where('component_id', 'banner_productos_descripcion_5')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+        
         $product = OnliItem::with('images')
             ->with('product')
             ->with('specifications')
@@ -70,6 +103,7 @@ class WebController extends Controller
             ->first();
         //dd($product);
         return view('pages/producto-descripcion', [
+            'banner' => $banner,
             'product' => $product
         ]);
     }
@@ -83,5 +117,22 @@ class WebController extends Controller
     public function pagar()
     {
         return view('pages/pagar');
+    }
+    
+    public function preguntas()
+    {
+        $banner = CmsSection::where('component_id', 'banner_preguntas_frecuentes_7')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+        
+        return view('pages/preguntas-frecuentes', [
+            'banner' => $banner
+        ]);
     }
 }

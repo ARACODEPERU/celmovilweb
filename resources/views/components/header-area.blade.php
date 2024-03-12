@@ -74,7 +74,9 @@
                             <nav>
                                 <ul>
                                     <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                    <!--
                                     <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
+                                    -->
                                     @if ($categories && count($categories) > 0)
                                         @foreach ($categories as $category)
                                             <li>
@@ -107,87 +109,32 @@
                                 <nav id="dropdown">
                                     <ul>
                                         <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                        <!--
                                         <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
-                                        <li>
-                                            <a href="">VMPS, BICIMOTOS, BIOS</a>
-                                            <ul>
+                                        -->
+                                        @if ($categories && count($categories) > 0)
+                                            @foreach ($categories as $category)
                                                 <li>
-                                                    <a href="">Baterias Plomo Acido</a>
+                                                    @if ($category->subcategories && count($category->subcategories))
+                                                        <a href="">{{ $category->description }}</a>
+                                                        <ul>
+                                                            @foreach ($category->subcategories as $subCategory)
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ route('web_producto_categoria', $subCategory->id) }}">
+                                                                        {{ $subCategory->description }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                        @else
+                                                        <a href="{{ route('web_producto_categoria', $category->id) }}">
+                                                            {{ $category->description }}
+                                                        </a>
+                                                    @endif
                                                 </li>
-                                                <li>
-                                                    <a href="">Baterias Plomo Lítio</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="">MOTOS</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="">Scooter Moped</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Scooter Vintage</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Deportivos</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Chopper</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="">TRIMOTOS</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="">Baterias Plomo Acido</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Baterias Plomo Lítio</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="">CUATRIMOTOS</a></li>
-                                        <li>
-                                            <a href="">REPUESTOS</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="">Llantas</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Baterias</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Cargadores</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Espejos</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="">ACCESORIOS</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="">Cascos</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Seguridad</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Guantes</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Lentes</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Covertor</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Rodilleras / Coderas</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </nav>
                             </div>

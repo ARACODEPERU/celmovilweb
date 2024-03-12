@@ -116,7 +116,7 @@
                                         <a href="#">Politicas de Privacidad</a>
                                     </li>
                                     <li>
-                                        <a href="#">Preguntas Frecuentes</a>
+                                        <a href="{{ route('web_preguntas_frecuentes') }}">Preguntas Frecuentes</a>
                                     </li>
                                 </ul>
                             </div>
