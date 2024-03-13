@@ -51,7 +51,7 @@ class WebController extends Controller
             )
             ->orderBy('cms_section_items.position')
             ->get();
-        
+
         return view('pages/nosotros', [
             'banner' => $banner
         ]);
@@ -73,6 +73,7 @@ class WebController extends Controller
             ->select(
                 'onli_items.*'
             )
+            ->with('product')
             ->where('products.category_id', $id)
             ->paginate(16)
             ->onEachSide(2);
@@ -95,7 +96,7 @@ class WebController extends Controller
             )
             ->orderBy('cms_section_items.position')
             ->get();
-        
+
         $product = OnliItem::with('images')
             ->with('product')
             ->with('specifications')
@@ -118,7 +119,7 @@ class WebController extends Controller
     {
         return view('pages/pagar');
     }
-    
+
     public function preguntas()
     {
         $banner = CmsSection::where('component_id', 'banner_preguntas_frecuentes_7')  //siempre cambiar el id del componente
@@ -130,7 +131,7 @@ class WebController extends Controller
             )
             ->orderBy('cms_section_items.position')
             ->get();
-        
+
         return view('pages/preguntas-frecuentes', [
             'banner' => $banner
         ]);

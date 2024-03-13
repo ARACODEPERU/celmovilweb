@@ -118,7 +118,7 @@ function agregarAlCarrito(producto) {
                 }
             });
         }else{ //para productos con colores celmovil
-            console.log(producto.color);
+            //console.log(producto.color);
             const json = producto.color;
             const colors = JSON.parse(json.product.sizes).map(size => size.size);
 
