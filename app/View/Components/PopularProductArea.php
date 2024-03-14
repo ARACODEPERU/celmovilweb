@@ -15,7 +15,7 @@ class PopularProductArea extends Component
      */
     public function __construct()
     {
-        $this->products = OnliItem::inRandomOrder()->limit(12)->get();
+        $this->products = OnliItem::with('product')->inRandomOrder()->limit(12)->get();
     }
 
     /**

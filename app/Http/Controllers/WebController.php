@@ -79,6 +79,7 @@ class WebController extends Controller
             ->select(
                 'onli_items.*'
             )
+            ->with('product')
             ->where('products.category_id', $id)
             ->paginate(16)
             ->onEachSide(2);

@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <!-- quick view start 
+    <!-- quick view start
     <div class="product-details quick-view modal animated zoomIn" id="quick-view-product">
         <div class="container">
             <div class="row">
