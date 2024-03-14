@@ -1,15 +1,15 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                    <div class="preloader">
-                                                        <div class="loading-center">
-                                                            <div class="loading-center-absolute">
-                                                                <div class="object object_one"></div>
-                                                                <div class="object object_two"></div>
-                                                                <div class="object object_three"></div>
+                                                        <div class="preloader">
+                                                            <div class="loading-center">
+                                                                <div class="loading-center-absolute">
+                                                                    <div class="object object_one"></div>
+                                                                    <div class="object object_two"></div>
+                                                                    <div class="object object_three"></div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div> -->
+                                                        </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -72,6 +72,7 @@
             <div class="row">
                 <div class="single-check responsive">
                     <form action="{{ route('web_pagar') }}" method="post">
+                        @csrf
                         <div class="single-input p-bottom50 clearfix">
                             <div id="input-hidden">
                                 <input type="hidden" name="product_id[]">
@@ -111,7 +112,8 @@
                     carrito[index].quantity = parseInt(carrito[index].quantity) - 1;
                 }
             }
-            document.getElementById("p_q_"+carrito[index].id).value = carrito[index].quantity; //cambiar valor en el los inputHidden del form pay
+            document.getElementById("p_q_" + carrito[index].id).value = carrito[index]
+            .quantity; //cambiar valor en el los inputHidden del form pay
             localStorage.setItem('carrito', JSON.stringify(carrito));
             carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             console.log(carrito[index].quantity);
