@@ -120,57 +120,83 @@ function agregarAlCarrito(producto) {
         }else{ //para productos con colores celmovil
             //console.log(producto.color);
             const json = producto.color;
-            const colors = JSON.parse(json.product.sizes).map(size => size.size);
+            try { //si tiene colores escogerá el indicado si no catch
+                const colors = JSON.parse(json.product.sizes).map(size => size.size);
 
-            const colorsObject = {};
+                const colorsObject = {};
 
-            colors.forEach(color => {
-              colorsObject[color] = color;
-            });
-
-            (async () => {
-                /* inputOptions can be an object or Promise */
-                const inputOptions = new Promise((resolve) => {
-                  setTimeout(() => {
-                    resolve(colorsObject); //objeto con los colores
-                  }, 1000);
+                colors.forEach(color => {
+                  colorsObject[color] = color;
                 });
-                const { value: color } = await Swal.fire({
-                  title: "Escoge el color de " + producto.nombre +
-                  "<img width='320px' src='"+producto.color.image+"'></img>",
-                  input: "radio",
-                  inputOptions,
-                  inputValidator: (value) => {
-                    if (!value) {
-                      return "Debes escoger un color!";
-                    }
-                  }
-                });
-                if (color) {
-                  Swal.fire({ html: `<h4> ` + producto.nombre + ` de color: ${color} fue agregado al carrito de compras.</h4>` });
-                                      // Obtener el carrito actual del almacenamiento local
-                                      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-                                        producto.color = color;
+
+                (async () => {
+                    /* inputOptions can be an object or Promise */
+                    const inputOptions = new Promise((resolve) => {
+                      setTimeout(() => {
+                        resolve(colorsObject); //objeto con los colores
+                      }, 1000);
+                    });
+                    const { value: color } = await Swal.fire({
+                      title: "Escoge el color de " + producto.nombre +
+                      "<img width='320px' src='"+producto.color.image+"'></img>",
+                      input: "radio",
+                      inputOptions,
+                      inputValidator: (value) => {
+                        if (!value) {
+                          return "Debes escoger un color!";
+                        }
+                      }
+                    });
+                    if (color) {
+                                            Swal.fire({ html: `<h4> ` + producto.nombre + ` de color: ${color} fue agregado al carrito de compras.</h4>` });
+                                            // Obtener el carrito actual del almacenamiento local
+                                            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                                                producto.color = color;
+                                                producto.quantity = 1;
+                                            // Agregar el producto al carrito
+                                            carrito.push(producto);
+
+                                            // Guardar el carrito actualizado en el almacenamiento local
+                                            localStorage.setItem("carrito", JSON.stringify(carrito));
+                                            getTotal();
+                                            cargarContadorCarrito();
+                                            try {
+                                                load_cart_menu();
+                                            } catch (error) {
+
+                                            }
+                                            try {
+                                                cargarItemsCarritoBD();
+                                            } catch (error) {
+
+                                            }
+                                                }
+                                            })();
+            } catch (error) { //si no tiene color se elige directo
+                                        Swal.fire({ html: `<h4> ` + producto.nombre + ` fue agregado al carrito de compras.</h4>` });
+                                        // Obtener el carrito actual del almacenamiento local
+                                        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                                        producto.color = "no aplica";
                                         producto.quantity = 1;
-                                      // Agregar el producto al carrito
-                                      carrito.push(producto);
+                                        // Agregar el producto al carrito
+                                        carrito.push(producto);
 
-                                      // Guardar el carrito actualizado en el almacenamiento local
-                                      localStorage.setItem("carrito", JSON.stringify(carrito));
-                                      getTotal();
-                                      cargarContadorCarrito();
-                                      try {
+                                        // Guardar el carrito actualizado en el almacenamiento local
+                                        localStorage.setItem("carrito", JSON.stringify(carrito));
+                                        getTotal();
+                                        cargarContadorCarrito();
+                                        try {
                                         load_cart_menu();
-                                      } catch (error) {
+                                        } catch (error) {
 
-                                      }
-                                      try {
+                                        }
+                                        try {
                                         cargarItemsCarritoBD();
-                                      } catch (error) {
+                                        } catch (error) {
 
-                                      }
-                }
-              })();
+                                        }
+            }
+
 
 
             // Swal.fire({
@@ -458,6 +484,21 @@ function realizarConsulta(ids) {
                 inputHidden.name = "product_quantity[]"; // Asigna el nombre que desees
                 inputHidden.value = quantity; // obtener dato de carrito
                 document.getElementById("input-hidden").appendChild(inputHidden);
+                //---------------------------------------------------------------------product_color
+                                var color;
+
+                                for (var i = 0; i < data.length; i++) {
+                                if (data[i].id === item.id) {
+                                    color = data[i].color;
+                                    break;
+                                }
+                                }
+                                inputHidden = document.createElement("input");
+                                inputHidden.id = "p_c_"+item.id;
+                                inputHidden.type = "hidden";
+                                inputHidden.name = "product_color[]"; // Asigna el nombre que desees
+                                inputHidden.value = color; // obtener dato de carrito
+                                document.getElementById("input-hidden").appendChild(inputHidden);
                 //---------------------------------------------------------------------product_price
                 inputHidden = document.createElement("input");
                 inputHidden.type = "hidden";
