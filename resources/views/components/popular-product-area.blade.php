@@ -11,7 +11,7 @@
                             </div>
                             <p>
                                 ¿Listo para experimentar lo último en estilo, tecnología y comodidad? 
-                                <br>¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
+                                ¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
                             </p>
                         </div>
                     </div>
