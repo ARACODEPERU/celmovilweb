@@ -73,7 +73,7 @@
                         <div class="mainmenu text-center floatleft">
                             <nav>
                                 <ul>
-                                    <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                    <li><a href="{{ route('web_inicio') }}"> <i class="fa fa-home" style="font-size: 18px;"></i> </a></li>
                                     <!--
                                     <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
                                     -->

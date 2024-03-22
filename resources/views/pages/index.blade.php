@@ -24,6 +24,7 @@
                             <div class="d-tablecell">
                                 <div class="container">
                                     <div class="row">
+                                        <!--
                                         <div class="col-xs-12">
                                             <div class="slide-text">
                                                 <div class="shape animated flipInX">
@@ -31,6 +32,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    -->
                                     </div>
                                 </div>
                             </div>

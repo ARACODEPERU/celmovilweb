@@ -42,6 +42,7 @@
         <div class="footer-top section-padding">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-2"></div>
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <div class="s-footer-text">
                             <div class="footer-title">
@@ -92,14 +93,14 @@
                                         <p> (+51) 921 197 459</p>
                                     </li>
                                     <li>
-                                        <span>Dirección:</span>
-                                        <p>777/a4 Bonosri Road, Danpura East USA. -25000</p>
+                                        <span>Horario:</span>
+                                        <p>...</p>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="col-xs-12 col-sm-2 col-md-3">
                         <div class="s-footer-text">
                             <div class="footer-title">
                                 <h4>NAVEGAR :</h4>
@@ -122,6 +123,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--
                     <div class="col-xs-12 col-sm-2 col-md-3">
                         <div class="s-footer-text">
                             <div class="footer-title">
@@ -148,6 +150,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
