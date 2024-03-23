@@ -192,7 +192,7 @@
             <div class="col-md-6 half-width">
                 <img style="width: 100%;" src="{{ asset('themes/celmovil/img/LocalWeb.jpg') }}" alt="">
                 <div class="ubicacion" style="padding: 14px 15px; background: #ff6600; color: #fff; text-align:center; ">
-                    <b style="font-size: 16px;">Av. América Sur 397, Trujillo 13006</b>
+                    <b style="font-size: 16px;">Av. América Sur 397, Trujillo 13006 - Urb. Aranjuez</b>
                 </div>
             </div>
             <div class="col-md-6 googleMap-info half-width">

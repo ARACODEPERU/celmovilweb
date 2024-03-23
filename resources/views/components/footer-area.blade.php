@@ -85,16 +85,16 @@
                             <div class="contact-link">
                                 <ul>
                                     <li>
-                                        <span>E-mail:</span>
+                                        <span style="color: #ff6600;"><b>E-mail:</b></span>
                                         <p>ventas@celmovil.pe</p>
                                     </li>
                                     <li>
-                                        <span>Teléfono:</span>
+                                        <span style="color: #ff6600;"><b>Teléfono:</b></span>
                                         <p> (+51) 921 197 459</p>
                                     </li>
                                     <li>
-                                        <span>Horario:</span>
-                                        <p>...</p>
+                                        <span style="color: #ff6600;"><b>Horario:</b></span>
+                                        <p>Lunes a Sabado: 9:30 a.m. - 7:00 p.m.</p>
                                     </li>
                                 </ul>
                             </div>
