@@ -198,7 +198,7 @@
             <div class="col-md-6 googleMap-info half-width">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.992244735301!2d-79.01367372520318!3d-8.102270681046402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad1625ab759b6d%3A0xca47db73dbf8502a!2sAv.%20Am%C3%A9rica%20Sur%20397%2C%20Trujillo%2013006!5e0!3m2!1ses-419!2spe!4v1706164769030!5m2!1ses-419!2spe"
-                    width="100%" height="470" style="border:0;" allowfullscreen="" loading="lazy"
+                    width="100%" height="680" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
 
             </div>
