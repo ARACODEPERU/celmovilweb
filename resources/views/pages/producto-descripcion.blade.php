@@ -1,8 +1,8 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                                                        <div class="preloader">                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                <div class="preloader">                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                            </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -67,8 +67,8 @@
                                     </li>
                                 </ul>
                                 <!--
-                                <span style="color: orange;"><b>Agotado </b></span>
-                                -->
+                                        <span style="color: orange;"><b>Agotado </b></span>
+                                        -->
                             </div>
                             <hr />
                             {!! $product->description !!}
@@ -99,15 +99,18 @@
                             <div class="row">
                                 <div class="col-md-12" style="padding: 10px 17px; margin-top: -10px;">
                                     <div class="color-brand clearfix">
-                                        <div class="s-select">
-                                            <div class="custom-select">
-                                                <select class="form-control" id="color_selected">
-                                                    @foreach (json_decode($product->product->sizes) as $color)
-                                                        <option value="{{ $color->size }}">{{ $color->size }}</option>
-                                                    @endforeach
-                                                </select>
+                                        @if ($product->product->presentations)
+                                            <div class="s-select">
+                                                <div class="custom-select">
+                                                    <select class="form-control" id="color_selected">
+                                                        @foreach (json_decode($product->product->sizes) as $color)
+                                                            <option value="{{ $color->size }}">{{ $color->size }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                         {{-- <div class="s-select">
                                             <div class="custom-select">
                                                 <select class="form-control">
