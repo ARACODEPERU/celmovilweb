@@ -267,6 +267,9 @@ class WebController extends Controller
 
     public function graciasCompra($id)
     {
-        dd('gracias por su compra');
+        $products[0]=null;
+        return view('pages/gracias-compra', [
+            'products' => $products
+        ]);
     }
 }
