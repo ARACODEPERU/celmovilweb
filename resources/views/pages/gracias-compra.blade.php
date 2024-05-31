@@ -27,8 +27,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @if (count($products) > 0)
-                                    @foreach ($products as $product) --}}
                                         <tr>
                                             <td class="td-img text-left">
                                                 <a href="#">
@@ -69,8 +67,7 @@
                                             </td>
                                             <td>S/ 1900.00</td>
                                         </tr>
-                                    {{-- @endforeach
-                                @endif --}}
+
                             </tbody>
                         </table>
                     </div>
