@@ -128,7 +128,9 @@
                                             {{ item.clie_full_name }}
                                         </td>
                                         <td class="py-2 px-2 dark:border-strokedark">
-                                            {{ item.person.telephone }}
+                                            <template v-if="item.person">
+                                                {{ item.person.telephone }}
+                                            </template>
                                         </td>
                                         <td class="py-2 px-2 dark:border-strokedark">
                                             {{ item.email }}

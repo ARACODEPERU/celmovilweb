@@ -8,7 +8,8 @@
 
     <!-- page banner area start -->
     <div class="page-banner">
-        <img width="800px" src="https://www.pinfuvote.net/wp-content/uploads/2020/04/gracias-por-tu-compra.jpg" alt="Page Banner" />
+        <img width="800px" src="https://www.pinfuvote.net/wp-content/uploads/2020/04/gracias-por-tu-compra.jpg"
+            alt="Page Banner" />
     </div>
     <!-- page banner area end -->
 
@@ -27,61 +28,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                        <tr>
-                                            <td class="td-img text-left">
-                                                <a href="#">
-                                                    <img style="width: 100px;" src="{{ asset('themes/celmovil/img/slider/bg3.jpg') }}"
-                                                        alt="Add Product" />
-                                                </a>
-                                                <div class="">
-                                                    <p>
-                                                        <a href="#">Moto Deportiva 1500W</a><br>
-                                                        <b>Color:</b> Negro
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p>3</p>
-                                            </td>
-                                            <td>S/ 4500.00</td>
-                                        </tr>
-
-
-
-
-                                        <tr>
-                                            <td class="td-img text-left">
-                                                <a href="#">
-                                                    <img style="width: 100px;" src="{{ asset('themes/celmovil/img/slider/bg3.jpg') }}"
-                                                        alt="Add Product" />
-                                                </a>
-                                                <div class="">
-                                                    <p>
-                                                        <a href="#">Trimoto Electrica Familiar</a><br>
-                                                        <b>Color:</b> Rojo
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p>3</p>
-                                            </td>
-                                            <td>S/ 1900.00</td>
-                                        </tr>
-
+                                @foreach ($sale->details as $detail)
+                                    <tr>
+                                        <td class="td-img text-left">
+                                            <a href="#">
+                                                <img style="width: 100px;" src="{{ $detail->item->image }}"
+                                                    alt="Add Product" />
+                                            </a>
+                                            <div class="">
+                                                <p>
+                                                    {{ $detail->item->name }}
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p>{{ $detail->quantity }}</p>
+                                        </td>
+                                        <td>S/ {{ $detail->price }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div style="padding: 20px; background: #f8f8f8;">
-                        <h3>Tu Compra ha sido Exitosa</h3>
-                        <p>Agradecemos su preferencia por nuestros productos. Por favor, ahora espera que nuestro personal se comunicará contigo en las proximas horas.</p>
-                        <br>
-                        <p>Centro de Atención al Cliente: 955 555 555</p><br>
-                        <h4>Total:</h4>
-                        <p style="color: orange; font-size: 16px;"><b>S/ 6400.00</b></p>
-                    </div>
-                    <div id="cardPaymentBrick_container"></div>
+                    <div id="statusScreenBrick_container"></div>
                 </div>
             </div>
         </div>
@@ -89,7 +60,43 @@
     <!-- cart page content section end -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
+    <script>
+        const mp = new MercadoPago("{{ env('MERCADOPAGO_KEY') }}", {
+            locale: 'es-PE'
+        });
+        const bricksBuilder = mp.bricks();
+        const renderStatusScreenBrick = async (bricksBuilder) => {
+            const settings = {
+                initialization: {
+                    paymentId: "{{ $sale->mercado_payment_id }}", // Payment identifier, from which the status will be checked
+                },
+                customization: {
+                    visual: {
+                        hideStatusDetails: true,
+                        hideTransactionDate: true,
+                        style: {
+                            theme: 'bootstrap', // 'default' | 'dark' | 'bootstrap' | 'flat'
+                        }
+                    },
+                    backUrls: {
+                        'error': "{{ route('web_error_al_comprar', $sale->id) }}",
+                        'return': "{{ route('cms_principal') }}"
+                    }
+                },
+                callbacks: {
+                    onReady: () => {
+                        // Callback called when Brick is ready
+                    },
+                    onError: (error) => {
+                        // Callback called for all Brick error cases
+                    },
+                },
+            };
+            window.statusScreenBrickController = await bricksBuilder.create('statusScreen',
+                'statusScreenBrick_container', settings);
+        };
+        renderStatusScreenBrick(bricksBuilder);
+    </script>
     <br><br>
     <!-- footer - section start -->
     <x-footer-area />

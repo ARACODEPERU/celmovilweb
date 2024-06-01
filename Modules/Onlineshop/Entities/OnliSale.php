@@ -30,7 +30,9 @@ class OnliSale extends Model
         'response_payer',
         'response_payment_method_id',
         'response_credit_card',
-        'response_refunds'
+        'response_refunds',
+        'mercado_payment_id',
+        'mercado_payment'
     ];
 
     protected static function newFactory()

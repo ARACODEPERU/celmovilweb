@@ -171,9 +171,16 @@ class WebController extends Controller
                     'onli_item_id'  => $id
                 ]);
             }
+
             $preference = $client->create([
                 "items" => $items,
             ]);
+
+            // $preference->back_urls = array(
+            //     "success" => route('web_gracias_por_comprar_tu_entrada', $sale->id),
+            //     // "failure" => "http://www.tu-sitio/failure",
+            //     // "pending" => "http://www.tu-sitio/pending"
+            // );
 
             $preference_id =  $preference->id;
         } catch (\MercadoPago\Exceptions\MPApiException $e) {
@@ -216,6 +223,7 @@ class WebController extends Controller
         $client = new PaymentClient();
 
         try {
+
             $payment = $client->create([
                 "token" => $request->get('token'),
                 "issuer_id" => $request->get('issuer_id'),
@@ -224,9 +232,10 @@ class WebController extends Controller
                 "installments" => $request->get('installments'),
                 "payer" => $request->get('payer')
             ]);
-            $sale = OnliSale::find($id);
-            if ($payment->status == 'approved') {
 
+            $sale = OnliSale::find($id);
+
+            if ($payment->status == 'approved') {
 
                 $sale->email = $request->get('payer')['email'];
                 $sale->clie_full_name = $request->get('transaction_amount');
@@ -237,6 +246,8 @@ class WebController extends Controller
                 $sale->response_date_approved = Carbon::now()->format('Y-m-d');
                 $sale->response_payer = json_encode($request->all());
                 $sale->response_payment_method_id = $request->get('payment_type');
+                $sale->mercado_payment_id = $payment->id;
+                $sale->mercado_payment = json_encode($payment);
 
                 $sale->save();
 
@@ -267,9 +278,16 @@ class WebController extends Controller
 
     public function graciasCompra($id)
     {
-        $products[0]=null;
+        $products[0] = null;
+        $sale = OnliSale::where('id', $id)->with('details.item')->first();
         return view('pages/gracias-compra', [
-            'products' => $products
+            'products' => $products,
+            'sale' => $sale
         ]);
+    }
+
+    public function errorCompra($id)
+    {
+        dd($id);
     }
 }

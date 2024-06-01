@@ -30,7 +30,7 @@ Route::put('/process_payment/{id}', [WebController::class, 'processPayment'])->n
 Route::get('/preguntas-frecuentes', [WebController::class, 'preguntas'])->name('web_preguntas_frecuentes');
 Route::get('/gracias-compra/{id}', [WebController::class, 'graciasCompra'])->name('web_gracias_por_comprar_tu_entrada');
 
-
+Route::get('/error-compra/{id}', [WebController::class, 'errorCompra'])->name('web_error_al_comprar');
 
 Route::get('/blog/home', [BlogController::class, 'index'])->name('blog_principal');
 Route::get('/article/{url}', [BlogController::class, 'article'])->name('blog_article_by_url');
