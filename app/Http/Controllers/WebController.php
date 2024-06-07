@@ -126,6 +126,10 @@ class WebController extends Controller
         $productnames = $request->get('product_name');
         $productquantitys = $request->get('product_quantity');
         $productprices = $request->get('product_price');
+
+        $comprador_nombre = $request->get('names');
+        $comprador_telefono = $request->get('phone');
+
         $preference_id = null;
         try {
             MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
@@ -137,6 +141,8 @@ class WebController extends Controller
             $sale = OnliSale::create([
                 'module_name'                   => 'Onlineshop',
                 'person_id'                     => null,
+                'clie_full_name'                => $comprador_nombre,
+                'phone'                         => $comprador_telefono,
                 'email'                         => null,
                 'response_status'               => 'pendiente',
             ]);

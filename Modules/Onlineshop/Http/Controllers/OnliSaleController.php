@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use MercadoPago\Client\Common\RequestOptions;
 use Modules\Academic\Entities\AcaCapRegistration;
 use Modules\Academic\Entities\AcaStudent;
 use Modules\Onlineshop\Entities\OnliItem;
@@ -19,6 +20,7 @@ use Modules\Onlineshop\Entities\OnliSaleDetail;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Exceptions\MPApiException;
+use MercadoPago\Client\Payment\PaymentClient;
 
 class OnliSaleController extends Controller
 {
@@ -195,5 +197,15 @@ class OnliSaleController extends Controller
             echo "Estado: " . $status . PHP_EOL;
             echo "Error: " . $error . PHP_EOL;
         }
+    }
+
+    public function consultarPago()
+    {
+        MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
+        $client = new PaymentClient();
+        $request_options = new RequestOptions();
+        $request_options->setCustomHeaders(["X-Idempotency-Key: <SOME_UNIQUE_VALUE>"]);
+
+        $client->capture($payment_id, $request_options);
     }
 }

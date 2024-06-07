@@ -1,15 +1,15 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                        <div class="preloader">
-                                                            <div class="loading-center">
-                                                                <div class="loading-center-absolute">
-                                                                    <div class="object object_one"></div>
-                                                                    <div class="object object_two"></div>
-                                                                    <div class="object object_three"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
+                                                                                <div class="preloader">
+                                                                                    <div class="loading-center">
+                                                                                        <div class="loading-center-absolute">
+                                                                                            <div class="object object_one"></div>
+                                                                                            <div class="object object_two"></div>
+                                                                                            <div class="object object_three"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -85,6 +85,16 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">
+                                    <h4>Datos de comprador</h4>
+                                    <div class="form-group">
+                                        <label for="names">Nombre</label>
+                                        <input name="names" id="names" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Teléfono</label>
+                                        <input name="phone" id="phone" class="form-control" required />
+                                    </div>
+
                                     <button type="submit" class="btn btn-primary g-recaptcha" style="width: 100%;"
                                         id="btn-crear-cuenta">
                                         <i class="fa fa-cart-shopping"></i>
@@ -113,7 +123,7 @@
                 }
             }
             document.getElementById("p_q_" + carrito[index].id).value = carrito[index]
-            .quantity; //cambiar valor en el los inputHidden del form pay
+                .quantity; //cambiar valor en el los inputHidden del form pay
             localStorage.setItem('carrito', JSON.stringify(carrito));
             carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             console.log(carrito[index].quantity);
