@@ -110,6 +110,9 @@
                                         Email
                                     </th>
                                     <th class="py-2 px-4 font-medium text-black dark:text-white">
+                                        Fecha pagado
+                                    </th>
+                                    <th class="py-2 px-4 font-medium text-black dark:text-white">
                                         Total
                                     </th>
                                     <th class="py-2 px-4 font-medium text-black dark:text-white">
@@ -141,6 +144,9 @@
                                         </td>
                                         <td class="py-2 px-2 dark:border-strokedark">
                                             {{ item.email }}
+                                        </td>
+                                        <td class="py-2 px-2 dark:border-strokedark">
+                                            {{ item.response_date_approved }}
                                         </td>
                                         <td class="py-2 px-2 dark:border-strokedark">
                                             {{ item.total }}
