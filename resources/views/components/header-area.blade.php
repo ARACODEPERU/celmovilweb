@@ -32,6 +32,14 @@
         }
     </style>
     <header>
+        <script>
+            ruta_carrito = "{{ route("web_carrito") }}"
+            function confirmarEliminarCarrito() {
+                if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
+                eliminarCarrito();
+                }
+            }
+        </script>
         <div class="header-top">
             <div class="container">
                 <div class="row">
@@ -146,8 +154,8 @@
                                             id="contadorCarritoWeb"></span></a>
                                     <ul class="cart-menu" id="cart-menu">
                                         <li class="cart-menu-btn">
-                                            <a href="cart.html">view cart</a>
-                                            <a href="checkout.html">checkout</a>
+                                            <a href="{{ route('web_carrito') }}">Ir al Carrito</a>
+                                            <a style="background-color: red; color: white;" href="" onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
                                         </li>
                                     </ul>
                                 </li>

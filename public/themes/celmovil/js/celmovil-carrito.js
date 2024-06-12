@@ -442,6 +442,14 @@ function realizarConsulta(ids) {
             respuesta.items.forEach(function(item) {
                 // Accede a las propiedades del objeto
                 renderProducto(item, index++);
+                if (index-1 == respuesta.items.length - 1){
+                    cart_menu = document.getElementById('cart-menu');
+                    cart_menu.innerHTML +=`
+                                        <li class="cart-menu-btn">
+                                            <a href="`+ruta_carrito+`">Ir al Carrito</a>
+                                            <a style="background-color: red; color: white;" href="" onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
+                                        </li>`;
+                }
                 // Crea un elemento input oculto
                 let inputHidden = document.createElement("input");
                 // Establece los atributos del input
