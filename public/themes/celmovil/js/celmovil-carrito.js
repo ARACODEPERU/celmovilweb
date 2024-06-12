@@ -434,10 +434,22 @@ function realizarConsulta(ids) {
             var index = 0;
             if(document.getElementById('cart'))document.getElementById('cart').innerHTML=null;
             if(document.getElementById('cart-menu'))document.getElementById('cart-menu').innerHTML=null;
-            document.getElementById("input-hidden").innerHTML = null; // borrando inputs del form pay
+            try {
+                document.getElementById("input-hidden").innerHTML = null; // borrando inputs del form pay
+            } catch (error) {
+
+            }
             respuesta.items.forEach(function(item) {
                 // Accede a las propiedades del objeto
                 renderProducto(item, index++);
+                if (index-1 == respuesta.items.length - 1){
+                    cart_menu = document.getElementById('cart-menu');
+                    cart_menu.innerHTML +=`
+                                        <li class="cart-menu-btn">
+                                            <a href="`+ruta_carrito+`">Ir al Carrito</a>
+                                            <a style="background-color: red; color: white;" href="" onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
+                                        </li>`;
+                }
                 // Crea un elemento input oculto
                 let inputHidden = document.createElement("input");
                 // Establece los atributos del input
@@ -454,19 +466,31 @@ function realizarConsulta(ids) {
                 inputHidden.type = "hidden";
                 inputHidden.name = "product_id[]"; // Asigna el nombre que desees
                 inputHidden.value = item.id; // Asigna el valor que desees
-                document.getElementById("input-hidden").appendChild(inputHidden);
+                try {
+                    document.getElementById("input-hidden").appendChild(inputHidden);
+                } catch (error) {
+
+                }
                 //----------------------------------------------------------------------product_name
                 inputHidden = document.createElement("input");
                 inputHidden.type = "hidden";
                 inputHidden.name = "product_name[]"; // Asigna el nombre que desees
                 inputHidden.value = item.name; // Asigna el valor que desees
-                document.getElementById("input-hidden").appendChild(inputHidden);
+                try {
+                    document.getElementById("input-hidden").appendChild(inputHidden);
+                } catch (error) {
+
+                }
                 //---------------------------------------------------------------------product_category_id
                 inputHidden = document.createElement("input");
                 inputHidden.type = "hidden";
                 inputHidden.name = "product_category_id[]"; // Asigna el nombre que desees
                 inputHidden.value = item.id; // Asigna el valor que desees
-                document.getElementById("input-hidden").appendChild(inputHidden);
+                try {
+                    document.getElementById("input-hidden").appendChild(inputHidden);
+                } catch (error) {
+
+                }
                 //---------------------------------------------------------------------product_quantity
                 var dataString = localStorage.getItem("carrito");
                 var data = JSON.parse(dataString);
@@ -483,7 +507,11 @@ function realizarConsulta(ids) {
                 inputHidden.type = "hidden";
                 inputHidden.name = "product_quantity[]"; // Asigna el nombre que desees
                 inputHidden.value = quantity; // obtener dato de carrito
-                document.getElementById("input-hidden").appendChild(inputHidden);
+                try {
+                    document.getElementById("input-hidden").appendChild(inputHidden);
+                } catch (error) {
+
+                }
                 //---------------------------------------------------------------------product_color
                                 var color;
 
@@ -498,13 +526,21 @@ function realizarConsulta(ids) {
                                 inputHidden.type = "hidden";
                                 inputHidden.name = "product_color[]"; // Asigna el nombre que desees
                                 inputHidden.value = color; // obtener dato de carrito
-                                document.getElementById("input-hidden").appendChild(inputHidden);
+                                try {
+                                    document.getElementById("input-hidden").appendChild(inputHidden);
+                                } catch (error) {
+
+                                }
                 //---------------------------------------------------------------------product_price
                 inputHidden = document.createElement("input");
                 inputHidden.type = "hidden";
                 inputHidden.name = "product_price[]"; // Asigna el nombre que desees
                 inputHidden.value = item.price; // Asigna el valor que desees
-                document.getElementById("input-hidden").appendChild(inputHidden);
+                try {
+                    document.getElementById("input-hidden").appendChild(inputHidden);
+                } catch (error) {
+
+                }
                 console.log("ITEM: ",item);
 
             });

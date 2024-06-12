@@ -56,6 +56,10 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('themes/celmovil/js/celmovil-carrito.js') }}"></script>
+        <script>
+            eliminarCarrito();
+        </script>
     </section>
     <!-- cart page content section end -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
