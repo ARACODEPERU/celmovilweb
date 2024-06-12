@@ -124,9 +124,9 @@
                                             <button @click="openModalDetails(item)" type="button" title="ver detalles" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                 <font-awesome-icon :icon="faMagnifyingGlass" />
                                             </button>
-                                            <button @click="checkPayment(item)" type="button" title="Consultar a mercado pago" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                                            <!-- <button @click="checkPayment(item)" type="button" title="Consultar a mercado pago" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                                                 <font-awesome-icon :icon="faRotate" />
-                                            </button>
+                                            </button> -->
                                         </td>
                                         <td class="py-2 px-2 dark:border-strokedark">
                                             {{ item.clie_full_name }}

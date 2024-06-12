@@ -199,12 +199,12 @@ class OnliSaleController extends Controller
         }
     }
 
-    public function consultarPago()
+    public function consultarPago($payment_id)
     {
         MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
         $client = new PaymentClient();
         $request_options = new RequestOptions();
-        $request_options->setCustomHeaders(["X-Idempotency-Key: <SOME_UNIQUE_VALUE>"]);
+        //$request_options->setCustomHeaders(["X-Idempotency-Key: <SOME_UNIQUE_VALUE>"]);
 
         $client->capture($payment_id, $request_options);
     }

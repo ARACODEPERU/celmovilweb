@@ -244,10 +244,10 @@ class WebController extends Controller
             if ($payment->status == 'approved') {
 
                 $sale->email = $request->get('payer')['email'];
-                $sale->clie_full_name = $request->get('transaction_amount');
+                $sale->total = $request->get('transaction_amount');
                 $sale->identification_type = $request->get('payer')['identification']['type'];
                 $sale->identification_number = $request->get('payer')['identification']['number'];
-                $sale->response_status = $request->get('collection_status');
+                $sale->response_status = $payment->status;
                 $sale->response_id = $request->get('collection_id');
                 $sale->response_date_approved = Carbon::now()->format('Y-m-d');
                 $sale->response_payer = json_encode($request->all());
