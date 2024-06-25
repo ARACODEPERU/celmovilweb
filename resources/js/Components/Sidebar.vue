@@ -139,7 +139,7 @@ const xasset = assetUrl;
                 <!-- SIDEBAR HEADER -->
         <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
             <Link  :href="route('dashboard')">
-                <img :src="xasset+'storage'+$page.props.company.logo"  alt="Logo" />
+                <img :src="xasset+'storage/'+$page.props.company.logo"  alt="Logo" />
             </Link >
 
             <button class="block lg:hidden" @click.stop="closeSidebarToggle">
