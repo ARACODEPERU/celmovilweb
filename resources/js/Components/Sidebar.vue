@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-import { 
-    faPoll, 
-    faChevronDown, 
-    faBolt, 
+import {
+    faPoll,
+    faChevronDown,
+    faBolt,
     faChevronUp,
     faArrowLeftLong,
     faKitMedical,
@@ -139,7 +139,7 @@ const xasset = assetUrl;
                 <!-- SIDEBAR HEADER -->
         <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
             <Link  :href="route('dashboard')">
-                <img :src="xasset+'storage/'+$page.props.company.logo"  alt="Logo" />
+                <img :src="xasset+'storage'+$page.props.company.logo"  alt="Logo" />
             </Link >
 
             <button class="block lg:hidden" @click.stop="closeSidebarToggle">
@@ -154,13 +154,13 @@ const xasset = assetUrl;
                 <!-- Menu Group -->
                 <div>
                     <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
-                    
+
                     <ul class="mb-6 flex flex-col gap-1.5">
                         <template v-for="(item, index) in menu" :key="index">
                             <li v-can="item.permissions">
 
                                 <a v-if="item.route == null"
-                                    href="#" 
+                                    href="#"
                                     @click.prevent="toggleSubItems(index)"
                                     class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4">
                                     <font-awesome-icon :icon="item.icom" />
@@ -172,7 +172,7 @@ const xasset = assetUrl;
                                     </template>
                                 </a>
                                 <Link v-else
-                                    :href="item.route" 
+                                    :href="item.route"
                                     class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4">
                                     <font-awesome-icon :icon="item.icom" />
                                     {{ item.text }}
@@ -183,7 +183,7 @@ const xasset = assetUrl;
                                         <template v-for="(subItem, subIndex) in item.items" :key="subIndex">
                                             <li v-can="subItem.permissions">
                                                 <a v-if="subItem.route == null"
-                                                    href="#" 
+                                                    href="#"
                                                     @click.prevent="subItem.status = !subItem.status"
                                                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white">
                                                     {{ subItem.text }}
