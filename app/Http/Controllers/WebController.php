@@ -228,61 +228,66 @@ class WebController extends Controller
         MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
 
         $client = new PaymentClient();
+        $sale = OnliSale::find($id);
 
-        try {
+        if ($sale->response_status == 'approved') {
+            return response()->json(['error' => 'el pedido ya fue procesado, ya no puede volver a pagar'], 412);
+        } else {
+            try {
 
-            $payment = $client->create([
-                "token" => $request->get('token'),
-                "issuer_id" => $request->get('issuer_id'),
-                "payment_method_id" => $request->get('payment_method_id'),
-                "transaction_amount" => (float) $request->get('transaction_amount'),
-                "installments" => $request->get('installments'),
-                "payer" => $request->get('payer')
-            ]);
-
-            $sale = OnliSale::find($id);
-
-            if ($payment->status == 'approved') {
-
-                $sale->email = $request->get('payer')['email'];
-                $sale->total = $request->get('transaction_amount');
-                $sale->identification_type = $request->get('payer')['identification']['type'];
-                $sale->identification_number = $request->get('payer')['identification']['number'];
-                $sale->response_status = $payment->status;
-                $sale->response_id = $request->get('collection_id');
-                $sale->response_date_approved = Carbon::now()->format('Y-m-d');
-                $sale->response_payer = json_encode($request->all());
-                $sale->response_payment_method_id = $request->get('payment_type');
-                $sale->mercado_payment_id = $payment->id;
-                $sale->mercado_payment = json_encode($payment);
-
-                ///enviar correo
-                Mail::to($sale->email)
-                    ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
-
-                $sale->save();
-                return response()->json([
-                    'status' => $payment->status,
-                    'message' => $payment->status_detail,
-                    'url' => route('web_gracias_por_comprar_tu_entrada', $sale->id)
-                ]);
-            } else {
-
-                return response()->json([
-                    'status' => $payment->status,
-                    'message' => $payment->status_detail,
-                    'url' => route('web_eventos_pagar', $id)
+                $payment = $client->create([
+                    "token" => $request->get('token'),
+                    "issuer_id" => $request->get('issuer_id'),
+                    "payment_method_id" => $request->get('payment_method_id'),
+                    "transaction_amount" => (float) $request->get('transaction_amount'),
+                    "installments" => $request->get('installments'),
+                    "payer" => $request->get('payer')
                 ]);
 
-                $sale->delete();
+
+
+                if ($payment->status == 'approved') {
+
+                    $sale->email = $request->get('payer')['email'];
+                    $sale->total = $request->get('transaction_amount');
+                    $sale->identification_type = $request->get('payer')['identification']['type'];
+                    $sale->identification_number = $request->get('payer')['identification']['number'];
+                    $sale->response_status = $payment->status;
+                    $sale->response_id = $request->get('collection_id');
+                    $sale->response_date_approved = Carbon::now()->format('Y-m-d');
+                    $sale->response_payer = json_encode($request->all());
+                    $sale->response_payment_method_id = $request->get('payment_type');
+                    $sale->mercado_payment_id = $payment->id;
+                    $sale->mercado_payment = json_encode($payment);
+
+                    ///enviar correo
+                    Mail::to($sale->email)
+                        ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
+
+                    $sale->save();
+                    return response()->json([
+                        'status' => $payment->status,
+                        'message' => $payment->status_detail,
+                        'url' => route('web_gracias_por_comprar_tu_entrada', $sale->id)
+                    ]);
+                } else {
+
+                    return response()->json([
+                        'status' => $payment->status,
+                        'message' => $payment->status_detail,
+                        'url' => route('web_eventos_pagar', $id)
+                    ]);
+
+                    $sale->delete();
+                }
+            } catch (\MercadoPago\Exceptions\MPApiException $e) {
+                // Manejar la excepción
+                $response = $e->getApiResponse();
+                $content  = $response->getContent();
+
+                $message = $content['message'];
+                return response()->json(['error' => 'Error al procesar el pago: ' . $message], 412);
             }
-        } catch (\MercadoPago\Exceptions\MPApiException $e) {
-            // Manejar la excepción
-            $response = $e->getApiResponse();
-            $content  = $response->getContent();
-
-            $message = $content['message'];
-            return response()->json(['error' => 'Error al procesar el pago: ' . $message], 412);
         }
     }
 
