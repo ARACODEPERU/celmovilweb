@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmPurchaseMail;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 use Intervention\Image\Font;
 use Illuminate\Support\Facades\Storage;
@@ -255,8 +256,11 @@ class WebController extends Controller
                 $sale->mercado_payment_id = $payment->id;
                 $sale->mercado_payment = json_encode($payment);
 
-                $sale->save();
+                ///enviar correo
+                Mail::to($sale->email)
+                    ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
 
+                $sale->save();
                 return response()->json([
                     'status' => $payment->status,
                     'message' => $payment->status_detail,
