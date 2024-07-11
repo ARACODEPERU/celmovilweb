@@ -6,7 +6,7 @@
     <a class="appInstagram" target="_blanck" href="{{ $redesSociales[3]->content }}">
         <img src="{{ $redesSociales[2]->content }}" alt="Instagram">
     </a>
-    
+
     <a class="appYoutube" target="_blanck" href="{{ $redesSociales[5]->content }}">
         <img src="{{ $redesSociales[4]->content }}" alt="Youtube">
     </a>
@@ -14,7 +14,7 @@
     <a class="appTiktok" target="_blanck" href="{{ $redesSociales[7]->content }}">
         <img src="{{ $redesSociales[6]->content }}" alt="Tiktok">
     </a>-->
-    
+
     <a class="appWhatsapp" target="_blanck" href="https://api.whatsapp.com/send?phone=51{{ $redesSociales[9]->content }}&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?">
         <img src="{{ $redesSociales[8]->content }}" alt="Whatsapp">
     </a>
@@ -203,7 +203,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="left floatleft">
-                            <p>Copyright &copy; 2024 - Desarrollado por <a href="#">ARACODE SMART SOLUTIÓN</a></p>
+                            <p>Copyright &copy; 2024 - Desarrollado por <a href="#">ARACODE SMART SOLUTIONS</a></p>
                         </div>
                         <div class="right mayment-card floatright">
                             <ul>

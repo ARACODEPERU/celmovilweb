@@ -30,7 +30,7 @@ class ConfirmPurchaseMail extends Mailable
     {
         return new Envelope(
             from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
-            subject: 'Confirmar compra CELMOVIL',
+            subject: 'Gracias por tu compra en '.env('APP_NAME'),
         );
     }
 
