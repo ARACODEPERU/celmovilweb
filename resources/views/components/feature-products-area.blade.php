@@ -23,9 +23,7 @@
                                     <div class="product-item">
                                         <div class="pro-img">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                <img
-                                                    src="{{ $product->image }}" style="max-height: 237px"
-                                                    alt="" />
+                                                <img src="{{ $product->image }}" style="max-height: 237px;" alt="" />
                                             </a>
                                         </div>
                                         <div class="actions-btn">

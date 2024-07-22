@@ -59,6 +59,7 @@
                         <div class="singl-pro-title">
                             <h3>{{ $product->name }}</h3>
                             <h1>S/ {{ $product->price }}</h1>
+                            <span style="color: #ff6600;">*Obten un descuento del 4% por tus compras fisicas en tienda. </span>
                             <div class="categ-tag">
                                 <ul class="clearfix">
                                     <li>
