@@ -28,7 +28,7 @@
                                                 <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"  style="width: 220px; height: 220px;" />
                                             </a>
                                         </div>
-                                        <div class="actions-btn" style="position: absolute; width: 100%; margin-top: -20px;">
+                                        <div class="actions-btn" style="position: absolute; width: 100%; margin-top: -50px;">
                                             <ul class="clearfix">
                                                 <li>
                                                     <a onclick="agregarAlCarrito({ id: {{ $product->id }}, nombre:{{ '"'.$product->name.'"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"><i class="fa fa-shopping-cart"></i></a>
