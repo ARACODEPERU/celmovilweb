@@ -44,8 +44,8 @@
                                         </div>
                                         <div class="riding-title clearfix">
                                             <div class="product-title">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}" style="height: 150px;">
-                                                    <h5>{{ $product->name }}</h5>
+                                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                    <h5  style="height: 40px;">{{ $product->name }} sdsdd sds </h5>
                                                 </a>
                                                 <p>Precio: <span>S/ {{ $product->price - ($product->discount ?? 0) }}</span>
                                                 </p>
