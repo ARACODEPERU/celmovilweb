@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-10 col-text-center">
                     <div class="section-title text-center">
-                        <h3><span>Productos</span> Nuevos</h3>
+                        <h1><span>Productos</span> Nuevos</h1>
                         <div class="shape">
                             <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                         </div>

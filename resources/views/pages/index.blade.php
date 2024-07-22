@@ -177,7 +177,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                 <div class="section-title text-center">
-                    <h3><span>Oficina</span> Principal</h3>
+                    <h1><span>Oficina</span> Principal</h1>
                     <div class="shape">
                         <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                     </div>
