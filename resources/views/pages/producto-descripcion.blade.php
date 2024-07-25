@@ -56,9 +56,9 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="right">
-                        <div class="singl-pro-title">
+                        <div class="singl-pro-title"> 
                             <h3>{{ $product->name }}</h3>
-                            <h1>S/ {{ $product->price }}</h1>
+                            <h1>S/ {{ number_format($product->price, 2) }}</h1>
                             @if ($product->category_description=="Vmps, Bicimotos, Bios" || $product->category_description=="Trimoto"  
                                 || $product->category_description=="Cuatrimotos"  || $product->category_description=="Moto" 
                                 || $product->category_description=="Scooter Moped" || $product->category_description=="Deportivos"

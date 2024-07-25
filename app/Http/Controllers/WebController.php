@@ -305,4 +305,5 @@ class WebController extends Controller
     {
         dd($id);
     }
+
 }

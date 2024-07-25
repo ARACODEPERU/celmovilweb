@@ -60,9 +60,9 @@
                                             <div class="riding-title clearfix">
                                                 <div class="product-title">
                                                     <a href="{{ route('web_producto_descripcion', $product->id) }}"><h6>{{ $product->name }}</h6></a>
-                                                    <p>Precio: <span>S/. {{ $product->price }} </span>
+                                                    <p>Precio: <span>S/ {{ number_format($product->price, 2)  }} </span>
                                                         @if ($product->discount > 0)
-                                                            <del>S/ {{ $product->price - ($product->discount ?? 0) }}</del>
+                                                            <del>S/ {{ number_format($product->price - ($product->discount ?? 0),2)}}</del>
                                                         @endif
                                                     </p>
                                                     <!--
