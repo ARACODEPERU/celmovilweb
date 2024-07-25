@@ -594,7 +594,7 @@ function renderProducto(respuesta, i) {
                                     </p>
                                 </div>
                             </td>
-                            <td>S/ `+price+`</td>
+                            <td>S/ `+formatearNumero(price)+`</td>
                             <td>
                                 <form action="#" method="POST">
                                     <div class="plus-minus">
@@ -604,7 +604,7 @@ function renderProducto(respuesta, i) {
                                     </div>
                                 </form>
                             </td>
-                            <td id="`+i+`subTotal">S/ `+carrito[i].quantity*price+`</td>
+                            <td id="`+i+`subTotal">S/ `+formatearNumero(carrito[i].quantity*price)+`</td>
                             <td><i class="fa fa-trash" title="Remover producto" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
                             name + `', precio: ` + price + ` });"></i></td>
                         </tr>
@@ -635,4 +635,12 @@ function load_cart_menu(){
     } catch (error) {
 
     }
+}
+
+function formatearNumero(numero) {
+    // Convertir el número a un string con dos decimales
+    let numeroConDecimales = Number(numero).toFixed(2);
+
+    // Formatear el número con separadores de miles y decimales
+    return numeroConDecimales.toLocaleString('es-ES');
 }
