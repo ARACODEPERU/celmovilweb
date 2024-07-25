@@ -60,7 +60,7 @@
                             confirmar la compra.</p>
                         <br>
                         <h4>Total:</h4>
-                        <p style="color: orange; font-size: 16px;"><b>S/. {{ $total }}</b></p>
+                        <p style="color: orange; font-size: 16px;"><b>S/ {{ $total }}</b></p>
                     </div>
                     <div id="cardPaymentBrick_container"></div>
                 </div>
