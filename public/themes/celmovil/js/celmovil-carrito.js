@@ -620,7 +620,7 @@ function renderProducto(respuesta, i) {
                                                 <a>
                                                     <h5>`+name+`</h5>
                                                 </a>
-                                                <span>`+carrito[i].quantity+` x S/. `+price+`</span>
+                                                <span>`+carrito[i].quantity+` x S/ `+price+`</span>
                                             </div>
                                             <span class="cancel-item" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
                                             name + `', precio: ` + price + ` });"><i class="fa fa-close"></i></span>
