@@ -13,7 +13,10 @@ class FeatureProductsArea extends Component
 
     public function __construct()
     {
-        $this->feature_products = OnliItem::with('product')->get();
+        $this->feature_products = OnliItem::with('product')
+        ->orderBy('id', 'desc')
+        ->limit(6)
+        ->get();
     }
 
     /**
