@@ -109,7 +109,7 @@ class WebController extends Controller
             ->with('specifications')
             ->where('id', $id)
             ->first();
-        //dd($product);
+        //dd($product->category_description);
         return view('pages/producto-descripcion', [
             'banner' => $banner,
             'product' => $product
