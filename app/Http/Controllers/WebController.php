@@ -118,7 +118,19 @@ class WebController extends Controller
 
     public function carrito()
     {
-        return view('pages/carrito');
+        $banner = CmsSection::where('component_id', 'banner_carrito_9')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+
+        return view('pages/carrito', [
+            'banner' => $banner
+        ]);
     }
 
     public function pagar(Request $request)

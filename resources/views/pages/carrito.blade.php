@@ -18,7 +18,7 @@
 
     <!-- page banner area start -->
     <div class="page-banner">
-        <img src="{{ asset('themes/celmovil/img/slider/bg3.jpg') }}" alt="Page Banner" />
+        <img src="{{ $banner[0]->content }}" alt="Page Banner" />
     </div>
     <!-- page banner area end -->
 
@@ -130,7 +130,7 @@
             console.log(carrito[index].quantity * price);
             document.getElementById(index + "qty").value = carrito[index].quantity;
             let tempSubTotal = carrito[index].quantity * price;
-            document.getElementById(index + "subTotal").innerHTML = "S/ " + tempSubTotal;
+            document.getElementById(index + "subTotal").innerHTML = "S/ " + formatearNumero(tempSubTotal);
             getTotal();
         }
     </script>
@@ -146,6 +146,13 @@
                 alert("No has elegido ningún curso");
 
         }
+        function formatearNumero(numero) {
+    // Convertir el número a un string con dos decimales
+    let numeroConDecimales = Number(numero).toFixed(2);
+    // Formatear el número con separadores de miles y decimales
+    return numeroConDecimales.toLocaleString('es-ES');
+    
+    }
     </script>
 
 
