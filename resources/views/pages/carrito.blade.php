@@ -150,8 +150,8 @@
     // Convertir el número a un string con dos decimales
     let numeroConDecimales = Number(numero).toFixed(2);
     // Formatear el número con separadores de miles y decimales
-    return numeroConDecimales.toLocaleString('es-ES');
-    
+    return numeroConDecimales.toLocaleString('es-PE');
+
     }
     </script>
 

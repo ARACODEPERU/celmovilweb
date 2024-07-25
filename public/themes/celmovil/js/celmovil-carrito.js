@@ -620,7 +620,7 @@ function renderProducto(respuesta, i) {
                                                 <a>
                                                     <h5>`+name+`</h5>
                                                 </a>
-                                                <span>`+carrito[i].quantity+` x S/ `+price+`</span>
+                                                <span>`+carrito[i].quantity+` x S/ `+formatearNumero(price)+`</span>
                                             </div>
                                             <span class="cancel-item" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
                                             name + `', precio: ` + price + ` });"><i class="fa fa-close"></i></span>
@@ -638,7 +638,7 @@ function load_cart_menu(){
 }
 function formatearNumero(numero) {
     // Formatear el número con separadores de miles
-    let numeroFormateado = Number(numero).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    let numeroFormateado = Number(numero).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     // Si el número no tiene decimales, agregar ".00" al final
     if (!numeroFormateado.includes('.')) {
