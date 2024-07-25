@@ -636,11 +636,14 @@ function load_cart_menu(){
 
     }
 }
-
 function formatearNumero(numero) {
-    // Convertir el número a un string con dos decimales
-    let numeroConDecimales = Number(numero).toFixed(2);
+    // Formatear el número con separadores de miles
+    let numeroFormateado = Number(numero).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-    // Formatear el número con separadores de miles y decimales
-    return numeroConDecimales.toLocaleString('es-ES');
+    // Si el número no tiene decimales, agregar ".00" al final
+    if (!numeroFormateado.includes('.')) {
+        numeroFormateado += ".00";
+    }
+
+    return numeroFormateado;
 }
