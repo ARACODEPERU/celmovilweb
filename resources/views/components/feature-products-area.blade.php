@@ -20,7 +20,7 @@
                         @foreach ($feature_products as $product)
                             <div class="single-slide">
                                 <div class="padding30">
-                                    <div class="product-item">
+                                    <div class="product-item"  style="padding: 15px;">
                                         <div class="pro-img">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                 <img src="{{ $product->image }}" style="max-height: 237px;" alt="" />
