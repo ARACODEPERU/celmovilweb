@@ -41,10 +41,24 @@ class WebController extends Controller
             ->where('additional5', 'PR')
             ->orderBy('id', 'DESC')
             ->paginate(5);
+        
+            
+
+        $ofprincipal = CmsSection::where('component_id', 'oficina_principal_area_12')  //siempre cambiar el id del componente
+        ->join('cms_section_items', 'section_id', 'cms_sections.id')
+        ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+        ->select(
+            'cms_items.content',
+            'cms_section_items.position'
+        )
+        ->orderBy('cms_section_items.position')
+        ->get();
+        
 
         return view('pages/index', [
             'sliders' => $sliders,
-            'products_main' => $products_main
+            'products_main' => $products_main,
+            'ofprincipal' => $ofprincipal
         ]);
     }
 
