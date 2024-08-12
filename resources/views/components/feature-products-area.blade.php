@@ -4,12 +4,12 @@
             <div class="row">
                 <div class="col-md-10 col-text-center">
                     <div class="section-title text-center">
-                        <h1><span>Productos</span> Nuevos</h1>
+                        <h1><span>{{ $product_new_area[0]->content }}</span> {{ $product_new_area[1]->content }}</h1>
                         <div class="shape">
                             <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                         </div>
                         <p>
-                            Presentamos las últimas incorporaciones diseñadas para los amantes de la aventura y la adrenalina, nuestras motocicletas combinan potencia, estilo y rendimiento para ofrecerte una experiencia de conducción inigualable.
+                            {{ $product_new_area[2]->content }}
                         </p>
                     </div>
                 </div>

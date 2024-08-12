@@ -5,13 +5,12 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                         <div class="section-title text-center">
-                            <h1><span>Productos</span> Populares</h1>
+                            <h1><span>{{ $product_popular_area[0]->content }}</span> {{ $product_popular_area[1]->content }}</h1>
                             <div class="shape">
                                 <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                             </div>
                             <p>
-                                ¿Listo para experimentar lo último en estilo, tecnología y comodidad? 
-                                ¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
+                                {{ $product_popular_area[2]->content }}
                             </p>
                         </div>
                     </div>

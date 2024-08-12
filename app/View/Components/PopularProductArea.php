@@ -5,17 +5,27 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Modules\CMS\Entities\CmsSection;
 use Modules\Onlineshop\Entities\OnliItem;
 
 class PopularProductArea extends Component
 {
     protected $products;
-    /**
-     * Create a new component instance.
-     */
+    protected $product_popular_area;
+
     public function __construct()
     {
         $this->products = OnliItem::with('product')->inRandomOrder()->limit(12)->get();
+
+        $this->product_popular_area = CmsSection::where('component_id', 'productos_populares_area_11')
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
     }
 
     /**
@@ -24,7 +34,8 @@ class PopularProductArea extends Component
     public function render(): View|Closure|string
     {
         return view('components.popular-product-area', [
-            'products_recommended' => $this->products
+            'products_recommended' => $this->products,
+            'product_popular_area' => $this->product_popular_area
         ]);
     }
 }

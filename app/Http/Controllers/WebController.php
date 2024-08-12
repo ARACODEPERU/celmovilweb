@@ -35,6 +35,7 @@ class WebController extends Controller
             )
             ->orderBy('cms_section_items.position')
             ->get();
+            
 
         $products_main = OnliItem::with('product')
             ->where('additional5', 'PR')
