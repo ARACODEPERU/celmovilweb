@@ -34,7 +34,7 @@
                             <br>
                             <p style="font-size: 16px;">
                                 CelMovil ofrece una gran variedad de vehículos eléctricos como: bicicletas, VMP's 
-                                (vehpiculos de movilidad personal), motos, trimotos, cuatrimotos y cargueros.
+                                (vehiculos de movilidad personal), motos, trimotos, cuatrimotos y cargueros.
                             </p>
                             <br>
                             <p style="font-size: 16px;">
