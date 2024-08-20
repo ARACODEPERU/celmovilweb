@@ -156,7 +156,7 @@
                                         <a href="{{ route('web_nosotros') }}">Nosotros</a>
                                     </li>
                                     <li>
-                                        <a href="#">Politicas de Privacidad</a>
+                                        <a href="{{ route('web_politicas_de_privacidad') }}">Politicas de Privacidad</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('web_preguntas_frecuentes') }}">Preguntas Frecuentes</a>

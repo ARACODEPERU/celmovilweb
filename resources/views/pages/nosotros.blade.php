@@ -6,16 +6,15 @@
     <!-- header - section start -->
     <x-header-area />
     <!-- header - section end -->
-
     
-		<!-- page banner area start -->
-		<div class="page-banner">
+	<!-- page banner area start -->
+	<div class="page-banner">
 			<img style="width: 100%; height: 250px;" src="{{ $banner[0]->content }}" alt="Page Banner" />
-		</div>
-		<!-- page banner area end -->
+	</div>
+	<!-- page banner area end -->
 		
-		<!-- about us section start -->
-		<section class="about-area section-padding">
+	<!-- about us section start -->
+	<section class="about-area section-padding">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-9 col-md-6">
@@ -45,10 +44,10 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- about us section end -->
-		<!-- choose section start -->
-		<section class="choose-area">
+	</section>
+	<!-- about us section end -->
+	<!-- choose section start -->
+	<section class="choose-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-md-6 col-text-center">
@@ -96,11 +95,11 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- choose section end -->
-		<!-- our team section start -->
-        <!--
-		<div class="our-team section-padding-bottom">
+	</section>
+	<!-- choose section end -->
+	<!-- our team section start -->
+    <!--
+	<div class="our-team section-padding-bottom">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-md-6 col-text-center">
@@ -227,9 +226,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
-        -->
-		<!-- our team section end -->
+	</div>
+    -->
+	<!-- our team section end -->
 
     <br><br>
     <!-- footer - section start -->
