@@ -363,8 +363,23 @@ a.shop-btn:hover::after,.discount-left a.shop-btn:hover::after,.view-more  a.sho
     height: 100%;
 }
 a.shop-btn:hover,a.btn-style:hover {color: #fff;}
+
 /* mainmenu */
 .mobile-menu-area{display:none;}
+
+
+@media (max-width: 970px){
+    .page-banner{
+      display: none;
+    }
+    .header-bottom{
+        width: 100%;
+        background: #000;
+    }
+    .container{
+        width: 100%;
+    }
+  }
 
 .mainmenu nav > ul {
   display: inline-block;
@@ -373,7 +388,7 @@ a.shop-btn:hover,a.btn-style:hover {color: #fff;}
 }
 .mainmenu {
     text-align: center;
-    width: 83%;
+    width: 80%;
     position: relative;
 }
 /*

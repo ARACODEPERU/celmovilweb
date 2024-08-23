@@ -15,6 +15,7 @@
 
     <!-- style css -->
     <link rel="stylesheet" href="{{ asset('themes/celmovil/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('themes/celmovil/responsive.css') }}">
     <!-- modernizr js -->
     <script src="{{ asset('themes/celmovil/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 

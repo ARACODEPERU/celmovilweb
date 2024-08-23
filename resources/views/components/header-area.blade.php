@@ -71,7 +71,7 @@
         <div id="sticky-menu" class="header-bottom">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 header-bottom-bg">
+                    <div class="col-md-12 header-bottom-bg">
                         <div class="logo floatleft">
                             <a href="{{ route('web_inicio') }}">
                                 <img style="width: 140px;" src="{{ $tel_email_logo[2]->content }}"
@@ -111,6 +111,25 @@
                                 </ul>
                             </nav>
                         </div>
+                        <div class="cart-menu-area floatright">
+                            <ul>
+                                <li><a href="{{ route('web_carrito') }}"><i class="pe-7s-shopbag"></i> <span hidden
+                                            id="contadorCarritoWeb"></span></a>
+                                    <ul class="cart-menu" id="cart-menu">
+                                        <li class="cart-menu-btn">
+                                            <a href="{{ route('web_carrito') }}">Ir al Carrito</a>
+                                            <a style="background-color: red; color: white;" href="" onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="background: #ff6600;">
+                <div class="row">
+                    <div class="col-md-12">
                         <!-- mobile menu start -->
                         <div class="mobile-menu-area">
                             <div class="mobile-menu">
@@ -148,19 +167,6 @@
                             </div>
                         </div>
                         <!-- mobile menu end -->
-                        <div class="cart-menu-area floatright">
-                            <ul>
-                                <li><a href="{{ route('web_carrito') }}"><i class="pe-7s-shopbag"></i> <span hidden
-                                            id="contadorCarritoWeb"></span></a>
-                                    <ul class="cart-menu" id="cart-menu">
-                                        <li class="cart-menu-btn">
-                                            <a href="{{ route('web_carrito') }}">Ir al Carrito</a>
-                                            <a style="background-color: red; color: white;" href="" onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
