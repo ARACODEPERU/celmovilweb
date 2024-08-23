@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container" style="background: #ff6600;">
+            <div class="container" style="background: #ff6600; ">
                 <div class="row">
                     <div class="col-md-12">
                         <!-- mobile menu start -->
