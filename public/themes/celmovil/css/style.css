@@ -38,6 +38,7 @@
 .btn-celmovil:hover{
     background: #000;
     color: #fff;
+    font-weight: 700;
 }
 
 /*-------------------------------------
@@ -95,7 +96,8 @@ p{
 	line-height:24px;
 }
 .section-title p {
-  line-height: 24px;
+    padding: 10px 0px;
+    line-height: 24px;
 }
 ul{
 	list-style: outside none none;
@@ -195,15 +197,30 @@ input:focus, textarea:focus {outline: 0px;}
 .section-title span {
     color: #ff6600;
 }
+/* 
 .section-title .shape::after, .section-title .shape::before {
     background: #1b1b1b none repeat scroll 0 0;
     margin-top: 0;
     width: 50px;
+} */
+
+.section-title .shape::before {
+    background: #ff6600 none repeat scroll 0 0;
+    margin-top: 0;
+    width: 50px;
 }
+
+.section-title .shape::after {
+    background: #1b1b1b none repeat scroll 0 0;
+    margin-top: 0;
+    width: 50px;
+}
+
+
 .section-title .shape {
     margin: 0 auto;
-    padding: 18px 0;
-    width: 150px;
+    padding: 8px 0;
+    width: 100px;
 }
 /*-------------------------------------
 [ 2. Home Version One ]
@@ -2821,7 +2838,7 @@ option {padding: 2px 8px;}
 [ 12. About Page ]
 ---------------------------------------*/
 .about-title.section-title .shape {
-  padding: 15px 0;
+  padding: 10px 0;
 }
 .about-title.section-title .shape::after,.about-title.section-title .shape::before {
   background: #777 none repeat scroll 0 0;

@@ -179,7 +179,6 @@
                 <div class="section-title text-center">
                     <h1><span>{{ $ofprincipal[0]->content }}</span> {{ $ofprincipal[1]->content }}</h1>
                     <div class="shape">
-                        <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                     </div>
                     <p>
                         {{ $ofprincipal[2]->content }}<br>
