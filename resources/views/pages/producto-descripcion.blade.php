@@ -24,12 +24,12 @@
                         <div class="large-slider zoom-gallery">
                             <div>
                                 <img src="{{ asset($product->image) }}" alt="" />
-                                @if ($product->existance)
-                                    <span style="background: red; padding: 10px 20px; font-size: 22px; color: white;">AGOTADO</span>
-                                @endif
                                 <a href="{{ asset($product->image) }}" title="{{ $product->name }}">
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                                 </a>
+                                @if ($product->existance)
+                                    <span style="background: red; padding: 10px 20px; font-size: 22px; color: white;">AGOTADO</span>
+                                @endif
                             </div>
                             @foreach ($product->images as $image)
                                 <div>
