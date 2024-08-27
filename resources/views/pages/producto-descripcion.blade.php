@@ -24,6 +24,9 @@
                         <div class="large-slider zoom-gallery">
                             <div>
                                 <img src="{{ asset($product->image) }}" alt="" />
+                                @if ($product->existance)
+                                    <span style="background: red; padding: 10px 20px; font-size: 22px; color: white; position: absolute; margin-top: -50%;">AGOTADO</span>
+                                @endif
                                 <a href="{{ asset($product->image) }}" title="{{ $product->name }}">
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                                 </a>
@@ -56,11 +59,11 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="right">
-                        <div class="singl-pro-title"> 
+                        <div class="singl-pro-title">
                             <h3>{{ $product->name }}</h3>
                             <h1>S/ {{ number_format($product->price, 2) }}</h1>
-                            @if ($product->category_description=="Vmps, Bicimotos, Bios" || $product->category_description=="Trimoto"  
-                                || $product->category_description=="Cuatrimotos"  || $product->category_description=="Moto" 
+                            @if ($product->category_description=="Vmps, Bicimotos, Bios" || $product->category_description=="Trimoto"
+                                || $product->category_description=="Cuatrimotos"  || $product->category_description=="Moto"
                                 || $product->category_description=="Scooter Moped" || $product->category_description=="Deportivos"
                                 || $product->category_description=="Chooper" || $product->category_description=="Baterias Litio"
                                 || $product->category_description=="Baterias Plomo Acido" || $product->category_description=="Scooter Vintage"
