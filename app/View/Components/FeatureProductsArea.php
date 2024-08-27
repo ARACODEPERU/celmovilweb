@@ -16,10 +16,11 @@ class FeatureProductsArea extends Component
     public function __construct()
     {
         $this->feature_products = OnliItem::with('product')
+        ->where('existence', 1)
         ->orderBy('id', 'desc')
         ->limit(6)
         ->get();
-        
+
         $this->product_new_area = CmsSection::where('component_id', 'productos_nuevos_area_10')
             ->join('cms_section_items', 'section_id', 'cms_sections.id')
             ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
