@@ -25,7 +25,7 @@
                             <div>
                                 <img src="{{ asset($product->image) }}" alt="" />
                                 @if ($product->existance)
-                                    <span style="background: red; padding: 10px 20px; font-size: 22px; color: white; position: absolute; margin-top: -50%;">AGOTADO</span>
+                                    <span style="background: red; padding: 10px 20px; font-size: 22px; color: white;">AGOTADO</span>
                                 @endif
                                 <a href="{{ asset($product->image) }}" title="{{ $product->name }}">
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
