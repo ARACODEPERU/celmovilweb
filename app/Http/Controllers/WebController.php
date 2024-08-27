@@ -141,7 +141,6 @@ class WebController extends Controller
         $product = OnliItem::with('images')
             ->with('product')
             ->with('specifications')
-            ->where('id', $id)
             ->where('existence', 1)
             ->first();
         //dd($product->category_description);
