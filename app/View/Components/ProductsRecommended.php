@@ -15,7 +15,7 @@ class ProductsRecommended extends Component
      */
     public function __construct()
     {
-        $this->products = OnliItem::inRandomOrder()->limit(20)->get();
+        $this->products = OnliItem::where('existence', 1)->inRandomOrder()->limit(20)->get();
     }
 
     /**

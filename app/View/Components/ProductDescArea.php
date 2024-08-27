@@ -17,6 +17,7 @@ class ProductDescArea extends Component
     {
         $this->products_desc = OnliItem::with('product')
             ->where('additional5', 'DE')
+            ->where('existence', 1)
             ->orderBy('id', 'DESC')
             ->paginate(4);
     }
