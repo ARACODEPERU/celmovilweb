@@ -35,14 +35,15 @@ class WebController extends Controller
             )
             ->orderBy('cms_section_items.position')
             ->get();
-            
+
 
         $products_main = OnliItem::with('product')
             ->where('additional5', 'PR')
+            ->where('existence', 1)
             ->orderBy('id', 'DESC')
             ->paginate(5);
-        
-            
+
+
 
         $ofprincipal = CmsSection::where('component_id', 'oficina_principal_area_12')  //siempre cambiar el id del componente
         ->join('cms_section_items', 'section_id', 'cms_sections.id')
@@ -53,7 +54,7 @@ class WebController extends Controller
         )
         ->orderBy('cms_section_items.position')
         ->get();
-        
+
 
         return view('pages/index', [
             'sliders' => $sliders,
@@ -114,6 +115,7 @@ class WebController extends Controller
             )
             ->with('product')
             ->where('products.category_id', $id)
+            ->where('onli_items.existence', 1)
             ->paginate(16)
             ->onEachSide(2);
 
@@ -140,6 +142,7 @@ class WebController extends Controller
             ->with('product')
             ->with('specifications')
             ->where('id', $id)
+            ->where('existence', 1)
             ->first();
         //dd($product->category_description);
         return view('pages/producto-descripcion', [
