@@ -19,11 +19,11 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="section-title text-center">
-                        <h3><span>Título de Sub Categoria</span></h3>
+                        <h3><span>{{ $products[0]->category_description }}</span></h3>
                         <div class="shape">
                         </div>
                         <p>
-                            ¿Listo para experimentar lo último en estilo, tecnología y comodidad? 
+                            ¿Listo para experimentar lo último en estilo, tecnología y comodidad?
                             <br>¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
                         </p>
                     </div>
