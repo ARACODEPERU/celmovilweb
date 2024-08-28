@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="section-title text-center">
-                        <h3><span>{{ $products[0]->category_description==null? "" : $products[0]->category_description }}</span></h3>
+                        <h3><span>{{ $products==null? "" : $products[0]->category_description  }}</span></h3>
                         <div class="shape">
                         </div>
                         <p>
