@@ -28,7 +28,7 @@
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                                 </a>
                                 @if ($product->existance==0)
-                                    <span>AGOTADO</span>
+                                    <span style="background: red; padding: 15px 25px; color: #fff; position:absolute; margin-top: -50px;">AGOTADO</span>
                                 @endif
                             </div>
                             @foreach ($product->images as $image)
