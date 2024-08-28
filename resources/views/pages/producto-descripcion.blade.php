@@ -148,7 +148,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
-                                        class="btn btn-celmovil" style="padding: 10px 35px;"
+                                        class="btn btn-celmovil" style="padding: 10px 35px; cursor: pointer;"
                                         {{ $product->existance ==0? "disabled" : "" }}>
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
