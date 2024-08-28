@@ -27,8 +27,8 @@
                                 <a href="{{ asset($product->image) }}" title="{{ $product->name }}">
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                                 </a>
-                                @if ($product->existance)
-                                <img src="{{ asset($product->image) }}" alt="" />AGOTADO
+                                @if ($product->existance==0)
+                                    <span>AGOTADO</span>
                                 @endif
                             </div>
                             @foreach ($product->images as $image)
