@@ -27,8 +27,8 @@
                                 <a href="{{ asset($product->image) }}" title="{{ $product->name }}">
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                                 </a>
-                                @if ($product->existance)
-                                <img src="{{ asset($product->image) }}" alt="" />AGOTADO
+                                @if ($product->existence == 0)
+                                <span style="background: red; padding: 15px 25px; color: #fff; position: relative; z-index: 999; display: block; margin-top: -50px;">AGOTADO</span>
                                 @endif
                             </div>
                             @foreach ($product->images as $image)
@@ -147,11 +147,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
-                                        class="btn btn-celmovil" style="padding: 10px 35px;">
+                                    <button onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
+                                        class="btn btn-celmovil" style="padding: 10px 35px; cursor: pointer;"
+                                        {{ $product->existence ==0? "disabled" : "" }}>
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <hr />
