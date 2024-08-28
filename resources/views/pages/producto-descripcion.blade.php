@@ -147,12 +147,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
+                                    <button onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
                                         class="btn btn-celmovil" style="padding: 10px 35px;"
                                         {{ $product->existance ==0? "disabled" : "" }}>
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <hr />
