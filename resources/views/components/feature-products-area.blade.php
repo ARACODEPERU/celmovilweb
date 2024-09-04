@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="info" style="margin-top: 10px;">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
-                                                Más Información
+                                                Obtén un <b>Desc. 4%</b>
                                             </a>
                                         </div>
                                     </div>
