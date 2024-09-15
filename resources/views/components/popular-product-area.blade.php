@@ -24,7 +24,7 @@
                                             <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"  style="width: 220px; height: 220px;" />
                                         </a>
                                     </div>
-                                    <div class="riding-title clearfix">
+                                    <div class="">
                                         <div class="product-title">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                 <h5  style="height: 40px;">{{ $product->name }}</h5>

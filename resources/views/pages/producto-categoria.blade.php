@@ -55,17 +55,14 @@
                                                     </li>
                                                 </ul>
                                             </div> --}}
-                                            <div class="riding-title clearfix">
+                                            <div class="">
                                                 <div class="product-title">
                                                     <a href="{{ route('web_producto_descripcion', $product->id) }}"><h6>{{ $product->name }}</h6></a>
-                                                    <p>Precio: <span>S/ {{ number_format($product->price, 2)  }} </span>
+                                                    {{-- <p>Precio: <span>S/ {{ number_format($product->price, 2)  }} </span>
                                                         @if ($product->discount > 0)
                                                             <del>S/ {{ number_format($product->price - ($product->discount ?? 0),2)}}</del>
                                                         @endif
-                                                    </p>
-                                                    <!--
-                                                    <span style="color: #000;">Agotado </span>
-                                                    -->
+                                                    </p> --}}
                                                 </div>
                                             </div>
                                             <div class="info" style="margin-top: 10px;">

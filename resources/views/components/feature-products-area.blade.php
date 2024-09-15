@@ -53,7 +53,7 @@
                                             </a>
                                             {{-- <p>Precio <span>S/ {{ number_format($product->price, 2)  }}</span></p> --}}
                                         </div>
-                                        <div class="info" style="margin-top: 10px;">
+                                        <div class="info">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
                                                 Obtén un <b>Desc. 4%</b>
                                             </a>
