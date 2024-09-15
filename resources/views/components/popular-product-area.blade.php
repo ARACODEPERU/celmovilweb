@@ -14,34 +14,32 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="row text-center">
                     @foreach ($products_recommended as $product)
-                    <div class="col-xs-12 col-md-3" style="padding: 15px;">
-                        <div class="padding30">
-                            <div class="product-item" style="padding: 15px;">
-                                <div class="pro-img">
-                                    <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"  style="width: 220px; height: 220px;" />
-                                    </a>
-                                </div>
-                                <div class="riding-title clearfix">
-                                    <div class="product-title">
+                        <div class="col-xs-12 col-md-3" style="padding: 15px;">
+                            <div class="padding30">
+                                <div class="product-item" style="padding: 15px;">
+                                    <div class="pro-img">
                                         <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                            <h5  style="height: 40px;">{{ $product->name }}</h5>
-                                        </a>  
-                                        <p>Precio: <span>S/ {{ number_format($product->price - ($product->discount ?? 0),2) }}</span>
-                                        </p>
+                                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"  style="width: 220px; height: 220px;" />
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="info" style="margin-top: -10px;">
-                                    <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
-                                        Obtén un <b>Desc. 4%</b>
-                                    </a>
+                                    <div class="riding-title clearfix">
+                                        <div class="product-title">
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                <h5  style="height: 40px;">{{ $product->name }}</h5>
+                                            </a>  
+                                            {{-- <p>Precio: <span>S/ {{ number_format($product->price - ($product->discount ?? 0),2) }}</span></p> --}}
+                                        </div>
+                                    </div>
+                                    <div class="info" style="margin-top: -10px;">
+                                        <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                            Obtén un <b>Desc. 4%</b>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>

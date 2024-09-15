@@ -109,13 +109,22 @@ class WebController extends Controller
             ->orderBy('cms_section_items.position')
             ->get();
 
+        // $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
+        //     ->select(
+        //         'onli_items.*'
+        //     )
+        //     ->with('product')
+        //     ->where('products.category_id', $id)
+        //     ->where('onli_items.existence', 1)
+        //     ->paginate(16)
+        //     ->onEachSide(2);
+        
         $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
-            ->select(
-                'onli_items.*'
-            )
+            ->select('onli_items.*')
             ->with('product')
             ->where('products.category_id', $id)
             ->where('onli_items.existence', 1)
+            ->orderBy('onli_items.created_at', 'desc') // Ordenar en forma descendente por la columna 'created_at'
             ->paginate(16)
             ->onEachSide(2);
 
