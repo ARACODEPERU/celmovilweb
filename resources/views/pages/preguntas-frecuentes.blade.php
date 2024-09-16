@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-6" style="padding: 10px;">
                         <h4 style="padding: 5px 15px;">Conozcamos más de las Motos Eléctricas</h4>
-                        <div class="panel-group" id="accordion2">
+                        <div class="panel-group" id="accordion1">
                             <div class="panel panel-default">
                                 <div class="panel-heading" id="headingOne">
                                     <h4 class="panel-title">
@@ -181,14 +181,14 @@
                         <h4 style="padding: 5px 15px;">Mantenimiento y servicio Post Venta de CelMovil</h4>
                         <div class="panel-group" id="accordion2">
                             <div class="panel panel-default">
-                                <div class="panel-heading" id="headingOne">
+                                <div class="panel-heading" id="heading2One">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2One" aria-expanded="true" aria-controls="collapseOne">
                                             ¿Cuál es la garantia de CelMovil?
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse in">
+                                <div id="collapse2One" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         Nuestro principal objetivo es brindar al cliente una satisfacción total en su compra, por ello nos preocupamos en su tranquilidad y ofrecemos una GARANTÍA VERDADERA en todos nuestros productos para casos de defectos atribuidos a la calidad o daños de fábrica, cual esta dellada en el <b>Certificado de Garantía.</b>
                                         Ademas, tenemos los Repuestos AL INSTANTE en Lima, y contamos con un equipo de mecánicos para ofrecer un Servicio Técnico especializado para atender cualquier eventualidad, reparar y/o cambiar de forma gratuita las piezas que estén cubiertas o no en el periodo de garantía.
@@ -198,14 +198,14 @@
                                 </div>
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading" id="headingTwo">
+                                <div class="panel-heading" id="heading2Two">
                                     <h4 class="panel-title">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse2Two" aria-expanded="false" aria-controls="collapseTwo">
                                             ¿Qué tipo de mantenimiento o revisión necesitan las motos eléctricas y donde hacerlo?
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseTwo" class="panel-collapse collapse">
+                                <div id="collapse2Two" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         El motor no requiere de ningún tipo de mantenimiento, sin embargo, al tratarse de un vehículo ciclomotor, se recomienda realizar una revisión periódica del estado de las ruedas, los frenos y luces como una medida de prevención.
                                         Más detalle, puede consultar a las dos tiendas & talleres en Lima: tienda Lince & tienda Surco. 
@@ -213,14 +213,14 @@
                                 </div>
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading" id="headingThree">
+                                <div class="panel-heading" id="heading2Three">
                                     <h4 class="panel-title">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse2Three" aria-expanded="false" aria-controls="collapseThree">
                                             ¿A dónde debo acudir en caso de requerir alguna asistencia técnica con mi moto eléctrica?
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseThree" class="panel-collapse collapse">
+                                <div id="collapse2Three" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         Debes acudir solamente a los talleres autorizados de CelMovil, los cuales están equipados con todos los repuestos orginales y necesarios para poder refaccionar tu moto bajo estándares del fabricante. Se recomienda estrictamente NO llevar tu moto eléctrica a talleres no autorizados ni donde mecánicos de motos a combustión. Pronto estaremos abriendo más locales en nivel nacional.
                                         También puedes contactarnos vía telefónica, por correo electrónico o por WhatsApp para coordinar una cita.
