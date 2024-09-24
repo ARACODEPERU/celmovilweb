@@ -4,6 +4,7 @@ namespace Modules\Onlineshop\Http\Controllers;
 
 use App\Models\Parameter;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -294,12 +295,13 @@ class OnliItemController extends Controller
         $OnliItem->additional4 = $request->get('additional4');
         $OnliItem->additional5 = $request->get('additional5');
 
-        // $path = 'img' . DIRECTORY_SEPARATOR . 'imagen-no-disponible.jpeg';
-        // $destination = 'uploads' . DIRECTORY_SEPARATOR . 'products';
+        $new_name = date('YmdHis');
         $path = $request->get('image_view');
         $destination = 'uploads/onlineshop/items';
+
         $file = $request->file('image');
         if ($file) {
+            $this->deleteFileItem($OnliItem->image);
             $original_name = strtolower(trim($file->getClientOriginalName()));
             $original_name = str_replace(" ", "_", $original_name);
             $extension = $file->getClientOriginalExtension();
@@ -318,10 +320,11 @@ class OnliItemController extends Controller
             $data_sheet = $request->file('additional2');
             //dd($data_sheet);
             if ($data_sheet) {
+                $this->deleteFileItem($OnliItem->additional2);
                 $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
                 $extension = $data_sheet->getClientOriginalExtension();
-                $file_name = $OnliItem->id . 'additional2.' . $extension;
+                $file_name = $new_name . 'additional2.' . $extension;
                 $additional2 = $request->file('additional2')->storeAs(
                     $destination,
                     $file_name,
@@ -336,10 +339,11 @@ class OnliItemController extends Controller
             $data_sheet = $request->file('additional6');
             //dd($data_sheet);
             if ($data_sheet) {
+                $this->deleteFileItem($OnliItem->additional6);
                 $original_name = strtolower(trim($data_sheet->getClientOriginalName()));
                 $original_name = str_replace(" ", "_", $original_name);
                 $extension = $data_sheet->getClientOriginalExtension();
-                $file_name = $OnliItem->id . 'additional6.' . $extension;
+                $file_name = $new_name . 'additional6.' . $extension;
                 $additional6 = $request->file('additional6')->storeAs(
                     $destination,
                     $file_name,
@@ -433,5 +437,14 @@ class OnliItemController extends Controller
         ]);
 
         return response()->json(['success' => true]);
+    }
+
+    public function deleteFileItem($file_path)
+    {
+        $path = storage_path('app/public/' . $file_path);
+        if (file_exists($path)) {
+            @unlink($path);
+        }
+        return true;
     }
 }

@@ -265,6 +265,7 @@ class WebController extends Controller
                         ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
 
                     $sale->save();
+
                     return response()->json([
                         'status' => $payment->status,
                         'message' => $payment->status_detail,
@@ -275,7 +276,7 @@ class WebController extends Controller
                     return response()->json([
                         'status' => $payment->status,
                         'message' => $payment->status_detail,
-                        'url' => route('web_eventos_pagar', $id)
+                        'url' => route('web_pagar')
                     ]);
 
                     $sale->delete();
