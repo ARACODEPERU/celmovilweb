@@ -15,7 +15,9 @@ class NewArivalArea extends Component
      */
     public function __construct()
     {
-        $this->products = OnliItem::with('product')->where('additional5', 'DE')->paginate(10);
+        $this->products = OnliItem::with('product')->where('additional5', 'DE')
+        ->where('existence', 1)
+        ->paginate(10);
     }
 
     /**

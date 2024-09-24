@@ -1,15 +1,15 @@
 @extends('layouts.celmovil')
 @section('content')
-    <!-- Preloader Start
-                                                <div class="preloader">
-                                                    <div class="loading-center">
-                                                        <div class="loading-center-absolute">
-                                                            <div class="object object_one"></div>
-                                                            <div class="object object_two"></div>
-                                                            <div class="object object_three"></div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+    <!-- Preloader Start -->
+        <div class="preloader">
+            <div class="loading-center">
+                <div class="loading-center-absolute">
+                    <div class="object object_one"></div>
+                    <div class="object object_two"></div>
+                    <div class="object object_three"></div>
+                </div>
+            </div>
+        </div> 
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -177,30 +177,25 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                 <div class="section-title text-center">
-                    <h3><span>Oficina</span> Principal</h3>
+                    <h1><span>{{ $ofprincipal[0]->content }}</span> {{ $ofprincipal[1]->content }}</h1>
                     <div class="shape">
-                        <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                     </div>
                     <p>
-                        ¿Buscas una experiencia única de compra que combine calidad, variedad y atención excepcional? 
-                        <br><b>¡Entonces has llegado al lugar indicado!</b>
+                        {{ $ofprincipal[2]->content }}<br>
+                        <b>{{ $ofprincipal[3]->content }}</b>
                     </p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 half-width">
-                <img style="width: 100%;" src="{{ asset('themes/celmovil/img/LocalWeb.jpg') }}" alt="">
+                <img style="width: 100%;" src="{{ $ofprincipal[4]->content }}" alt="">
                 <div class="ubicacion" style="padding: 14px 15px; background: #ff6600; color: #fff; text-align:center; ">
-                    <b style="font-size: 16px;">Av. América Sur 397, Trujillo 13006 - Urb. Aranjuez</b>
+                    <b style="font-size: 16px;">{{ $ofprincipal[5]->content }} </b>
                 </div>
             </div>
             <div class="col-md-6 googleMap-info half-width">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.992244735301!2d-79.01367372520318!3d-8.102270681046402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad1625ab759b6d%3A0xca47db73dbf8502a!2sAv.%20Am%C3%A9rica%20Sur%20397%2C%20Trujillo%2013006!5e0!3m2!1ses-419!2spe!4v1706164769030!5m2!1ses-419!2spe"
-                    width="100%" height="680" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+                {!! $ofprincipal[6]->content !!}
             </div>
         </div>
     </div>

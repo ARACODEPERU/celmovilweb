@@ -19,13 +19,11 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="section-title text-center">
-                        <h3><span>Título de Sub Categoria</span></h3>
+                        <h3><span>{{ isset($products) && isset($products[0]) ? $products[0]->category_description : '' }}</span></h3>
                         <div class="shape">
-                            <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape">
                         </div>
-                        
                         <p>
-                            ¿Listo para experimentar lo último en estilo, tecnología y comodidad? 
+                            ¿Listo para experimentar lo último en estilo, tecnología y comodidad?
                             <br>¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
                         </p>
                     </div>
@@ -38,13 +36,13 @@
                             @if (count($products) > 0)
                                 @foreach ($products as $product)
                                     <div class="col-xs-12 col-md-3" style="padding: 15px;">
-                                        <div class="product-item">
+                                        <div class="product-item" style="padding: 15px;">
                                             <div class="pro-img">
                                                 <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                     <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 220px; height: 220px;">
                                                 </a>
                                             </div>
-                                            <div class="actions-btn">
+                                            {{-- <div class="actions-btn">
                                                 <ul class="clearfix">
                                                     <li>
                                                         <a onclick="agregarAlCarrito({ id: {{ $product->id }}, nombre:{{ '"'.$product->name.'"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"><i class="fa fa-shopping-cart"></i></a>
@@ -56,19 +54,21 @@
                                                         <a href="#" data-toggle="modal" data-target="#quick-view"><i class="fa fa-eye"></i></a>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                            <div class="riding-title clearfix">
+                                            </div> --}}
+                                            <div class="">
                                                 <div class="product-title">
                                                     <a href="{{ route('web_producto_descripcion', $product->id) }}"><h6>{{ $product->name }}</h6></a>
-                                                    <p>Precio: <span>S/. {{ $product->price }} </span>
+                                                    {{-- <p>Precio: <span>S/ {{ number_format($product->price, 2)  }} </span>
                                                         @if ($product->discount > 0)
-                                                            <del>S/ {{ $product->price - ($product->discount ?? 0) }}</del>
+                                                            <del>S/ {{ number_format($product->price - ($product->discount ?? 0),2)}}</del>
                                                         @endif
-                                                    </p>
-                                                    <!--
-                                                    <span style="color: #000;">Agotado </span>
-                                                    -->
+                                                    </p> --}}
                                                 </div>
+                                            </div>
+                                            <div class="info" style="margin-top: 10px;">
+                                                <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                                    Obtén un <b>Desc. 4%</b>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

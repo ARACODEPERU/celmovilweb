@@ -27,6 +27,9 @@
                                 <a href="{{ asset($product->image) }}" title="{{ $product->name }}">
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                                 </a>
+                                @if ($product->existence == 0)
+                                <span style="background: red; padding: 15px 25px; color: #fff; position: relative; z-index: 999; display: block; margin-top: -50px;">AGOTADO</span>
+                                @endif
                             </div>
                             @foreach ($product->images as $image)
                                 <div>
@@ -58,7 +61,15 @@
                     <div class="right">
                         <div class="singl-pro-title">
                             <h3>{{ $product->name }}</h3>
-                            <h1>S/ {{ $product->price }}</h1>
+                            <h1>S/ {{ number_format($product->price, 2) }}</h1>
+                            @if ($product->category_description=="Vmps, Bicimotos, Bios" || $product->category_description=="Trimoto"
+                                || $product->category_description=="Cuatrimotos"  || $product->category_description=="Moto"
+                                || $product->category_description=="Scooter Moped" || $product->category_description=="Deportivos"
+                                || $product->category_description=="Chooper" || $product->category_description=="Baterias Litio"
+                                || $product->category_description=="Baterias Plomo Acido" || $product->category_description=="Scooter Vintage"
+                                || $product->category_description=="Vmps, Bicimotos, Bicis")
+                                <span style="color: #ff6600;">* Obtén un descuento del 4% por tus compras físicas en tienda. </span>
+                            @endif
                             <div class="categ-tag">
                                 <ul class="clearfix">
                                     <li>
@@ -136,11 +147,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
-                                        class="btn btn-celmovil" style="padding: 10px 35px;">
+                                    <button onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
+                                        class="btn btn-celmovil" style="padding: 10px 35px; cursor: pointer;"
+                                        {{ $product->existence ==0? "disabled" : "" }}>
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <hr />

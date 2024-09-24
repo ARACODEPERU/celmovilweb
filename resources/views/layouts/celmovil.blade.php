@@ -9,12 +9,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/celmovil_favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/logoIcon.png') }}">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
 
     <!-- style css -->
     <link rel="stylesheet" href="{{ asset('themes/celmovil/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('themes/celmovil/responsive.css') }}">
     <!-- modernizr js -->
     <script src="{{ asset('themes/celmovil/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 

@@ -6,7 +6,7 @@
     <a class="appInstagram" target="_blanck" href="{{ $redesSociales[3]->content }}">
         <img src="{{ $redesSociales[2]->content }}" alt="Instagram">
     </a>
-    
+
     <a class="appYoutube" target="_blanck" href="{{ $redesSociales[5]->content }}">
         <img src="{{ $redesSociales[4]->content }}" alt="Youtube">
     </a>
@@ -14,7 +14,7 @@
     <a class="appTiktok" target="_blanck" href="{{ $redesSociales[7]->content }}">
         <img src="{{ $redesSociales[6]->content }}" alt="Tiktok">
     </a>-->
-    
+
     <a class="appWhatsapp" target="_blanck" href="https://api.whatsapp.com/send?phone=51{{ $redesSociales[9]->content }}&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?">
         <img src="{{ $redesSociales[8]->content }}" alt="Whatsapp">
     </a>
@@ -156,7 +156,7 @@
                                         <a href="{{ route('web_nosotros') }}">Nosotros</a>
                                     </li>
                                     <li>
-                                        <a href="#">Politicas de Privacidad</a>
+                                        <a href="{{ route('web_politicas_de_privacidad') }}">Politicas de Privacidad</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('web_preguntas_frecuentes') }}">Preguntas Frecuentes</a>
@@ -201,26 +201,10 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="left floatleft">
-                            <p>Copyright &copy; 2024 - Desarrollado por <a href="#">ARACODE SMART SOLUTIÓN</a></p>
-                        </div>
-                        <div class="right mayment-card floatright">
-                            <ul>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/footer/v1.png') }}" alt="Payment Card" /></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/footer/v2.png') }}" alt="Payment Card" /></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/footer/v3.png') }}" alt="Payment Card" /></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/footer/v4.png') }}" alt="Payment Card" /></a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="col-md-12">
+                        <p class="text-center" style="color: #fff; padding: 15px 0px;">Copyright &copy; 2024 - Desarrollado por 
+                            <a href="#" style="color: #ff6600;">ARACODE SMART SOLUTIONS</a>
+                        </p>
                     </div>
                 </div>
             </div>

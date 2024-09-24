@@ -315,8 +315,8 @@
     </section>
     <footer>
         <p>
-            &copy; Derechos Reservados a CELMOVIL | Desarrollado por <a href="https://aracodeperu.com/"
-                style="">Aracode Smart Solutión</a>
+            &copy; Derechos Reservados {{ env('APP_NAME') }} | Desarrollado por <a href="https://aracodeperu.com/"
+                style="">Aracode Smart Solutions</a>
         </p>
     </footer>
 </body>

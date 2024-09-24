@@ -22,6 +22,7 @@ use Modules\Blog\Http\Controllers\BlogController;
 Route::get('/', [WebController::class, 'index'])->name('cms_principal');
 Route::get('/inicio', [WebController::class, 'index'])->name('web_inicio');
 Route::get('/nosotros', [WebController::class, 'nosotros'])->name('web_nosotros');
+Route::get('/politicas-de-privacidad', [WebController::class, 'politicasprivacidad'])->name('web_politicas_de_privacidad');
 Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
 Route::get('/producto-categoria/{id}/list', [WebController::class, 'productocategoria'])->name('web_producto_categoria');
 Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');

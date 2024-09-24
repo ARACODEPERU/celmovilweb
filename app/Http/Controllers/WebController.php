@@ -36,14 +36,30 @@ class WebController extends Controller
             ->orderBy('cms_section_items.position')
             ->get();
 
+
         $products_main = OnliItem::with('product')
             ->where('additional5', 'PR')
+            ->where('existence', 1)
             ->orderBy('id', 'DESC')
             ->paginate(5);
 
+
+
+        $ofprincipal = CmsSection::where('component_id', 'oficina_principal_area_12')  //siempre cambiar el id del componente
+        ->join('cms_section_items', 'section_id', 'cms_sections.id')
+        ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+        ->select(
+            'cms_items.content',
+            'cms_section_items.position'
+        )
+        ->orderBy('cms_section_items.position')
+        ->get();
+
+
         return view('pages/index', [
             'sliders' => $sliders,
-            'products_main' => $products_main
+            'products_main' => $products_main,
+            'ofprincipal' => $ofprincipal
         ]);
     }
 
@@ -64,6 +80,23 @@ class WebController extends Controller
         ]);
     }
 
+    public function politicasprivacidad()
+    {
+        $banner = CmsSection::where('component_id', 'banner_nosotros_6')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+
+        return view('pages/politicas-de-privacidad', [
+            'banner' => $banner
+        ]);
+    }
+
     public function productocategoria($id)
     {
         $banner = CmsSection::where('component_id', 'banner_productos_categoria_4')  //siempre cambiar el id del componente
@@ -76,12 +109,22 @@ class WebController extends Controller
             ->orderBy('cms_section_items.position')
             ->get();
 
+        // $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
+        //     ->select(
+        //         'onli_items.*'
+        //     )
+        //     ->with('product')
+        //     ->where('products.category_id', $id)
+        //     ->where('onli_items.existence', 1)
+        //     ->paginate(16)
+        //     ->onEachSide(2);
+        
         $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
-            ->select(
-                'onli_items.*'
-            )
+            ->select('onli_items.*')
             ->with('product')
             ->where('products.category_id', $id)
+            ->where('onli_items.existence', 1)
+            ->orderBy('onli_items.created_at', 'desc') // Ordenar en forma descendente por la columna 'created_at'
             ->paginate(16)
             ->onEachSide(2);
 
@@ -109,7 +152,7 @@ class WebController extends Controller
             ->with('specifications')
             ->where('id', $id)
             ->first();
-        //dd($product);
+        //dd($product->category_description);
         return view('pages/producto-descripcion', [
             'banner' => $banner,
             'product' => $product
@@ -118,7 +161,19 @@ class WebController extends Controller
 
     public function carrito()
     {
-        return view('pages/carrito');
+        $banner = CmsSection::where('component_id', 'banner_carrito_9')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+
+        return view('pages/carrito', [
+            'banner' => $banner
+        ]);
     }
 
     public function pagar(Request $request)
@@ -306,4 +361,5 @@ class WebController extends Controller
     {
         dd($id);
     }
+
 }

@@ -594,7 +594,7 @@ function renderProducto(respuesta, i) {
                                     </p>
                                 </div>
                             </td>
-                            <td>S/ `+price+`</td>
+                            <td>S/ `+formatearNumero(price)+`</td>
                             <td>
                                 <form action="#" method="POST">
                                     <div class="plus-minus">
@@ -604,7 +604,7 @@ function renderProducto(respuesta, i) {
                                     </div>
                                 </form>
                             </td>
-                            <td id="`+i+`subTotal">S/ `+carrito[i].quantity*price+`</td>
+                            <td id="`+i+`subTotal">S/ `+formatearNumero(carrito[i].quantity*price)+`</td>
                             <td><i class="fa fa-trash" title="Remover producto" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
                             name + `', precio: ` + price + ` });"></i></td>
                         </tr>
@@ -620,7 +620,7 @@ function renderProducto(respuesta, i) {
                                                 <a>
                                                     <h5>`+name+`</h5>
                                                 </a>
-                                                <span>`+carrito[i].quantity+` x S/. `+price+`</span>
+                                                <span>`+carrito[i].quantity+` x S/ `+formatearNumero(price)+`</span>
                                             </div>
                                             <span class="cancel-item" onclick="eliminarproducto({ id: ` + id + `, nombre: '` +
                                             name + `', precio: ` + price + ` });"><i class="fa fa-close"></i></span>
@@ -635,4 +635,15 @@ function load_cart_menu(){
     } catch (error) {
 
     }
+}
+function formatearNumero(numero) {
+    // Formatear el número con separadores de miles
+    let numeroFormateado = Number(numero).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    // Si el número no tiene decimales, agregar ".00" al final
+    if (!numeroFormateado.includes('.')) {
+        numeroFormateado += ".00";
+    }
+
+    return numeroFormateado;
 }

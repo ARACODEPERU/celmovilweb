@@ -4,12 +4,11 @@
             <div class="row">
                 <div class="col-md-10 col-text-center">
                     <div class="section-title text-center">
-                        <h3><span>Productos</span> Nuevos</h3>
+                        <h1><span>{{ $product_new_area[0]->content }}</span> {{ $product_new_area[1]->content }}</h1>
                         <div class="shape">
-                            <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
                         </div>
                         <p>
-                            Presentamos las últimas incorporaciones diseñadas para los amantes de la aventura y la adrenalina, nuestras motocicletas combinan potencia, estilo y rendimiento para ofrecerte una experiencia de conducción inigualable.
+                            {{ $product_new_area[2]->content }}
                         </p>
                     </div>
                 </div>
@@ -20,44 +19,44 @@
                         @foreach ($feature_products as $product)
                             <div class="single-slide">
                                 <div class="padding30">
-                                    <div class="product-item">
+                                    <div class="product-item"  style="padding: 15px;">
                                         <div class="pro-img">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                <img
-                                                    src="{{ $product->image }}" style="max-height: 237px"
-                                                    alt="" />
+                                                <img src="{{ $product->image }}" style="max-height: 237px;" alt="" />
                                             </a>
                                         </div>
-                                        <div class="actions-btn">
+                                        {{-- <div class="actions-btn">
                                             <ul class="clearfix">
                                                 <li>
-                                                    <a onclick="agregarAlCarrito({ id: {{ $product->id }}, nombre:{{ '"'.$product->name.'"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"><i class="fa fa-shopping-cart"></i></a>
+                                                    <a onclick="agregarAlCarrito({ id: {{ $product->id }}, nombre:{{ '"'.$product->name.'"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </a>
                                                 </li>
                                                 <li>
                                                     <a href="#"><i class="fa fa-heart"></i></a>
-                                                </li>
+                                                </li> 
                                                 <li>
                                                     <a href="{{ route('web_producto_descripcion', $product->id) }}"><i class="fa fa-eye"></i>
                                                     </a>
-                                                </li>
-                                                <!--
+                                                </li> 
                                                 <li>
                                                     <a href="#"
                                                         onclick="openModalProductDetails(event, {{ json_encode($product) }})"><i
                                                             class="fa fa-eye"></i>
                                                     </a>
-                                                </li>
-                                                -->
+                                                </li> 
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                         <div class="product-title">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                 <h5>{{ $product->name }}</h5>
                                             </a>
-                                            <p>Precio <span>S/. {{ $product->price }}</span></p>
-                                            <!--
-                                            <span style="color: #000;">Agotado </span>
-                                            -->
+                                            {{-- <p>Precio <span>S/ {{ number_format($product->price, 2)  }}</span></p> --}}
+                                        </div>
+                                        <div class="info">
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                                Obtén un <b>Desc. 4%</b>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
