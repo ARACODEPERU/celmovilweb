@@ -60,16 +60,7 @@
                 <div class="col-sm-6">
                     <div class="right">
                         <div class="singl-pro-title">
-                            <h3>{{ $product->name }}</h3>
-                            <h1>S/ {{ number_format($product->price, 2) }}</h1>
-                            @if ($product->category_description=="Vmps, Bicimotos, Bios" || $product->category_description=="Trimoto"
-                                || $product->category_description=="Cuatrimotos"  || $product->category_description=="Moto"
-                                || $product->category_description=="Scooter Moped" || $product->category_description=="Deportivos"
-                                || $product->category_description=="Chooper" || $product->category_description=="Baterias Litio"
-                                || $product->category_description=="Baterias Plomo Acido" || $product->category_description=="Scooter Vintage"
-                                || $product->category_description=="Vmps, Bicimotos, Bicis")
-                                <span style="color: #ff6600;">* Obtén un descuento del 4% por tus compras físicas en tienda. </span>
-                            @endif
+                            <h3><b>{{ $product->name }}</b></h3>
                             <div class="categ-tag">
                                 <ul class="clearfix">
                                     <li>
@@ -77,10 +68,27 @@
                                         <a href="#">{{ $product->category_description }}</a>
                                     </li>
                                 </ul>
-                                <!--
-                                        <span style="color: orange;"><b>Agotado </b></span>
-                                        -->
+                                {{-- <span style="color: orange;"><b>Agotado </b></span> --}}
                             </div>
+                            
+                            Precio:
+                            <h1><b>S/ {{ number_format($product->price, 2) }}</b></h1>
+                            <br>
+
+                            <p>
+                                Antes: <del> S/ 4,600.00</del> <br>
+                            </p>
+                            <b>Promoción a:</b>
+                            <h1><b style="color: #ff6600;">S/ {{ number_format($product->price, 2) }}</b></h1>
+                            
+                            @if ($product->category_description=="Vmps, Bicimotos, Bios" || $product->category_description=="Trimoto"
+                                || $product->category_description=="Cuatrimotos"  || $product->category_description=="Moto"
+                                || $product->category_description=="Scooter Moped" || $product->category_description=="Deportivos"
+                                || $product->category_description=="Chooper" || $product->category_description=="Baterias Litio"
+                                || $product->category_description=="Baterias Plomo Acido" || $product->category_description=="Scooter Vintage"
+                                || $product->category_description=="Vmps, Bicimotos, Bicis")
+                                {{-- <span style="color: #ff6600;">* Obtén un descuento del 4% por tus compras físicas en tienda. </span> --}}
+                            @endif
                             <hr />
                             {!! $product->description !!}
                             <br>
