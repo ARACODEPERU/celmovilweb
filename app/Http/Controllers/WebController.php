@@ -153,6 +153,7 @@ class WebController extends Controller
             ->where('id', $id)
             ->first();
         //dd($product->category_description);
+
         return view('pages/producto-descripcion', [
             'banner' => $banner,
             'product' => $product
@@ -188,6 +189,8 @@ class WebController extends Controller
 
         $preference_id = null;
         try {
+            DB::beginTransaction();
+
             MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
             $client = new PreferenceClient();
             $items = [];
@@ -245,13 +248,13 @@ class WebController extends Controller
             // );
 
             $preference_id =  $preference->id;
+            DB::commit();
         } catch (\MercadoPago\Exceptions\MPApiException $e) {
             // Manejar la excepción
+            DB::rollback();
             $response = $e->getApiResponse();
             dd($response); // Mostrar la respuesta para obtener más detalles
         }
-
-
 
         return view('pages/pagar', [
             'preference' => $preference_id,
