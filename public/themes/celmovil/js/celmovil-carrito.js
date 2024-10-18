@@ -535,7 +535,7 @@ function realizarConsulta(ids) {
                 inputHidden = document.createElement("input");
                 inputHidden.type = "hidden";
                 inputHidden.name = "product_price[]"; // Asigna el nombre que desees
-                inputHidden.value = item.price; // Asigna el valor que desees
+                inputHidden.value = item.price-item.discount; // Asigna el valor que desees
                 try {
                     document.getElementById("input-hidden").appendChild(inputHidden);
                 } catch (error) {
@@ -572,7 +572,7 @@ function renderProducto(respuesta, i) {
         var avatar = respuesta.avatar;
         var image = respuesta.image;
         var name = respuesta.name;
-        var price = respuesta.price;
+        var price = respuesta.price - respuesta.discount;
         var modalidad = respuesta.additional;
         var url_campus = "";
         var url_descripcion_programa = "/descripcion-programa/"+id; // esta ruta deberá corregirse si se cambia el el get de la RUTA :S

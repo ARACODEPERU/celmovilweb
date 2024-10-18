@@ -118,7 +118,7 @@ class WebController extends Controller
         //     ->where('onli_items.existence', 1)
         //     ->paginate(16)
         //     ->onEachSide(2);
-        
+
         $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
             ->select('onli_items.*')
             ->with('product')
@@ -189,7 +189,6 @@ class WebController extends Controller
 
         $preference_id = null;
         try {
-            DB::beginTransaction();
 
             MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
             $client = new PreferenceClient();
@@ -231,7 +230,7 @@ class WebController extends Controller
                     'sale_id'       => $sale->id,
                     'item_id'       => $product->item_id,
                     'entitie'       => $product->entitie,
-                    'price'         => $product->price,
+                    'price'         => $product->price-$product->discount,
                     'quantity'      => floatval($productquantitys[$key]),
                     'onli_item_id'  => $id
                 ]);
@@ -248,10 +247,9 @@ class WebController extends Controller
             // );
 
             $preference_id =  $preference->id;
-            DB::commit();
         } catch (\MercadoPago\Exceptions\MPApiException $e) {
             // Manejar la excepción
-            DB::rollback();
+
             $response = $e->getApiResponse();
             dd($response); // Mostrar la respuesta para obtener más detalles
         }
