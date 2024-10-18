@@ -342,7 +342,7 @@ const removeSpecifications= (key) => {
                         <InputLabel for="additional5" :value="titles.additional5+'*'" />
                         <select v-model="form.additional5" id="additional5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="NO">Venta Normal</option>
-                            <option value="PR">En Promoción</option>
+                            <!-- <option value="PR">En Promoción</option> -->
                             <option value="DE">Con Descuento</option>
                         </select>
                         <InputError :message="form.errors.additional5" class="mt-2" />

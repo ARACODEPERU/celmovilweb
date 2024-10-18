@@ -1,8 +1,8 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                                                                <div class="preloader">                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                    <div class="preloader">                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -28,7 +28,8 @@
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                                 </a>
                                 @if ($product->existence == 0)
-                                <span style="background: red; padding: 15px 25px; color: #fff; position: relative; z-index: 999; display: block; margin-top: -50px;">AGOTADO</span>
+                                    <span
+                                        style="background: red; padding: 15px 25px; color: #fff; position: relative; z-index: 999; display: block; margin-top: -50px;">AGOTADO</span>
                                 @endif
                             </div>
                             @foreach ($product->images as $image)
@@ -70,23 +71,34 @@
                                 </ul>
                                 {{-- <span style="color: orange;"><b>Agotado </b></span> --}}
                             </div>
-                            
-                            Precio:
-                            <h1><b>S/ {{ number_format($product->price, 2) }}</b></h1>
-                            <br>
 
-                            <p>
-                                Antes: <del> S/ 4,600.00</del> <br>
-                            </p>
-                            <b>Promoción a:</b>
-                            <h1><b style="color: #ff6600;">S/ {{ number_format($product->price, 2) }}</b></h1>
-                            
-                            @if ($product->category_description=="Vmps, Bicimotos, Bios" || $product->category_description=="Trimoto"
-                                || $product->category_description=="Cuatrimotos"  || $product->category_description=="Moto"
-                                || $product->category_description=="Scooter Moped" || $product->category_description=="Deportivos"
-                                || $product->category_description=="Chooper" || $product->category_description=="Baterias Litio"
-                                || $product->category_description=="Baterias Plomo Acido" || $product->category_description=="Scooter Vintage"
-                                || $product->category_description=="Vmps, Bicimotos, Bicis")
+                            @if ($product->discount > 0)
+                                @php
+                                    $new_price = $product->price - $product->discount;
+                                @endphp
+                                <p>
+                                    Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
+                                </p>
+                                <b>Promoción a:</b>
+                                <h1><b style="color: #ff6600;">S/ {{ number_format($new_price, 2) }}</b></h1>
+                            @else
+                                Precio:
+                                <h1><b>S/ {{ number_format($product->price, 2) }}</b></h1>
+                            @endif
+
+
+                            @if (
+                                $product->category_description == 'Vmps, Bicimotos, Bios' ||
+                                    $product->category_description == 'Trimoto' ||
+                                    $product->category_description == 'Cuatrimotos' ||
+                                    $product->category_description == 'Moto' ||
+                                    $product->category_description == 'Scooter Moped' ||
+                                    $product->category_description == 'Deportivos' ||
+                                    $product->category_description == 'Chooper' ||
+                                    $product->category_description == 'Baterias Litio' ||
+                                    $product->category_description == 'Baterias Plomo Acido' ||
+                                    $product->category_description == 'Scooter Vintage' ||
+                                    $product->category_description == 'Vmps, Bicimotos, Bicis')
                                 {{-- <span style="color: #ff6600;">* Obtén un descuento del 4% por tus compras físicas en tienda. </span> --}}
                             @endif
                             <hr />
@@ -155,9 +167,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
+                                    <button
+                                        onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
                                         class="btn btn-celmovil" style="padding: 10px 35px; cursor: pointer;"
-                                        {{ $product->existence ==0? "disabled" : "" }}>
+                                        {{ $product->existence == 0 ? 'disabled' : '' }}>
                                         <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
                                     </button>

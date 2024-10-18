@@ -5,7 +5,8 @@
                 <div class="row">
                     <div class="col-md-10 col-text-center">
                         <div class="section-title text-center">
-                            <h1><span>{{ $product_popular_area[0]->content }}</span> {{ $product_popular_area[1]->content }}</h1>
+                            <h1><span>{{ $product_popular_area[0]->content }}</span>
+                                {{ $product_popular_area[1]->content }}</h1>
                             <div class="shape">
                             </div>
                             <p>
@@ -21,21 +22,29 @@
                                 <div class="product-item" style="padding: 15px;">
                                     <div class="pro-img">
                                         <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"  style="width: 220px; height: 220px;" />
+                                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
+                                                style="width: 220px; height: 220px;" />
                                         </a>
                                     </div>
                                     <div class="">
                                         <div class="product-title">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                <h5  style="height: 40px;"><b>{{ $product->name }}</b></h5>
-                                            </a>  
-                                            <p>
-                                                Precio: <b>S/ 3500.00</b>
-                                            </p>
-                                            <p>
-                                                Antes: <del> S/ 1800.00</del> <br>
-                                                Promoción: <span><b>S/ 1620.00</b> </span>
-                                            </p>
+                                                <h5 style="height: 40px;"><b>{{ $product->name }}</b></h5>
+                                            </a>
+                                            @if ($product->discount > 0)
+                                                @php
+                                                    $new_price = $product->price - $product->discount;
+                                                @endphp
+                                                <p>
+                                                    Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
+                                                    Promoción: <span><b>S/ {{ number_format($new_price, 2) }}</b>
+                                                    </span>
+                                                </p>
+                                            @else
+                                                <p>
+                                                    Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
+                                                </p>
+                                            @endif
                                             {{-- <p>Precio: <span>S/ {{ number_format($product->price - ($product->discount ?? 0),2) }}</span></p> --}}
                                         </div>
                                     </div>
@@ -45,7 +54,8 @@
                                         </a>
                                     </div> --}}
                                     <div style="margin-top: 10px;">
-                                        <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                        <a href="{{ route('web_producto_descripcion', $product->id) }}"
+                                            class="btn btn-celmovil">
                                             <b>Más Información </b>
                                         </a>
                                     </div>

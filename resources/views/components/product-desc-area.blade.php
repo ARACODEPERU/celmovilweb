@@ -33,7 +33,9 @@
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                 <h5>{{ $product->name }}</h5>
                                             </a>
-                                            <p>Price: <span>S/ {{ $product->price - ($product->discount ?? 0) }} </span>
+                                            <p>
+                                                Price: <span>S/ {{ $product->price - ($product->discount ?? 0) }}
+                                                </span>
                                             </p>
                                         </div>
                                     </div>

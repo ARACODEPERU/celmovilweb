@@ -19,10 +19,11 @@
                         @foreach ($feature_products as $product)
                             <div class="single-slide">
                                 <div class="padding30">
-                                    <div class="product-item"  style="padding: 15px;">
+                                    <div class="product-item" style="padding: 15px;">
                                         <div class="pro-img">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                <img src="{{ $product->image }}" style="max-height: 237px;" alt="" />
+                                                <img src="{{ $product->image }}" style="max-height: 237px;"
+                                                    alt="" />
                                             </a>
                                         </div>
                                         {{-- <div class="actions-btn">
@@ -51,14 +52,20 @@
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                 <h5><b>{{ $product->name }}</b></h5>
                                             </a>
-                                            <p>
-                                                Precio: <b>S/ 3500.00</b>
-                                            </p>
-                                            <br>
-                                            <p>
-                                                Antes: <del> S/ 1800.00</del> <br>
-                                                Promoción: <span><b>S/ 1620.00</b> </span>
-                                            </p>
+                                            @if ($product->discount > 0)
+                                                @php
+                                                    $new_price = $product->price - $product->discount;
+                                                @endphp
+                                                <p>
+                                                    Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
+                                                    Promoción: <span><b>S/ {{ number_format($new_price, 2) }}</b>
+                                                    </span>
+                                                </p>
+                                            @else
+                                                <p>
+                                                    Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
+                                                </p>
+                                            @endif
                                             {{-- <p>Precio <span>S/ {{ number_format($product->price, 2)  }}</span></p> --}}
                                         </div>
                                         {{-- <div style="margin-top: 10px;">
@@ -67,7 +74,8 @@
                                             </a>
                                         </div> --}}
                                         <div style="margin-top: 10px;">
-                                            <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}"
+                                                class="btn btn-celmovil">
                                                 <b>Más Información </b>
                                             </a>
                                         </div>
