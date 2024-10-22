@@ -60,13 +60,20 @@
                                                     <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                         <h6><b>{{ $product->name }}</b></h6>
                                                     </a>
-                                                    <p>
-                                                        Precio: <b>S/ 3500.00</b>
-                                                    </p>
-                                                    <p>
-                                                        Antes: <del> S/ 1800.00</del> <br>
-                                                        Promoción: <span><b>S/ 1620.00</b> </span>
-                                                    </p>
+                                                    @if ($product->discount > 0)
+                                                        @php
+                                                            $new_price = $product->price - $product->discount;
+                                                        @endphp
+                                                        <p>
+                                                            Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
+                                                            Promoción: <span><b>S/ {{ number_format($new_price, 2) }}</b>
+                                                            </span>
+                                                        </p>
+                                                    @else
+                                                        <p>
+                                                            Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
+                                                        </p>
+                                                    @endif
                                                     {{-- <p>Precio: <span>S/ {{ number_format($product->price, 2)  }} </span>
                                                         @if ($product->discount > 0)
                                                             <del>S/ {{ number_format($product->price - ($product->discount ?? 0),2)}}</del>
