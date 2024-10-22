@@ -91,7 +91,7 @@ class EvenLocalController extends Controller
                 if (PHP_OS == 'WINNT') {
                     $tempFile = tempnam(sys_get_temp_dir(), 'img');
                 } else {
-                    $tempFile = tempnam('/var/www/html', 'img');
+                    $tempFile = tempnam('/var/www/html/img_temp', 'img');
                 }
                 //dd($tempFile);
                 file_put_contents($tempFile, $fileData);
@@ -187,7 +187,7 @@ class EvenLocalController extends Controller
                 if (PHP_OS == 'WINNT') {
                     $tempFile = tempnam(sys_get_temp_dir(), 'img');
                 } else {
-                    $tempFile = tempnam('/var/www/html', 'img');
+                    $tempFile = tempnam('/var/www/html/img_temp', 'img');
                 }
 
                 file_put_contents($tempFile, $fileData);
