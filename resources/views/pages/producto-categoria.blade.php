@@ -36,7 +36,7 @@
                             @if (count($products) > 0)
                                 @foreach ($products as $product)
                                     <div class="col-xs-12 col-md-3" style="padding: 15px;">
-                                        <div class="product-item" style="padding: 15px;">
+                                        <div class="product-item" style="padding: 15px;  height: 380px;">
                                             <div class="pro-img">
                                                 <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                                     <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 220px; height: 220px;">
