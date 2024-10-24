@@ -19,7 +19,7 @@
                     @foreach ($products_recommended as $product)
                         <div class="col-xs-12 col-md-3" style="padding: 15px;">
                             <div class="padding30">
-                                <div class="product-item" style="padding: 15px;">
+                                <div class="product-item" style="padding: 15px;  height: 400px;">
                                     <div class="pro-img">
                                         <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                             <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
@@ -29,7 +29,7 @@
                                     <div class="">
                                         <div class="product-title">
                                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                <h5 style="height: 40px;"><b>{{ $product->name }}</b></h5>
+                                                <h5><b>{{ $product->name }}</b></h5>
                                             </a>
                                             @if ($product->discount > 0)
                                                 @php
