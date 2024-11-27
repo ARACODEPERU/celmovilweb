@@ -25,6 +25,7 @@ Route::get('/nosotros', [WebController::class, 'nosotros'])->name('web_nosotros'
 Route::get('/politicas-de-privacidad', [WebController::class, 'politicasprivacidad'])->name('web_politicas_de_privacidad');
 Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
 Route::get('/producto-categoria/{id}/list', [WebController::class, 'productocategoria'])->name('web_producto_categoria');
+Route::get('/productos/{id}/list', [WebController::class, 'productoPrincipal'])->name('web_producto_principal');
 Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');
 Route::post('/pagar', [WebController::class, 'pagar'])->name('web_pagar');
 Route::put('/process_payment/{id}', [WebController::class, 'processPayment'])->name('web_process_payment');
