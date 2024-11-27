@@ -1,6 +1,6 @@
 
     
-    <section class="featured-area featured-one section-padding">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-text-center">
@@ -19,7 +19,7 @@
         <div class="grid-container">
             @foreach ($products_recommended as $product)
                 <div class="grid-item">
-                    <div class="product-item" style="padding: 15px;  height: 380px;">
+                    <div class="product-item" style="padding: 15px;  height: 390px;">
                         <div class="pro-img">
                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                 <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
@@ -81,7 +81,7 @@
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(3, auto);
         width: 100%;
-        padding: 20px 50px;
+        padding: 20px 40px;
         /* max-width: 600px; */
         }
 
@@ -98,6 +98,8 @@
         .grid-container {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, auto);
+            width: 98%;
+            padding: 5px;
         }
 
         .grid-item {
