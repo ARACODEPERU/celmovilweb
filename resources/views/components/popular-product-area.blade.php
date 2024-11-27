@@ -1,6 +1,6 @@
 
     
-    <section>
+    <section style="padding: 120px 0px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-text-center">
@@ -19,7 +19,7 @@
         <div class="grid-container">
             @foreach ($products_recommended as $product)
                 <div class="grid-item">
-                    <div class="product-item" style="padding: 15px;  height: 390px;">
+                    <div class="product-item" style="padding: 15px;  height: 400px;">
                         <div class="pro-img">
                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                 <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
