@@ -82,12 +82,13 @@
                         <div class="mainmenu text-center floatleft">
                             <nav>
                                 <ul>
-                                    <li><a href="{{ route('web_inicio') }}"> <i class="fa fa-home"
-                                                style="font-size: 18px;"></i> </a></li>
-                                    <!--
-                                    <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
-                                    -->
-                                    @if ($categories && count($categories) > 0)
+                                    <li>
+                                        <a href="{{ route('web_inicio') }}"> 
+                                            <i class="fa fa-home" style="font-size: 18px;"></i> 
+                                        </a>
+                                    </li>
+                                    {{-- <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li> --}}
+                                    {{-- @if ($categories && count($categories) > 0)
                                         @foreach ($categories as $category)
                                             <li>
                                                 @if ($category->subcategories && count($category->subcategories))
@@ -107,6 +108,15 @@
                                                         {{ $category->description }}
                                                     </a>
                                                 @endif
+                                            </li>
+                                        @endforeach
+                                    @endif --}}
+                                    @if ($categories && count($categories) > 0)
+                                        @foreach ($categories as $category)
+                                            <li>
+                                                    <a href="{{ route('web_producto_categoria', $category->id) }}">
+                                                        {{ $category->description }}
+                                                    </a>
                                             </li>
                                         @endforeach
                                     @endif
