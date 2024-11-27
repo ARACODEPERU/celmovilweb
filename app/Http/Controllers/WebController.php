@@ -19,6 +19,7 @@ use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Client\Payment\PaymentClient;
 use Modules\Onlineshop\Entities\OnliSale;
 use Modules\Onlineshop\Entities\OnliSaleDetail;
+use Modules\Sales\Entities\SaleProductCategory;
 
 class WebController extends Controller
 {
@@ -96,9 +97,46 @@ class WebController extends Controller
             'banner' => $banner
         ]);
     }
+    public function productoPrincipal($id){
+
+        $banner = CmsSection::where('component_id', 'banner_productos_categoria_4')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+
+            $ids = SaleProductCategory::where('category_id', $id)
+            ->pluck('id')
+            ->toArray();  
+            
+            if(empty($ids)){
+                $ids=[$id];
+            }
+
+            $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
+            ->select('onli_items.*')
+            ->with('product')
+            ->whereIn('products.category_id', $ids)
+            ->where('onli_items.existence', 1)
+            ->orderBy('onli_items.created_at', 'desc')
+            ->paginate(16)
+            ->onEachSide(2);
+        
+        return view('pages/productos', [
+            'banner' => $banner,
+            'products' => $products,
+            'category_id' => $id,
+        ]);
+        
+    }
 
     public function productocategoria($id)
     {
+        
         $banner = CmsSection::where('component_id', 'banner_productos_categoria_4')  //siempre cambiar el id del componente
             ->join('cms_section_items', 'section_id', 'cms_sections.id')
             ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')

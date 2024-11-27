@@ -19,7 +19,21 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="section-title text-center">
-                        <h3><span>{{ isset($products) && isset($products[0]) ? $products[0]->category_description : '' }}</span></h3>
+                        <h3><span>
+                        @if ($category_id == 1)
+                            MOTOS
+                            @elseif($category_id == 2)
+                            TRIMOTOS
+                            @elseif($category_id == 6)
+                            BATERIAS
+                            @elseif($category_id == 25)
+                            CUATRIMOTOS
+                            @elseif($category_id == 26)
+                            REPUESTOS
+                            @elseif($category_id == 27)
+                            ACCESORIOS
+                        @endif  
+                        </span></h3>
                         <div class="shape">
                         </div>
                         <p>
