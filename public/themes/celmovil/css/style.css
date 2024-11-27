@@ -130,7 +130,7 @@ hr.line {
 	margin-right: auto !important;
 }
 /* ScrollUp */
-#scrollUp {
+/* #scrollUp {
 	background-color: #1b1b1b;
 	bottom: 50px;
 	font-size: 22px;
@@ -150,7 +150,7 @@ hr.line {
 	position: absolute;
 	width: 100%;
 	left: 0;
-}
+} */
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mymove {
     from {bottom: 0px;}
