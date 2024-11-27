@@ -33,10 +33,11 @@
     </style>
     <header>
         <script>
-            ruta_carrito = "{{ route("web_carrito") }}"
+            ruta_carrito = "{{ route('web_carrito') }}"
+
             function confirmarEliminarCarrito() {
                 if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
-                eliminarCarrito();
+                    eliminarCarrito();
                 }
             }
         </script>
@@ -81,7 +82,8 @@
                         <div class="mainmenu text-center floatleft">
                             <nav>
                                 <ul>
-                                    <li><a href="{{ route('web_inicio') }}"> <i class="fa fa-home" style="font-size: 18px;"></i> </a></li>
+                                    <li><a href="{{ route('web_inicio') }}"> <i class="fa fa-home"
+                                                style="font-size: 18px;"></i> </a></li>
                                     <!--
                                     <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
                                     -->
@@ -118,7 +120,8 @@
                                     <ul class="cart-menu" id="cart-menu">
                                         <li class="cart-menu-btn">
                                             <a href="{{ route('web_carrito') }}">Ir al Carrito</a>
-                                            <a style="background-color: red; color: white;" href="" onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
+                                            <a style="background-color: red; color: white;" href=""
+                                                onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -154,7 +157,7 @@
                                                                 </li>
                                                             @endforeach
                                                         </ul>
-                                                        @else
+                                                    @else
                                                         <a href="{{ route('web_producto_categoria', $category->id) }}">
                                                             {{ $category->description }}
                                                         </a>
@@ -178,7 +181,76 @@
                 load_post_url(post_url, token);
                 cargarItemsCarritoBD();
             });
-
         </script>
+
+
+        <!-- codigo de anuncio de Bloqueo -->
+        <style>
+            .modal-overlay-bloqueo {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 999999;
+            }
+
+            .modal-bloqueo {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999999;
+            }
+
+            .countdown-bloqueo {
+                font-size: 48px;
+                font-weight: bold;
+                margin: 20px 0;
+            }
+        </style>
+{{--  bloqueo por no pago
+        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
+            <div class="modal-bloqueo">
+                <h2>Comunícate con el proveedor WEB </h2>
+                <div id="countdown-bloqueo" class="countdown-bloqueo">10</div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const modalOverlay = document.getElementById('modal-overlay-bloqueo');
+                const countdownElement = document.getElementById('countdown-bloqueo');
+                let countdown = 10;
+
+                function updateCountdown() {
+                    countdownElement.textContent = countdown;
+                    if (countdown > 0) {
+                        countdown--;
+                        setTimeout(updateCountdown, 1000);
+                    } else {
+                        modalOverlay.style.display = 'none';
+                    }
+                }
+
+                updateCountdown();
+            });
+        </script> --}}
+
     </header>
 </div>
