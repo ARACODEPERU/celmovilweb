@@ -1,4 +1,5 @@
 <div>
+
     <section class="featured-area featured-one section-padding">
         <div class="container">
             <div class="row">
@@ -89,8 +90,8 @@
         </div>
     </section>
 
-    <!-- quick view start
-    <div class="product-details quick-view modal animated zoomIn" id="quick-view-product">
+    <!-- quick view start-->
+    {{-- <div class="product-details quick-view modal animated zoomIn" id="quick-view-product">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -193,7 +194,7 @@
                 </div>
             </div>
         </div>
-    </div>-->
+    </div> --}}
 
     <!-- quick view end -->
     <script>

@@ -20,23 +20,6 @@
             <div class="slider" id="mainslider">
                 @foreach ($sliders as $slide)
                     <div data-src="{{ $slide->content }}">
-                        <div class="d-table">
-                            <div class="d-tablecell">
-                                <div class="container">
-                                    <div class="row">
-                                        <!--
-                                        <div class="col-xs-12">
-                                            <div class="slide-text">
-                                                <div class="shape animated flipInX">
-                                                    <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 @endforeach
                 <!--
