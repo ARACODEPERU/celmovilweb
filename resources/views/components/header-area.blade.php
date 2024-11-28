@@ -114,9 +114,9 @@
                                     @if ($categories && count($categories) > 0)
                                         @foreach ($categories as $category)
                                             <li>
-                                                    <a href="{{ route('web_producto_categoria', $category->id) }}">
-                                                        {{ $category->description }}
-                                                    </a>
+                                                <a href="{{ route('web_producto_principal', $category->id) }}">
+                                                    {{ $category->description }}
+                                                </a>
                                             </li>
                                         @endforeach
                                     @endif

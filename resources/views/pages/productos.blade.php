@@ -14,7 +14,7 @@
         <img style="width: 100%; height: 250px;" src="{{ $banner[0]->content }}" alt="Page Banner" />
     </div>
     <!-- page banner area end -->
-    <section class="best-sell-area popular-product section-padding-top">
+    {{-- <section class="best-sell-area popular-product section-padding-top">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
@@ -56,19 +56,6 @@
                                                     <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 220px; height: 220px;">
                                                 </a>
                                             </div>
-                                            {{-- <div class="actions-btn">
-                                                <ul class="clearfix">
-                                                    <li>
-                                                        <a onclick="agregarAlCarrito({ id: {{ $product->id }}, nombre:{{ '"'.$product->name.'"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"><i class="fa fa-shopping-cart"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" data-toggle="modal" data-target="#quick-view"><i class="fa fa-eye"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div> --}}
                                             <div class="">
                                                 <div class="product-title">
                                                     <a href="{{ route('web_producto_descripcion', $product->id) }}">
@@ -88,18 +75,8 @@
                                                             Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
                                                         </p>
                                                     @endif
-                                                    {{-- <p>Precio: <span>S/ {{ number_format($product->price, 2)  }} </span>
-                                                        @if ($product->discount > 0)
-                                                            <del>S/ {{ number_format($product->price - ($product->discount ?? 0),2)}}</del>
-                                                        @endif
-                                                    </p> --}}
                                                 </div>
                                             </div>
-                                            {{-- <div class="info" style="margin-top: 10px;">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
-                                                    Obtén un <b>Desc. 4%</b>
-                                                </a>
-                                            </div> --}}
                                             <div style="margin-top: 10px;">
                                                 <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
                                                     <b>Más Información </b>
@@ -114,7 +91,134 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+
+    <section style="padding: 40px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
+                    <div class="section-title text-center">
+                        <h3>
+                            <span>
+                            @if ($category_id == 1)
+                                MOTOS
+                                @elseif($category_id == 2)
+                                TRIMOTOS
+                                @elseif($category_id == 6)
+                                BATERIAS
+                                @elseif($category_id == 25)
+                                CUATRIMOTOS
+                                @elseif($category_id == 26)
+                                REPUESTOS
+                                @elseif($category_id == 27)
+                                ACCESORIOS
+                            @endif  
+                            </span>
+                        </h3>
+                        <div class="shape">
+                        </div>
+                        <p>
+                            ¿Listo para experimentar lo último en estilo, tecnología y comodidad?
+                            <br>¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-container">
+            @if (count($products) > 0)
+                @foreach ($products as $product)
+                <div class="grid-item">
+                    <div class="product-item" style="padding: 15px;  height: 400px;">
+                        <div class="pro-img">
+                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
+                                    style="width: 220px; height: 220px;" />
+                            </a>
+                        </div>
+                        <div class="">
+                            <div class="product-title">
+                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                    <h5><b>{{ $product->name }}</b></h5>
+                                </a>
+                                @if ($product->discount > 0)
+                                    @php
+                                        $new_price = $product->price - $product->discount;
+                                    @endphp
+                                    <p>
+                                        Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
+                                        Promoción: <span><b>S/ {{ number_format($new_price, 2) }}</b>
+                                        </span>
+                                    </p>
+                                @else
+                                    <p>
+                                        Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
+                                    </p>
+                                @endif
+                                {{-- <p>Precio: <span>S/ {{ number_format($product->price - ($product->discount ?? 0),2) }}</span></p> --}}
+                            </div>
+                        </div>
+                        {{-- <div class="info" style="margin-top: -10px;">
+                            <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                Obtén un <b>Desc. 4%</b>
+                            </a>
+                        </div> --}}
+                        <div style="margin-top: 10px;">
+                            <a href="{{ route('web_producto_descripcion', $product->id) }}"
+                                class="btn btn-celmovil">
+                                <b>Más Información </b>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            @endif
+            {{-- <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            <div class="grid-item">4</div>
+            <div class="grid-item">5</div>
+            <div class="grid-item">6</div>
+            <div class="grid-item">7</div>
+            <div class="grid-item">8</div>
+            <div class="grid-item">9</div> --}}
+        </div>
     </section>
+
+    
+    <style>
+        .grid-container {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, auto);
+        width: 100%;
+        padding: 20px 40px;
+        /* max-width: 600px; */
+        }
+
+        .grid-item {
+        /* background-color: #007bff; */
+        color: white;
+        text-align: center;
+        padding: 20px;
+        border-radius: 5px;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            width: 98%;
+            padding: 5px;
+        }
+
+        .grid-item {
+            padding: 10px;
+        }
+        }
+    </style>
 
 
     <!-- quick view start -->
@@ -226,7 +330,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- quick view end -->
     <script>
         function openModalProductDetails(event, productObject) {
