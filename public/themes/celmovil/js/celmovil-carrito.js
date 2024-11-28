@@ -253,8 +253,9 @@ function agregarAlCarrito_w_color(producto) { //agregar al carrito con un color 
     try {
         console.log( document.getElementById("color_selected").value);
         color = document.getElementById("color_selected").value;
-    } catch () {
+    } catch (error) {
         color = "No Aplica";
+        console.log("Color No aplica");
     }
     if (agregar) {
         if(typeof producto.color === 'undefined' || producto.color == null){  //para productos tipo cursos capperu
