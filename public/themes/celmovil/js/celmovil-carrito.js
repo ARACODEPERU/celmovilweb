@@ -249,8 +249,13 @@ function agregarAlCarrito_w_color(producto) { //agregar al carrito con un color 
             break;
         }
     }
-    console.log( document.getElementById("color_selected").value);
-    color = document.getElementById("color_selected").value;
+    let color="";
+    try {
+        console.log( document.getElementById("color_selected").value);
+        color = document.getElementById("color_selected").value;
+    } catch () {
+        color = "No Aplica";
+    }
     if (agregar) {
         if(typeof producto.color === 'undefined' || producto.color == null){  //para productos tipo cursos capperu
             Swal.fire({
