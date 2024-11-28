@@ -1,5 +1,7 @@
 @extends('layouts.celmovil')
 @section('content')
+
+
     <!-- Preloader Start -->
         <div class="preloader">
             <div class="loading-center">

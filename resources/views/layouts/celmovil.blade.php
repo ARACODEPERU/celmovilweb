@@ -25,6 +25,76 @@
 <body class="black-version">
 
     @yield('content')
+<!-- COOKIES -->
+
+<div id="cookie-consent" class="cookiesMessage_cookiesDisclaimer__pF8_x">
+    <h5 class="cookiesMessage_cookiesDisclaimerHeader__y_YCo">USO DE COOKIES</h5>
+    <p class="cookiesMessage_cookiesDisclaimerBody__nxps1">Usamos cookies propias y de terceros para funciones esenciales
+        de este sitio y mejorar tu experiencia al navegar por <a href="{{ env('APP_URL') }}">{{ env('APP_NAME') }}</a>.
+        Revisa nuestro<!-- --> <a target="_blank" href="{{ route('cookies_policy') }}">Aviso de Cookies</a> para obtener
+        más información al respecto.</p>
+    <div class="cookiesMessage_cookiesDisclaimerButton__NwcdV">
+        <button id="accept-cookies" class="cookiesMessage_cookiesDisclaimerButtonAccept__u3I5b"
+            type="button">Aceptar</button>
+    </div>
+</div>
+<style>
+    .cookiesMessage_cookiesDisclaimer__pF8_x {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        font-family: Barlow, sans-serif;
+        background-color: hsla(0, 0%, 100%, .9);
+        position: fixed;
+        color: #464646;
+        bottom: 0;
+        width: 100%;
+        padding: 1rem 6rem;
+        z-index: 999999;
+        box-sizing: border-box;
+    }
+</style>
+
+<script>
+    document.getElementById('cookie-consent').style.display = "none";
+    document.addEventListener('DOMContentLoaded', function() {
+        const cookieConsent = document.getElementById('cookie-consent');
+        const acceptButton = document.getElementById('accept-cookies');
+        var consent = localStorage.getItem('cookieConsent');
+        if (!(consent === 'true')) {
+            cookieConsent.style.display = "block";
+        }
+
+        function showCookieConsent() {
+            if (localStorage.getItem('cookieConsent') !== 'true') {
+                cookieConsent.classList.remove('hidden');
+                setTimeout(() => {
+                    cookieConsent.style.transform = 'translateY(0)';
+                    cookieConsent.style.opacity = '1';
+                }, 100);
+            }
+        }
+
+        function hideCookieConsent() {
+            cookieConsent.style.transform = 'translateY(100%)';
+            cookieConsent.style.display = 'none';
+            setTimeout(() => {
+                cookieConsent.classList.add('hidden');
+            }, 300);
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            hideCookieConsent();
+        }
+
+        acceptButton.addEventListener('click', acceptCookies);
+
+        showCookieConsent();
+    });
+</script>
+
+<!-- Fin de Cookies -->
 
     <!-- all js here -->
     <script src="{{ asset('themes/celmovil/js/celmovil-carrito.js') }}"></script>
