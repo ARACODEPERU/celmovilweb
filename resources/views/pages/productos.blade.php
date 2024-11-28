@@ -105,7 +105,7 @@
                                 @elseif($category_id == 2)
                                 TRIMOTOS
                                 @elseif($category_id == 6)
-                                BATERIAS
+                                VMPS, BICIMOTOS y BICIS
                                 @elseif($category_id == 25)
                                 CUATRIMOTOS
                                 @elseif($category_id == 26)
