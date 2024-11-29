@@ -207,8 +207,9 @@
                                 </div>
                                 <div id="collapse2Two" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        El motor no requiere de ningún tipo de mantenimiento, sin embargo, al tratarse de un vehículo ciclomotor, se recomienda realizar una revisión periódica del estado de las ruedas, los frenos y luces como una medida de prevención.
-                                        Más detalle, puede consultar a las dos tiendas & talleres en Lima: tienda Lince & tienda Surco. 
+                                        El motor no requiere de ningún tipo de mantenimiento, sin embargo, al tratarse de un vehículo ciclomotor, 
+                                        se recomienda realizar una revisión periódica del estado de las ruedas, los frenos y luces como una 
+                                        medida de prevención. Más detalle, puede consultar en nuestra tienda ubicada en Av. América Sur 397, Urb. Aranjuez, Trujillo - Perú. 
                                     </div>
                                 </div>
                             </div>
