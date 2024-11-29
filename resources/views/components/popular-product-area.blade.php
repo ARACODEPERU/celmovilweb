@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="grid-item view-movil">
-                    <div class="product-item" style="padding: 15px;  height: 320px;">
+                    <div class="product-item" style="padding: 15px;  height: 340px;">
                         <div class="pro-img">
                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                 <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
