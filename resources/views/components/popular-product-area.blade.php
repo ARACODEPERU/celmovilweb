@@ -23,7 +23,7 @@
                         <div class="pro-img">
                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
                                 <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
-                                    style="width: 220px; height: 220px;" />
+                                    style="width: 100%;" />
                             </a>
                         </div>
                         <div class="">
