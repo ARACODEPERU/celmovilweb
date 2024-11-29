@@ -50,6 +50,15 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12" style="padding: 15px;">
+                    <div class="box-shadow">
+                        <a href="https://celmovil.pe/productos/6/list">
+                            <img style="width: 100%;" src="{{ asset('themes/celmovil/img/BiciWeb.jpg') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
