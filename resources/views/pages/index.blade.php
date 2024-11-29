@@ -3,66 +3,48 @@
 
 
     <!-- Preloader Start -->
-        <div class="preloader">
-            <div class="loading-center">
-                <div class="loading-center-absolute">
-                    <div class="object object_one"></div>
-                    <div class="object object_two"></div>
-                    <div class="object object_three"></div>
-                </div>
+    <div class="preloader">
+        <div class="loading-center">
+            <div class="loading-center-absolute">
+                <div class="object object_one"></div>
+                <div class="object object_two"></div>
+                <div class="object object_three"></div>
             </div>
-        </div> 
+        </div>
+    </div> 
     <!-- Preloader End -->
 
     <!-- header - section start -->
     <x-header-area />
     <!-- header - section end -->
-    <div>
-        <div class="slider-area slider-one clearfix">
-            <div class="slider" id="mainslider">
-                @foreach ($sliders as $slide)
-                    <div data-src="{{ $slide->content }}">
-                    </div>
-                @endforeach
-                <!--
-                <div data-src="{{ asset('themes/celmovil/img/slider/slider_01.jpeg') }}">
-                    <div class="d-table">
-                        <div class="d-tablecell">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="slide-text">
-                                            <div class="shape animated flipInX">
-                                                <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+    <!-- slider - pc - section start -->
+    <div class="slider-area slider-one clearfix view-pc">
+        <div class="slider" id="mainslider">
+            @foreach ($sliders as $slide)
+                <div data-src="{{ $slide->content }}">
                 </div>
-                <div data-src="{{ asset('themes/celmovil/img/slider/celmovil-portada.jpg') }}">
-                    <div class="d-table">
-                        <div class="d-tablecell">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="slide-text">
-                                            <div class="shape animated flipInX">
-                                                <img src="{{ asset('themes/celmovil/img/slider/shape.png') }}" alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
-            </div>
+            @endforeach
         </div>
     </div>
+    <!-- slider - pc - section end -->
+
+    <!-- Tarjetas Catalogo - movil - section end -->
+    <section class="view-movil" style="padding: 15px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="padding: 15px;">
+                    <div class="box-shadow">
+                        <a href="http://celmovilweb.test/productos/1/list">
+                            <img style="width: 100%;" src="{{ asset('themes/celmovil/img/MotosWeb.jpg') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tarjetas Catalogo - movil - section end -->
 
 
     <!-- feature products - section start -->

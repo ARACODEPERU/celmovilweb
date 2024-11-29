@@ -13,6 +13,7 @@
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
 
+
     <!-- style css -->
     <link rel="stylesheet" href="{{ asset('themes/celmovil/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/celmovil/responsive.css') }}">
