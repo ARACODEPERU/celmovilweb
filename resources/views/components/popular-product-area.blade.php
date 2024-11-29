@@ -18,7 +18,50 @@
         </div>
         <div class="grid-container">
             @foreach ($products_recommended as $product)
-                <div class="grid-item">
+                <div class="grid-item view-pc">
+                    <div class="product-item" style="padding: 15px;  height: 400px;">
+                        <div class="pro-img">
+                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
+                                    style="width: 220px; height: 220px;" />
+                            </a>
+                        </div>
+                        <div class="">
+                            <div class="product-title">
+                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                    <h5><b>{{ $product->name }}</b></h5>
+                                </a>
+                                @if ($product->discount > 0)
+                                    @php
+                                        $new_price = $product->price - $product->discount;
+                                    @endphp
+                                    <p>
+                                        Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
+                                        Promoción: <span><b>S/ {{ number_format($new_price, 2) }}</b>
+                                        </span>
+                                    </p>
+                                @else
+                                    <p>
+                                        Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
+                                    </p>
+                                @endif
+                                {{-- <p>Precio: <span>S/ {{ number_format($product->price - ($product->discount ?? 0),2) }}</span></p> --}}
+                            </div>
+                        </div>
+                        {{-- <div class="info" style="margin-top: -10px;">
+                            <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                Obtén un <b>Desc. 4%</b>
+                            </a>
+                        </div> --}}
+                        <div style="margin-top: 10px;">
+                            <a href="{{ route('web_producto_descripcion', $product->id) }}"
+                                class="btn btn-celmovil">
+                                <b>Más Información </b>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-item view-movil">
                     <div class="product-item" style="padding: 15px;  height: 400px;">
                         <div class="pro-img">
                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
