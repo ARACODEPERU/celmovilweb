@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-12" style="padding: 15px;">
                     <div class="box-shadow">
-                        <a href="http://celmovilweb.test/productos/1/list">
+                        <a href="https://celmovil.pe/productos/1/list">
                             <img style="width: 100%;" src="{{ asset('themes/celmovil/img/MotosWeb.jpg') }}" alt="">
                         </a>
                     </div>
