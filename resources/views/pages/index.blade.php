@@ -163,6 +163,11 @@
         </section>-->
     <!-- blog section end -->
 
+    
+    <!-- popular-product section start -->
+    <x-some-models-area /> 
+    <!-- popular-product section end -->
+
     <br><br>
     <!-- footer - section start -->
 
