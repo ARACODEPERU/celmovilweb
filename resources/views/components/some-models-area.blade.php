@@ -77,15 +77,15 @@
 
         /* Responsive Design for Mobile */
         @media (max-width: 768px) {
-        .grid-container {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, auto);
+        .grid-container-3col {
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(1, auto);
             width: 98%;
             padding: 5px;
         }
 
         .grid-item {
-            padding: 10px;
+            padding: 40px 10px;
         }
         }
     </style>
