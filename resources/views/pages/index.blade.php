@@ -164,7 +164,7 @@
     <!-- blog section end -->
     
     <!-- Algunos productos - section start -->
-    <section style="padding: 120px 0px;">
+    <section style="padding: 120px 0px; background: #f8f8f8;">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-text-center">
@@ -181,15 +181,14 @@
             </div>
         </div>
         <div class="grid-container-3col">
-            
             @foreach ($algunos_modelos as $key => $am )
             <div class="grid-item">
-                <a href="">
+                <a href="{{ $am->item->items[2]->content }}">
                     <div class="box-up">
-                        <img style="width: 100%;" src="{{ asset('themes/celmovil/img/some/Moto.jpg') }}" alt="">
+                        <img style="width: 100%;" src="{{ $am->item->items[0]->content }}" alt="">
                         <div style="margin-top: -80px;">
                             <span style="background: #fff; padding: 10px 20px;">
-                                <b style="color: #ff6600;">Módelo:</b> <b>SUPER HERO</b>
+                                <b style="color: #ff6600;">Módelo:</b> <b>{{ $am->item->items[1]->content }}</b>
                             </span>
                         </div>
                     </div>
@@ -274,7 +273,7 @@
     <!-- footer - section start -->
 
     <!-- contact area start -->
-    <div class="map-contact clearfix" style="padding: 120px 80px; background: #f8f8f8;">
+    <div class="map-contact clearfix" style="padding: 120px 80px;">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                 <div class="section-title text-center">
