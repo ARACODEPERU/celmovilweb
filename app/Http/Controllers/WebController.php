@@ -17,6 +17,7 @@ use Modules\Onlineshop\Entities\OnliItem;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Client\Payment\PaymentClient;
+use Modules\CMS\Entities\CmsSectionItem;
 use Modules\Onlineshop\Entities\OnliSale;
 use Modules\Onlineshop\Entities\OnliSaleDetail;
 use Modules\Sales\Entities\SaleProductCategory;
@@ -44,7 +45,10 @@ class WebController extends Controller
             ->orderBy('id', 'DESC')
             ->paginate(5);
 
-
+            
+        $algunos_modelos = CmsSectionItem::with('item.items')->where('section_id', 13)  //cambiar el id de la seccion ->sedes ubicacion 24
+        ->orderBy('position')
+        ->get();
 
         $ofprincipal = CmsSection::where('component_id', 'oficina_principal_area_12')  //siempre cambiar el id del componente
         ->join('cms_section_items', 'section_id', 'cms_sections.id')
@@ -60,6 +64,7 @@ class WebController extends Controller
         return view('pages/index', [
             'sliders' => $sliders,
             'products_main' => $products_main,
+            'algunos_modelos' => $algunos_modelos,
             'ofprincipal' => $ofprincipal
         ]);
     }

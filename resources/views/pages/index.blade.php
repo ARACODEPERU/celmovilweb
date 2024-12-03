@@ -162,11 +162,113 @@
                                                     </div>
         </section>-->
     <!-- blog section end -->
-
     
-    <!-- popular-product section start -->
-    <x-some-models-area /> 
-    <!-- popular-product section end -->
+    <!-- Algunos productos - section start -->
+    <section style="padding: 120px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-text-center">
+                    <div class="section-title text-center">
+                        <h1><span>ALGUNOS</span>
+                            MÓDELOS</h1>
+                        <div class="shape">
+                        </div>
+                        {{-- <p>
+                            Hola
+                        </p> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-container-3col">
+            
+            @foreach ($algunos_modelos as $key => $am )
+            <div class="grid-item">
+                <a href="">
+                    <div class="box-up">
+                        <img style="width: 100%;" src="{{ asset('themes/celmovil/img/some/Moto.jpg') }}" alt="">
+                        <div style="margin-top: -80px;">
+                            <span style="background: #fff; padding: 10px 20px;">
+                                <b style="color: #ff6600;">Módelo:</b> <b>SUPER HERO</b>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+            {{-- <div class="grid-item">
+                <a href="">
+                    <div class="box-up">
+                        <img style="width: 100%;" src="{{ asset('themes/celmovil/img/some/Moto.jpg') }}" alt="">
+                        <div style="margin-top: -80px;">
+                            <span style="background: #fff; padding: 10px 20px;">
+                                <b style="color: #ff6600;">Módelo:</b> <b>SUPER HERO</b>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="">
+                    <div class="box-up">
+                        <img style="width: 100%;" src="{{ asset('themes/celmovil/img/some/Moto.jpg') }}" alt="">
+                        <div style="margin-top: -80px;">
+                            <span style="background: #fff; padding: 10px 20px;">
+                                <b style="color: #ff6600;">Módelo:</b> <b>SUPER HERO</b>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="">
+                    <div class="box-up">
+                        <img style="width: 100%;" src="{{ asset('themes/celmovil/img/some/Moto.jpg') }}" alt="">
+                        <div style="margin-top: -80px;">
+                            <span style="background: #fff; padding: 10px 20px;">
+                                <b style="color: #ff6600;">Módelo:</b> <b>SUPER HERO</b>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div> --}}
+        </div>
+
+        <style>
+            .grid-container-3col {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, auto);
+            width: 100%;
+            padding: 20px 40px;
+            /* max-width: 600px; */
+            }
+
+            .grid-item {
+            /* background-color: #007bff; */
+            color: black;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            }
+
+            /* Responsive Design for Mobile */
+            @media (max-width: 768px) {
+            .grid-container-3col {
+                grid-template-columns: repeat(1, 1fr);
+                grid-template-rows: repeat(1, auto);
+                width: 98%;
+                padding: 5px;
+            }
+
+            .grid-item {
+                padding: 40px 10px;
+            }
+            }
+        </style>
+    </section>
+    <!-- Algunos productos - section end -->
 
     <br><br>
     <!-- footer - section start -->
