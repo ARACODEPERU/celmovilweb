@@ -183,7 +183,7 @@
         <div class="grid-container-3col">
             @foreach ($algunos_modelos as $key => $am )
             <div class="grid-item">
-                <a href="{{ $am->item->items[2]->content }}">
+                <a href="{{ $am->item->items[2]->content }}" style="padding: 15px;">
                     <div class="box-up">
                         <img style="width: 100%;" src="{{ $am->item->items[0]->content }}" alt="">
                         <div style="margin-top: -80px;">
