@@ -128,7 +128,7 @@ class WebController extends Controller
             ->whereIn('products.category_id', $ids)
             ->where('onli_items.existence', 1)
             ->orderBy('onli_items.created_at', 'desc')
-            ->paginate(16)
+            ->paginate(30)
             ->onEachSide(2);
         
         return view('pages/productos', [
@@ -158,7 +158,7 @@ class WebController extends Controller
             ->where('products.category_id', $id)
             ->where('onli_items.existence', 1)
             ->orderBy('onli_items.created_at', 'desc') // Ordenar en forma descendente por la columna 'created_at'
-            ->paginate(16)
+            ->paginate(30)
             ->onEachSide(2);
         
         return view('pages/producto-categoria', [

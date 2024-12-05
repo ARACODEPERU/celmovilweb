@@ -104,7 +104,7 @@
 
 
     <!-- quick view start -->
-    <div class="product-details quick-view modal animated zoomIn" id="quick-view">
+    {{-- <div class="product-details quick-view modal animated zoomIn" id="quick-view">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -118,11 +118,9 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="left">
-                                                <!-- Single-pro-slider Big-photo start -->
                                                 <div class="quick-img">
                                                     <img src="img/products/l1.jpg" alt="" />
                                                 </div>
-                                                <!-- Single-pro-slider Big-photo end -->
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -211,7 +209,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!--
     <div class="product-details quick-view modal animated zoomIn" id="quick-view-product">
