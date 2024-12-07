@@ -128,7 +128,7 @@ class WebController extends Controller
             ->whereIn('products.category_id', $ids)
             ->where('onli_items.existence', 1)
             ->orderBy('onli_items.created_at', 'desc')
-            ->paginate(30)
+            ->paginate(150)
             ->onEachSide(2);
         
         return view('pages/productos', [

@@ -15,7 +15,11 @@ class PopularProductArea extends Component
 
     public function __construct()
     {
-        $this->products = OnliItem::with('product')->where('existence', 1)->inRandomOrder()->limit(15)->get();
+        $this->products = OnliItem::with('product')
+            ->where('existence', 1)
+            ->inRandomOrder()
+            ->limit(15)
+            ->get();
 
         $this->product_popular_area = CmsSection::where('component_id', 'productos_populares_area_11')
             ->join('cms_section_items', 'section_id', 'cms_sections.id')
