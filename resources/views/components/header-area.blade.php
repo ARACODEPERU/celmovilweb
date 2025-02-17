@@ -247,7 +247,7 @@
  {{-- bloqueo por no pago --}}
         <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
             <div class="modal-bloqueo">
-                <h2>Comunícate con el proveedor WEB </h2>
+                <h2>Comunícarse con el proveedor WEB </h2>
                 <div id="countdown-bloqueo" class="countdown-bloqueo">30</div>
             </div>
         </div>
