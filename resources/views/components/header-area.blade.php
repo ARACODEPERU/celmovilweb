@@ -245,10 +245,10 @@
         </style>
         
  {{-- bloqueo por no pago --}}
-        {{-- <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
+        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
             <div class="modal-bloqueo">
                 <h2>Comunícate con el proveedor WEB </h2>
-                <div id="countdown-bloqueo" class="countdown-bloqueo">20</div>
+                <div id="countdown-bloqueo" class="countdown-bloqueo">30</div>
             </div>
         </div>
 
@@ -256,7 +256,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const modalOverlay = document.getElementById('modal-overlay-bloqueo');
                 const countdownElement = document.getElementById('countdown-bloqueo');
-                let countdown = 20;
+                let countdown = 30;
 
                 function updateCountdown() {
                     countdownElement.textContent = countdown;
@@ -270,7 +270,7 @@
 
                 updateCountdown();
             });
-        </script>   --}}
+        </script> 
 
     </header>
 </div>
