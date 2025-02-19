@@ -244,8 +244,8 @@
             }
         </style>
         
- {{-- bloqueo por no pago --}}
-        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
+        {{-- bloqueo por no pago --}}
+        {{-- <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
             <div class="modal-bloqueo">
                 <h2>Comunícarse con el proveedor WEB </h2>
                 <div id="countdown-bloqueo" class="countdown-bloqueo">30</div>
@@ -270,7 +270,7 @@
 
                 updateCountdown();
             });
-        </script> 
+        </script>  --}}
 
     </header>
 </div>
