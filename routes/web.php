@@ -30,6 +30,7 @@ Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');
 Route::post('/pagar', [WebController::class, 'pagar'])->name('web_pagar');
 Route::put('/process_payment/{id}', [WebController::class, 'processPayment'])->name('web_process_payment');
 Route::get('/preguntas-frecuentes', [WebController::class, 'preguntas'])->name('web_preguntas_frecuentes');
+Route::get('/libro-de-reclamaciones', [WebController::class, 'claims'])->name('web_claims');
 Route::get('/gracias-compra/{id}', [WebController::class, 'graciasCompra'])->name('web_gracias_por_comprar_tu_entrada');
 
 Route::get('/error-compra/{id}', [WebController::class, 'errorCompra'])->name('web_error_al_comprar');

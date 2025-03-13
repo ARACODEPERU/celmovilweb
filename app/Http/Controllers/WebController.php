@@ -102,6 +102,7 @@ class WebController extends Controller
             'banner' => $banner
         ]);
     }
+
     public function productoPrincipal($id){
 
         $banner = CmsSection::where('component_id', 'banner_productos_categoria_4')  //siempre cambiar el id del componente
@@ -166,7 +167,6 @@ class WebController extends Controller
             'products' => $products
         ]);
     }
-
 
     public function productodescripcion($id)
     {
@@ -311,6 +311,24 @@ class WebController extends Controller
             'banner' => $banner
         ]);
     }
+    
+
+    public function claims()
+    {
+        $banner = CmsSection::where('component_id', 'banner_nosotros_6')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+
+        return view('pages/complaints-book', [
+            'banner' => $banner
+        ]);
+    }
 
     public function processPayment(Request $request, $id)
     {
@@ -395,5 +413,6 @@ class WebController extends Controller
     {
         dd($id);
     }
+
 
 }
