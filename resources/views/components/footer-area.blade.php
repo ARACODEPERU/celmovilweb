@@ -132,63 +132,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-xs-12 col-sm-4 col-md-4">
-                        <div class="s-footer-text">
-                            <div class="footer-title">
-                                <h4>Siguenos en :</h4>
-                            </div>
-                            <div class="social-link actions-btn clearfix">
-                                <ul>
-                                    <li style="padding: 8px;">
-                                        <a  target="_blanck" href="{{ $redesSociales[1]->content }}">
-                                            <img src="{{ $redesSociales[0]->content }}" alt="Facebook">
-                                        </a>
-                                    </li>
-                                    <li style="padding: 8px;">
-                                        <a target="_blanck" href="{{ $redesSociales[3]->content }}">
-                                            <img src="{{ $redesSociales[2]->content }}" alt="Instagram">
-                                        </a>
-                                    </li>
-                                    <li style="padding: 8px;">
-                                        <a target="_blanck" href="{{ $redesSociales[5]->content }}">
-                                            <img src="{{ $redesSociales[4]->content }}" alt="Youtube">
-                                        </a>
-                                    </li>
-                                    <li style="padding: 8px;">
-                                        <a target="_blanck" href="{{ $redesSociales[7]->content }}">
-                                            <img src="{{ $redesSociales[6]->content }}" alt="Tiktok">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!--
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/Motoselectricastrujillo" target="_blank"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/celmovil_2/" target="_blank"><i class="fa fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.tiktok.com/@celmovil_motos?lang=es" target="_blank"><i class="fa fa-tiktok"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.youtube.com/channel/UClkH7YMr5QhaCkx-VqB375w" target="_blank"><i class="fa fa-youtube"></i></a>
-                                    </li>
-                                </ul>-->
-                            </div>
-                            <h4>Boletin informativo</h4>
-                            <form action="">
-                                <div class="input-text">
-                                    <input type="text" name="email" placeholder="Correp Electrónico" />
-                                </div>
-                                <div class="submit-text">
-                                    <button class="btn btn-celmovil" type="submit" name="submit" style="padding: 12px 15px;">
-                                        <b>Enviar</b>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="s-footer-text">
                             <div class="footer-title">
@@ -233,6 +176,63 @@
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="s-footer-text">
+                            <div class="footer-title">
+                                <h4>Siguenos en :</h4>
+                            </div>
+                            <div class="social-link actions-btn clearfix">
+                                <ul>
+                                    <li style="padding: 8px;">
+                                        <a  target="_blanck" href="{{ $redesSociales[1]->content }}">
+                                            <img src="{{ $redesSociales[0]->content }}" alt="Facebook">
+                                        </a>
+                                    </li>
+                                    <li style="padding: 8px;">
+                                        <a target="_blanck" href="{{ $redesSociales[3]->content }}">
+                                            <img src="{{ $redesSociales[2]->content }}" alt="Instagram">
+                                        </a>
+                                    </li>
+                                    <li style="padding: 8px;">
+                                        <a target="_blanck" href="{{ $redesSociales[5]->content }}">
+                                            <img src="{{ $redesSociales[4]->content }}" alt="Youtube">
+                                        </a>
+                                    </li>
+                                    <li style="padding: 8px;">
+                                        <a target="_blanck" href="{{ $redesSociales[7]->content }}">
+                                            <img src="{{ $redesSociales[6]->content }}" alt="Tiktok">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--
+                                <ul>
+                                    <li>
+                                        <a href="https://www.facebook.com/Motoselectricastrujillo" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/celmovil_2/" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.tiktok.com/@celmovil_motos?lang=es" target="_blank"><i class="fa fa-tiktok"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.youtube.com/channel/UClkH7YMr5QhaCkx-VqB375w" target="_blank"><i class="fa fa-youtube"></i></a>
+                                    </li>
+                                </ul>-->
+                            </div>
+                            {{-- <h4>Boletin informativo</h4>
+                            <form action="">
+                                <div class="input-text">
+                                    <input type="text" name="email" placeholder="Correp Electrónico" />
+                                </div>
+                                <div class="submit-text">
+                                    <button class="btn btn-celmovil" type="submit" name="submit" style="padding: 12px 15px;">
+                                        <b>Enviar</b>
+                                    </button>
+                                </div>
+                            </form> --}}
                         </div>
                     </div>
                     <!--

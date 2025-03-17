@@ -78,31 +78,66 @@
                     <div class="col-md-12">
                         <h3>2. IDENTIFICACIÓN DEL BIEN CONTRATADO</h3>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                       <label for="exampleFormControlSelect1">Producto / Servicio *</label>
                       <select class="form-control" id="exampleFormControlSelect1">
                         <option>-- Por favor, elige una opción --</option>
-                        <option>producto</option>
-                        <option>servicio</option>
+                        <option>Producto</option>
+                        <option>Servicio</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label for="formGroupExampleInput">Descripción del servicio *</label>
                         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label for="formGroupExampleInput">Monto del servicio *</label>
                         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label for="formGroupExampleInput">Lugar de compra *</label>
                         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
                     </div>
-                    <div class="form-group col-md-6">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <div class="form-group col-md-4">
+                        <label for="formGroupExampleInput">Fecha de compra *</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group col-md-4">
+                        <label for="formGroupExampleInput">Módelo *</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+                    <div class="col-md-12">
+                        <h3>3. DETALLE DE LA RECLAMACIÓN Y PEDIDO DEL CONSUMIDOR</h3>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="exampleFormControlSelect1">Queja / Reclamo *</label>
+                      <select class="form-control" id="exampleFormControlSelect1">
+                        <option>-- Por favor, elige una opción --</option>
+                        <option>Queja</option>
+                        <option>Reclamo</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="exampleFormControlTextarea1" class="form-label">Detalle:</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="exampleFormControlTextarea1" class="form-label">Pedido:</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <h3>4. OBSERVACIONES Y ACCIONES ADOPTADAS POR EL PROVEEDOR</h3>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="exampleFormControlTextarea1" class="form-label">Detalle:</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-celmovil">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar
+                        </button>
+                    </div>
                   </form>
             </div>
         </div>
