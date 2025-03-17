@@ -18,29 +18,32 @@ use App\Mail\StudentRegistrationMailable;
 use Illuminate\Support\Facades\Mail;
 use Modules\Blog\Http\Controllers\BlogController;
 
-
+// SITE WEB //
 Route::get('/', [WebController::class, 'index'])->name('cms_principal');
 Route::get('/inicio', [WebController::class, 'index'])->name('web_inicio');
 Route::get('/nosotros', [WebController::class, 'nosotros'])->name('web_nosotros');
+
+// SUPPORT
 Route::get('/politicas-de-privacidad', [WebController::class, 'politicasprivacidad'])->name('web_politicas_de_privacidad');
+Route::get('/preguntas-frecuentes', [WebController::class, 'preguntas'])->name('web_preguntas_frecuentes');
+Route::get('/libro-de-reclamaciones', [WebController::class, 'claims'])->name('web_claims');
+
+// STORE //
 Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
 Route::get('/producto-categoria/{id}/list', [WebController::class, 'productocategoria'])->name('web_producto_categoria');
 Route::get('/productos/{id}/list', [WebController::class, 'productoPrincipal'])->name('web_producto_principal');
 Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');
 Route::post('/pagar', [WebController::class, 'pagar'])->name('web_pagar');
 Route::put('/process_payment/{id}', [WebController::class, 'processPayment'])->name('web_process_payment');
-Route::get('/preguntas-frecuentes', [WebController::class, 'preguntas'])->name('web_preguntas_frecuentes');
-Route::get('/libro-de-reclamaciones', [WebController::class, 'claims'])->name('web_claims');
 Route::get('/gracias-compra/{id}', [WebController::class, 'graciasCompra'])->name('web_gracias_por_comprar_tu_entrada');
-
 Route::get('/error-compra/{id}', [WebController::class, 'errorCompra'])->name('web_error_al_comprar');
 
+// BLOG //
 Route::get('/blog/home', [BlogController::class, 'index'])->name('blog_principal');
 Route::get('/article/{url}', [BlogController::class, 'article'])->name('blog_article_by_url');
 Route::get('/category/{id}', [BlogController::class, 'category'])->name('blog_category');
 Route::get('/policies', [BlogController::class, 'policies'])->name('blog_policies');
 Route::get('/contact-us', [BlogController::class, 'contactUs'])->name('blog_contact_us');
-
 Route::get('/stories/article/{url}', [BlogController::class, 'storiesArticle'])->name('blog_stories_article_by_url');
 Route::get('/stories/policies', [BlogController::class, 'storiesPolicies'])->name('blog_stories_policies');
 Route::get('/stories/contact-us', [BlogController::class, 'storiesContactUs'])->name('blog_stories_contact_us');
@@ -49,13 +52,14 @@ Route::get('cookies_policy', function () {
     return view('cookies_policy');
 })->name('cookies_policy');
 
-
-
+// E-MAIL //
+Route::get('/e-libro-de-reclamaciones', [WebController::class, 'eclaims'])->name('web_e_claims');
 Route::get('/email', function () {
     Mail::to('elrodriguez2423@gmail.com')
         ->send(new StudentRegistrationMailable('data'));
     return 'mensaje enviado';
 });
+
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

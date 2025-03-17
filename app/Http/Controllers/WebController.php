@@ -330,6 +330,12 @@ class WebController extends Controller
         ]);
     }
 
+    public function eclaims()
+    {
+
+        return view('emails/e_complaints_book');
+    }
+
     public function processPayment(Request $request, $id)
     {
         MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
