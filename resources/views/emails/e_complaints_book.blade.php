@@ -215,40 +215,40 @@
             <div class="contenedor-texto">
                 <h3>1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE</h3>
                 <p style="margin-top: 10px;">
-                    <b>Nombre completo:</b> Jesús Anaya Aguirre <br>
-                    <b>Correo electrónico:</b> jesus@gmail.com <br>
-                    <b>Teléfono:</b> 977627207 <br>
-                    <b>DNI:</b> 42858706 <br>
-                    <b>Dirección:</b> mi house 265 <br>
-                    <b>Distrito:</b> San Juan de Miraflores <br>
-                    <b>Ciudad:</b> Lima <br>
-                    <b>Departamento:</b> Lima
+                    <b>Nombre completo:</b> {{ $complaints['names'] }} {{ $complaints['lastnames'] }}<br>
+                    <b>Correo electrónico:</b> {{ $complaints['email'] }}  <br>
+                    <b>Teléfono:</b> {{ $complaints['phone'] }}  <br>
+                    <b>{{ $complaints['document_type'] }} :</b> {{ $complaints['number'] }}  <br>
+                    <b>Dirección:</b> {{ $complaints['address'] }}  <br>
+                    <b>Distrito:</b> {{ $complaints['district'] }}  <br>
+                    <b>Ciudad:</b> {{ $complaints['city'] }}  <br>
+                    <b>Departamento:</b> {{ $complaints['state'] }}
                 </p>
                 <br>
                 <h3>2. IDENTIFICACIÓN DEL BIEN CONTRATADO</h3>
                 <p style="margin-top: 10px;">
-                    <b>Producto: </b> Móto <br>
-                    <b>Descripción del producto/servicio: </b> Móto de carga <br>
-                    <b>Monto del producto/servicio: </b> S/ 1260<br>
-                    <b>Lugar de compra: </b> Trujillo<br>
-                    <b>Fecha de compra: </b> 23/02/2025 <br>
-                    <b>Modelo: </b> AX250
+                    <b>{{ $complaints['product_service'] }}: </b> {{ $complaints['product_description'] }} <br>
+                    <b>Descripción del producto/servicio: </b> {{ $complaints['product_description'] }} <br>
+                    <b>Monto del producto/servicio: </b> S/ {{ $complaints['amount'] }}<br>
+                    <b>Lugar de compra: </b> {{ $complaints['bought_place'] }}<br>
+                    <b>Fecha de compra: </b> {{ $complaints['date_bought'] }} <br>
+                    <b>Modelo: </b> {{ $complaints['model'] }}
                 </p>
                 <br>
                 <h3>3. DETALLE DE LA RECLAMACIÓN Y PEDIDO DEL CONSUMIDOR</h3>
                 <p style="margin-top: 10px;">
-                    <b>Queja / Reclamo: </b> Queja <br>
+                    <b>Queja / Reclamo: </b> {{ $complaints['queja_reclamo'] }}<br>
                     <b>Detalle: </b><br>
-                    Aqui vendria toda la queja o reclamo. 
+                    {{ $complaints['details'] }}
                     <br>
                     <b>Pedido: </b><br>
-                    Aqui vendria el pedido que se le hace a la empresa por solucionar su problema. 
+                    {{ $complaints['pedido'] }}
                 </p>
                 <br>
                 <h3>4. OBSERVACIONES Y ACCIONES ADOPTADAS POR EL PROVEEDOR</h3>
                 <p style="margin-top: 10px;">
                     <b>Detalle: </b><br>
-                    Aqui vendria las acciones que adopto el proveedor.
+                    {{ $complaints['acciones'] }}
                 </p>
             </div>
 

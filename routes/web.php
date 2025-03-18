@@ -27,6 +27,7 @@ Route::get('/nosotros', [WebController::class, 'nosotros'])->name('web_nosotros'
 Route::get('/politicas-de-privacidad', [WebController::class, 'politicasprivacidad'])->name('web_politicas_de_privacidad');
 Route::get('/preguntas-frecuentes', [WebController::class, 'preguntas'])->name('web_preguntas_frecuentes');
 Route::get('/libro-de-reclamaciones', [WebController::class, 'claims'])->name('web_claims');
+Route::post('/send-claim',                  [WebController::class, 'send_claim'])->name('send_claim');
 
 // STORE //
 Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');

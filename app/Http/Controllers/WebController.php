@@ -21,6 +21,7 @@ use Modules\CMS\Entities\CmsSectionItem;
 use Modules\Onlineshop\Entities\OnliSale;
 use Modules\Onlineshop\Entities\OnliSaleDetail;
 use Modules\Sales\Entities\SaleProductCategory;
+use App\Mail\ComplaintsBookMail;
 
 class WebController extends Controller
 {
@@ -45,7 +46,7 @@ class WebController extends Controller
             ->orderBy('id', 'DESC')
             ->paginate(5);
 
-            
+
         $algunos_modelos = CmsSectionItem::with('item.items')->where('section_id', 13)  //cambiar el id de la seccion ->sedes ubicacion 24
         ->orderBy('position')
         ->get();
@@ -117,8 +118,8 @@ class WebController extends Controller
 
             $ids = SaleProductCategory::where('category_id', $id)
             ->pluck('id')
-            ->toArray();  
-            
+            ->toArray();
+
             if(empty($ids)){
                 $ids=[$id];
             }
@@ -131,18 +132,18 @@ class WebController extends Controller
             ->orderBy('onli_items.created_at', 'desc')
             ->paginate(150)
             ->onEachSide(2);
-        
+
         return view('pages/productos', [
             'banner' => $banner,
             'products' => $products,
             'category_id' => $id,
         ]);
-        
+
     }
 
     public function productocategoria($id)
     {
-        
+
         $banner = CmsSection::where('component_id', 'banner_productos_categoria_4')  //siempre cambiar el id del componente
             ->join('cms_section_items', 'section_id', 'cms_sections.id')
             ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
@@ -161,7 +162,7 @@ class WebController extends Controller
             ->orderBy('onli_items.created_at', 'desc') // Ordenar en forma descendente por la columna 'created_at'
             ->paginate(30)
             ->onEachSide(2);
-        
+
         return view('pages/producto-categoria', [
             'banner' => $banner,
             'products' => $products
@@ -311,7 +312,7 @@ class WebController extends Controller
             'banner' => $banner
         ]);
     }
-    
+
 
     public function claims()
     {
@@ -418,6 +419,20 @@ class WebController extends Controller
     public function errorCompra($id)
     {
         dd($id);
+    }
+
+    public function send_claim(Request $request)
+    {
+        $data = $request->all();
+
+        $recipient = $data['email'];
+        Mail::to($recipient)->send(new ComplaintsBookMail($data));
+
+        $recipient = env('MAIL_FROM_ADDRESS');
+        $data['ours'] = true;
+        Mail::to($recipient)->send(new ComplaintsBookMail($data));
+
+        return view('emails.e_complaints_book')->with('complaints', $data);
     }
 
 
