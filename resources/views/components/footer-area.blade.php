@@ -174,6 +174,9 @@
                                     <li>
                                         <a href="{{ route('web_preguntas_frecuentes') }}">Preguntas Frecuentes</a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('web_claims') }}">Libro de Reclamaciones</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
