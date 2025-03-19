@@ -275,7 +275,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center" style="color: #fff; padding: 15px 0px;">Copyright &copy; 2024 - Desarrollado por 
+                        <p class="text-center" style="color: #fff; padding: 15px 0px;">Copyright &copy; 2025 - Desarrollado por 
                             <a href="#" style="color: #ff6600;">ARACODE SMART SOLUTIONS</a>
                         </p>
                     </div>
