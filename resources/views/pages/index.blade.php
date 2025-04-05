@@ -269,8 +269,111 @@
     </section>
     <!-- Algunos productos - section end -->
 
-    <br><br>
-    <!-- footer - section start -->
+    <section class="section-testimonio">
+        <div class="testimonios">
+            <div class="card">
+                <img src="{{ asset('themes/celmovil/img/bryan.png') }}" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <div class="contenido">
+                    <p>"Un servicio de calidad , compré mi moto aquí y siempre han estado predispuestos a brindarme un buen servicio técnico."</p>
+                    <div class="autor">- Bryan Riveros Gamboa</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjWrP8kPYd6GPZZ4nsM-tPcfo2Yk3BV1YtWKoaIb8SusYvym9gk=w45-h45-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <div class="contenido">
+                    <p>"Tengo una bicimoto eléctrica que siempre llevo a cel movil para mantenimiento y recibo una excelente atención. Estoy muy contenta y satisfecha con la atención brindada"</p>
+                    <div class="autor">- Edith Genoveva Reyna Dominguez</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjUKozGV7NjT6onElaBNoR4_uo-3ygyADfK1d5RCcB0o3LJ55ua5=w75-h75-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <div class="contenido">
+                    <p>"Brindan un buen servicio, y a tiempo, 100% recomendando!"</p>
+                    <div class="autor">- Miguel Arce Falla</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjUdhAitM-fTfiD9__kkZ-zlT7jO6PMROzM-o2nljSgGctdwc5vw=w75-h75-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <div class="contenido">
+                    <p>"Excelente atención y Servicio, Cumplen con la garantía y los Cuatro mantenimientos en el 1 año. Ya llevo un ño con la moto y todo marcha bien y espero que siga asi"</p>
+                    <div class="autor">- Lenin Garcia</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjVrRiF_x6AA9yUKz2mwA1W8twCXc5xSAB7KQ0rWtvvkbZj9xPVEPw=w75-h75-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <div class="contenido">
+                    <p>"El mejor en motos eléctricas! Además que brindan servicio especializado para el mantenimiento de estas. Saludos!"</p>
+                    <div class="autor">- Diego Ruiz</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .section-testimonio {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 90px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            background: linear-gradient(150deg, #c91003, #ff6600);
+        }
+        .testimonios {
+            max-width: 90%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            /* background: white; */
+            /* border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        .imagen {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 4px solid #ff6600;
+        }
+        .contenido {
+            padding: 20px;
+        }
+        .contenido p {
+            margin: 0;
+            /* font-size: 1rem; */
+            color: #555;
+            line-height: 1.5;
+        }
+        .autor {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: right;
+            color: #ff6600;
+        }
+        @media (max-width: 600px) {
+            .testimonios {
+                padding: 10px;
+            }
+            .contenido {
+                padding: 15px;
+            }
+            .imagen {
+                height: 150px; /* Ajuste de altura para pantallas pequeñas */
+            }
+        }
+    </style>
 
     <!-- contact area start -->
     <div class="map-contact clearfix" style="padding: 120px 80px;">
