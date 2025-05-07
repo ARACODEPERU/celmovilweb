@@ -169,8 +169,9 @@
             <div class="row">
                 <div class="col-md-10 col-text-center">
                     <div class="section-title text-center">
-                        <h1><span>ALGUNOS</span>
-                            MÓDELOS</h1>
+                        <h1>
+                            <span>NUESTROS</span> CLIENTES
+                        </h1>
                         <div class="shape">
                         </div>
                         {{-- <p>
