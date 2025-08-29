@@ -83,8 +83,8 @@
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href="{{ route('web_inicio') }}">
-                                            <i class="fa fa-home" style="font-size: 18px;"></i>
+                                        <a href="{{ route('web_inicio') }}"> 
+                                            <i class="fa fa-home" style="font-size: 18px;"></i> 
                                         </a>
                                     </li>
                                     {{-- <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li> --}}
@@ -149,9 +149,9 @@
                                 <nav id="dropdown">
                                     <ul>
                                         <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
-
+                                        
                                         {{-- <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li> --}}
-
+                                        
                                         {{-- @if ($categories && count($categories) > 0)
                                             @foreach ($categories as $category)
                                                 <li>
@@ -243,9 +243,9 @@
                 margin: 20px 0;
             }
         </style>
-
+        
         {{-- bloqueo por no pago --}}
-        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
+        {{-- <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
             <div class="modal-bloqueo">
                 <h2>Comunícarse con el proveedor WEB </h2>
                 <div id="countdown-bloqueo" class="countdown-bloqueo">30</div>
@@ -256,7 +256,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const modalOverlay = document.getElementById('modal-overlay-bloqueo');
                 const countdownElement = document.getElementById('countdown-bloqueo');
-                let countdown = 35;
+                let countdown = 30;
 
                 function updateCountdown() {
                     countdownElement.textContent = countdown;
@@ -270,7 +270,7 @@
 
                 updateCountdown();
             });
-        </script>
+        </script>  --}}
 
     </header>
 </div>
