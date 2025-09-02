@@ -38,6 +38,17 @@ class WebController extends Controller
             )
             ->orderBy('cms_section_items.position')
             ->get();
+        
+        
+        $portadas = CmsSection::where('component_id', 'portadas_home_movil_14')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
 
 
         $products_main = OnliItem::with('product')
@@ -64,6 +75,7 @@ class WebController extends Controller
 
         return view('pages/index', [
             'sliders' => $sliders,
+            'portadas' => $portadas,
             'products_main' => $products_main,
             'algunos_modelos' => $algunos_modelos,
             'ofprincipal' => $ofprincipal

@@ -36,7 +36,7 @@
                 <div class="col-md-12" style="padding: 15px;">
                     <div class="box-shadow">
                         <a href="https://celmovil.pe/productos/1/list">
-                            <img style="width: 100%;" src="{{ asset('themes/celmovil/img/MotosWeb.jpg') }}" alt="">
+                            <img style="width: 100%;" src="{{ $portadas[0]->content }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="col-md-12" style="padding: 15px;">
                     <div class="box-shadow">
                         <a href="https://celmovil.pe/productos/2/list">
-                            <img style="width: 100%;" src="{{ asset('themes/celmovil/img/TrimotosWeb.jpg') }}" alt="">
+                            <img style="width: 100%;" src="{{ $portadas[1]->content }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="col-md-12" style="padding: 15px;">
                     <div class="box-shadow">
                         <a href="https://celmovil.pe/productos/6/list">
-                            <img style="width: 100%;" src="{{ asset('themes/celmovil/img/BiciWeb.jpg') }}" alt="">
+                            <img style="width: 100%;" src="{{ $portadas[2]->content }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="col-md-12" style="padding: 15px;">
                     <div class="box-shadow">
                         <a href="https://celmovil.pe/productos/25/list">
-                            <img style="width: 100%;" src="{{ asset('themes/celmovil/img/CuatrimotosWeb.jpg') }}" alt="">
+                            <img style="width: 100%;" src="{{ $portadas[3]->content }}" alt="">
                         </a>
                     </div>
                 </div>
