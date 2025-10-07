@@ -35,18 +35,12 @@
                     <i class='bx bx-moon moon'></i>
                     <i class='bx bx-sun sun'></i>
                 </div>
-                {{-- <div class="searchBox">
+                <div class="searchBox">
+                    
                     <div class="searchToggle">
-                        <i class='bx bx-x cancel'></i>
-                        <i class='bx bx-search search'></i>
-                    </div>
-                    <div class="search-field">
-                        <input type="text" placeholder="Search...">
-                        <i class='bx bx-search'></i>
-                    </div> 
-                </div> --}}
-                <div class="dark-light">
-                    <div class="cart-menu-area floatright" style="margin-top: -80px;">
+                        {{-- <i class='bx bx-x cancel'></i>
+                        <i class='bx bx-search search'></i> --}}
+                        <div class="cart-menu-area floatright" style="margin-top: -80px;">
                         <ul>
                             <li>
                                 <a href="{{ route('web_carrito') }}">
@@ -63,6 +57,11 @@
                             </li>
                         </ul>
                     </div>
+                    </div>
+                    <div class="search-field">
+                        {{-- <input type="text" placeholder="Search...">
+                        <i class='bx bx-search'></i> --}}
+                    </div> 
                 </div>
             </div>
         </div>
@@ -74,7 +73,7 @@
         :root {
             --body-color: #F2F2F2;
             --nav-color: #000;
-            --side-nav: #010718;
+            --side-nav: #242526;
             --text-color: #FFF;
             --search-bar: #F2F2F2;
             --search-text: #010718;
