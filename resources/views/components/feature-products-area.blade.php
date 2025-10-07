@@ -2,7 +2,7 @@
 
     <section class="featured-area featured-one section-padding">
         <div class="container">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-10 col-text-center">
                     <div class="section-title text-center">
                         <h1><span>{{ $product_new_area[0]->content }}</span> {{ $product_new_area[1]->content }}</h1>
@@ -13,7 +13,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row text-center">
                 <div class="featured-slider single-products">
                     @if (count($feature_products) > 0)

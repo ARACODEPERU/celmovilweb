@@ -11,26 +11,170 @@
                 <div class="object object_three"></div>
             </div>
         </div>
-    </div> 
+    </div>
     <!-- Preloader End -->
 
     <!-- header - section start -->
     <x-header-area />
     <!-- header - section end -->
 
-    <!-- slider - pc - section start -->
-    <div class="slider-area slider-one clearfix view-pc" style="margin-top: 60px;">
-        <div class="slider" id="mainslider">
+    <div class="slider-container">
+        <div class="slider">
             @foreach ($sliders as $slide)
-                <div data-src="{{ $slide->content }}">
-                </div>
+                <img src="{{ $slide->content }}" alt="Imagen 1">
             @endforeach
         </div>
+        <button class="prev-button">&#10094;</button>
+        <button class="next-button">&#10095;</button>
     </div>
+
+    <style>
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            margin-top: 70px;
+            overflow: hidden;
+            /* Oculta las imágenes fuera del contenedor */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            /* Transición suave del deslizamiento */
+        }
+
+        .slider img {
+            width: 100%;
+            height: 500px;
+            flex-shrink: 0;
+            /* Impide que las imágenes se encojan */
+            display: block;
+        }
+
+        .prev-button,
+        .next-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+            /* Asegura que los botones estén por encima del slider */
+        }
+
+        .prev-button {
+            left: 10px;
+            border-radius: 50%;
+        }
+
+        .next-button {
+            right: 10px;
+            border-radius: 50%;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.querySelector('.slider');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const images = document.querySelectorAll('.slider img');
+
+            let currentIndex = 0;
+            const totalImages = images.length;
+            let autoSlideInterval;
+
+            // Función para actualizar la posición del slider
+            function updateSlider() {
+                const imageWidth = images[0].clientWidth; // Obtener el ancho de la primera imagen
+                slider.style.transform = `translateX(${-currentIndex * imageWidth}px)`;
+            }
+
+            // Función para avanzar al siguiente slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateSlider();
+            }
+
+            // Función para iniciar el deslizamiento automático
+            function startAutoSlide() {
+                // Cambiar de imagen cada 3 segundos (3000 milisegundos)
+                autoSlideInterval = setInterval(nextSlide, 3000);
+            }
+
+            // Función para detener el deslizamiento automático
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            // Manejador del botón "Siguiente"
+            nextButton.addEventListener('click', () => {
+                stopAutoSlide(); // Detener el auto-deslizamiento al interactuar
+                nextSlide();
+                startAutoSlide(); // Reiniciar el auto-deslizamiento después de un clic
+            });
+
+            // Manejador del botón "Anterior"
+            prevButton.addEventListener('click', () => {
+                stopAutoSlide(); // Detener el auto-deslizamiento al interactuar
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateSlider();
+                startAutoSlide(); // Reiniciar el auto-deslizamiento después de un clic
+            });
+
+            // Añade soporte para deslizamiento táctil (opcional)
+            let startX = 0;
+            let endX = 0;
+
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                stopAutoSlide(); // Detener al empezar a tocar
+            });
+
+            slider.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                if (startX > endX + 50) {
+                    nextSlide();
+                } else if (startX < endX - 50) {
+                    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                    updateSlider();
+                }
+                startAutoSlide(); // Reiniciar al soltar
+            });
+
+            // Detener el auto-deslizamiento cuando el cursor está sobre el slider
+            slider.addEventListener('mouseenter', stopAutoSlide);
+            // Reiniciar el auto-deslizamiento cuando el cursor sale del slider
+            slider.addEventListener('mouseleave', startAutoSlide);
+
+            // Se asegura de que el slider se adapte al cambiar el tamaño de la ventana
+            window.addEventListener('resize', updateSlider);
+
+            // Iniciar el deslizamiento automático al cargar la página
+            startAutoSlide();
+        });
+    </script>
+
+
+    <!-- slider - pc - section start -->
+    {{-- <div class="slider-area slider-one clearfix view-pc" style="margin-top: 60px;">
+        <div class="slider" id="mainslider">
+            @foreach ($sliders as $slide)
+                <div data-src="{{ $slide->content }}"></div>
+            @endforeach
+        </div>
+    </div> --}}
     <!-- slider - pc - section end -->
 
+
     <!-- Tarjetas Catalogo - movil - section end -->
-    <section class="view-movil" style="padding: 15px 0px;">
+    <section class="view-movil" style="margin-top: 80px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="padding: 15px;">
@@ -70,7 +214,6 @@
             </div>
         </div>
     </section>
-    
     <!-- Tarjetas Catalogo - movil - section end -->
 
 
@@ -79,90 +222,90 @@
     <!-- feature products - section end -->
 
     <!-- popular-product section start -->
-    <x-popular-product-area /> 
+    <x-popular-product-area />
     <!-- popular-product section end -->
 
     <!-- blog section start
-        <section class="blog-area blog-two section-padding">
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
-                                                                <div class="section-title text-center">
-                                                                    <h3><span>FROM</span> BLOG</h3>
-                                                                    <div class="shape">
-                                                                        <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
-                                                                    </div>
-                                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                                                                        when looking at its layout.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <div class="blog-item">
-                                                                    <div class="blog-img">
-                                                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/1.jpg') }}" alt="Blog" /></a>
-                                                                    </div>
-                                                                    <div class="blog-text clearfix">
-                                                                        <a href="single-blog.html">
-                                                                            <h4>Claritas est etiam processus</h4>
-                                                                        </a>
-                                                                        <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
-                                                                        <hr class="line" />
-                                                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
-                                                                            placerat facer possim assum. </p>
-                                                                        <div class="view-more">
-                                                                            <a class="shop-btn" href="single-blog.html">Read More</a>
-                                                                            <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="blog-item">
-                                                                    <div class="blog-img">
-                                                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/2.jpg') }}" alt="Blog" /></a>
-                                                                    </div>
-                                                                    <div class="blog-text clearfix">
-                                                                        <a href="single-blog.html">
-                                                                            <h4>Claritas est etiam processus</h4>
-                                                                        </a>
-                                                                        <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
-                                                                        <hr class="line" />
-                                                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
-                                                                            placerat facer possim assum. </p>
-                                                                        <div class="view-more">
-                                                                            <a class="shop-btn" href="single-blog.html">Read More</a>
-                                                                            <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="blog-item">
-                                                                    <div class="blog-img">
-                                                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/3.jpg') }}" alt="Blog" /></a>
-                                                                    </div>
-                                                                    <div class="blog-text clearfix">
-                                                                        <a href="single-blog.html">
-                                                                            <h4>Claritas est etiam processus</h4>
-                                                                        </a>
-                                                                        <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
-                                                                        <hr class="line" />
-                                                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
-                                                                            placerat facer possim assum. </p>
-                                                                        <div class="view-more">
-                                                                            <a class="shop-btn" href="single-blog.html">Read More</a>
-                                                                            <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-        </section>-->
+                                    <section class="blog-area blog-two section-padding">
+                                                                                <div class="container">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
+                                                                                            <div class="section-title text-center">
+                                                                                                <h3><span>FROM</span> BLOG</h3>
+                                                                                                <div class="shape">
+                                                                                                    <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
+                                                                                                </div>
+                                                                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                                                                                                    when looking at its layout.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="blog-item">
+                                                                                                <div class="blog-img">
+                                                                                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/1.jpg') }}" alt="Blog" /></a>
+                                                                                                </div>
+                                                                                                <div class="blog-text clearfix">
+                                                                                                    <a href="single-blog.html">
+                                                                                                        <h4>Claritas est etiam processus</h4>
+                                                                                                    </a>
+                                                                                                    <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
+                                                                                                    <hr class="line" />
+                                                                                                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
+                                                                                                        placerat facer possim assum. </p>
+                                                                                                    <div class="view-more">
+                                                                                                        <a class="shop-btn" href="single-blog.html">Read More</a>
+                                                                                                        <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="blog-item">
+                                                                                                <div class="blog-img">
+                                                                                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/2.jpg') }}" alt="Blog" /></a>
+                                                                                                </div>
+                                                                                                <div class="blog-text clearfix">
+                                                                                                    <a href="single-blog.html">
+                                                                                                        <h4>Claritas est etiam processus</h4>
+                                                                                                    </a>
+                                                                                                    <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
+                                                                                                    <hr class="line" />
+                                                                                                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
+                                                                                                        placerat facer possim assum. </p>
+                                                                                                    <div class="view-more">
+                                                                                                        <a class="shop-btn" href="single-blog.html">Read More</a>
+                                                                                                        <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="blog-item">
+                                                                                                <div class="blog-img">
+                                                                                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/3.jpg') }}" alt="Blog" /></a>
+                                                                                                </div>
+                                                                                                <div class="blog-text clearfix">
+                                                                                                    <a href="single-blog.html">
+                                                                                                        <h4>Claritas est etiam processus</h4>
+                                                                                                    </a>
+                                                                                                    <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
+                                                                                                    <hr class="line" />
+                                                                                                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
+                                                                                                        placerat facer possim assum. </p>
+                                                                                                    <div class="view-more">
+                                                                                                        <a class="shop-btn" href="single-blog.html">Read More</a>
+                                                                                                        <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                    </section>-->
     <!-- blog section end -->
-    
+
     <!-- Algunos productos - section start -->
     <section style="padding: 120px 0px; background: #f8f8f8;">
         <div class="container">
@@ -182,19 +325,19 @@
             </div>
         </div>
         <div class="grid-container-3col">
-            @foreach ($algunos_modelos as $key => $am )
-            <div class="grid-item">
-                <a href="{{ $am->item->items[2]->content }}" style="padding: 15px;">
-                    <div class="box-up">
-                        <img style="width: 100%;" src="{{ $am->item->items[0]->content }}" alt="">
-                        <div style="margin-top: -80px;">
-                            <span style="background: #fff; padding: 10px 20px;">
-                                <b style="color: #ff6600;">Módelo:</b> <b>{{ $am->item->items[1]->content }}</b>
-                            </span>
+            @foreach ($algunos_modelos as $key => $am)
+                <div class="grid-item">
+                    <a href="{{ $am->item->items[2]->content }}" style="padding: 15px;">
+                        <div class="box-up">
+                            <img style="width: 100%;" src="{{ $am->item->items[0]->content }}" alt="">
+                            <div style="margin-top: -80px;">
+                                <span style="background: #fff; padding: 10px 20px;">
+                                    <b style="color: #ff6600;">Módelo:</b> <b>{{ $am->item->items[1]->content }}</b>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
             @endforeach
             {{-- <div class="grid-item">
                 <a href="">
@@ -236,35 +379,35 @@
 
         <style>
             .grid-container-3col {
-            display: grid;
-            gap: 10px;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, auto);
-            width: 100%;
-            padding: 20px 40px;
-            /* max-width: 600px; */
+                display: grid;
+                gap: 10px;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, auto);
+                width: 100%;
+                padding: 20px 40px;
+                /* max-width: 600px; */
             }
 
             .grid-item {
-            /* background-color: #007bff; */
-            color: black;
-            text-align: center;
-            padding: 20px;
-            border-radius: 5px;
+                /* background-color: #007bff; */
+                color: black;
+                text-align: center;
+                padding: 20px;
+                border-radius: 5px;
             }
 
             /* Responsive Design for Mobile */
             @media (max-width: 768px) {
-            .grid-container-3col {
-                grid-template-columns: repeat(1, 1fr);
-                grid-template-rows: repeat(1, auto);
-                width: 98%;
-                padding: 5px;
-            }
+                .grid-container-3col {
+                    grid-template-columns: repeat(1, 1fr);
+                    grid-template-rows: repeat(1, auto);
+                    width: 98%;
+                    padding: 5px;
+                }
 
-            .grid-item {
-                padding: 40px 10px;
-            }
+                .grid-item {
+                    padding: 40px 10px;
+                }
             }
         </style>
     </section>
@@ -273,37 +416,46 @@
     <section class="section-testimonio">
         <div class="testimonios">
             <div class="card">
-                <img src="{{ asset('themes/celmovil/img/bryan.png') }}" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <img src="{{ asset('themes/celmovil/img/bryan.png') }}" alt=""
+                    style="padding: 20px 20px 0px 20px; width: 100px;">
                 <div class="contenido">
-                    <p>"Un servicio de calidad , compré mi moto aquí y siempre han estado predispuestos a brindarme un buen servicio técnico."</p>
+                    <p>"Un servicio de calidad , compré mi moto aquí y siempre han estado predispuestos a brindarme un buen
+                        servicio técnico."</p>
                     <div class="autor">- Bryan Riveros Gamboa</div>
                 </div>
             </div>
             <div class="card">
-                <img src="https://lh3.googleusercontent.com/a-/ALV-UjWrP8kPYd6GPZZ4nsM-tPcfo2Yk3BV1YtWKoaIb8SusYvym9gk=w45-h45-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjWrP8kPYd6GPZZ4nsM-tPcfo2Yk3BV1YtWKoaIb8SusYvym9gk=w45-h45-p-rp-mo-br100"
+                    alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
                 <div class="contenido">
-                    <p>"Tengo una bicimoto eléctrica que siempre llevo a cel movil para mantenimiento y recibo una excelente atención. Estoy muy contenta y satisfecha con la atención brindada"</p>
+                    <p>"Tengo una bicimoto eléctrica que siempre llevo a cel movil para mantenimiento y recibo una excelente
+                        atención. Estoy muy contenta y satisfecha con la atención brindada"</p>
                     <div class="autor">- Edith Genoveva Reyna Dominguez</div>
                 </div>
             </div>
             <div class="card">
-                <img src="https://lh3.googleusercontent.com/a-/ALV-UjUKozGV7NjT6onElaBNoR4_uo-3ygyADfK1d5RCcB0o3LJ55ua5=w75-h75-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjUKozGV7NjT6onElaBNoR4_uo-3ygyADfK1d5RCcB0o3LJ55ua5=w75-h75-p-rp-mo-br100"
+                    alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
                 <div class="contenido">
                     <p>"Brindan un buen servicio, y a tiempo, 100% recomendando!"</p>
                     <div class="autor">- Miguel Arce Falla</div>
                 </div>
             </div>
             <div class="card">
-                <img src="https://lh3.googleusercontent.com/a-/ALV-UjUdhAitM-fTfiD9__kkZ-zlT7jO6PMROzM-o2nljSgGctdwc5vw=w75-h75-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjUdhAitM-fTfiD9__kkZ-zlT7jO6PMROzM-o2nljSgGctdwc5vw=w75-h75-p-rp-mo-br100"
+                    alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
                 <div class="contenido">
-                    <p>"Excelente atención y Servicio, Cumplen con la garantía y los Cuatro mantenimientos en el 1 año. Ya llevo un ño con la moto y todo marcha bien y espero que siga asi"</p>
+                    <p>"Excelente atención y Servicio, Cumplen con la garantía y los Cuatro mantenimientos en el 1 año. Ya
+                        llevo un ño con la moto y todo marcha bien y espero que siga asi"</p>
                     <div class="autor">- Lenin Garcia</div>
                 </div>
             </div>
             <div class="card">
-                <img src="https://lh3.googleusercontent.com/a-/ALV-UjVrRiF_x6AA9yUKz2mwA1W8twCXc5xSAB7KQ0rWtvvkbZj9xPVEPw=w75-h75-p-rp-mo-br100" alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
+                <img src="https://lh3.googleusercontent.com/a-/ALV-UjVrRiF_x6AA9yUKz2mwA1W8twCXc5xSAB7KQ0rWtvvkbZj9xPVEPw=w75-h75-p-rp-mo-br100"
+                    alt="" style="padding: 20px 20px 0px 20px; width: 100px;">
                 <div class="contenido">
-                    <p>"El mejor en motos eléctricas! Además que brindan servicio especializado para el mantenimiento de estas. Saludos!"</p>
+                    <p>"El mejor en motos eléctricas! Además que brindan servicio especializado para el mantenimiento de
+                        estas. Saludos!"</p>
                     <div class="autor">- Diego Ruiz</div>
                 </div>
             </div>
@@ -321,6 +473,7 @@
             height: auto;
             background: linear-gradient(150deg, #c91003, #ff6600);
         }
+
         .testimonios {
             max-width: 90%;
             display: grid;
@@ -329,8 +482,9 @@
             padding: 20px;
             /* background: white; */
             /* border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+                                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
         }
+
         .card {
             background: white;
             border-radius: 12px;
@@ -338,40 +492,49 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
+
         .imagen {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-bottom: 4px solid #ff6600;
         }
+
         .contenido {
             padding: 20px;
         }
+
         .contenido p {
             margin: 0;
             /* font-size: 1rem; */
             color: #555;
             line-height: 1.5;
         }
+
         .autor {
             margin-top: 10px;
             font-weight: bold;
             text-align: right;
             color: #ff6600;
         }
+
         @media (max-width: 600px) {
             .testimonios {
                 padding: 10px;
             }
+
             .contenido {
                 padding: 15px;
             }
+
             .imagen {
-                height: 150px; /* Ajuste de altura para pantallas pequeñas */
+                height: 150px;
+                /* Ajuste de altura para pantallas pequeñas */
             }
         }
     </style>
