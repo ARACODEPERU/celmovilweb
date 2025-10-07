@@ -47,7 +47,7 @@
 
         .slider img {
             width: 100%;
-            height: 500px;
+            height: auto;
             flex-shrink: 0;
             /* Impide que las imágenes se encojan */
             display: block;
@@ -174,7 +174,7 @@
 
 
     <!-- Tarjetas Catalogo - movil - section end -->
-    <section class="view-movil" style="margin-top: 80px;">
+    <section class="view-movil" style="margin-top: 10px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="padding: 15px;">
