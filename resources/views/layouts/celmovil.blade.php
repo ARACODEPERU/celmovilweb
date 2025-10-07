@@ -20,8 +20,11 @@
     <!-- style css -->
     <link rel="stylesheet" href="{{ asset('themes/celmovil/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/celmovil/responsive.css') }}">
+
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <!-- modernizr js -->
     <script src="{{ asset('themes/celmovil/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
 
     @yield('styles')
 </head>

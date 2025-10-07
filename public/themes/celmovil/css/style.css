@@ -566,11 +566,11 @@ ul.mega-menu > li {
 	opacity: 0;
 	padding: 10px;
 	position: absolute;
-	right: -15px;
-	top: 150%;
+	right: 15px;
+	top: 180%;
 	transition: all 0.5s ease 0s;
 	visibility: hidden;
-	width: 275px;
+	width: 350px;
 	box-shadow:0 3px 6px #999;
 }
 .cart-menu-area li:hover .cart-menu {
@@ -582,20 +582,24 @@ ul.mega-menu > li {
 .cart-menu-area li > a i {
     color: #fff;
     font-size: 45px;
-    line-height: 100px;
+    line-height: 90px;
 }
 .cart-menu-area li a span {
-    background: #000 none repeat scroll 0 0;
+    background: #ff6600 none repeat scroll 0 0;
     border: 2px solid #fff;
     border-radius: 50%;
-    color: #ff6600;
-    height: 25px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
     left: 10px;
-    line-height: 21px;
+    top: 16px;
+    line-height: 15px;
     position: absolute;
     text-align: center;
-    top: 16px;
+    justify-content: center;
+    align-items: center;
     width: 25px;
+    height: 25px;
 }
 .cart-menu > li > a {
     float: left;

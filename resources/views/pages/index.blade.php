@@ -19,7 +19,7 @@
     <!-- header - section end -->
 
     <!-- slider - pc - section start -->
-    <div class="slider-area slider-one clearfix view-pc">
+    <div class="slider-area slider-one clearfix view-pc" style="margin-top: 60px;">
         <div class="slider" id="mainslider">
             @foreach ($sliders as $slide)
                 <div data-src="{{ $slide->content }}">
