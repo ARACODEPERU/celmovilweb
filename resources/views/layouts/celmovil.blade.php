@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/logoIcon.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/logoIcon.png') }}">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
 
