@@ -1576,7 +1576,7 @@ select {-moz-appearance: none;-webkit-appearance: none;}
     display: inline-block;
     font-weight: 900;
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     position: relative;
     text-transform: uppercase;
 }

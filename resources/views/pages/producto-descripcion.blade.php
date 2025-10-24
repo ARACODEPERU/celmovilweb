@@ -1,8 +1,8 @@
 @extends('layouts.celmovil')
 @section('content')
     <!-- Preloader Start
-                                                                                                                                                                                                                    <div class="preloader">                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                                </div> -->
+                                                                                                                                                                                                                                                        <div class="preloader">                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                    </div> -->
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -69,7 +69,6 @@
                                         <a href="#">{{ $product->category_description }}</a>
                                     </li>
                                 </ul>
-                                {{-- <span style="color: orange;"><b>Agotado </b></span> --}}
                             </div>
 
                             @if ($product->discount > 0)
@@ -204,8 +203,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
+            <div class="row view-pc">
+                <div class="col-md-12">
                     <div class="pro-des-tab">
                         <div class="tab-menu">
                             <ul>
@@ -280,9 +279,95 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+
+            <div class="row view-movil">
+                <div class="col-md-12">
+                    <div class="related-title">
+                        <h5>DESCRIPCIÓN</h5>
+                    </div>
+                    <br>
+                    {!! $product->additional !!}
+                </div>
+            </div>
+            <br><br>
+            <div class="row view-movil">
+                <div class="col-md-12">
+                    <div class="related-title">
+                        <h5>FICHA TÉCNICA</h5>
+                    </div>
+                    <br>
+                    @php
+                        $porciones = explode('.', $product->additional2);
+
+                        $ext = is_array($porciones) ? $porciones[1] : null;
+                    @endphp
+                    @if ($ext)
+                        @if ($ext == 'pdf')
+                            <iframe src="{{ asset('storage/' . $product->additional2) }}"
+                                style="border: none;width: 100%;height: 1325px"></iframe>
+                        @else
+                            <img style="width: 100%;" src="{{ asset('storage/' . $product->additional2) }}"
+                                alt="Ficha Tecnica" />
+                        @endif
+                    @endif
+
+                </div>
+            </div>
+            <br><br>
+            <div class="row view-movil">
+                <div class="col-md-12">
+                    <div class="related-title">
+                        <h5>INFORMACIÓN ADICIONAL</h5>
+                    </div>
+                    <br>
+                    @if ($product->additional6)
+                        @php
+                            $porciones6 = explode('.', $product->additional6);
+
+                            $ext6 = is_array($porciones6) ? $porciones6[1] : null;
+                        @endphp
+                        @if ($ext6)
+                            @if ($ext6 == 'pdf')
+                                <iframe src="{{ asset('storage/' . $product->additional6) }}"
+                                    style="border: none;width: 100%;height: 1325px"></iframe>
+                            @else
+                                <img style="width: 100%;" src="{{ asset('storage/' . $product->additional6) }}"
+                                    alt="Info adicional" />
+                            @endif
+                        @endif
+                    @endif
+
+                </div>
+            </div>
+            <br><br>
+            <div class="row view-movil">
+                <div class="col-md-12">
+                    <div class="related-title">
+                        <h5>LEGAL</h5>
+                    </div>
+                    <br>
+                    {!! $product->additional4 !!}
+                </div>
+            </div>
+            <br><br>
+            <div class="row view-movil">
+                <div class="col-md-12">
+                    <div class="related-title">
+                        <h5>MANUAL</h5>
+                    </div>
+                    <br>
+                    <a href="{{ $product->additional3 }}" class="btn btn-celmovil"
+                        style="padding: 20px; font-size: 16px;" target="_blank">
+                        <i class="fa fa-download" aria-hidden="true"></i> &nbsp;
+                        Descargar Manual de Uso
+                    </a>
+                </div>
+            </div>
+            <br><br>
     </section>
     <!-- product details area end -->
+    <br>
     <!-- related product section start -->
     <x-products-recommended />
     <!-- related product section end -->
