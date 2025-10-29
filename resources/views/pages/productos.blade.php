@@ -112,6 +112,8 @@
                                 REPUESTOS
                                 @elseif($category_id == 27)
                                 ACCESORIOS
+                                @elseif($category_id == 27)
+                                CARGUEROS
                             @endif  
                             </span>
                         </h3>
