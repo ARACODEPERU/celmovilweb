@@ -18,7 +18,7 @@ class PopularProductArea extends Component
          $this->products = OnliItem::with('product')->where('existence', 1)
                                     ->where('discount', '>', 0) // para buscar solo con descuentos
                                     ->inRandomOrder()
-                                    ->limit(15)
+                                    ->limit(5)
                                     ->distinct()
                                     ->get();
 
