@@ -106,7 +106,7 @@
                                 TRIMOTOS
                                 @elseif($category_id == 6)
                                 VMPS, BICIMOTOS y BICIS
-                                @elseif($category_id == 25)
+                                @elseif($category_id == 29)
                                 CUATRIMOTOS
                                 @elseif($category_id == 26)
                                 REPUESTOS
