@@ -507,7 +507,7 @@
 
 
 
-
+    {{-- HEADER ANTIGUO --}}
     {{-- <nav>
         <div class="nav-bar">
             <i class='bx bx-menu sidebarOpen'></i>
@@ -1061,10 +1061,10 @@
         </style>
 
         {{-- bloqueo por no pago --}}
-        {{-- <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
+        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
             <div class="modal-bloqueo">
-                <h2>Comunícarse con el proveedor WEB </h2>
-                <div id="countdown-bloqueo" class="countdown-bloqueo">30</div>
+                <h2>En breve continuamos... </h2>
+                <div id="countdown-bloqueo" class="countdown-bloqueo">15</div>
             </div>
         </div>
 
@@ -1072,7 +1072,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const modalOverlay = document.getElementById('modal-overlay-bloqueo');
                 const countdownElement = document.getElementById('countdown-bloqueo');
-                let countdown = 30;
+                let countdown = 15;
 
                 function updateCountdown() {
                     countdownElement.textContent = countdown;
@@ -1086,7 +1086,7 @@
 
                 updateCountdown();
             });
-        </script>  --}}
+        </script>
 
     </header>
 </div>

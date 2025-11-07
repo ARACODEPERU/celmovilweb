@@ -8,8 +8,8 @@
     <title>CELMOVIL || Perú</title>
     <meta name="description"
         content="- Líder en Motos Eléctricas La Libertad
-- Representante de las marcas TOP
-- Servicio Técnico">
+                - Representante de las marcas TOP
+                - Servicio Técnico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/logoIcon.png') }}">
