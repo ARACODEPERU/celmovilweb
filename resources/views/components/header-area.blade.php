@@ -1061,7 +1061,7 @@
         </style>
 
         {{-- bloqueo por no pago --}}
-        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
+        {{-- <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
             <div class="modal-bloqueo">
                 <h2>En breve continuamos... </h2>
                 <div id="countdown-bloqueo" class="countdown-bloqueo">15</div>
@@ -1086,7 +1086,7 @@
 
                 updateCountdown();
             });
-        </script>
+        </script> --}}
 
     </header>
 </div>
