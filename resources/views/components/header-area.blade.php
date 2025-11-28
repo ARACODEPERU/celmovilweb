@@ -163,6 +163,7 @@
             color: var(--text-color);
             text-decoration: none;
             padding: 10px;
+            z-index: 10000;
         }
 
         .nav-links li a::before {
@@ -195,7 +196,6 @@
             /* Color de fondo del submenú */
             padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 100;
             border-radius: 5px;
             /* Bordes redondeados */
         }
@@ -439,7 +439,9 @@
 
 
 
-    <script>
+    {{-- <script>
+
+
         const body = document.querySelector("body"),
             nav = document.querySelector("nav"),
             modeToggle = document.querySelector(".dark-light"),
@@ -498,10 +500,104 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 
 
 
+<script>
+    // Alternar submenús en pantallas móviles
+document.querySelectorAll('.nav-links > li > a').forEach(item => {
+    item.addEventListener('click', event => {
+        const submenu = item.nextElementSibling;
+        
+        // Toggle only if there's a submenu, prevent default if submenu exists
+        if (submenu && submenu.classList.contains('sub-menu')) {
+            submenu.classList.toggle('active'); // Toggle visibility of the submenu
+            event.preventDefault(); // Prevent default link action
+        }
+    });
+});
+
+// Allow navigation on sub-menu items
+document.querySelectorAll('.sub-menu li a').forEach(subItem => {
+    subItem.addEventListener('click', event => {
+        // Navigate to the href of the sub-menu item
+        window.location.href = subItem.getAttribute('href');
+    });
+});
+
+
+const body = document.querySelector("body"),
+    nav = document.querySelector("nav"),
+    modeToggle = document.querySelector(".dark-light"),
+    searchToggle = document.querySelector(".searchToggle"),
+    sidebarOpen = document.querySelector(".sidebarOpen"),
+    siderbarClose = document.querySelector(".siderbarClose");
+
+// Recuperar el modo guardado en localStorage
+let getMode = localStorage.getItem("mode");
+if (getMode && getMode === "dark-mode") {
+    body.classList.add("dark");
+}
+
+// Cambiar entre modo oscuro y claro
+modeToggle.addEventListener("click", () => {
+    modeToggle.classList.toggle("active");
+    body.classList.toggle("dark");
+    // Guardar la preferencia del usuario
+    if (!body.classList.contains("dark")) {
+        localStorage.setItem("mode", "light-mode");
+    } else {
+        localStorage.setItem("mode", "dark-mode");
+    }
+});
+
+// Alternar la búsqueda
+searchToggle.addEventListener("click", () => {
+    searchToggle.classList.toggle("active");
+});
+
+// Abrir el menú lateral
+sidebarOpen.addEventListener("click", () => {
+    nav.classList.add("active");
+});
+
+// Cerrar el menú lateral
+siderbarClose.addEventListener("click", () => {
+    nav.classList.remove("active");
+});
+
+// Cerrar el menú al hacer clic fuera de él
+body.addEventListener("click", e => {
+    let clickedElm = e.target;
+    if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.closest('.menu')) {
+        nav.classList.remove("active");
+    }
+});
+
+// Alternar submenús en pantallas móviles
+document.querySelectorAll('.nav-links > li > a').forEach(item => {
+    item.addEventListener('click', event => {
+        const submenu = item.nextElementSibling;
+
+        // Toggle submenu visibility and prevent default if it exists
+        if (submenu && submenu.classList.contains('sub-menu')) {
+            submenu.classList.toggle('active');
+            event.preventDefault(); // Prevent default link action
+        }
+    });
+});
+
+// Allow navigation on sub-menu items
+document.querySelectorAll('.sub-menu li a').forEach(subItem => {
+    subItem.addEventListener('click', event => {
+        window.location.href = subItem.getAttribute('href');
+    });
+});
+
+
+
+</script>
 
 
 
@@ -895,7 +991,7 @@
 
 
     {{-- CARRITO --}}
-    <style>
+    {{-- <style>
         input[type="radio"] {
             display: none;
         }
@@ -938,7 +1034,8 @@
                 }
             }
         </script>
-        {{-- <div id="sticky-menu" class="header-bottom">
+
+        <div id="sticky-menu" class="header-bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 header-bottom-bg">
@@ -1009,7 +1106,8 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div> 
+        
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 post_url = "{{ route('onlineshop_get_item_carrito') }}";
@@ -1060,8 +1158,7 @@
             }
         </style>
 
-        {{-- bloqueo por no pago --}}
-        {{-- <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
+        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
             <div class="modal-bloqueo">
                 <h2>En breve continuamos... </h2>
                 <div id="countdown-bloqueo" class="countdown-bloqueo">15</div>
@@ -1086,7 +1183,7 @@
 
                 updateCountdown();
             });
-        </script> --}}
+        </script>
 
-    </header>
+    </header> --}}
 </div>

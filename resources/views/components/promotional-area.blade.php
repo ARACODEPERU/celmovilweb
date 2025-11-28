@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <a href="">
+                    <a href="{{ $promotional[3]->content }}">
                         <img style="width: 100%; margin-top: 20px;"
                             src="{{ $promotional[4]->content }}" alt="Banner Promoción">
                     </a>
