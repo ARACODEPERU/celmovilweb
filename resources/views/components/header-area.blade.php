@@ -22,7 +22,7 @@
                     <li><a href="{{ route('web_inicio') }}">Home</a></li>
                     @if ($categories && count($categories) > 0)
                         @foreach ($categories as $category)
-                            <li>
+                            <li class="menu_principal">
                                 <a href="{{ route('web_producto_principal', $category->id) }}">
                                     {{ $category->description }}
                                 </a>
@@ -97,6 +97,11 @@
             --side-nav: #242526;
             --text-color: #CCC;
             --search-bar: #242526;
+        }
+
+        .menu_principal li a {
+            display: block;
+            padding: 10px;
         }
 
         nav {
@@ -438,10 +443,7 @@
     </style>
 
 
-
-    {{-- <script>
-
-
+    <script>
         const body = document.querySelector("body"),
             nav = document.querySelector("nav"),
             modeToggle = document.querySelector(".dark-light"),
@@ -459,7 +461,6 @@
         modeToggle.addEventListener("click", () => {
             modeToggle.classList.toggle("active");
             body.classList.toggle("dark");
-            // Guardar la preferencia del usuario
             if (!body.classList.contains("dark")) {
                 localStorage.setItem("mode", "light-mode");
             } else {
@@ -472,17 +473,17 @@
             searchToggle.classList.toggle("active");
         });
 
-        // Abrir el menú lateral
+        // Abrir menú lateral
         sidebarOpen.addEventListener("click", () => {
             nav.classList.add("active");
         });
 
-        // Cerrar el menú lateral
+        // Cerrar menú lateral
         siderbarClose.addEventListener("click", () => {
             nav.classList.remove("active");
         });
 
-        // Cerrar el menú al hacer clic fuera de él
+        // Cerrar menú al hacer clic fuera
         body.addEventListener("click", e => {
             let clickedElm = e.target;
             if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.closest('.menu')) {
@@ -490,114 +491,36 @@
             }
         });
 
-        // Alternar submenús en pantallas móviles
+        /* ===========================================
+           🔧 SOLUCIÓN: SUBMENÚ Y NAVEGACIÓN FUNCIONAL
+           =========================================== */
         document.querySelectorAll('.nav-links > li > a').forEach(item => {
             item.addEventListener('click', event => {
+
                 const submenu = item.nextElementSibling;
-                if (submenu) {
-                    submenu.classList.toggle('active');
-                    event.preventDefault(); // Evitar el comportamiento por defecto si hay submenú
+                const isMobile = window.innerWidth <= 790; // Coincide con tu media query
+
+                // Si el elemento tiene submenú
+                if (submenu && submenu.classList.contains('sub-menu')) {
+
+                    if (isMobile) {
+                        // En móvil: toggle del submenu y prevenir navegación
+                        submenu.classList.toggle('active');
+                        event.preventDefault();
+                    }
+                    // En escritorio NO se hace preventDefault
+                    // El hover ya controla el submenú, y el enlace navega normalmente
                 }
             });
         });
-    </script> --}}
 
-
-
-<script>
-    // Alternar submenús en pantallas móviles
-document.querySelectorAll('.nav-links > li > a').forEach(item => {
-    item.addEventListener('click', event => {
-        const submenu = item.nextElementSibling;
-        
-        // Toggle only if there's a submenu, prevent default if submenu exists
-        if (submenu && submenu.classList.contains('sub-menu')) {
-            submenu.classList.toggle('active'); // Toggle visibility of the submenu
-            event.preventDefault(); // Prevent default link action
-        }
-    });
-});
-
-// Allow navigation on sub-menu items
-document.querySelectorAll('.sub-menu li a').forEach(subItem => {
-    subItem.addEventListener('click', event => {
-        // Navigate to the href of the sub-menu item
-        window.location.href = subItem.getAttribute('href');
-    });
-});
-
-
-const body = document.querySelector("body"),
-    nav = document.querySelector("nav"),
-    modeToggle = document.querySelector(".dark-light"),
-    searchToggle = document.querySelector(".searchToggle"),
-    sidebarOpen = document.querySelector(".sidebarOpen"),
-    siderbarClose = document.querySelector(".siderbarClose");
-
-// Recuperar el modo guardado en localStorage
-let getMode = localStorage.getItem("mode");
-if (getMode && getMode === "dark-mode") {
-    body.classList.add("dark");
-}
-
-// Cambiar entre modo oscuro y claro
-modeToggle.addEventListener("click", () => {
-    modeToggle.classList.toggle("active");
-    body.classList.toggle("dark");
-    // Guardar la preferencia del usuario
-    if (!body.classList.contains("dark")) {
-        localStorage.setItem("mode", "light-mode");
-    } else {
-        localStorage.setItem("mode", "dark-mode");
-    }
-});
-
-// Alternar la búsqueda
-searchToggle.addEventListener("click", () => {
-    searchToggle.classList.toggle("active");
-});
-
-// Abrir el menú lateral
-sidebarOpen.addEventListener("click", () => {
-    nav.classList.add("active");
-});
-
-// Cerrar el menú lateral
-siderbarClose.addEventListener("click", () => {
-    nav.classList.remove("active");
-});
-
-// Cerrar el menú al hacer clic fuera de él
-body.addEventListener("click", e => {
-    let clickedElm = e.target;
-    if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.closest('.menu')) {
-        nav.classList.remove("active");
-    }
-});
-
-// Alternar submenús en pantallas móviles
-document.querySelectorAll('.nav-links > li > a').forEach(item => {
-    item.addEventListener('click', event => {
-        const submenu = item.nextElementSibling;
-
-        // Toggle submenu visibility and prevent default if it exists
-        if (submenu && submenu.classList.contains('sub-menu')) {
-            submenu.classList.toggle('active');
-            event.preventDefault(); // Prevent default link action
-        }
-    });
-});
-
-// Allow navigation on sub-menu items
-document.querySelectorAll('.sub-menu li a').forEach(subItem => {
-    subItem.addEventListener('click', event => {
-        window.location.href = subItem.getAttribute('href');
-    });
-});
-
-
-
-</script>
+        // Navegación normal para enlaces del submenú
+        document.querySelectorAll('.sub-menu li a').forEach(subItem => {
+            subItem.addEventListener('click', event => {
+                window.location.href = subItem.getAttribute('href');
+            });
+        });
+    </script>
 
 
 

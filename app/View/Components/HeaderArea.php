@@ -36,7 +36,7 @@ class HeaderArea extends Component
             )
             ->orderBy('cms_section_items.position')
             ->get();
-
+                // dd($this->categories);
         return view('components.header-area', [
             'tel_email_logo' => $tel_email_logo,
             'categories' => $this->categories
