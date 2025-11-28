@@ -21,7 +21,7 @@
     <div class="slider-container">
         <div class="slider">
             @foreach ($sliders as $slide)
-                <img src="{{ $slide->content }}" alt="Imagen 1">
+                <img src="{{ $slide->content }}" alt="Imagen">
             @endforeach
         </div>
         <button class="prev-button">&#10094;</button>
@@ -226,88 +226,91 @@
     <!-- popular-product section end -->
 
     <!-- blog section start
-                                    <section class="blog-area blog-two section-padding">
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
-                                                                                            <div class="section-title text-center">
-                                                                                                <h3><span>FROM</span> BLOG</h3>
-                                                                                                <div class="shape">
-                                                                                                    <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
+                                        <section class="blog-area blog-two section-padding">
+                                                                                    <div class="container">
+                                                                                        <div class="row">
+                                                                                            <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
+                                                                                                <div class="section-title text-center">
+                                                                                                    <h3><span>FROM</span> BLOG</h3>
+                                                                                                    <div class="shape">
+                                                                                                        <img src="{{ asset('themes/celmovil/img/icon/t-shape.png') }}" alt="Title Shape" />
+                                                                                                    </div>
+                                                                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                                                                                                        when looking at its layout.</p>
                                                                                                 </div>
-                                                                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                                                                                                    when looking at its layout.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="blog-item">
+                                                                                                    <div class="blog-img">
+                                                                                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/1.jpg') }}" alt="Blog" /></a>
+                                                                                                    </div>
+                                                                                                    <div class="blog-text clearfix">
+                                                                                                        <a href="single-blog.html">
+                                                                                                            <h4>Claritas est etiam processus</h4>
+                                                                                                        </a>
+                                                                                                        <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
+                                                                                                        <hr class="line" />
+                                                                                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
+                                                                                                            placerat facer possim assum. </p>
+                                                                                                        <div class="view-more">
+                                                                                                            <a class="shop-btn" href="single-blog.html">Read More</a>
+                                                                                                            <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="blog-item">
+                                                                                                    <div class="blog-img">
+                                                                                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/2.jpg') }}" alt="Blog" /></a>
+                                                                                                    </div>
+                                                                                                    <div class="blog-text clearfix">
+                                                                                                        <a href="single-blog.html">
+                                                                                                            <h4>Claritas est etiam processus</h4>
+                                                                                                        </a>
+                                                                                                        <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
+                                                                                                        <hr class="line" />
+                                                                                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
+                                                                                                            placerat facer possim assum. </p>
+                                                                                                        <div class="view-more">
+                                                                                                            <a class="shop-btn" href="single-blog.html">Read More</a>
+                                                                                                            <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="blog-item">
+                                                                                                    <div class="blog-img">
+                                                                                                        <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/3.jpg') }}" alt="Blog" /></a>
+                                                                                                    </div>
+                                                                                                    <div class="blog-text clearfix">
+                                                                                                        <a href="single-blog.html">
+                                                                                                            <h4>Claritas est etiam processus</h4>
+                                                                                                        </a>
+                                                                                                        <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
+                                                                                                        <hr class="line" />
+                                                                                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
+                                                                                                            placerat facer possim assum. </p>
+                                                                                                        <div class="view-more">
+                                                                                                            <a class="shop-btn" href="single-blog.html">Read More</a>
+                                                                                                            <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="blog-item">
-                                                                                                <div class="blog-img">
-                                                                                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/1.jpg') }}" alt="Blog" /></a>
-                                                                                                </div>
-                                                                                                <div class="blog-text clearfix">
-                                                                                                    <a href="single-blog.html">
-                                                                                                        <h4>Claritas est etiam processus</h4>
-                                                                                                    </a>
-                                                                                                    <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
-                                                                                                    <hr class="line" />
-                                                                                                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
-                                                                                                        placerat facer possim assum. </p>
-                                                                                                    <div class="view-more">
-                                                                                                        <a class="shop-btn" href="single-blog.html">Read More</a>
-                                                                                                        <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="blog-item">
-                                                                                                <div class="blog-img">
-                                                                                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/2.jpg') }}" alt="Blog" /></a>
-                                                                                                </div>
-                                                                                                <div class="blog-text clearfix">
-                                                                                                    <a href="single-blog.html">
-                                                                                                        <h4>Claritas est etiam processus</h4>
-                                                                                                    </a>
-                                                                                                    <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
-                                                                                                    <hr class="line" />
-                                                                                                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
-                                                                                                        placerat facer possim assum. </p>
-                                                                                                    <div class="view-more">
-                                                                                                        <a class="shop-btn" href="single-blog.html">Read More</a>
-                                                                                                        <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="blog-item">
-                                                                                                <div class="blog-img">
-                                                                                                    <a href="product-details.html"><img src="{{ asset('themes/celmovil/img/blog/3.jpg') }}" alt="Blog" /></a>
-                                                                                                </div>
-                                                                                                <div class="blog-text clearfix">
-                                                                                                    <a href="single-blog.html">
-                                                                                                        <h4>Claritas est etiam processus</h4>
-                                                                                                    </a>
-                                                                                                    <p class="date-com"><span>Rakib Hossain</span> | jan 17 - 2016 | 12 comments</p>
-                                                                                                    <hr class="line" />
-                                                                                                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim
-                                                                                                        placerat facer possim assum. </p>
-                                                                                                    <div class="view-more">
-                                                                                                        <a class="shop-btn" href="single-blog.html">Read More</a>
-                                                                                                        <a class="shop-btn" href="#"><i class="fa fa-share-alt"></i></a>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                    </section>-->
+                                        </section>-->
     <!-- blog section end -->
 
+    <x-promotional-area />
+    
+
     <!-- Algunos productos - section start -->
-    <section style="padding: 120px 0px; background: #f8f8f8;">
+    <section style="padding: 120px 0px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-text-center">
@@ -482,7 +485,7 @@
             padding: 20px;
             /* background: white; */
             /* border-radius: 12px;
-                                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+                                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
         }
 
         .card {

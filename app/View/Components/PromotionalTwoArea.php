@@ -6,14 +6,19 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use Modules\CMS\Entities\CmsSectionItem;
 class PromotionalTwoArea extends Component
 {
     /**
      * Create a new component instance.
      */
+    public $data;
     public function __construct()
     {
-        //
+        $this->data = CmsSectionItem::with('item.items')
+                        ->where('section_id', 13)
+                        ->orderBy('position')
+                        ->get();
     }
 
     /**

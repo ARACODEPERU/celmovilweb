@@ -30,7 +30,7 @@
     @yield('styles')
 </head>
 
-<body class="black-version">
+<body>
 
     @yield('content')
     <!-- COOKIES -->
@@ -109,6 +109,7 @@
 
     <!-- all js here -->
     <script src="{{ asset('themes/celmovil/js/celmovil-carrito.js') }}"></script>
+
     <!-- jquery latest version -->
     <script src="{{ asset('themes/celmovil/js/vendor/jquery-1.12.3.min.js') }}"></script>
     <!-- bootstrap js -->
@@ -139,6 +140,10 @@
     <!-- Custom map-script js -->
     <script src="{{ asset('themes/celmovil/js/map-script.js') }}"></script>
 
+
+    
+		<!-- modernizr js -->
+        <script src="{{ asset('themes/celmovil/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
     <script>
         var cards = $('#card-slider .slider-item').toArray();
