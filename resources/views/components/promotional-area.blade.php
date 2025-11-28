@@ -26,7 +26,7 @@
                 <div class="col-md-8">
                     <a href="">
                         <img style="width: 100%; margin-top: 20px;"
-                            src="{{ asset('storage/'.$promotional[4]->content) }}" alt="Banner Promoción">
+                            src="{{ $promotional[4]->content }}" alt="Banner Promoción">
                     </a>
                 </div>
                 {{-- <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-7">
