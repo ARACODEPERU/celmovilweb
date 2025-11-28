@@ -19,7 +19,7 @@
                     <i class='bx bx-x siderbarClose'></i>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="{{ route('web_inicio') }}">Home</a></li>
+                    <li><a href="{{ route('web_inicio') }}">HOME</a></li>
                     @if ($categories && count($categories) > 0)
                         @foreach ($categories as $category)
                             <li class="menu_principal">
