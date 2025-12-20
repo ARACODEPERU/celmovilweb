@@ -206,7 +206,7 @@
             <div class="row">
                 <div class="col-md-12" style="padding: 15px;">
                     <div class="box-shadow">
-                        <a href="https://celmovil.pe/productos/25/list">
+                        <a href="https://celmovil.pe/productos/3/list">
                             <img style="width: 100%;" src="{{ $portadas[3]->content }}" alt="">
                         </a>
                     </div>
