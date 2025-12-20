@@ -98,10 +98,10 @@
             --surface-color: #1f2937; /* gray-800 */
             --nav-color: #1f2937; /* gray-800 */
             --side-nav: #1f2937; /* gray-800 */
-            --text-color: #f9fafb; /* gray-50, for nav text */
-            --text-color-dark: #d1d5db; /* gray-300, for body text */
+            --text-color: #ffffff; /* Pure white for nav text */
+            --text-color-dark: #ffffff; /* Pure white for body text */
             --search-bar: #374151; /* gray-700 */
-            --search-text: #f9fafb; /* gray-50 */
+            --search-text: #ffffff; /* Pure white */
         }
 
         .menu_principal li a {
@@ -559,14 +559,25 @@
         body.dark .contact-link p,
         body.dark .footer-menu ul li a,
         body.dark .grid-item b,
-        body.dark .product-title b {
+        body.dark .product-title b,
+        body.dark .footer-title h4,
+        body.dark .singl-pro-title,
+        body.dark .categ-tag li,
+        body.dark .categ-tag li a,
+        body.dark .specific-pro ul li,
+        body.dark .specific-pro ul li span,
+        body.dark .pro-des-tab .tab-menu ul li a,
+        body.dark .pro-des-tab .tab-menu ul li.active a {
             color: var(--text-color) !important;
         }
 
         body.dark .product-title p,
         body.dark .contenido p,
         body.dark .footer-logo-text p,
-        body.dark .section-title p {
+        body.dark .section-title p,
+        body.dark .section-title span,
+        body.dark .specific-pro ul li p,
+        body.dark del {
             color: var(--text-color-dark) !important;
         }
 
@@ -581,6 +592,10 @@
 
         body.dark .footer-bottom p {
             color: #9CA3AF !important; /* gray-400 */
+        }
+
+        body.dark .footer-bottom p a {
+            color: #ff6600 !important;
         }
 
         body.dark .btn-celmovil {

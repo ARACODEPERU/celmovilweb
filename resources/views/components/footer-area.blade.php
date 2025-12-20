@@ -1,24 +1,4 @@
 <div>
-    <!--
-    <a class="appFacebook" target="_blanck" href="{{ $redesSociales[1]->content }}">
-        <img src="{{ $redesSociales[0]->content }}" alt="Facebook">
-    </a>
-    <a class="appInstagram" target="_blanck" href="{{ $redesSociales[3]->content }}">
-        <img src="{{ $redesSociales[2]->content }}" alt="Instagram">
-    </a>
-
-    <a class="appYoutube" target="_blanck" href="{{ $redesSociales[5]->content }}">
-        <img src="{{ $redesSociales[4]->content }}" alt="Youtube">
-    </a>
-
-    <a class="appTiktok" target="_blanck" href="{{ $redesSociales[7]->content }}">
-        <img src="{{ $redesSociales[6]->content }}" alt="Tiktok">
-    </a>-->
-
-    {{-- <a class="appWhatsapp" target="_blanck" href="https://api.whatsapp.com/send?phone=51{{ $redesSociales[9]->content }}&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?">
-        <img src="{{ $redesSociales[8]->content }}" alt="Whatsapp">
-    </a> --}}
-
     
     
     <div id="whatsapp">
@@ -84,42 +64,92 @@
             }
         }
 
+        /* --- INICIO: Estilos del Footer Moderno --- */
+
+        /* Modo Claro (Por defecto) - Mantiene imagen de fondo original */
+        .footer-logo-text, .footer-top {
+            /* background-color: #1f2937; Eliminado para mostrar imagen de fondo */
+            position: relative;
+            color: #ffffff; /* Texto blanco para contraste con imagen oscura */
+        }
+        
+        .footer-bottom {
+            background-color: #111827; /* gray-900 */
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-title h4 {
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-logo-text p, .contact-link p, .footer-menu ul li a {
+            color: #e5e7eb; /* gray-200 */
+        }
+        
+        .footer-menu ul li a:hover {
+            color: #ff6600;
+            padding-left: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-bottom p {
+            color: #9CA3AF; /* gray-400 */
+        }
+        
+        .footer-bottom p a {
+            color: #ff6600;
+        }
+
+        /* Modo Noche (Dark Mode) - Reemplaza imagen con degradado moderno */
+        body.dark .footer-logo-text, 
+        body.dark .footer-top {
+            background-image: none !important; /* Elimina imagen de fondo */
+            background-color: transparent !important;
+            background: linear-gradient(145deg, var(--surface-color) 0%, var(--body-color) 100%) !important; /* Degradado con colores del tema */
+            position: relative;
+        }
+        
+        /* Efecto de brillo sutil en modo noche */
+        body.dark .footer-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 102, 0, 0.08), transparent 50%);
+            pointer-events: none;
+        }
+
+        body.dark .footer-bottom {
+            background-color: var(--body-color) !important; /* Coincide con el fondo del body */
+            border-top: 1px solid var(--surface-color);
+        }
+
+        body.dark .footer-title h4 {
+            color: #f3f4f6 !important; /* gray-100 */
+        }
+
+        body.dark .footer-logo-text p, 
+        body.dark .contact-link p, 
+        body.dark .footer-menu ul li a {
+            color: #9ca3af !important; /* gray-400 */
+        }
+
+        body.dark .footer-menu ul li a:hover {
+            color: #ff6600 !important;
+        }
+        /* --- FIN: Estilos del Footer --- */
+
     </style>
 
 
 
     <!-- footer section start -->
     <footer>
-        <!-- brand logo area start -->
-        <!--
-        <div class="brand-logo-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="brand-logo">
-                            <ul class="clearfix">
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/brand/1.png') }}" alt="Brand Logo" /></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/brand/2.png') }}" alt="Brand Logo" /></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/brand/3.png') }}" alt="Brand Logo" /></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/brand/4.png') }}" alt="Brand Logo" /></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="{{ asset('themes/celmovil/img/brand/5.png') }}" alt="Brand Logo" /></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
         <!-- brand logo area end -->
         <div class="footer-logo-text">
             <div class="container text-center">
@@ -275,75 +305,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center" style="color: #fff; padding: 15px 0px;">Copyright &copy; 2025 - Desarrollado por 
-                            <a href="#" style="color: #ff6600;">ARACODE SMART SOLUTIONS</a>
+                        <p class="text-center" style="padding: 15px 0px;">Copyright &copy; 2025 - Desarrollado por
+                            <a href="#">ARACODE SMART SOLUTIONS</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let form = document.getElementById('pageContactForm');
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                var formulario = document.getElementById('pageContactForm');
-                var formData = new FormData(formulario);
-
-                // Deshabilitar el botón
-                var submitButton = document.getElementById('submitPageContactButton');
-                submitButton.disabled = true;
-                submitButton.style.opacity = 0.25;
-
-                // Crear una nueva solicitud XMLHttpRequest
-                var xhr = new XMLHttpRequest();
-
-                // Configurar la solicitud POST al servidor
-                xhr.open('POST', "{{ route('apisubscriber') }}", true);
-
-                // Configurar la función de callback para manejar la respuesta
-                xhr.onload = function() {
-                    // Habilitar nuevamente el botón
-                    submitButton.disabled = false;
-                    submitButton.style.opacity = 1;
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Enhorabuena',
-                            text: response.message,
-                            customClass: {
-                                container: 'sweet-modal-zindex' // Clase personalizada para controlar el z-index
-                            }
-                        });
-                        formulario.reset();
-                    } else if (xhr.status === 422) {
-                        var errorResponse = JSON.parse(xhr.responseText);
-                        // Maneja los errores de validación aquí, por ejemplo, mostrando los mensajes de error en algún lugar de tu página.
-                        var errorMessages = errorResponse.errors;
-                        var errorMessageContainer = document.getElementById('messagePageContact');
-                        errorMessageContainer.innerHTML = 'Errores de validación:<br>';
-                        for (var field in errorMessages) {
-                            if (errorMessages.hasOwnProperty(field)) {
-                                errorMessageContainer.innerHTML += field + ': ' + errorMessages[field]
-                                    .join(', ') +
-                                    '<br>';
-                            }
-                        }
-                    } else {
-                        console.error('Error en la solicitud: ' + xhr.status);
-                    }
-
-
-                };
-
-                // Enviar la solicitud al servidor
-                xhr.send(formData);
-            });
-        });
-    </script> --}}
         <!-- footer bottom end -->
     </footer>
 </div>
