@@ -175,15 +175,6 @@
                 </div>
                 @endforeach
             @endif
-            {{-- <div class="grid-item">1</div>
-            <div class="grid-item">2</div>
-            <div class="grid-item">3</div>
-            <div class="grid-item">4</div>
-            <div class="grid-item">5</div>
-            <div class="grid-item">6</div>
-            <div class="grid-item">7</div>
-            <div class="grid-item">8</div>
-            <div class="grid-item">9</div> --}}
         </div>
     </section>
 
@@ -371,4 +362,36 @@
     <x-footer-area />
     <!-- footer - section end -->
 
+    <style>
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible");
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll("section, .grid-item, .product-item");
+            elementsToAnimate.forEach((el) => {
+                el.classList.add("scroll-reveal");
+                observer.observe(el);
+            });
+        });
+    </script>
 @stop
