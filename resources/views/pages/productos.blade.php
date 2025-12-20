@@ -202,13 +202,29 @@
         @media (max-width: 768px) {
         .grid-container {
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, auto);
             width: 98%;
             padding: 5px;
         }
 
         .grid-item {
             padding: 10px;
+        }
+
+        .product-item {
+            height: auto !important; /* Altura automática para adaptarse al contenido */
+            padding: 10px !important;
+        }
+
+        .product-item .pro-img img {
+            width: 100% !important; /* Ancho completo del contenedor */
+            height: auto !important; /* Altura automática para mantener la proporción */
+            max-width: 160px; /* Un tamaño máximo para la imagen */
+            margin: 0 auto; /* Centrar imagen */
+        }
+
+        .product-item h5 {
+            font-size: 14px; /* Ajustar tamaño del título */
+            min-height: 40px; /* Asegurar altura mínima para alinear tarjetas */
         }
         }
     </style>

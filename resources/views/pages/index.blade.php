@@ -583,6 +583,48 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* --- INICIO: Estilos para Responsividad Móvil --- */
+
+        /* Por defecto, se muestra la vista de PC y se oculta la de móvil */
+        .view-movil {
+            display: none;
+        }
+        .view-pc {
+            display: block;
+        }
+
+        /* En pantallas de hasta 768px (móviles y tablets pequeñas) */
+        @media (max-width: 768px) {
+            .view-pc {
+                display: none;
+            }
+            .view-movil {
+                display: block;
+            }
+
+            /* Reducción de paddings verticales en secciones con estilos en línea */
+            section[style*="padding: 120px 0px;"],
+            section[style*="padding: 90px 0px;"] {
+                padding-top: 50px !important;
+                padding-bottom: 50px !important;
+            }
+
+            /* Ajuste específico para la sección de testimonios */
+            .section-testimonio {
+                padding: 50px 10px !important;
+            }
+
+            /* Ajuste para la sección de mapa y contacto */
+            .map-contact {
+                padding: 50px 15px !important;
+            }
+
+            .googleMap-info iframe {
+                height: 300px; /* Altura más adecuada para móviles */
+            }
+        }
+        /* --- FIN: Estilos para Responsividad Móvil --- */
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
