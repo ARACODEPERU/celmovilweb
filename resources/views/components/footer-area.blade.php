@@ -70,7 +70,7 @@
         .footer-logo-text, .footer-top {
             /* background-color: #1f2937; Eliminado para mostrar imagen de fondo */
             position: relative;
-            color: #ffffff; /* Texto blanco para contraste con imagen oscura */
+            color: #000000; /* Texto negro para modo claro */
         }
         
         .footer-bottom {
@@ -79,14 +79,14 @@
         }
         
         .footer-title h4 {
-            color: #ffffff;
+            color: #000000;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         
         .footer-logo-text p, .contact-link p, .footer-menu ul li a {
-            color: #e5e7eb; /* gray-200 */
+            color: #000000;
         }
         
         .footer-menu ul li a:hover {
