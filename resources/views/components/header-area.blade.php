@@ -78,25 +78,30 @@
     <style>
         /* ===== Colours ===== */
         :root {
-            --body-color: #F2F2F2;
+            --body-color: #f8fafc; /* slate-50 */
+            --surface-color: #ffffff;
             --nav-color: #000;
             --side-nav: #242526;
-            --text-color: #FFF;
+            --text-color: #FFF; /* Text on nav */
+            --text-color-dark: #1f2937; /* gray-800, main text color */
             --search-bar: #F2F2F2;
             --search-text: #010718;
         }
 
         body {
-            height: 100vh;
             background-color: var(--body-color);
+            color: var(--text-color-dark);
         }
 
         body.dark {
-            --body-color: #18191A;
-            --nav-color: #000;
-            --side-nav: #242526;
-            --text-color: #CCC;
-            --search-bar: #242526;
+            --body-color: #111827; /* gray-900 */
+            --surface-color: #1f2937; /* gray-800 */
+            --nav-color: #1f2937; /* gray-800 */
+            --side-nav: #1f2937; /* gray-800 */
+            --text-color: #f9fafb; /* gray-50, for nav text */
+            --text-color-dark: #d1d5db; /* gray-300, for body text */
+            --search-bar: #374151; /* gray-700 */
+            --search-text: #f9fafb; /* gray-50 */
         }
 
         .menu_principal li a {
@@ -522,6 +527,88 @@
         });
     </script>
 
+    <style>
+        /* ===== Dark Mode Overrides ===== */
+        body.dark {
+            color: var(--text-color-dark);
+        }
+
+        /* Containers with white background in light mode */
+        body.dark .bg-white,
+        body.dark .product-item,
+        body.dark .card,
+        body.dark .box-shadow,
+        body.dark .main-view,
+        body.dark .footer-logo-text,
+        body.dark .footer-top,
+        body.dark .featured-one,
+        body.dark section[style*="padding: 120px 0px;"],
+        body.dark section[style*="padding: 40px 0px;"],
+        body.dark .grid-item .box-up span {
+            background-color: var(--surface-color) !important;
+            color: var(--text-color-dark);
+        }
+
+        /* Text color overrides */
+        body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
+        body.dark .section-title h1,
+        body.dark .section-title h3,
+        body.dark .product-title a h5,
+        body.dark .product-title a h6,
+        body.dark .grid-item,
+        body.dark .contact-link p,
+        body.dark .footer-menu ul li a,
+        body.dark .grid-item b,
+        body.dark .product-title b {
+            color: var(--text-color) !important;
+        }
+
+        body.dark .product-title p,
+        body.dark .contenido p,
+        body.dark .footer-logo-text p,
+        body.dark .section-title p {
+            color: var(--text-color-dark) !important;
+        }
+
+        /* Special cases and accents */
+        body.dark .section-testimonio {
+            background: linear-gradient(150deg, #4A0B06, #803300); /* Darker version of the gradient */
+        }
+
+        body.dark .footer-bottom {
+            background-color: #111827; /* Match body background */
+        }
+
+        body.dark .footer-bottom p {
+            color: #9CA3AF !important; /* gray-400 */
+        }
+
+        body.dark .btn-celmovil {
+            background: #ff6600;
+            color: #FFFFFF !important;
+            border: 1px solid #ff6600;
+        }
+        body.dark .btn-celmovil:hover {
+            background: #e65c00;
+            border: 1px solid #e65c00;
+        }
+
+        body.dark .product-item,
+        body.dark .card,
+        body.dark .box-shadow {
+            border: 1px solid #374151; /* gray-700 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        body.dark .card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark span[style*="#ff6600"],
+        body.dark b[style*="#ff6600"] {
+            color: #ff6600 !important;
+        }
+    </style>
 
 
 
