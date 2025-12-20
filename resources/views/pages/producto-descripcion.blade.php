@@ -377,4 +377,61 @@
     <x-footer-area />
     <!-- footer - section end -->
 
+    <style>
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- INICIO: Estilos para Responsividad Móvil --- */
+
+        /* Por defecto, se muestra la vista de PC y se oculta la de móvil */
+        .view-movil {
+            display: none;
+        }
+        .view-pc {
+            display: block;
+        }
+
+        /* En pantallas de hasta 768px (móviles y tablets pequeñas) */
+        @media (max-width: 768px) {
+            .view-pc {
+                display: none;
+            }
+            .view-movil {
+                display: block;
+            }
+
+            .section-padding-top {
+                padding-top: 30px !important;
+            }
+        }
+        /* --- FIN: Estilos para Responsividad Móvil --- */
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible");
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll("section, .pro-des-tab, .view-movil");
+            elementsToAnimate.forEach((el) => {
+                el.classList.add("scroll-reveal");
+                observer.observe(el);
+            });
+        });
+    </script>
 @stop
