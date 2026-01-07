@@ -106,7 +106,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <a href="https://api.whatsapp.com/send?phone=51921197459&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?"
-                                        target="_blanck" class="btn btn-success">
+                                        target="_blank" class="btn btn-success">
                                         <div style="justify-content: space-between;">
                                             <div style="float: left; padding: 5px;">
                                                 <img style="width: 40px;"
@@ -378,16 +378,6 @@
     <!-- footer - section end -->
 
     <style>
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* --- INICIO: Estilos para Responsividad Móvil --- */
 
         /* Por defecto, se muestra la vista de PC y se oculta la de móvil */
@@ -413,25 +403,4 @@
         }
         /* --- FIN: Estilos para Responsividad Móvil --- */
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                    } else {
-                        entry.target.classList.remove("visible");
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            const elementsToAnimate = document.querySelectorAll("section, .pro-des-tab, .view-movil");
-            elementsToAnimate.forEach((el) => {
-                el.classList.add("scroll-reveal");
-                observer.observe(el);
-            });
-        });
-    </script>
 @stop
