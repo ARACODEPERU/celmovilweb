@@ -8,7 +8,7 @@
 
     <!-- page banner area start -->
     <div class="page-banner">
-        <img src="{{ asset('themes/celmovil/img/slider/bg3.jpg') }}" alt="Page Banner" />
+        {{-- <img src="{{ asset('themes/celmovil/img/slider/bg3.jpg') }}" alt="Page Banner" /> --}}
     </div>
     <!-- page banner area end -->
 
