@@ -665,7 +665,7 @@
                     <i class='bx bx-sun sun'></i>
                 </div>
                 <div class="searchBox">
-                    
+
                     <div class="searchToggle">
                         <div class="cart-menu-area floatright" style="margin-top: -80px;">
                         <ul>
@@ -686,7 +686,7 @@
                     </div>
                     </div>
                     <div class="search-field">
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -1131,8 +1131,8 @@
                     </div>
                 </div>
             </div>
-        </div> 
-        
+        </div>
+
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 post_url = "{{ route('onlineshop_get_item_carrito') }}";
@@ -1142,6 +1142,15 @@
             });
         </script>
 
+        <script>
+            ruta_carrito = "{{ route('web_carrito') }}"
+
+            function confirmarEliminarCarrito() {
+                if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
+                    eliminarCarrito();
+                }
+            }
+        </script>
 
         <style>
             .modal-overlay-bloqueo {
@@ -1211,4 +1220,22 @@
         </script>
 
     </header> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            post_url = "{{ route('onlineshop_get_item_carrito') }}";
+            token = "{{ csrf_token() }}";
+            load_post_url(post_url, token);
+            cargarItemsCarritoBD();
+        });
+    </script>
+
+    <script>
+        ruta_carrito = "{{ route('web_carrito') }}"
+
+        function confirmarEliminarCarrito() {
+            if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
+                eliminarCarrito();
+            }
+        }
+    </script>
 </div>
