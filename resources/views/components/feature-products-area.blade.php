@@ -82,6 +82,10 @@
             color: #ffffff;
         }
 
+        body.dark .featured-products-modern {
+            background-color: #111827;
+        }
+
         /* Modern Grid Layout */
         .featured-products-modern {
             position: relative;

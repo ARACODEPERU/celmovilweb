@@ -221,6 +221,10 @@
     </section>
 
     <style>
+        
+        body.dark .section-padding {
+            background-color: #111827;
+        }
         .section-padding {
             padding: 60px 0;
         }
