@@ -9,49 +9,54 @@
 
             <div class="product-carousel-container">
                 <button class="carousel-nav prev" aria-label="Anterior">&#10094;</button>
-                
+
                 <div class="carousel-viewport">
                     <div class="carousel-track">
-                @if (isset($feature_products) && count($feature_products) > 0)
-                    @foreach ($feature_products as $product)
-                        <div class="carousel-slide">
-                            <div class="product-card">
-                                <!-- Image -->
-                                <div class="product-image">
-                                    <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                        <img src="{{ $product->image }}" alt="{{ $product->name }}" loading="lazy" />
-                                    </a>
-                                    @if($product->discount > 0)
-                                        <span class="discount-badge">-{{ round(($product->discount / $product->price) * 100) }}%</span>
-                                    @endif
-                                </div>
+                        @if (isset($feature_products))
+                            @foreach ($feature_products->take(10) as $product)
+                                <div class="carousel-slide">
+                                    <div class="product-card">
+                                        <!-- Image -->
+                                        <div class="product-image">
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                <img src="{{ $product->image }}" alt="{{ $product->name }}"
+                                                    loading="lazy" />
+                                            </a>
+                                            @if ($product->discount > 0)
+                                                <span
+                                                    class="discount-badge">-{{ round(($product->discount / $product->price) * 100) }}%</span>
+                                            @endif
+                                        </div>
 
-                                <!-- Content -->
-                                <div class="product-info">
-                                    <h3 class="product-title">
-                                        <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                            {{ $product->name }}
-                                        </a>
-                                    </h3>
-                                    
-                                    <div class="product-price">
-                                        @if ($product->discount > 0)
-                                            @php $new_price = $product->price - $product->discount; @endphp
-                                            <span class="old-price">S/ {{ number_format($product->price, 2) }}</span>
-                                            <span class="new-price">S/ {{ number_format($new_price, 2) }}</span>
-                                        @else
-                                            <span class="regular-price">S/ {{ number_format($product->price, 2) }}</span>
-                                        @endif
+                                        <!-- Content -->
+                                        <div class="product-info">
+                                            <h3 class="product-title">
+                                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                    {{ $product->name }}
+                                                </a>
+                                            </h3>
+
+                                            <div class="product-price">
+                                                @if ($product->discount > 0)
+                                                    @php $new_price = $product->price - $product->discount; @endphp
+                                                    <span class="old-price">S/
+                                                        {{ number_format($product->price, 2) }}</span>
+                                                    <span class="new-price">S/ {{ number_format($new_price, 2) }}</span>
+                                                @else
+                                                    <span class="regular-price">S/
+                                                        {{ number_format($product->price, 2) }}</span>
+                                                @endif
+                                            </div>
+
+                                            <a href="{{ route('web_producto_descripcion', $product->id) }}"
+                                                class="btn-view-product">
+                                                Ver Detalles <i class="fa fa-arrow-right"></i>
+                                            </a>
+                                        </div>
                                     </div>
-
-                                    <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn-view-product">
-                                        Ver Detalles <i class="fa fa-arrow-right"></i>
-                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <button class="carousel-nav next" aria-label="Siguiente">&#10095;</button>
@@ -68,9 +73,11 @@
             margin-bottom: 10px;
             color: #1f2937;
         }
+
         .modern-title span {
             color: var(--primary-color, #ff6600);
         }
+
         .title-line {
             width: 80px;
             height: 4px;
@@ -78,6 +85,7 @@
             margin: 0 auto 40px;
             border-radius: 2px;
         }
+
         body.dark .modern-title {
             color: #ffffff;
         }
@@ -96,7 +104,8 @@
             position: relative;
             display: flex;
             align-items: center;
-            margin: 0 -10px; /* Offset padding of slides */
+            margin: 0 -10px;
+            /* Offset padding of slides */
         }
 
         .carousel-viewport {
@@ -110,26 +119,30 @@
         }
 
         .carousel-slide {
-            flex: 0 0 50%; /* Mobile: 2 columns */
+            flex: 0 0 50%;
+            /* Mobile: 2 columns */
             padding: 0 10px;
             box-sizing: border-box;
         }
 
         @media (min-width: 768px) {
             .carousel-slide {
-                flex: 0 0 33.333%; /* Tablet: 3 columns */
+                flex: 0 0 33.333%;
+                /* Tablet: 3 columns */
             }
         }
 
         @media (min-width: 1024px) {
             .carousel-slide {
-                flex: 0 0 25%; /* Small Desktop: 4 columns */
+                flex: 0 0 25%;
+                /* Small Desktop: 4 columns */
             }
         }
 
         @media (min-width: 1280px) {
             .carousel-slide {
-                flex: 0 0 20%; /* Large Desktop: 5 columns */
+                flex: 0 0 20%;
+                /* Large Desktop: 5 columns */
             }
         }
 
@@ -152,19 +165,22 @@
             top: 50%;
             transform: translateY(-50%);
         }
-        .carousel-nav.prev { left: -20px; }
-        .carousel-nav.next { right: -20px; }
-        .carousel-nav:hover { background: var(--primary-color, #ff6600); }
+
+        .carousel-nav.prev {
+            left: -20px;
+        }
+
+        .carousel-nav.next {
+            right: -20px;
+        }
+
+        .carousel-nav:hover {
+            background: var(--primary-color, #ff6600);
+        }
 
         @media (max-width: 767px) {
-            .carousel-nav { display: none; } /* Hide nav on mobile, swipe is better */
-            .carousel-track {
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-            }
-            .carousel-slide {
-                scroll-snap-align: start;
+            .carousel-nav {
+                display: none;
             }
         }
 
@@ -195,7 +211,7 @@
             background: #ffffff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border: 1px solid #f3f4f6;
             display: flex;
@@ -205,7 +221,7 @@
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             border-color: var(--primary-color, #ff6600);
         }
 
@@ -260,7 +276,8 @@
             font-weight: 600;
             margin-bottom: 10px;
             line-height: 1.4;
-            height: 40px; /* Limit height for alignment */
+            height: 40px;
+            /* Limit height for alignment */
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -290,7 +307,8 @@
             text-decoration: line-through;
         }
 
-        .new-price, .regular-price {
+        .new-price,
+        .regular-price {
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary-color, #ff6600);
@@ -344,7 +362,7 @@
         body.dark .old-price {
             color: #6b7280;
         }
-        
+
         /* Ensure images look okay in dark mode if they have transparent backgrounds */
         body.dark .product-image img {
             filter: brightness(0.9);
@@ -358,7 +376,7 @@
             const prevBtn = document.querySelector('.carousel-nav.prev');
             const nextBtn = document.querySelector('.carousel-nav.next');
             const pagination = document.querySelector('.carousel-pagination');
-            
+
             if (!track || slides.length === 0) return;
 
             let currentIndex = 0;
@@ -381,12 +399,12 @@
             function moveSlide(direction) {
                 const visibleSlides = getVisibleSlides();
                 const maxIndex = slides.length - visibleSlides;
-                
+
                 currentIndex += direction;
-                
+
                 if (currentIndex < 0) currentIndex = maxIndex;
                 if (currentIndex > maxIndex) currentIndex = 0;
-                
+
                 updateCarousel();
             }
 
@@ -394,7 +412,7 @@
                 pagination.innerHTML = '';
                 const visibleSlides = getVisibleSlides();
                 const maxIndex = slides.length - visibleSlides;
-                
+
                 for (let i = 0; i <= maxIndex; i++) {
                     const dot = document.createElement('div');
                     dot.classList.add('dot');
@@ -419,13 +437,21 @@
             function startAutoSlide() {
                 autoSlideInterval = setInterval(() => moveSlide(1), 5000);
             }
-            
+
             function stopAutoSlide() {
                 clearInterval(autoSlideInterval);
             }
 
-            if(prevBtn) prevBtn.addEventListener('click', () => { moveSlide(-1); stopAutoSlide(); startAutoSlide(); });
-            if(nextBtn) nextBtn.addEventListener('click', () => { moveSlide(1); stopAutoSlide(); startAutoSlide(); });
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                moveSlide(-1);
+                stopAutoSlide();
+                startAutoSlide();
+            });
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                moveSlide(1);
+                stopAutoSlide();
+                startAutoSlide();
+            });
 
             window.addEventListener('resize', () => {
                 createDots();
