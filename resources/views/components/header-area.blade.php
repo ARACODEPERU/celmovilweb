@@ -7,7 +7,7 @@
                 <span><i class="fa fa-truck"></i> Envíos a todo el Perú</span>
             </div>
             <div class="top-bar-right">
-                <a href="tel:+51999999999"><i class="fa fa-phone"></i> +51 999 999 999</a>
+                <a href="tel:+51999999999"><i class="fa fa-phone"></i> (+51) 921 197 459</a>
                 <span class="divider">|</span>
                 <a href="mailto:ventas@celmovil.pe"><i class="fa fa-envelope"></i> ventas@celmovil.pe</a>
             </div>
@@ -318,7 +318,10 @@
             position: relative;
             transition: var(--transition);
         }
-        #main-header.scrolled .icon-btn { color: var(--text-dark); }
+        /* #main-header.scrolled .icon-btn { color: var(--text-dark); } */
+        #main-header.scrolled .icon-btn { 
+            color: #FFFFFF; 
+        }
         body.dark #main-header.scrolled .icon-btn { color: white; }
         .icon-btn:hover { color: var(--primary-color) !important; transform: scale(1.1); }
 
