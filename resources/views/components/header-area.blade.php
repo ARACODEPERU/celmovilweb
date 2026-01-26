@@ -30,7 +30,7 @@
             <!-- Desktop Navigation -->
             <nav class="desktop-nav">
                 <ul class="nav-menu">
-                    <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                    <li><a href="{{ route('web_inicio') }}">INICIO</a></li>
                     @forelse ($categories ?? [] as $category)
                         <li class="menu-item-has-children">
                             <a href="{{ route('web_producto_principal', $category->id) }}">
@@ -230,7 +230,7 @@
         }
 
         .header-logo img {
-            height: 45px;
+            height: 65px;
             transition: var(--transition);
         }
 
