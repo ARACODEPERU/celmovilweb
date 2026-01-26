@@ -1,536 +1,711 @@
+
 <div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fa fa-truck"></i> Envíos a todo el Perú</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="tel:+51999999999"><i class="fa fa-phone"></i> +51 999 999 999</a>
+                <span class="divider">|</span>
+                <a href="mailto:ventas@celmovil.pe"><i class="fa fa-envelope"></i> ventas@celmovil.pe</a>
+            </div>
+        </div>
+    </div>
 
+    <!-- Main Header -->
+    <header id="main-header">
+        <div class="container header-container">
+            <!-- Mobile Menu Trigger -->
+            <div class="mobile-menu-trigger" id="mobile-menu-open">
+                <i class='bx bx-menu'></i>
+            </div>
 
-    <nav>
-        <div class="nav-bar">
-            <i class='bx bx-menu sidebarOpen'></i>
-            <span class="logo navLogo">
-                <a href="{{ route('web_inicio') }}">
-                    <img style="width: 140px;" src="{{ $tel_email_logo[2]->content }}" alt="celmovil_logo" />
-                </a>
-            </span>
-            <div class="menu">
-                <div class="logo-toggle">
-                    <span class="logo">
-                        <a href="{{ route('web_inicio') }}">
-                            <img style="width: 140px;" src="{{ $tel_email_logo[2]->content }}" alt="celmovil_logo" />
-                        </a>
-                    </span>
-                    <i class='bx bx-x siderbarClose'></i>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="{{ route('web_inicio') }}">HOME</a></li>
-                    @if ($categories && count($categories) > 0)
-                        @foreach ($categories as $category)
-                            <li class="menu_principal">
-                                <a href="{{ route('web_producto_principal', $category->id) }}">
-                                    {{ $category->description }}
-                                </a>
-                                @if ($category->subcategories && count($category->subcategories) > 0)
-                                    <ul class="sub-menu">
-                                        @foreach ($category->subcategories as $subcategory)
-                                            <li>
-                                                <a href="{{ route('web_producto_principal', $subcategory->id) }}">
-                                                    {{ $subcategory->description }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+            <!-- Logo -->
+            <a href="{{ route('web_inicio') }}" class="header-logo">
+                <img src="{{ $tel_email_logo[2]->content }}" alt="Celmovil" />
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                    @forelse ($categories ?? [] as $category)
+                        <li class="menu-item-has-children">
+                            <a href="{{ route('web_producto_principal', $category->id) }}">
+                                {{ $category->description }}
+                                @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
+                                    <i class='bx bx-chevron-down'></i>
+                                @endif
+                            </a>
+                            @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
+                                <div class="mega-menu">
+                                    <div class="container">
+                                        <div class="mega-menu-inner">
+                                            <div class="mega-menu-list">
+                                                <h4>Categorías</h4>
+                                                <ul>
+                                                    @foreach ($category->subcategories as $subcategory)
+                                                        <li>
+                                                            <a href="{{ route('web_producto_principal', $subcategory->id) }}">
+                                                                {{ $subcategory->description }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <div class="mega-menu-promo">
+                                                <div class="promo-card">
+                                                    <img src="{{ $category->image ?? asset('themes/celmovil/img/promo-placeholder.jpg') }}" alt="{{ $category->description }}">
+                                                    <div class="promo-content">
+                                                        <h5>Lo mejor en {{ $category->description }}</h5>
+                                                        <a href="{{ route('web_producto_principal', $category->id) }}" class="btn-promo">Ver Todo</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
                             </li>
-                        @endforeach
-                    @endif
+                    @empty
+                    @endforelse
                 </ul>
-            </div>
-            <div class="darkLight-searchBox">
-                <div class="dark-light">
+            </nav>
+
+            <!-- Header Icons -->
+            <div class="header-actions">
+                <div class="icon-btn search-trigger" id="search-open">
+                    <i class='bx bx-search'></i>
+                </div>
+                <div class="icon-btn user-trigger">
+                    <a href="{{ route('login') }}"><i class='bx bx-user'></i></a>
+                </div>
+                <div class="icon-btn cart-trigger" id="cart-open">
+                    <i class='bx bx-shopping-bag'></i>
+                    <span class="badge" id="contadorCarritoWeb">0</span>
+                </div>
+                <div class="icon-btn theme-toggle" id="theme-toggle">
                     <i class='bx bx-moon moon'></i>
                     <i class='bx bx-sun sun'></i>
                 </div>
-                <div class="searchBox">
-
-                    <div class="searchToggle">
-                        <div class="cart-menu-area floatright" style="margin-top: -80px;">
-                            <ul>
-                                <li>
-                                    <a href="{{ route('web_carrito') }}">
-                                        <i class="pe-7s-shopbag"></i>
-                                        <span hidden id="contadorCarritoWeb"></span>
-                                    </a>
-                                    <ul class="cart-menu" id="cart-menu">
-                                        <li class="cart-menu-btn">
-                                            <a href="{{ route('web_carrito') }}">Ir al Carrito</a>
-                                            <a style="background-color: red; color: white;" href=""
-                                                onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="search-field">
-                    </div>
-                </div>
             </div>
         </div>
-    </nav>
+    </header>
 
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-close" id="search-close"><i class='bx bx-x'></i></div>
+        <div class="search-content">
+            <h3>¿Qué estás buscando?</h3>
+            <form action="#" class="search-form-overlay">
+                <input type="text" placeholder="Buscar productos...">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h3>Tu Carrito</h3>
+            <div class="cart-close" id="cart-close"><i class='bx bx-x'></i></div>
+        </div>
+        <div class="cart-sidebar-body">
+            <!-- The JS populates #cart-menu with li items -->
+            <ul id="cart-menu" class="cart-items-list">
+                <!-- Items injected by JS -->
+            </ul>
+        </div>
+        <div class="cart-sidebar-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="totalid">S/ 0.00</span>
+            </div>
+            <div class="cart-buttons">
+                <a href="{{ route('web_carrito') }}" class="btn-cart btn-view">Ver Carrito</a>
+                <a href="{{ route('web_carrito') }}" class="btn-cart btn-checkout">Finalizar Compra</a>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <img src="{{ $tel_email_logo[2]->content }}" alt="Celmovil">
+            <div class="mobile-close" id="mobile-close"><i class='bx bx-x'></i></div>
+        </div>
+        <div class="mobile-menu-body">
+            <ul class="mobile-nav-list">
+                <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                @forelse ($categories ?? [] as $category)
+                    <li class="mobile-has-children">
+                        <div class="mobile-link-wrapper">
+                            <a href="{{ route('web_producto_principal', $category->id) }}">{{ $category->description }}</a>
+                            @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
+                                <span class="mobile-submenu-toggle"><i class='bx bx-plus'></i></span>
+                            @endif
+                        </div>
+                        @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
+                            <ul class="mobile-submenu">
+                                @foreach ($category->subcategories as $subcategory)
+                                    <li><a href="{{ route('web_producto_principal', $subcategory->id) }}">{{ $subcategory->description }}</a></li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </li>
+                @empty
+                @endforelse
+            </ul>
+        </div>
+    </div>
+
+    <!-- Styles -->
     <style>
-        /* ===== Colours ===== */
+        /* Variables */
         :root {
-            --body-color: #f8fafc; /* slate-50 */
-            --surface-color: #ffffff;
-            --nav-color: #000;
-            --side-nav: #242526;
-            --text-color: #FFF; /* Text on nav */
-            --text-color-dark: #1f2937; /* gray-800, main text color */
-            --search-bar: #F2F2F2;
-            --search-text: #010718;
+            --primary-color: #ff6600;
+            --primary-dark: #e65c00;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #ffffff;
+            --bg-dark: #111827;
+            --header-height: 80px;
+            --transition: all 0.3s ease;
         }
 
-        body {
-            background-color: var(--body-color);
-            color: var(--text-color-dark);
-        }
+        /* Reset & Base */
+        ul { list-style: none; padding: 0; margin: 0; }
+        a { text-decoration: none; color: inherit; }
 
-        body.dark {
-            --body-color: #111827; /* gray-900 */
-            --surface-color: #1f2937; /* gray-800 */
-            --nav-color: #1f2937; /* gray-800 */
-            --side-nav: #1f2937; /* gray-800 */
-            --text-color: #ffffff; /* Pure white for nav text */
-            --text-color-dark: #ffffff; /* Pure white for body text */
-            --search-bar: #374151; /* gray-700 */
-            --search-text: #ffffff; /* Pure white */
-        }
-
-        .menu_principal li a {
-            display: block;
-            padding: 10px;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 70px;
-            width: 100%;
-            background-color: var(--nav-color);
-            z-index: 100;
-        }
-
-        body.dark nav {
-            border: 1px solid #393838;
-        }
-
-        nav .nav-bar {
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 13px;
+            padding: 8px 0;
             position: relative;
-            height: 100%;
+            z-index: 1001;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar-right a { margin-left: 15px; }
+        .top-bar-right a:hover { text-decoration: underline; }
+        .top-bar .divider { margin-left: 15px; opacity: 0.5; }
+
+        /* Main Header */
+        #main-header {
+            position: fixed;
+            top: 35px; /* Height of top-bar approx */
+            left: 0;
             width: 100%;
-            background-color: var(--nav-color);
-            margin: 0 auto;
-            padding: 0 30px;
+            height: var(--header-height);
+            /* background: transparent; */
+            background: #000;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        #main-header.scrolled {
+            /* background: rgba(255, 255, 255, 0.95); */
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            top: 0;
+        }
+        body.dark #main-header.scrolled {
+            background: rgba(17, 24, 39, 0.95);
+            border-bottom: 1px solid #374151;
+        }
+
+        .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            height: 100%;
         }
 
-        nav .nav-bar .sidebarOpen {
-            color: var(--text-color);
-            font-size: 25px;
-            padding: 5px;
-            cursor: pointer;
-            display: none;
+        .header-logo img {
+            height: 45px;
+            transition: var(--transition);
         }
 
-        nav .nav-bar .logo a {
-            font-size: 25px;
-            font-weight: 500;
-            color: var(--text-color);
-            text-decoration: none;
+        /* Desktop Nav */
+        .desktop-nav { display: none; }
+        @media (min-width: 992px) {
+            .desktop-nav { display: block; }
         }
 
-        .menu .logo-toggle {
-            display: none;
-        }
-
-        .nav-bar .nav-links {
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu > li > a {
+            font-weight: 600;
+            font-size: 15px;
+            color: white; /* Default transparent state */
+            padding: 30px 0;
             display: flex;
             align-items: center;
+            gap: 5px;
+            transition: var(--transition);
         }
-
-        .nav-bar .nav-links li {
-            margin: 0 5px;
-            list-style: none;
-            position: relative;
-            /* Required for sub-menu positioning */
+        /* #main-header.scrolled .nav-menu > li > a { color: var(--text-dark); } */
+        #main-header.scrolled .nav-menu > li > a { 
+            color: #ffffff; 
         }
+        body.dark #main-header.scrolled .nav-menu > li > a { color: white; }
 
-        .nav-links li a {
-            position: relative;
-            font-size: 17px;
-            font-weight: 400;
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 10px;
-            z-index: 10000;
-        }
+        .nav-menu > li:hover > a { color: var(--primary-color) !important; }
 
-        .nav-links li a::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            height: 6px;
-            width: 6px;
-            border-radius: 50%;
-            background-color: var(--text-color);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links li:hover a::before {
-            opacity: 1;
-        }
-
-        /* Estilos para el submenú */
-        .sub-menu {
-            display: none;
-            /* Ocultar submenú por defecto */
+        /* Mega Menu */
+        .mega-menu {
             position: absolute;
             top: 100%;
-            /* Posicionar debajo del elemento padre */
             left: 0;
-            background-color: #444;
-            /* Color de fondo del submenú */
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            /* Bordes redondeados */
-        }
-
-        .nav-links li:hover .sub-menu {
-            display: block;
-            /* Mostrar submenú al pasar el ratón */
-        }
-
-        .sub-menu li {
-            margin: 0;
-            /* Sin margen */
-            padding: 5px 0;
-            /* Espaciado entre elementos */
-            width: 320px;
-        }
-
-        .sub-menu li a {
-            padding: 10px 15px;
-            /* Espaciado interno en enlaces */
-            font-size: 15px;
-            /* Tamaño de fuente para submenú */
-            color: var(--text-color);
-            /* Color del texto */
-            text-decoration: none;
-            /* Sin subrayado */
-            display: block;
-            /* Hacer que el enlace ocupe toda la fila */
-            transition: background-color 0.3s ease;
-            /* Transición suave */
-        }
-
-        .sub-menu li a:hover {
-            background-color: #ff6600;
-            /* Color de fondo al pasar el ratón */
-            color: #fff;
-            /* Cambiar color del texto al pasar el ratón */
-        }
-
-        .sub-menu li a::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            height: 0px;
-            width: 0px;
-            border-radius: 50%;
-            background-color: var(--text-color);
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             opacity: 0;
-            transition: all 0.3s ease;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            border-top: 2px solid var(--primary-color);
+        }
+        body.dark .mega-menu { background: var(--bg-dark); border-top-color: var(--primary-color); }
+
+        .menu-item-has-children:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        .nav-bar .darkLight-searchBox {
+        .mega-menu-inner {
             display: flex;
-            align-items: center;
+            padding: 30px 0;
         }
+        .mega-menu-list { flex: 3; }
+        .mega-menu-promo { flex: 1; }
 
-        .darkLight-searchBox .dark-light,
-        .darkLight-searchBox .searchToggle {
-            height: 40px;
-            width: 40px;
+        .mega-menu-list h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+        body.dark .mega-menu-list h4 { color: white; }
+
+        .mega-menu-list ul {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .mega-menu-list ul li a {
+            color: var(--text-light);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        .mega-menu-list ul li a:hover { color: var(--primary-color); padding-left: 5px; }
+
+        /* Header Icons */
+        .header-actions { display: flex; gap: 20px; align-items: center; }
+        .icon-btn {
+            font-size: 22px;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        #main-header.scrolled .icon-btn { color: var(--text-dark); }
+        body.dark #main-header.scrolled .icon-btn { color: white; }
+        .icon-btn:hover { color: var(--primary-color) !important; transform: scale(1.1); }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 5px;
+            font-weight: bold;
         }
 
-        .dark-light i,
-        .searchToggle i {
-            position: absolute;
-            color: var(--text-color);
-            font-size: 22px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        /* Dark Mode Toggle */
+        .theme-toggle .sun { display: none; }
+        body.dark .theme-toggle .moon { display: none; }
+        body.dark .theme-toggle .sun { display: block; }
 
-        .dark-light i.sun {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .dark-light.active i.sun {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .dark-light.active i.moon {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .searchToggle i.cancel {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .searchToggle.active i.cancel {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        searchToggle.active i.search {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .searchBox {
-            position: relative;
-        }
-
-        .searchBox .search-field {
-            position: absolute;
-            bottom: -85px;
-            right: 5px;
-            height: 50px;
-            width: 300px;
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
             display: flex;
             align-items: center;
-            background-color: var(--nav-color);
-            padding: 3px;
-            border-radius: 6px;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            justify-content: center;
             opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
+            visibility: hidden;
+            transition: var(--transition);
         }
-
-        .searchToggle.active~.search-field {
-            bottom: -74px;
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .search-field::before {
-            content: '';
+        .search-overlay.active { opacity: 1; visibility: visible; }
+        .search-close {
             position: absolute;
-            right: 14px;
-            top: -4px;
-            height: 12px;
-            width: 12px;
-            background-color: var(--nav-color);
-            transform: rotate(-45deg);
-            z-index: -1;
+            top: 30px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
         }
-
-        .search-field input {
+        .search-content { text-align: center; width: 100%; max-width: 800px; padding: 20px; }
+        .search-content h3 { color: white; margin-bottom: 30px; font-size: 2rem; }
+        .search-form-overlay { position: relative; }
+        .search-form-overlay input {
             height: 100%;
-            width: 100%;
-            padding: 0 45px 0 15px;
-            outline: none;
+            background: transparent;
             border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--search-text);
-            background-color: var(--search-bar);
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+            padding: 15px 50px 15px 10px;
+            font-size: 24px;
+            color: white;
+            outline: none;
         }
-
-        body.dark .search-field input {
-            color: var(--text-color);
-        }
-
-        .search-field i {
+        .search-form-overlay button {
             position: absolute;
-            color: var(--nav-color);
-            right: 15px;
-            font-size: 22px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
             cursor: pointer;
         }
 
-        body.dark .search-field i {
-            color: var(--text-color);
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 2000;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        body.dark .cart-sidebar { background: var(--bg-dark); border-left: 1px solid #374151; }
+        .cart-sidebar.active { right: 0; }
+
+        .cart-sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        body.dark .cart-sidebar-header { border-bottom-color: #374151; }
+        .cart-sidebar-header h3 { margin: 0; font-size: 18px; font-weight: 700; }
+        .cart-close { font-size: 24px; cursor: pointer; }
+
+        .cart-sidebar-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        /* Styling for items injected by JS */
+        .cart-items-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f5f5f5;
+            position: relative;
+        }
+        body.dark .cart-items-list li { border-bottom-color: #374151; }
+        .cart-items-list li img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .cart-menu-title h5 {
+            font-size: 14px;
+            margin: 0 0 5px;
+            line-height: 1.4;
+        }
+        .cart-menu-title span {
+            font-size: 13px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .cancel-item {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #ff4444;
+            cursor: pointer;
+        }
+        /* Hide the JS generated buttons in the list */
+        .cart-menu-btn { display: none !important; }
+
+        .cart-sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+        body.dark .cart-sidebar-footer { background: #1f2937; border-top-color: #374151; }
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .cart-buttons { display: flex; flex-direction: column; gap: 10px; }
+        .btn-cart {
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn-view { background: #333; color: white; }
+        .btn-view:hover { background: #000; }
+        .btn-checkout { background: var(--primary-color); color: white; }
+        .btn-checkout:hover { background: var(--primary-dark); }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .sidebar-overlay.active { opacity: 1; visibility: visible; }
+
+        /* Mobile Menu */
+        .mobile-menu-trigger { display: none; font-size: 24px; color: white; cursor: pointer; }
+        @media (max-width: 991px) {
+            .mobile-menu-trigger { display: block; }
+            #main-header.scrolled .mobile-menu-trigger { color: var(--text-dark); }
+            body.dark #main-header.scrolled .mobile-menu-trigger { color: white; }
         }
 
-        /* Responsive Styles */
-        @media (max-width: 790px) {
-            nav .nav-bar .sidebarOpen {
-                display: block;
-            }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background: white;
+            z-index: 2000;
+            transition: var(--transition);
+            box-shadow: 5px 0 30px rgba(0,0,0,0.1);
+        }
+        body.dark .mobile-menu { background: var(--bg-dark); }
+        .mobile-menu.active { left: 0; }
 
-            .menu {
-                position: fixed;
-                height: 100%;
-                width: 320px;
-                left: -100%;
-                top: 0;
-                padding: 20px;
-                background-color: var(--side-nav);
-                z-index: 100;
-                transition: all 0.4s ease;
-            }
+        .mobile-menu-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        body.dark .mobile-menu-header { border-bottom-color: #374151; }
+        .mobile-menu-header img { height: 40px; }
+        .mobile-close { font-size: 24px; cursor: pointer; }
 
-            nav.active .menu {
-                left: 0;
-                /* Slide in from the left */
-            }
+        .mobile-nav-list { padding: 20px; }
+        .mobile-nav-list > li { border-bottom: 1px solid #f5f5f5; }
+        body.dark .mobile-nav-list > li { border-bottom-color: #374151; }
+        .mobile-link-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+        .mobile-link-wrapper a { font-weight: 600; font-size: 15px; }
+        .mobile-submenu-toggle {
+            width: 30px;
+            height: 30px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        body.dark .mobile-submenu-toggle { background: #374151; }
 
-            nav.active .nav-bar .navLogo a {
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
+        .mobile-submenu {
+            display: none;
+            padding-left: 15px;
+            padding-bottom: 10px;
+            background: #fafafa;
+        }
+        body.dark .mobile-submenu { background: #1f2937; }
+        .mobile-submenu li a {
+            display: block;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
 
-            .menu .logo-toggle {
-                display: block;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .logo-toggle .siderbarClose {
-                color: var(--text-color);
-                font-size: 24px;
-                cursor: pointer;
-            }
-
-            .nav-bar .nav-links {
-                flex-direction: column;
-                padding-top: 30px;
-            }
-
-            .nav-links li a {
-                display: block;
-                margin-top: 20px;
-            }
-
-            .sub-menu {
-                position: static;
-                /* Ajustar para móviles */
-                box-shadow: none;
-                /* Quitar sombra para móviles */
-            }
-
-            .nav-links li:hover .sub-menu {
-                display: block;
-                /* Mostrar submenú al hacer clic o tocar */
-            }
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            #main-header { top: 0; background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+            body.dark #main-header { background: rgba(17, 24, 39, 0.95); }
+            .nav-menu > li > a { color: var(--text-dark); }
+            body.dark .nav-menu > li > a { color: white; }
+            .icon-btn { color: var(--text-dark); }
+            body.dark .icon-btn { color: white; }
+            .mobile-menu-trigger { color: var(--text-dark); }
+            body.dark .mobile-menu-trigger { color: white; }
+            .cart-sidebar { width: 100%; right: -100%; }
         }
     </style>
 
-
+    <!-- Scripts -->
     <script>
-        const body = document.querySelector("body"),
-            nav = document.querySelector("nav"),
-            modeToggle = document.querySelector(".dark-light"),
-            searchToggle = document.querySelector(".searchToggle"),
-            sidebarOpen = document.querySelector(".sidebarOpen"),
-            siderbarClose = document.querySelector(".siderbarClose");
-
-        // Recuperar el modo guardado en localStorage
-        let getMode = localStorage.getItem("mode");
-        if (getMode && getMode === "dark-mode") {
-            body.classList.add("dark");
-        }
-
-        // Cambiar entre modo oscuro y claro
-        modeToggle.addEventListener("click", () => {
-            modeToggle.classList.toggle("active");
-            body.classList.toggle("dark");
-            if (!body.classList.contains("dark")) {
-                localStorage.setItem("mode", "light-mode");
-            } else {
-                localStorage.setItem("mode", "dark-mode");
-            }
-        });
-
-        // Alternar la búsqueda
-        searchToggle.addEventListener("click", () => {
-            searchToggle.classList.toggle("active");
-        });
-
-        // Abrir menú lateral
-        sidebarOpen.addEventListener("click", () => {
-            nav.classList.add("active");
-        });
-
-        // Cerrar menú lateral
-        siderbarClose.addEventListener("click", () => {
-            nav.classList.remove("active");
-        });
-
-        // Cerrar menú al hacer clic fuera
-        body.addEventListener("click", e => {
-            let clickedElm = e.target;
-            if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.closest('.menu')) {
-                nav.classList.remove("active");
-            }
-        });
-
-        /* ===========================================
-           🔧 SOLUCIÓN: SUBMENÚ Y NAVEGACIÓN FUNCIONAL
-           =========================================== */
-        document.querySelectorAll('.nav-links > li > a').forEach(item => {
-            item.addEventListener('click', event => {
-
-                const submenu = item.nextElementSibling;
-                const isMobile = window.innerWidth <= 790; // Coincide con tu media query
-
-                // Si el elemento tiene submenú
-                if (submenu && submenu.classList.contains('sub-menu')) {
-
-                    if (isMobile) {
-                        // En móvil: toggle del submenu y prevenir navegación
-                        submenu.classList.toggle('active');
-                        event.preventDefault();
+        document.addEventListener("DOMContentLoaded", function() {
+            // Header Scroll Effect
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    // Only remove scrolled class if not on mobile (where it's always solid)
+                    if (window.innerWidth > 768) {
+                        header.classList.remove('scrolled');
                     }
-                    // En escritorio NO se hace preventDefault
-                    // El hover ya controla el submenú, y el enlace navega normalmente
                 }
             });
-        });
 
-        // Navegación normal para enlaces del submenú
-        document.querySelectorAll('.sub-menu li a').forEach(subItem => {
-            subItem.addEventListener('click', event => {
-                window.location.href = subItem.getAttribute('href');
+            // Initial check for scroll
+            if (window.scrollY > 50 || window.innerWidth <= 768) {
+                header.classList.add('scrolled');
+            }
+
+            // Search Overlay
+            const searchOpen = document.getElementById('search-open');
+            const searchClose = document.getElementById('search-close');
+            const searchOverlay = document.getElementById('search-overlay');
+
+            searchOpen.addEventListener('click', () => searchOverlay.classList.add('active'));
+            searchClose.addEventListener('click', () => searchOverlay.classList.remove('active'));
+
+            // Cart Sidebar
+            const cartOpen = document.getElementById('cart-open');
+            const cartClose = document.getElementById('cart-close');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            function toggleCart() {
+                cartSidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            }
+
+            cartOpen.addEventListener('click', toggleCart);
+            cartClose.addEventListener('click', toggleCart);
+            sidebarOverlay.addEventListener('click', () => {
+                cartSidebar.classList.remove('active');
+                document.getElementById('mobile-menu').classList.remove('active');
+                sidebarOverlay.classList.remove('active');
             });
+
+            // Mobile Menu
+            const mobileOpen = document.getElementById('mobile-menu-open');
+            const mobileClose = document.getElementById('mobile-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileOpen.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                sidebarOverlay.classList.add('active');
+            });
+
+            mobileClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+
+            // Mobile Accordion
+            const toggles = document.querySelectorAll('.mobile-submenu-toggle');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const submenu = toggle.parentElement.nextElementSibling;
+                    const icon = toggle.querySelector('i');
+                    
+                    if (submenu.style.display === 'block') {
+                        submenu.style.display = 'none';
+                        icon.classList.remove('bx-minus');
+                        icon.classList.add('bx-plus');
+                    } else {
+                        submenu.style.display = 'block';
+                        icon.classList.remove('bx-plus');
+                        icon.classList.add('bx-minus');
+                    }
+                });
+            });
+
+            // Dark Mode Logic
+            const body = document.querySelector("body");
+            const modeToggle = document.getElementById("theme-toggle");
+            
+            let getMode = localStorage.getItem("mode");
+            if (getMode && getMode === "dark-mode") {
+                body.classList.add("dark");
+            }
+
+            modeToggle.addEventListener("click", () => {
+                body.classList.toggle("dark");
+                if (!body.classList.contains("dark")) {
+                    localStorage.setItem("mode", "light-mode");
+                } else {
+                    localStorage.setItem("mode", "dark-mode");
+                }
+            });
+
+            // Load Cart Items (Integration with existing JS)
+            // We call the existing function if it exists
+            if (typeof cargarItemsCarritoBD === 'function') {
+                // Ensure token is set if not already
+                if (typeof token === 'undefined' || token === '') {
+                    token = "{{ csrf_token() }}";
+                    post_url = "{{ route('onlineshop_get_item_carrito') }}";
+                    load_post_url(post_url, token);
+                }
+                cargarItemsCarritoBD();
+                cargarContadorCarrito();
+            }
         });
     </script>
 
     <style>
         /* ===== Dark Mode Overrides ===== */
         body.dark {
-            color: var(--text-color-dark);
+            color: #ffffff;
         }
 
         /* Containers with white background in light mode */
@@ -545,12 +720,17 @@
         body.dark section[style*="padding: 120px 0px;"],
         body.dark section[style*="padding: 40px 0px;"],
         body.dark .grid-item .box-up span {
-            background-color: var(--surface-color) !important;
-            color: var(--text-color-dark);
+            background-color: #1f2937 !important;
+            color: #ffffff;
         }
 
         /* Text color overrides */
-        body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
+        body.dark h1,
+        body.dark h2,
+        body.dark h3,
+        body.dark h4,
+        body.dark h5,
+        body.dark h6,
         body.dark .section-title h1,
         body.dark .section-title h3,
         body.dark .product-title a h5,
@@ -568,7 +748,7 @@
         body.dark .specific-pro ul li span,
         body.dark .pro-des-tab .tab-menu ul li a,
         body.dark .pro-des-tab .tab-menu ul li.active a {
-            color: var(--text-color) !important;
+            color: #ffffff !important;
         }
 
         body.dark .product-title p,
@@ -578,20 +758,23 @@
         body.dark .section-title span,
         body.dark .specific-pro ul li p,
         body.dark del {
-            color: var(--text-color-dark) !important;
+            color: #ffffff !important;
         }
 
         /* Special cases and accents */
         body.dark .section-testimonio {
-            background: linear-gradient(150deg, #4A0B06, #803300); /* Darker version of the gradient */
+            background: linear-gradient(150deg, #4A0B06, #803300);
+            /* Darker version of the gradient */
         }
 
         body.dark .footer-bottom {
-            background-color: #111827; /* Match body background */
+            background-color: #111827;
+            /* Match body background */
         }
 
         body.dark .footer-bottom p {
-            color: #9CA3AF !important; /* gray-400 */
+            color: #9CA3AF !important;
+            /* gray-400 */
         }
 
         body.dark .footer-bottom p a {
@@ -603,6 +786,7 @@
             color: #FFFFFF !important;
             border: 1px solid #ff6600;
         }
+
         body.dark .btn-celmovil:hover {
             background: #e65c00;
             border: 1px solid #e65c00;
@@ -611,8 +795,9 @@
         body.dark .product-item,
         body.dark .card,
         body.dark .box-shadow {
-            border: 1px solid #374151; /* gray-700 */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            border: 1px solid #374151;
+            /* gray-700 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         body.dark .card:hover {
@@ -625,617 +810,38 @@
         }
     </style>
 
-
-
-
-    {{-- HEADER ANTIGUO --}}
-    {{-- <nav>
-        <div class="nav-bar">
-            <i class='bx bx-menu sidebarOpen'></i>
-            <span class="logo navLogo">
-                <a href="{{ route('web_inicio') }}">
-                    <img style="width: 140px;" src="{{ $tel_email_logo[2]->content }}" alt="celmovil_logo" />
-                </a>
-            </span>
-            <div class="menu">
-                <div class="logo-toggle">
-                    <span class="logo">
-                        <a href="{{ route('web_inicio') }}">
-                            <img style="width: 140px;" src="{{ $tel_email_logo[2]->content }}" alt="celmovil_logo" />
-                        </a>
-                    </span>
-                    <i class='bx bx-x siderbarClose'></i>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="{{ route('web_inicio') }}">Home</a></li>
-                    @if ($categories && count($categories) > 0)
-                        @foreach ($categories as $category)
-                            <li>
-                                <a href="{{ route('web_producto_principal', $category->id) }}">
-                                    {{ $category->description }}
-                                </a>
-                            </li>
-                        @endforeach
-                    @endif
-                </ul>
-            </div>
-            <div class="darkLight-searchBox">
-                <div class="dark-light">
-                    <i class='bx bx-moon moon'></i>
-                    <i class='bx bx-sun sun'></i>
-                </div>
-                <div class="searchBox">
-
-                    <div class="searchToggle">
-                        <div class="cart-menu-area floatright" style="margin-top: -80px;">
-                        <ul>
-                            <li>
-                                <a href="{{ route('web_carrito') }}">
-                                    <i class="pe-7s-shopbag"></i>
-                                    <span hidden id="contadorCarritoWeb"></span>
-                                </a>
-                                <ul class="cart-menu" id="cart-menu">
-                                    <li class="cart-menu-btn">
-                                        <a href="{{ route('web_carrito') }}">Ir al Carrito</a>
-                                        <a style="background-color: red; color: white;" href=""
-                                            onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    </div>
-                    <div class="search-field">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav> --}}
-
-
-    {{-- <style>
-        :root {
-            --body-color: #F2F2F2;
-            --nav-color: #000;
-            --side-nav: #242526;
-            --text-color: #FFF;
-            --search-bar: #F2F2F2;
-            --search-text: #010718;
-        }
-
-        body {
-            height: 100vh;
-            background-color: var(--body-color);
-        }
-
-        body.dark {
-            --body-color: #18191A;
-            --nav-color: #000;
-            --side-nav: #242526;
-            --text-color: #CCC;
-            --search-bar: #242526;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 70px;
-            width: 100%;
-            background-color: var(--nav-color);
-            z-index: 100;
-        }
-
-        body.dark nav {
-            border: 1px solid #393838;
-        }
-
-        nav .nav-bar {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            background-color: var(--nav-color);
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        nav .nav-bar .sidebarOpen {
-            color: var(--text-color);
-            font-size: 25px;
-            padding: 5px;
-            cursor: pointer;
-            display: none;
-        }
-
-        nav .nav-bar .logo a {
-            font-size: 25px;
-            font-weight: 500;
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .menu .logo-toggle {
-            display: none;
-        }
-
-        .nav-bar .nav-links {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-bar .nav-links li {
-            margin: 0 5px;
-            list-style: none;
-        }
-
-        .nav-links li a {
-            position: relative;
-            font-size: 17px;
-            font-weight: 400;
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 10px;
-        }
-
-        .nav-links li a::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            height: 6px;
-            width: 6px;
-            border-radius: 50%;
-            background-color: var(--text-color);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links li:hover a::before {
-            opacity: 1;
-        }
-
-        .nav-bar .darkLight-searchBox {
-            display: flex;
-            align-items: center;
-        }
-
-        .darkLight-searchBox .dark-light,
-        .darkLight-searchBox .searchToggle {
-            height: 40px;
-            width: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 5px;
-        }
-
-        .dark-light i,
-        .searchToggle i {
-            position: absolute;
-            color: var(--text-color);
-            font-size: 22px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dark-light i.sun {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .dark-light.active i.sun {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .dark-light.active i.moon {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .searchToggle i.cancel {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .searchToggle.active i.cancel {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .searchToggle.active i.search {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .searchBox {
-            position: relative;
-        }
-
-        .searchBox .search-field {
-            position: absolute;
-            bottom: -85px;
-            right: 5px;
-            height: 50px;
-            width: 300px;
-            display: flex;
-            align-items: center;
-            background-color: var(--nav-color);
-            padding: 3px;
-            border-radius: 6px;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .searchToggle.active~.search-field {
-            bottom: -74px;
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .search-field::before {
-            content: '';
-            position: absolute;
-            right: 14px;
-            top: -4px;
-            height: 12px;
-            width: 12px;
-            background-color: var(--nav-color);
-            transform: rotate(-45deg);
-            z-index: -1;
-        }
-
-        .search-field input {
-            height: 100%;
-            width: 100%;
-            padding: 0 45px 0 15px;
-            outline: none;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--search-text);
-            background-color: var(--search-bar);
-        }
-
-        body.dark .search-field input {
-            color: var(--text-color);
-        }
-
-        .search-field i {
-            position: absolute;
-            color: var(--nav-color);
-            right: 15px;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        body.dark .search-field i {
-            color: var(--text-color);
-        }
-
-        @media (max-width: 790px) {
-            nav .nav-bar .sidebarOpen {
-                display: block;
-            }
-
-            .menu {
-                position: fixed;
-                height: 100%;
-                width: 320px;
-                left: -100%;
-                top: 0;
-                padding: 20px;
-                background-color: var(--side-nav);
-                z-index: 100;
-                transition: all 0.4s ease;
-            }
-
-            nav.active .menu {
-                left: -0%;
-            }
-
-            nav.active .nav-bar .navLogo a {
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
-
-            .menu .logo-toggle {
-                display: block;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .logo-toggle .siderbarClose {
-                color: var(--text-color);
-                font-size: 24px;
-                cursor: pointer;
-            }
-
-            .nav-bar .nav-links {
-                flex-direction: column;
-                padding-top: 30px;
-            }
-
-            .nav-links li a {
-                display: block;
-                margin-top: 20px;
-            }
-        }
-    </style>
-
+    <!-- Existing Scripts for Cart Logic Compatibility -->
     <script>
-        const body = document.querySelector("body"),
-            nav = document.querySelector("nav"),
-            modeToggle = document.querySelector(".dark-light"),
-            searchToggle = document.querySelector(".searchToggle"),
-            sidebarOpen = document.querySelector(".sidebarOpen"),
-            siderbarClose = document.querySelector(".siderbarClose");
-        let getMode = localStorage.getItem("mode");
-        if (getMode && getMode === "dark-mode") {
-            body.classList.add("dark");
-        }
-        modeToggle.addEventListener("click", () => {
-            modeToggle.classList.toggle("active");
-            body.classList.toggle("dark");
-            if (!body.classList.contains("dark")) {
-                localStorage.setItem("mode", "light-mode");
-            } else {
-                localStorage.setItem("mode", "dark-mode");
-            }
-        });
-        searchToggle.addEventListener("click", () => {
-            searchToggle.classList.toggle("active");
-        });
-
-
-        sidebarOpen.addEventListener("click", () => {
-            nav.classList.add("active");
-        });
-        body.addEventListener("click", e => {
-            let clickedElm = e.target;
-            if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")) {
-                nav.classList.remove("active");
-            }
-        });
-    </script> --}}
-
-
-
-
-
-
-
-
-    {{-- CARRITO --}}
-    {{-- <style>
-        input[type="radio"] {
-            display: none;
-        }
-
-        input[type="radio"]:checked+.swal2-label {
-            animation: colorChange 2s infinite;
-            color: blue;
-        }
-
-        @keyframes colorChange {
-            0% {
-                color: red;
-            }
-
-            25% {
-                color: blue;
-            }
-
-            50% {
-                color: rgb(34, 2, 62);
-            }
-
-            75% {
-                color: rgb(79, 79, 79);
-            }
-
-            100% {
-                color: black;
-            }
-        }
-    </style>
-
-    <header>
-        <script>
-            ruta_carrito = "{{ route('web_carrito') }}"
-
-            function confirmarEliminarCarrito() {
-                if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
-                    eliminarCarrito();
-                }
-            }
-        </script>
-
-        <div id="sticky-menu" class="header-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 header-bottom-bg">
-                        <div class="logo floatleft">
-                            <a href="{{ route('web_inicio') }}">
-                                <img style="width: 140px;" src="{{ $tel_email_logo[2]->content }}"
-                                    alt="celmovil_logo" />
-                            </a>
-                        </div>
-                        <div class="mainmenu text-center floatleft">
-                            <nav>
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('web_inicio') }}">
-                                            <i class="fa fa-home" style="font-size: 18px;"></i>
-                                        </a>
-                                    </li>
-                                    @if ($categories && count($categories) > 0)
-                                        @foreach ($categories as $category)
-                                            <li>
-                                                <a href="{{ route('web_producto_principal', $category->id) }}">
-                                                    {{ $category->description }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="cart-menu-area floatright">
-                            <ul>
-                                <li><a href="{{ route('web_carrito') }}"><i class="pe-7s-shopbag"></i> <span hidden
-                                            id="contadorCarritoWeb"></span></a>
-                                    <ul class="cart-menu" id="cart-menu">
-                                        <li class="cart-menu-btn">
-                                            <a href="{{ route('web_carrito') }}">Ir al Carrito</a>
-                                            <a style="background-color: red; color: white;" href=""
-                                                onclick="confirmarEliminarCarrito()">Vaciar Carrito</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container" style="background: #ff6600; ">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="mobile-menu-area">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul>
-                                        <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
-                                        @if ($categories && count($categories) > 0)
-                                            @foreach ($categories as $category)
-                                                <li>
-                                                    <a href="{{ route('web_producto_principal', $category->id) }}">
-                                                        {{ $category->description }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        @endif
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                post_url = "{{ route('onlineshop_get_item_carrito') }}";
-                token = "{{ csrf_token() }}";
-                load_post_url(post_url, token);
-                cargarItemsCarritoBD();
-            });
-        </script>
-
-        <script>
-            ruta_carrito = "{{ route('web_carrito') }}"
-
-            function confirmarEliminarCarrito() {
-                if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
-                    eliminarCarrito();
-                }
-            }
-        </script>
-
-        <style>
-            .modal-overlay-bloqueo {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 999999;
-            }
-
-            .modal-bloqueo {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999999;
-            }
-
-            .countdown-bloqueo {
-                font-size: 48px;
-                font-weight: bold;
-                margin: 20px 0;
-            }
-        </style>
-
-        <div id="modal-overlay-bloqueo" class="modal-overlay-bloqueo">
-            <div class="modal-bloqueo">
-                <h2>En breve continuamos... </h2>
-                <div id="countdown-bloqueo" class="countdown-bloqueo">15</div>
-            </div>
-        </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const modalOverlay = document.getElementById('modal-overlay-bloqueo');
-                const countdownElement = document.getElementById('countdown-bloqueo');
-                let countdown = 15;
-
-                function updateCountdown() {
-                    countdownElement.textContent = countdown;
-                    if (countdown > 0) {
-                        countdown--;
-                        setTimeout(updateCountdown, 1000);
-                    } else {
-                        modalOverlay.style.display = 'none';
-                    }
-                }
-
-                updateCountdown();
-            });
-        </script>
-
-    </header> --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            post_url = "{{ route('onlineshop_get_item_carrito') }}";
-            token = "{{ csrf_token() }}";
-            load_post_url(post_url, token);
-            cargarItemsCarritoBD();
-        });
-    </script>
-
-    <script>
-        ruta_carrito = "{{ route('web_carrito') }}"
-
+        // Re-declaring these variables here to ensure scope availability for inline scripts
+        var ruta_carrito = "{{ route('web_carrito') }}";
+        
         function confirmarEliminarCarrito() {
             if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
                 eliminarCarrito();
             }
         }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible");
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll(
+                "section, .slider-container, .grid-item, .card, .map-contact");
+            elementsToAnimate.forEach((el) => {
+                el.classList.add("scroll-reveal");
+                observer.observe(el);
+            });
+        });
     </script>
 </div>

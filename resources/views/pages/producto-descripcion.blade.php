@@ -104,24 +104,6 @@
                             {!! $product->description !!}
                             <br>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <a href="https://api.whatsapp.com/send?phone=51921197459&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?"
-                                        target="_blank" class="btn btn-success">
-                                        <div style="justify-content: space-between;">
-                                            <div style="float: left; padding: 5px;">
-                                                <img style="width: 40px;"
-                                                    src="{{ asset('themes/celmovil/img/isotipo.png') }}" alt="">
-                                            </div>
-                                            <div style="float: left; padding: 5px;">
-                                                Para cotizar un producto <br>
-                                                <b>¡Escribenos al whatsapp!</b>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
                                 <div class="col-md-12" style="padding: 10px;">
                                     {!! $product->additional1 !!}
                                 </div>
@@ -165,17 +147,29 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="margin-bottom: 15px;">
                                     <button
                                         onclick="agregarAlCarrito_w_color({ id: {{ $product->id }}, nombre:{{ '"' . $product->name . '"' }}, color: {{ json_encode($product) }}, precio: {{ $product->price }} })"
-                                        class="btn btn-celmovil" style="padding: 10px 35px; cursor: pointer;"
+                                        class="btn btn-celmovil btn-lg btn-block" style="padding: 15px 35px; cursor: pointer; font-size: 18px; text-transform: uppercase;"
                                         {{ $product->existence == 0 ? 'disabled' : '' }}>
-                                        <i class="fa fa-shopping-cart" style="font-size: 18px;"></i> &nbsp;
+                                        <i class="fa fa-shopping-cart" style="font-size: 20px;"></i> &nbsp;
                                         <b>AGREGAR AL CARRITO</b>
                                     </button>
                                 </div>
                             </div>
-                            <hr />
+                            
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <p style="margin-bottom: 5px; font-size: 12px; color: #666;">¿Tienes dudas? Contáctanos directamente:</p>
+                                    <a href="https://api.whatsapp.com/send?phone=51921197459&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?"
+                                        target="_blank" class="btn btn-default btn-block" style="border: 1px solid #25D366; color: #25D366; background: transparent;">
+                                        <i class="fa fa-whatsapp" aria-hidden="true"></i> Consultar por WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <hr style="margin-top: 20px; margin-bottom: 20px;" />
+                            
                             <div class="row">
                                 <div class="col-md-12">
                                 </div>
@@ -203,12 +197,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row view-pc">
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="pro-des-tab">
-                        <div class="tab-menu">
-                            <ul>
-                                <li class="active">
+                    <div class="pro-des-tab clearfix">
+                        <div class="tab-menu hidden-xs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active" role="presentation">
                                     <a data-toggle="tab" href="#des">DESCRIPCIÓN</a>
                                 </li>
                                 <li>
@@ -226,10 +220,12 @@
                             </ul>
                         </div>
                         <div class="tab-content margin50">
-                            <div class="tab-pane fade in active" id="des">
+                            <div class="tab-pane fade in active" id="des" role="tabpanel">
+                                <h4 class="visible-xs mobile-tab-title">DESCRIPCIÓN</h4>
                                 {!! $product->additional !!}
                             </div>
                             <div class="tab-pane fade in" id="ficha">
+                                <h4 class="visible-xs mobile-tab-title">FICHA TÉCNICA</h4>
                                 <div class="leave-comment">
                                     @php
                                         $porciones = explode('.', $product->additional2);
@@ -248,6 +244,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade in" id="info">
+                                <h4 class="visible-xs mobile-tab-title">INFORMACIÓN ADICIONAL</h4>
                                 @if ($product->additional6)
                                     @php
                                         $porciones6 = explode('.', $product->additional6);
@@ -266,6 +263,7 @@
                                 @endif
                             </div>
                             <div class="tab-pane fade in" id="manual">
+                                <h4 class="visible-xs mobile-tab-title">MANUAL</h4>
                                 <a href="{{ $product->additional3 }}" class="btn btn-celmovil"
                                     style="padding: 20px; font-size: 16px;" target="_blank">
                                     <i class="fa fa-download" aria-hidden="true"></i> &nbsp;
@@ -273,98 +271,13 @@
                                 </a>
                             </div>
                             <div class="tab-pane fade in" id="legal">
+                                <h4 class="visible-xs mobile-tab-title">LEGAL</h4>
                                 {!! $product->additional4 !!}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            <div class="row view-movil">
-                <div class="col-md-12">
-                    <div class="related-title">
-                        <h5>DESCRIPCIÓN</h5>
-                    </div>
-                    <br>
-                    {!! $product->additional !!}
-                </div>
-            </div>
-            <br><br>
-            <div class="row view-movil">
-                <div class="col-md-12">
-                    <div class="related-title">
-                        <h5>FICHA TÉCNICA</h5>
-                    </div>
-                    <br>
-                    @php
-                        $porciones = explode('.', $product->additional2);
-
-                        $ext = is_array($porciones) ? $porciones[1] : null;
-                    @endphp
-                    @if ($ext)
-                        @if ($ext == 'pdf')
-                            <iframe src="{{ asset('storage/' . $product->additional2) }}"
-                                style="border: none;width: 100%;height: 1325px"></iframe>
-                        @else
-                            <img style="width: 100%;" src="{{ asset('storage/' . $product->additional2) }}"
-                                alt="Ficha Tecnica" />
-                        @endif
-                    @endif
-
-                </div>
-            </div>
-            <br><br>
-            <div class="row view-movil">
-                <div class="col-md-12">
-                    <div class="related-title">
-                        <h5>INFORMACIÓN ADICIONAL</h5>
-                    </div>
-                    <br>
-                    @if ($product->additional6)
-                        @php
-                            $porciones6 = explode('.', $product->additional6);
-
-                            $ext6 = is_array($porciones6) ? $porciones6[1] : null;
-                        @endphp
-                        @if ($ext6)
-                            @if ($ext6 == 'pdf')
-                                <iframe src="{{ asset('storage/' . $product->additional6) }}"
-                                    style="border: none;width: 100%;height: 1325px"></iframe>
-                            @else
-                                <img style="width: 100%;" src="{{ asset('storage/' . $product->additional6) }}"
-                                    alt="Info adicional" />
-                            @endif
-                        @endif
-                    @endif
-
-                </div>
-            </div>
-            <br><br>
-            <div class="row view-movil">
-                <div class="col-md-12">
-                    <div class="related-title">
-                        <h5>LEGAL</h5>
-                    </div>
-                    <br>
-                    {!! $product->additional4 !!}
-                </div>
-            </div>
-            <br><br>
-            <div class="row view-movil">
-                <div class="col-md-12">
-                    <div class="related-title">
-                        <h5>MANUAL</h5>
-                    </div>
-                    <br>
-                    <a href="{{ $product->additional3 }}" class="btn btn-celmovil"
-                        style="padding: 20px; font-size: 16px;" target="_blank">
-                        <i class="fa fa-download" aria-hidden="true"></i> &nbsp;
-                        Descargar Manual de Uso
-                    </a>
-                </div>
-            </div>
-            <br><br>
     </section>
     <!-- product details area end -->
     <br>
@@ -378,29 +291,21 @@
     <!-- footer - section end -->
 
     <style>
-        /* --- INICIO: Estilos para Responsividad Móvil --- */
-
-        /* Por defecto, se muestra la vista de PC y se oculta la de móvil */
-        .view-movil {
-            display: none;
-        }
-        .view-pc {
-            display: block;
-        }
-
-        /* En pantallas de hasta 768px (móviles y tablets pequeñas) */
+        /* Estilos para transformar Tabs en Lista Vertical en Móvil */
         @media (max-width: 768px) {
-            .view-pc {
-                display: none;
+            .tab-content .tab-pane {
+                display: block !important; /* Forzar mostrar todos los paneles */
+                opacity: 1 !important;
+                visibility: visible !important;
+                margin-bottom: 30px;
             }
-            .view-movil {
-                display: block;
-            }
-
-            .section-padding-top {
-                padding-top: 30px !important;
+            .mobile-tab-title {
+                font-weight: bold;
+                border-bottom: 2px solid #ff6600;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+                color: #333;
             }
         }
-        /* --- FIN: Estilos para Responsividad Móvil --- */
     </style>
 @stop

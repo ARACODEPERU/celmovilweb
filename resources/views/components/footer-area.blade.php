@@ -23,7 +23,7 @@
             color: #fff;
             font-weight: 700;
             font-size: 30px;
-            bottom: 40px;
+            bottom: 90px;
             right: 20px;
             border: 0;
             z-index: 9999;
