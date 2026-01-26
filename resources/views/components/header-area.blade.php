@@ -510,7 +510,8 @@
         .mobile-menu-trigger { display: none; font-size: 24px; color: white; cursor: pointer; }
         @media (max-width: 991px) {
             .mobile-menu-trigger { display: block; }
-            #main-header.scrolled .mobile-menu-trigger { color: var(--text-dark); }
+            /* #main-header.scrolled .mobile-menu-trigger { color: var(--text-dark); } */
+            #main-header.scrolled .mobile-menu-trigger { color: #ffffff; }
             body.dark #main-header.scrolled .mobile-menu-trigger { color: white; }
         }
 
