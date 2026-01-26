@@ -272,7 +272,7 @@
         }
 
         .product-title {
-            font-size: 0.95rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 10px;
             line-height: 1.4;
@@ -302,14 +302,14 @@
         }
 
         .old-price {
-            font-size: 0.8rem;
+            font-size: 1.1rem;
             color: #9ca3af;
             text-decoration: line-through;
         }
 
         .new-price,
         .regular-price {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color, #ff6600);
         }

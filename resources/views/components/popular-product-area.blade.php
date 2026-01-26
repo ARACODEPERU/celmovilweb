@@ -181,7 +181,7 @@
         body.dark .product-info { background: #1f2937; }
 
         .product-title {
-            font-size: 0.95rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 10px;
             line-height: 1.4;
@@ -196,8 +196,20 @@
         .product-card:hover .product-title a { color: var(--primary-color, #ff6600); }
 
         .product-price { margin-bottom: 15px; display: flex; flex-direction: column; }
-        .old-price { font-size: 0.8rem; color: #9ca3af; text-decoration: line-through; }
-        .new-price, .regular-price { font-size: 1.1rem; font-weight: 700; color: var(--primary-color, #ff6600); }
+        
+        .old-price {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .new-price,
+        .regular-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color, #ff6600);
+        }
+        
         body.dark .old-price { color: #6b7280; }
 
         .btn-view-product {
