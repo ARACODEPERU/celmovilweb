@@ -820,6 +820,10 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
+        body.dark .contact-info-card {
+            background: #1f2937;
+            border: 1px solid #374151;
+        }
         .contact-item {
             display: flex;
             align-items: center;
@@ -837,14 +841,24 @@
             justify-content: center;
             font-size: 1.2rem;
         }
+        body.dark .icon-box {
+            background: rgba(255, 102, 0, 0.15);
+        }
         .text-box h4 {
             margin: 0;
             font-size: 1rem;
             font-weight: 700;
         }
+        body.dark .text-box h4 {
+            color: #f3f4f6;
+        }
         .text-box p {
             margin: 0;
             color: #666;
+        }
+        body.dark .text-box p, 
+        body.dark .contact-desc {
+            color: #9ca3af;
         }
         .contact-map-wrapper {
             height: 100%;
@@ -853,6 +867,9 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
+        body.dark .contact-map-wrapper {
+            border: 1px solid #374151;
+        }
         .contact-map-wrapper iframe {
             width: 100%;
             height: 100%;
@@ -860,6 +877,7 @@
         }
     </style>
     <!-- contact area end -->
+    
     <x-footer-area />
     <!-- footer - section end -->
 
