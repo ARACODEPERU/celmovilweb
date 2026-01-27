@@ -39,6 +39,8 @@
             margin-top: 75px; /* Espacio para el header fijo (35px top-bar + 80px main-header) */
             overflow: hidden; 
             background-color: #e0e0e0; /* Color de fondo mientras carga la imagen */
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3); /* Efecto de sombreado inferior */
+            z-index: 1;
         }
 
         @media (max-width: 768px) {

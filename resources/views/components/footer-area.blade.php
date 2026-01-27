@@ -102,7 +102,7 @@
         }
 
         .widget-title {
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -132,14 +132,14 @@
 
         .contact-list .icon {
             color: var(--primary-color, #ff6600);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-top: 2px;
         }
 
         .contact-list .text span {
             display: block;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1.5rem;
             margin-bottom: 2px;
         }
 
@@ -191,7 +191,7 @@
             justify-content: center;
             transition: all 0.3s ease;
             color: inherit;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
         .social-btn:hover {
