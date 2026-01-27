@@ -1,5 +1,5 @@
+
 <div>
-    
     
     <div id="whatsapp">
         <a href="https://api.whatsapp.com/send?phone=51{{ $redesSociales[9]->content }}&text=Hola&nbsp;CelMovil!&nbsp;me&nbsp;pueden&nbsp;ayudar?" 
@@ -11,25 +11,29 @@
     </div>
 
     <style type="text/css">
+        /* --- WhatsApp Button Moderno --- */
         #whatsapp .wtsapp{
             position: fixed;
-            transform: all .5s ease;
+            transition: all .3s ease;
             background-color: #25D366;
-            display: block;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            border-radius: 50px;
-            border-right: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            border-radius: 50%;
             color: #fff;
-            font-weight: 700;
             font-size: 30px;
             bottom: 90px;
             right: 20px;
             border: 0;
             z-index: 9999;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
+            width: 60px;
+            height: 60px;
+        }
+
+        #whatsapp .wtsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
 
         #whatsapp .wtsapp:before{
@@ -40,23 +44,17 @@
             top: 50%;
             transform: translateX(-50%) translateY(-50%);
             display: block;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background-color: #25D366;
             border-radius: 50%;
-            -webkit-animation: pulse-border 1500ms ease-out infinite;
             animation: pulse-border 1500ms ease-out infinite;
-        }
-
-        #whatsapp .wtsapp:focus{
-            border: none;
-            outline: none;
         }
 
         @keyframes pulse-border{
             0%{
                 transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
-                opacity: 1;
+                opacity: 0.6;
             }
             100%{
                 transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
@@ -65,254 +63,321 @@
         }
 
         /* --- INICIO: Estilos del Footer Moderno --- */
-
-        /* Modo Claro (Por defecto) - Mantiene imagen de fondo original */
-        .footer-logo-text, .footer-top {
-            /* background-color: #1f2937; Eliminado para mostrar imagen de fondo */
+        
+        .modern-footer {
             position: relative;
-            color: #000000; /* Texto negro para modo claro */
-        }
-        
-        .footer-bottom {
-            background-color: #111827; /* gray-900 */
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .footer-title h4 {
-            color: #000000;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .footer-logo-text p, .contact-link p, .footer-menu ul li a {
-            color: #000000;
-        }
-        
-        .footer-menu ul li a:hover {
-            color: #ff6600;
-            padding-left: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-bottom p {
-            color: #9CA3AF; /* gray-400 */
-        }
-        
-        .footer-bottom p a {
-            color: #ff6600;
+            /* Asegura que la imagen de fondo definida externamente se vea */
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
         }
 
-        /* Modo Noche (Dark Mode) - Reemplaza imagen con degradado moderno */
-        body.dark .footer-logo-text, 
-        body.dark .footer-top {
-            background-image: none !important; /* Elimina imagen de fondo */
-            background-color: transparent !important;
-            background: linear-gradient(145deg, var(--surface-color) 0%, var(--body-color) 100%) !important; /* Degradado con colores del tema */
-            position: relative;
-        }
-        
-        /* Efecto de brillo sutil en modo noche */
-        body.dark .footer-top::before {
+        /* Overlay para mejorar contraste en modo claro sobre la imagen de fondo */
+        .modern-footer::before {
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 60%;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: radial-gradient(circle at top right, rgba(255, 102, 0, 0.08), transparent 50%);
-            pointer-events: none;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: -1;
+        }
+
+        /* Logo Area */
+        .footer-logo-area {
+            padding: 40px 0 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-slogan {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Widgets */
+        .footer-widget {
+            margin-bottom: 30px;
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color, #ff6600);
+            border-radius: 2px;
+        }
+
+        /* Contact List */
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .contact-list .icon {
+            color: var(--primary-color, #ff6600);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .contact-list .text span {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .contact-list a {
+            color: inherit;
+            transition: color 0.3s;
+        }
+        .contact-list a:hover {
+            color: var(--primary-color, #ff6600);
+        }
+
+        /* Navigation Links */
+        .footer-nav {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .footer-nav li {
+            display: block;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .footer-nav li a {
+            position: relative;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-nav li a:hover {
+            color: var(--primary-color, #ff6600);
+            transform: translateX(5px);
+        }
+
+        /* Social Buttons */
+        .social-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: inherit;
+            font-size: 1.2rem;
+        }
+
+        .social-btn:hover {
+            background: var(--primary-color, #ff6600);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .social-btn img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            padding: 20px 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            color: #ffffff !important;
+        }
+
+        /* =========================================
+           MODO CLARO (Light Mode)
+           ========================================= */
+        /* Mantiene fondo transparente para ver la imagen de fondo */
+        .modern-footer, .footer-logo-area, .footer-top {
+            background-color: transparent; 
+            color: #1f2937; /* Texto oscuro */
+        }
+
+        /* =========================================
+           MODO OSCURO (Dark Mode)
+           ========================================= */
+        body.dark .modern-footer {
+            color: #ffffff; /* Texto blanco */
+            background: linear-gradient(to top, #000000, #111827) !important;
+        }
+
+        body.dark .modern-footer::before {
+            display: none;
+        }
+
+        body.dark .footer-logo-area {
+            border-bottom-color: #374151;
+        }
+
+        body.dark .footer-logo-area, 
+        body.dark .footer-top,
+        body.dark .footer-slogan,
+        body.dark .contact-list .text span,
+        body.dark .contact-list .text p,
+        body.dark .contact-list a,
+        body.dark .footer-nav li a {
+            color: #ffffff; /* Texto blanco */
+            background: none !important;
+        }
+
+        body.dark .widget-title {
+            color: var(--primary-color, #ff6600); /* Títulos naranja */
+        }
+
+        body.dark .social-btn {
+            background: #374151;
+            color: #ffffff;
+        }
+
+        body.dark .social-btn:hover {
+            background: var(--primary-color, #ff6600);
+        }
+
+        body.dark .social-btn img {
+            filter: brightness(0) invert(1); /* Vuelve blanco el icono negro */
         }
 
         body.dark .footer-bottom {
-            background-color: var(--body-color) !important; /* Coincide con el fondo del body */
-            border-top: 1px solid var(--surface-color);
+            background-color: #000000 !important;
+            border-top-color: #374151;
+            color: #ffffff;
         }
 
-        body.dark .footer-title h4 {
-            color: #f3f4f6 !important; /* gray-100 */
+        /* Ensure links hover color remains orange in dark mode */
+        body.dark .footer-nav li a:hover,
+        body.dark .contact-list a:hover {
+            color: var(--primary-color, #ff6600);
         }
-
-        body.dark .footer-logo-text p, 
-        body.dark .contact-link p, 
-        body.dark .footer-menu ul li a {
-            color: #9ca3af !important; /* gray-400 */
-        }
-
-        body.dark .footer-menu ul li a:hover {
-            color: #ff6600 !important;
-        }
-        /* --- FIN: Estilos del Footer --- */
-
     </style>
 
-
-
     <!-- footer section start -->
-    <footer>
-        <!-- brand logo area end -->
-        <div class="footer-logo-text">
-            <div class="container text-center">
-                <a href="{{ route('web_inicio') }}"><img style="width: 250px;" src="{{ $logo[0]->content }}" alt="Logo" /></a>
-                <p>{{ $logo[1]->content }}</p>
-            </div>
-        </div>
-        <!-- footer top start -->
+    <footer class="modern-footer">
+        <!-- Main Footer Content -->
         <div class="footer-top section-padding">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <div class="s-footer-text">
-                            <div class="footer-title">
-                                <h4>Contacto :</h4>
-                            </div>
-                            <div class="contact-link">
-                                <ul>
-                                    <li>
-                                        <span style="color: #ff6600;"><b>E-mail:</b></span>
-                                        <p>ventas@celmovil.pe</p>
-                                    </li>
-                                    <li>
-                                        <span style="color: #ff6600;"><b>Teléfono:</b></span>
-                                        <p> (+51) 921 197 459</p>
-                                    </li>
-                                    <li>
-                                        <span style="color: #ff6600;"><b>Horario:</b></span>
-                                        <p>Lunes a Sabado: 9:30 a.m. - 7:00 p.m.</p>
-                                    </li>
-                                </ul>
+                    <div class="col-md-12 text-center">
+                        <a href="{{ route('web_inicio') }}">
+                            <img style="width: 350px; max-width: 100%;" src="{{ $logo[0]->content }}" alt="Logo Celmovil" loading="lazy" />
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <!-- Contacto -->
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Contacto</h4>
+                            <ul class="contact-list">
+                                <li>
+                                    <div class="icon"><i class="fa fa-envelope"></i></div>
+                                    <div class="text">
+                                        <span>E-mail:</span>
+                                        <a href="mailto:ventas@celmovil.pe">ventas@celmovil.pe</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fa fa-phone"></i></div>
+                                    <div class="text">
+                                        <span>Teléfono:</span>
+                                        <a href="tel:+51921197459">(+51) 921 197 459</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fa fa-clock-o"></i></div>
+                                    <div class="text">
+                                        <span>Horario:</span>
+                                        <p>Lunes a Sábado: 9:30 a.m. - 7:00 p.m.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Navegación -->
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Navegación</h4>
+                            <ul class="footer-nav">
+                                <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                                <li><a href="{{ route('web_nosotros') }}">Nosotros</a></li>
+                                <li><a href="{{ route('web_politicas_de_privacidad') }}">Políticas de Privacidad</a></li>
+                                <li><a href="{{ route('web_preguntas_frecuentes') }}">Preguntas Frecuentes</a></li>
+                                <li><a href="{{ route('web_claims') }}">Libro de Reclamaciones</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Redes Sociales -->
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Síguenos</h4>
+                            <div class="social-links">
+                                <a href="{{ $redesSociales[1]->content }}" target="_blank" class="social-btn facebook" title="Facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="{{ $redesSociales[3]->content }}" target="_blank" class="social-btn instagram" title="Instagram">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a href="{{ $redesSociales[5]->content }}" target="_blank" class="social-btn youtube" title="YouTube">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                                <a href="{{ $redesSociales[7]->content }}" target="_blank" class="social-btn tiktok" title="TikTok">
+                                    <img src="{{ $redesSociales[6]->content }}" alt="TikTok">
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-3">
-                        <div class="s-footer-text">
-                            <div class="footer-title">
-                                <h4>NAVEGAR :</h4>
-                            </div>
-                            <div class="footer-menu">
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('web_inicio') }}">Inicio</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('web_nosotros') }}">Nosotros</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('web_politicas_de_privacidad') }}">Politicas de Privacidad</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('web_preguntas_frecuentes') }}">Preguntas Frecuentes</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('web_claims') }}">Libro de Reclamaciones</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-4">
-                        <div class="s-footer-text">
-                            <div class="footer-title">
-                                <h4>Siguenos en :</h4>
-                            </div>
-                            <div class="social-link actions-btn clearfix">
-                                <ul>
-                                    <li style="padding: 8px;">
-                                        <a  target="_blanck" href="{{ $redesSociales[1]->content }}">
-                                            <img src="{{ $redesSociales[0]->content }}" alt="Facebook">
-                                        </a>
-                                    </li>
-                                    <li style="padding: 8px;">
-                                        <a target="_blanck" href="{{ $redesSociales[3]->content }}">
-                                            <img src="{{ $redesSociales[2]->content }}" alt="Instagram">
-                                        </a>
-                                    </li>
-                                    <li style="padding: 8px;">
-                                        <a target="_blanck" href="{{ $redesSociales[5]->content }}">
-                                            <img src="{{ $redesSociales[4]->content }}" alt="Youtube">
-                                        </a>
-                                    </li>
-                                    <li style="padding: 8px;">
-                                        <a target="_blanck" href="{{ $redesSociales[7]->content }}">
-                                            <img src="{{ $redesSociales[6]->content }}" alt="Tiktok">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!--
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/Motoselectricastrujillo" target="_blank"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/celmovil_2/" target="_blank"><i class="fa fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.tiktok.com/@celmovil_motos?lang=es" target="_blank"><i class="fa fa-tiktok"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.youtube.com/channel/UClkH7YMr5QhaCkx-VqB375w" target="_blank"><i class="fa fa-youtube"></i></a>
-                                    </li>
-                                </ul>-->
-                            </div>
-                            {{-- <h4>Boletin informativo</h4>
-                            <form action="">
-                                <div class="input-text">
-                                    <input type="text" name="email" placeholder="Correp Electrónico" />
-                                </div>
-                                <div class="submit-text">
-                                    <button class="btn btn-celmovil" type="submit" name="submit" style="padding: 12px 15px;">
-                                        <b>Enviar</b>
-                                    </button>
-                                </div>
-                            </form> --}}
-                        </div>
-                    </div>
-                    <!--
-                    <div class="col-xs-12 col-sm-2 col-md-3">
-                        <div class="s-footer-text">
-                            <div class="footer-title">
-                                <h4>My Account</h4>
-                            </div>
-                            <div class="footer-menu">
-                                <ul>
-                                    <li>
-                                        <a href="#">My Orer</a>
-                                    </li>
-                                    <li>
-                                        <a href="cart.html">My Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="wishlist.html">Wishlist</a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="login">Register</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>
-        <!-- footer top end -->
-        <!-- footer bottom start -->
+        
+        <!-- Copyright -->
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center" style="padding: 15px 0px;">Copyright &copy; 2025 - Desarrollado por
-                            <a href="#">ARACODE SMART SOLUTIONS</a>
+                        <p class="text-center" style="margin: 0;">
+                            Copyright &copy; 2025 - Desarrollado por <a href="https://www.aracodeperu.com/" style="color: var(--primary-color, #ff6600); font-weight: 600;">ARACODE SMART SOLUTIONS</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <!-- footer bottom end -->
     </footer>
 </div>
