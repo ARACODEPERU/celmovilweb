@@ -459,7 +459,7 @@
 
             .model-badge {
                 display: inline-block;
-                font-size: 0.75rem;
+                font-size: 1.2rem;
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 color: #9ca3af;
@@ -471,7 +471,7 @@
             }
 
             .model-name {
-                font-size: 1.25rem;
+                font-size: 2.25rem;
                 font-weight: 700;
                 color: #1f2937;
                 margin: 0;
