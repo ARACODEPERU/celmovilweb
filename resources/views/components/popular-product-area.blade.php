@@ -209,7 +209,7 @@
             font-weight: 700;
             color: var(--primary-color, #ff6600);
         }
-        
+
         body.dark .old-price { color: #6b7280; }
 
         .btn-view-product {
@@ -223,7 +223,7 @@
             border: 1px solid var(--primary-color, #ff6600);
             color: var(--primary-color, #ff6600);
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 1.5rem;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s;
