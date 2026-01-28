@@ -1,4 +1,5 @@
 @extends('layouts.celmovil')
+
 @section('content')
     <!-- Preloader Start
                                                                                                                                                                                                                                 <div class="preloader">                                                                                                                                                                              </div>
@@ -127,250 +128,206 @@
                 </div>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="container">
+            <div class="popular-grid">
             @if (count($products) > 0)
                 @foreach ($products as $product)
-                <div class="grid-item">
-                    <div class="product-item" style="padding: 15px;  height: 400px;">
-                        <div class="pro-img">
+                    <div class="product-card">
+                        <!-- Image -->
+                        <div class="product-image">
                             <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
-                                    style="width: 220px; height: 220px;" />
+                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" loading="lazy" />
                             </a>
+                            @if ($product->discount > 0)
+                                <span class="discount-badge">-{{ round(($product->discount / $product->price) * 100) }}%</span>
+                            @endif
                         </div>
-                        <div class="">
-                            <div class="product-title">
+
+                        <!-- Content -->
+                        <div class="product-info">
+                            <h3 class="product-title">
                                 <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                    <h5><b>{{ $product->name }}</b></h5>
+                                    {{ $product->name }}
                                 </a>
+                            </h3>
+
+                            <div class="product-price">
                                 @if ($product->discount > 0)
-                                    @php
-                                        $new_price = $product->price - $product->discount;
-                                    @endphp
-                                    <p>
-                                        Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
-                                        Promoción: <span><b>S/ {{ number_format($new_price, 2) }}</b>
-                                        </span>
-                                    </p>
+                                    @php $new_price = $product->price - $product->discount; @endphp
+                                    <span class="old-price">S/ {{ number_format($product->price, 2) }}</span>
+                                    <span class="new-price">S/ {{ number_format($new_price, 2) }}</span>
                                 @else
-                                    <p>
-                                        Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
-                                    </p>
+                                    <span class="regular-price">S/ {{ number_format($product->price, 2) }}</span>
                                 @endif
-                                {{-- <p>Precio: <span>S/ {{ number_format($product->price - ($product->discount ?? 0),2) }}</span></p> --}}
                             </div>
-                        </div>
-                        {{-- <div class="info" style="margin-top: -10px;">
-                            <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
-                                Obtén un <b>Desc. 4%</b>
-                            </a>
-                        </div> --}}
-                        <div style="margin-top: 10px;">
-                            <a href="{{ route('web_producto_descripcion', $product->id) }}"
-                                class="btn btn-celmovil">
-                                <b>Más Información </b>
+
+                            <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn-view-product">
+                                Ver Detalles <i class="fa fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
-                </div>
                 @endforeach
             @endif
+            </div>
+            <div class="pagination-wrapper mt-5 text-center" style="margin-top: 30px;">
+                @if(method_exists($products, 'links'))
+                    {{ $products->links() }}
+                @endif
+            </div>
         </div>
     </section>
 
     
     <style>
-        .grid-container {
+        /* Grid Layout */
+        .popular-grid {
         display: grid;
-        gap: 10px;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(3, auto);
-        width: 100%;
-        padding: 20px 40px;
-        /* max-width: 600px; */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         }
 
-        .grid-item {
-        /* background-color: #007bff; */
-        color: white;
-        text-align: center;
-        padding: 20px;
-        border-radius: 5px;
+        @media (min-width: 768px) {
+            .popular-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .popular-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (min-width: 1280px) {
+            .popular-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
         }
 
-        /* Responsive Design for Mobile */
-        @media (max-width: 768px) {
-        .grid-container {
-            grid-template-columns: repeat(2, 1fr);
-            width: 98%;
-            padding: 5px;
+        /* Card Styles (Consistent with Feature Products) */
+        .product-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
-        .grid-item {
-            padding: 10px;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary-color, #ff6600);
         }
 
-        .product-item {
-            height: auto !important; /* Altura automática para adaptarse al contenido */
-            padding: 10px !important;
+        /* Dark Mode Overrides for Cards */
+        body.dark .product-card {
+            background: #1f2937;
+            border-color: #374151;
         }
 
-        .product-item .pro-img img {
-            width: 100% !important; /* Ancho completo del contenedor */
-            height: auto !important; /* Altura automática para mantener la proporción */
-            max-width: 160px; /* Un tamaño máximo para la imagen */
-            margin: 0 auto; /* Centrar imagen */
+        /* Shared Styles */
+        .product-image {
+            position: relative;
+            height: 200px;
+            padding: 20px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        body.dark .product-image { background: #1f2937; }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        body.dark .product-image img { filter: brightness(0.9); }
+        
+        .product-card:hover .product-image img { transform: scale(1.1); }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ef4444;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            z-index: 2;
         }
 
-        .product-item h5 {
-            font-size: 14px; /* Ajustar tamaño del título */
-            min-height: 40px; /* Asegurar altura mínima para alinear tarjetas */
+        .product-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #ffffff;
         }
+        body.dark .product-info { background: #1f2937; }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .product-title a { color: #1f2937; text-decoration: none; transition: color 0.2s; }
+        body.dark .product-title a { color: #f3f4f6; }
+        .product-card:hover .product-title a { color: var(--primary-color, #ff6600); }
+
+        .product-price { margin-bottom: 15px; display: flex; flex-direction: column; }
+        
+        .old-price {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .new-price,
+        .regular-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color, #ff6600);
+        }
+
+        body.dark .old-price { color: #6b7280; }
+
+        .btn-view-product {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+            padding: 8px 0;
+            background: transparent;
+            border: 1px solid var(--primary-color, #ff6600);
+            color: var(--primary-color, #ff6600);
+            border-radius: 6px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-view-product:hover {
+            background: var(--primary-color, #ff6600);
+            color: #ffffff;
         }
     </style>
 
-
-    <!-- quick view start -->
-    <div class="product-details quick-view modal animated zoomIn" id="quick-view">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="d-table">
-                        <div class="d-tablecell">
-                            <div class="modal-dialog">
-                                <div class="main-view modal-content">
-                                    <div class="modal-footer" data-dismiss="modal">
-                                        <span>x</span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="left">
-                                                <!-- Single-pro-slider Big-photo start -->
-                                                <div class="quick-img">
-                                                    <img src="img/products/l1.jpg" alt="" />
-                                                </div>
-                                                <!-- Single-pro-slider Big-photo end -->
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="right">
-                                                <div class="singl-pro-title">
-                                                    <h3>GT Sensor Carbon Jenson </h3>
-                                                    <h1>$1700.00</h1>
-                                                    <hr />
-                                                    <p>doming id quod mazim placerat facer possim assum. Typi non habent
-                                                        claritatem insitam; est usus legentis in iis qui facit eorum
-                                                        claritatem. Investigationes demonstraverunt lectores legere me lius
-                                                        quod ii legunt saepius.</p>
-                                                    <hr />
-                                                    <div class="color-brand clearfix">
-                                                        <div class="s-select">
-                                                            <div class="custom-select">
-                                                                <select class="form-control">
-                                                                    <option>Color</option>
-                                                                    <option>Red </option>
-                                                                    <option>Green </option>
-                                                                    <option>Blue</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="s-select">
-                                                            <div class="custom-select">
-                                                                <select class="form-control">
-                                                                    <option>Brend</option>
-                                                                    <option>Men </option>
-                                                                    <option>Fashion </option>
-                                                                    <option>Shirt</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="s-select s-plus-minus">
-                                                            <form action="#" method="POST">
-                                                                <div class="plus-minus">
-                                                                    <a class="dec qtybutton">-</a>
-                                                                    <input type="text" value="02" name="qtybutton"
-                                                                        class="plus-minus-box">
-                                                                    <a class="inc qtybutton">+</a>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <div class="actions-btn">
-                                                        <ul class="clearfix text-center">
-                                                            <li>
-                                                                <a href="cart.html"><i class="fa fa-shopping-cart"></i> add
-                                                                    to cart</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="cart.html"><i class="fa fa-heart-o"></i></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><i class="fa fa-compress"></i></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><i class="fa fa-share-alt"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <hr />
-                                                    <div class="categ-tag">
-                                                        <ul class="clearfix">
-                                                            <li>
-                                                                CATEGORIES:
-                                                                <a href="#">Bike,</a> <a href="#">Cycle,</a>
-                                                                <a href="#">Ride,</a> <a href="#">Mountain</a>
-                                                            </li>
-                                                            <li>
-                                                                TAG:
-                                                                <a href="#">Ride,</a> <a href="#">Helmet,</a>
-                                                                <a href="#">cycle,</a> <a href="#">bike</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- quick view end -->
-    <script>
-        function openModalProductDetails(event, productObject) {
-            // Evitar que el enlace abra el modal directamente
-            event.preventDefault();
-
-            let colores = JSON.parse(productObject.product.sizes);
-
-            const selectElement = document.getElementById('modal-color-product-view');
-
-            // Llenar el select con opciones
-            colores.forEach(color => {
-                const option = document.createElement('option');
-                option.value = color.size;
-                option.text = color.size;
-                selectElement.appendChild(option);
-            });
-            // Cambiar el atributo src de la imagen en el modal
-            document.getElementById('modal-image-product-view').src = productObject.image;
-            document.getElementById('modal-name-product-view').innerHTML = productObject.name;
-            document.getElementById('modal-price-product-view').innerHTML = 'S/.' + productObject.price;
-            document.getElementById('modal-description-product-view').innerHTML = productObject.description;
-            // document.getElementById('modal-centros-dir').innerHTML = centerObject.address;
-            // document.getElementById('modal-centros-ifr').innerHTML = centerObject.map;
-            // Abre el modal después de procesar la lógica
-            // ...
-
-            // Ejemplo: abrir modal usando Bootstrap
-            $('#quick-view-product').modal('show');
-        }
-    </script>
 
 
     <br><br>
