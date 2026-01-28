@@ -328,9 +328,6 @@
         }
     </style>
 
-
-
-    <br><br>
     <!-- footer - section start -->
     <x-footer-area />
     <!-- footer - section end -->
