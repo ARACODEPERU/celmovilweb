@@ -185,6 +185,10 @@
             right: -100px;
         }
 
+        body.dark .products-section {
+            background-color: #111827;
+        }
+
         @media (max-width: 768px) {
             .page-header-modern {
                 padding: 140px 0 60px;
