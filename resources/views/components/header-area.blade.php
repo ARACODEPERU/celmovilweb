@@ -710,7 +710,7 @@
     <style>
         /* ===== Dark Mode Overrides ===== */
         body.dark {
-            color: #ffffff;
+            background-color: #111827;
         }
 
         /* Containers with white background in light mode */
