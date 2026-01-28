@@ -11,123 +11,44 @@
     <!-- header - section end -->
 
     <!-- page banner area start -->
-    <div class="page-banner">
+    {{-- <div class="page-banner">
         <img style="width: 100%; height: 250px;" src="{{ $banner[0]->content }}" alt="Page Banner" />
-    </div>
-    <!-- page banner area end -->
-    {{-- <section class="best-sell-area popular-product section-padding-top">
+    </div> --}}
+
+    <section class="page-header-modern">
         <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
-                    <div class="section-title text-center">
-                        <h3><span>
+            <div class="header-content text-center">
+                <h1 class="modern-title-large">
+                    <span>
                         @if ($category_id == 1)
                             MOTOS
-                            @elseif($category_id == 2)
+                        @elseif($category_id == 2)
                             TRIMOTOS
-                            @elseif($category_id == 6)
-                            BATERIAS
-                            @elseif($category_id == 25)
+                        @elseif($category_id == 6)
+                            VMPS, BICIMOTOS y BICIS
+                        @elseif($category_id == 3)
                             CUATRIMOTOS
-                            @elseif($category_id == 26)
+                        @elseif($category_id == 26)
                             REPUESTOS
-                            @elseif($category_id == 27)
+                        @elseif($category_id == 27)
                             ACCESORIOS
-                        @endif  
-                        </span></h3>
-                        <div class="shape">
-                        </div>
-                        <p>
-                            ¿Listo para experimentar lo último en estilo, tecnología y comodidad?
-                            <br>¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center tab-content">
-                <div class="tab-pane fade active in">
-                    <div class="single-products">
-                        <div class="row">
-                            @if (count($products) > 0)
-                                @foreach ($products as $product)
-                                    <div class="col-xs-12 col-md-3" style="padding: 15px;">
-                                        <div class="product-item" style="padding: 15px;  height: 380px;">
-                                            <div class="pro-img">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 220px; height: 220px;">
-                                                </a>
-                                            </div>
-                                            <div class="">
-                                                <div class="product-title">
-                                                    <a href="{{ route('web_producto_descripcion', $product->id) }}">
-                                                        <h6><b>{{ $product->name }}</b></h6>
-                                                    </a>
-                                                    @if ($product->discount > 0)
-                                                        @php
-                                                            $new_price = $product->price - $product->discount;
-                                                        @endphp
-                                                        <p>
-                                                            Antes: <del> S/ {{ number_format($product->price, 2) }}</del> <br>
-                                                            Promoción: <span><b>S/ {{ number_format($new_price, 2) }}</b>
-                                                            </span>
-                                                        </p>
-                                                    @else
-                                                        <p>
-                                                            Precio: <b>S/ {{ number_format($product->price, 2) }}</b>
-                                                        </p>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div style="margin-top: 10px;">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
-                                                    <b>Más Información </b>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
+                        @elseif($category_id == 28)
+                            CARGUEROS
+                        @endif
+                    </span>
+                </h1>
+                <div class="title-line-large"></div>
+                <p class="header-description">
+                    ¿Listo para experimentar lo último en estilo, tecnología y comodidad?
+                    <br>¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
+                </p>
             </div>
         </div>
-    </section> --}}
+        <div class="shape circle-1"></div>
+        <div class="shape circle-2"></div>
+    </section>
 
-    <section style="padding: 40px 0px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
-                    <div class="section-title text-center">
-                        <h3>
-                            <span>
-                            @if ($category_id == 1)
-                                MOTOS
-                                @elseif($category_id == 2)
-                                TRIMOTOS
-                                @elseif($category_id == 6)
-                                VMPS, BICIMOTOS y BICIS
-                                @elseif($category_id == 3)
-                                CUATRIMOTOS
-                                @elseif($category_id == 26)
-                                REPUESTOS
-                                @elseif($category_id == 27)
-                                ACCESORIOS
-                                @elseif($category_id == 28)
-                                CARGUEROS
-                            @endif  
-                            </span>
-                        </h3>
-                        <div class="shape">
-                        </div>
-                        <p>
-                            ¿Listo para experimentar lo último en estilo, tecnología y comodidad?
-                            <br>¡Visítanos hoy mismo y déjate sorprender por nuestros productos más populares!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="products-section section-padding">
         <div class="container">
             <div class="popular-grid">
             @if (count($products) > 0)
@@ -179,6 +100,100 @@
 
     
     <style>
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        /* Title Styles */
+        .page-header-modern {
+            position: relative;
+            padding: 160px 0 80px; /* Espacio superior para compensar el header fijo */
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            overflow: hidden;
+            color: white;
+            margin-top: 0;
+        }
+
+        .page-header-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 102, 0, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(37, 211, 102, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .modern-title-large {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .modern-title-large span {
+            background: linear-gradient(to right, #ff6600, #ff9933);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-line-large {
+            width: 100px;
+            height: 6px;
+            background: #ff6600;
+            margin: 0 auto 25px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+
+        .header-description {
+            font-size: 1.2rem;
+            color: #e5e7eb;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 102, 0, 0.1);
+            top: -50px;
+            left: -50px;
+        }
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(59, 130, 246, 0.05);
+            bottom: -100px;
+            right: -100px;
+        }
+
+        @media (max-width: 768px) {
+            .page-header-modern {
+                padding: 140px 0 60px;
+            }
+            .modern-title-large {
+                font-size: 2.5rem;
+            }
+        }
+
         /* Grid Layout */
         .popular-grid {
         display: grid;
