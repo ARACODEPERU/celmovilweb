@@ -23,7 +23,7 @@
             border-radius: 50%;
             color: #fff;
             font-size: 30px;
-            bottom: 90px;
+            bottom: 80px;
             right: 20px;
             border: 0;
             z-index: 9999;
