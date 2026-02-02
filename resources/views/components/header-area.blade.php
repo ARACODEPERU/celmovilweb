@@ -860,7 +860,7 @@
                     left: 0;
                     width: 100vw;
                     height: 100vh;
-                    background-color: #0000001c; /* Fondo negro total para que no se vea nada atrás */
+                    background-color: #00000060; /* Fondo negro total para que no se vea nada atrás */
                     display: flex !important;
                     justify-content: center;
                     align-items: center;
