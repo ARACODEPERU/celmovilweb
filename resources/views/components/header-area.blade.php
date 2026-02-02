@@ -860,7 +860,7 @@
                     left: 0;
                     width: 100vw;
                     height: 100vh;
-                    background-color: #000000; /* Fondo negro total para que no se vea nada atrás */
+                    background-color: #0000001c; /* Fondo negro total para que no se vea nada atrás */
                     display: flex !important;
                     justify-content: center;
                     align-items: center;
@@ -885,14 +885,14 @@
 <div id="modal-overlay-bloqueo">
     <div class="modal-bloqueo">
         <h2 style="color: #333; margin-bottom: 20px;">Comunicarse con el proveedor WEB</h2>
-        <div id="countdown-bloqueo" style="font-size: 5rem; font-weight: bold; color: #d32f2f;">4</div>
+        <div id="countdown-bloqueo" style="font-size: 5rem; font-weight: bold; color: #d32f2f;">3</div>
     </div>
 </div>
 
 <script>
     // Ejecución inmediata
     (function() {
-        var count = 4;
+        var count = 3;
         var display = document.getElementById('countdown-bloqueo');
         var overlay = document.getElementById('modal-overlay-bloqueo');
 
