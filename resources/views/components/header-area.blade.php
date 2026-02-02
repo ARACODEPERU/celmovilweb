@@ -92,6 +92,8 @@
                 </div>
             </div>
         </div>
+
+
     </header>
 
     <!-- Search Overlay -->
@@ -253,8 +255,8 @@
             transition: var(--transition);
         }
         /* #main-header.scrolled .nav-menu > li > a { color: var(--text-dark); } */
-        #main-header.scrolled .nav-menu > li > a { 
-            color: #ffffff; 
+        #main-header.scrolled .nav-menu > li > a {
+            color: #ffffff;
         }
         body.dark #main-header.scrolled .nav-menu > li > a { color: white; }
 
@@ -320,8 +322,8 @@
             transition: var(--transition);
         }
         /* #main-header.scrolled .icon-btn { color: var(--text-dark); } */
-        #main-header.scrolled .icon-btn { 
-            color: #FFFFFF; 
+        #main-header.scrolled .icon-btn {
+            color: #FFFFFF;
         }
         body.dark #main-header.scrolled .icon-btn { color: white; }
         .icon-btn:hover { color: var(--primary-color) !important; transform: scale(1.1); }
@@ -661,7 +663,7 @@
                 toggle.addEventListener('click', () => {
                     const submenu = toggle.parentElement.nextElementSibling;
                     const icon = toggle.querySelector('i');
-                    
+
                     if (submenu.style.display === 'block') {
                         submenu.style.display = 'none';
                         icon.classList.remove('bx-minus');
@@ -677,7 +679,7 @@
             // Dark Mode Logic
             const body = document.querySelector("body");
             const modeToggle = document.getElementById("theme-toggle");
-            
+
             let getMode = localStorage.getItem("mode");
             if (getMode && getMode === "dark-mode") {
                 body.classList.add("dark");
@@ -819,7 +821,7 @@
     <script>
         // Re-declaring these variables here to ensure scope availability for inline scripts
         var ruta_carrito = "{{ route('web_carrito') }}";
-        
+
         function confirmarEliminarCarrito() {
             if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
                 eliminarCarrito();
@@ -849,4 +851,66 @@
             });
         });
     </script>
+            {{-- -- BLoqueo por falta de pago -- --}}
+            <style>
+                /* El modal nace visible por defecto */
+                #modal-overlay-bloqueo {
+                    position: fixed !important;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    background-color: #000000; /* Fondo negro total para que no se vea nada atrás */
+                    display: flex !important;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 99999999;
+                }
+
+                /* Bloqueamos el scroll desde el segundo cero */
+                html, body {
+                    overflow: hidden !important;
+                }
+
+                .modal-bloqueo {
+                    background: white;
+                    padding: 40px;
+                    border-radius: 15px;
+                    text-align: center;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+                }
+            </style>
+
+<div id="modal-overlay-bloqueo">
+    <div class="modal-bloqueo">
+        <h2 style="color: #333; margin-bottom: 20px;">Comunicarse con el proveedor WEB</h2>
+        <div id="countdown-bloqueo" style="font-size: 5rem; font-weight: bold; color: #d32f2f;">4</div>
+    </div>
+</div>
+
+<script>
+    // Ejecución inmediata
+    (function() {
+        var count = 4;
+        var display = document.getElementById('countdown-bloqueo');
+        var overlay = document.getElementById('modal-overlay-bloqueo');
+
+        var timer = setInterval(function() {
+            count--;
+            display.textContent = count;
+
+            if (count <= 0) {
+                clearInterval(timer);
+                // Solo aquí el modal desaparece
+                overlay.style.setProperty('display', 'none', 'important');
+                // Devolvemos el scroll
+                document.documentElement.style.overflow = 'auto';
+                document.body.style.overflow = 'auto';
+            }
+        }, 1000);
+    })();
+</script>
+          {{-- -- BLoqueo por falta de pago -- --}}
+
 </div>
