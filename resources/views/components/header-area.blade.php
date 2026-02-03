@@ -852,7 +852,7 @@
         });
     </script>
             {{-- -- BLoqueo por falta de pago -- --}}
-            <style>
+            {{-- <style>
                 /* El modal nace visible por defecto */
                 #modal-overlay-bloqueo {
                     position: fixed !important;
@@ -910,7 +910,7 @@
             }
         }, 1000);
     })();
-</script>
+</script> --}}
           {{-- -- BLoqueo por falta de pago -- --}}
 
 </div>
