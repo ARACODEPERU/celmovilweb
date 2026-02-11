@@ -841,7 +841,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
         }
         body.dark .icon-box {
             background: rgba(255, 102, 0, 0.15);

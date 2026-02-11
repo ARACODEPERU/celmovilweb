@@ -8,9 +8,9 @@
                     <span>{{ $product_popular_area[0]->content }}</span> {{ $product_popular_area[1]->content }}
                 </h1>
                 <div class="title-line"></div>
-                <p class="section-description">
+                {{-- <p class="section-description">
                     {{ $product_popular_area[2]->content }}
-                </p>
+                </p> --}}
             </div>
             @endif
 
@@ -91,8 +91,9 @@
             max-width: 700px;
             margin: 0 auto;
             color: #6b7280;
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.6rem;
+            line-height: 1;
+            padding: 0 0 20px 0;
         }
         body.dark .section-description {
             color: #9ca3af;

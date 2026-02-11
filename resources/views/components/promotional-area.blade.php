@@ -77,7 +77,7 @@
 
         .promo-tag {
             display: inline-block;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary-color, #ff6600);
             text-transform: uppercase;
@@ -110,7 +110,7 @@
         }
 
         .promo-desc {
-            font-size: 1.1rem;
+            font-size: 1.6rem;
             color: #6b7280;
             margin-bottom: 30px;
             line-height: 1.6;
