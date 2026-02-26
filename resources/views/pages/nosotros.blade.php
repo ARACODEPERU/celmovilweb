@@ -19,26 +19,23 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-9 col-md-6">
 						<div class="about-img">
-							<img src="{{ asset('themes/celmovil/img/nosotros_2024.jpg') }}" alt="" />
+							{{-- <img src="{{ asset('themes/celmovil/img/nosotros_2024.jpg') }}" alt="" /> --}}
+							<img src="{{ $presentation[0]->content }}" alt="" />
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-6">
 						<div class="about-text" style="padding: 30px 10px 30px 10px;">
-							<h3><b>¿QUIÉNES SOMOS?</b></h3>
+							<h3><b>{{ $presentation[1]->content }}</b></h3>
 							<p style="font-size: 16px;">
-                                CelMovil vehiculos electricos es una empresa peruana fundada en el 2020, dedicada a la venta
-                                de vehículos menores eléctricos a nivel nacional. Socios estratégicos de las marcas
-                                mas importantes en el mercado peruano de motos electricas.
+                                {{ $presentation[2]->content }}
                             </p>
                             <br>
                             <p style="font-size: 16px;">
-                                CelMovil ofrece una gran variedad de vehículos eléctricos como: bicicletas, VMP's 
-                                (vehiculos de movilidad personal), motos, trimotos, cuatrimotos y cargueros.
+                                {{ $presentation[3]->content }}
                             </p>
                             <br>
                             <p style="font-size: 16px;">
-                                La avanzada tecnología de nuestros vehículos hace posible que no utilicen combustible, reduciendo
-                                considerablemente los costos para los usuarios y el impacto ambiental.
+                                {{ $presentation[4]->content }}
                             </p>
 						</div>
 					</div>
@@ -60,7 +57,8 @@
 					</div>
 				</div>
 			</div>
-			<img src="{{ asset('themes/celmovil/img/about/bg1.jpg') }}" alt="" />
+			{{-- <img src="{{ asset('themes/celmovil/img/about/bg1.jpg') }}" alt="" /> --}}
+			<img src="{{ $elegirnos[0]->content }}" alt="" />
 			<div class="section-padding">
 				<div class="container">
 					<div class="row">
