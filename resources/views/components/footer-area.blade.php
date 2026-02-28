@@ -314,7 +314,7 @@
                                     <div class="icon"><i class="fa fa-phone"></i></div>
                                     <div class="text">
                                         <span>Teléfono:</span>
-                                        <a href="tel:+51921197459">(+51) 921 197 459</a>
+                                        <a href="tel:+51910325038">(+51) 910325038 | (+51) 921197459</a>
                                     </div>
                                 </li>
                                 <li>
