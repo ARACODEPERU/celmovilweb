@@ -471,5 +471,38 @@ class WebController extends Controller
         return view('emails.e_complaints_book')->with('complaints', $data);
     }
 
+    public function searchProducts(Request $request)
+    {
+        $search = $request->input('search');
+
+        // Reutilizamos el banner de categorías para mantener el estilo visual
+        $banner = CmsSection::where('component_id', 'banner_productos_categoria_4')
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
+
+        // Búsqueda en OnliItem y Product relacionado
+        $products = OnliItem::join('products', 'onli_items.item_id', 'products.id')
+            ->select('onli_items.*')
+            ->with('product')
+            ->where(function ($query) use ($search) {
+                $query->where('products.description', 'LIKE', "%{$search}%")
+                    ->orWhere('onli_items.name', 'LIKE', "%{$search}%");
+            })
+            ->where('onli_items.existence', 1)
+            ->orderBy('onli_items.created_at', 'desc')
+            ->paginate(20);
+
+        return view('pages/search', [
+            'products' => $products,
+            'search' => $search,
+            'banner' => $banner
+        ]);
+    }
 
 }

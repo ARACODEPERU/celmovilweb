@@ -102,9 +102,9 @@
     <div class="search-overlay" id="search-overlay">
         <div class="search-close" id="search-close"><i class='bx bx-x'></i></div>
         <div class="search-content">
-            <h3>¿Qué estás buscando?</h3>
-            <form action="#" class="search-form-overlay">
-                <input type="text" placeholder="Buscar productos...">
+            <h3 class="text-white">¿Qué estás buscando?</h3>
+            <form action="{{ route('web_search_products') }}" method="GET" class="search-form-overlay">
+                <input type="text" name="search" placeholder="Buscar productos...">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
@@ -488,6 +488,7 @@
             font-size: 24px;
             color: white;
             outline: none;
+                width: 100%; /* Ensure input takes full width */
         }
 
         .search-form-overlay button {

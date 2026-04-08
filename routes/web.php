@@ -33,6 +33,7 @@ Route::post('/send-claim',  [WebController::class, 'send_claim'])->name('send_cl
 Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
 Route::get('/producto-categoria/{id}/list', [WebController::class, 'productocategoria'])->name('web_producto_categoria');
 Route::get('/productos/{id}/list', [WebController::class, 'productoPrincipal'])->name('web_producto_principal');
+Route::get('/buscar-productos', [WebController::class, 'searchProducts'])->name('web_search_products');
 Route::get('/carrito', [WebController::class, 'carrito'])->name('web_carrito');
 Route::post('/pagar', [WebController::class, 'pagar'])->name('web_pagar');
 Route::put('/process_payment/{id}', [WebController::class, 'processPayment'])->name('web_process_payment');

@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Preloader Start -->
-    <div class="preloader">
+    {{-- <div class="preloader">
         <div class="loading-center">
             <div class="loading-center-absolute">
                 <div class="object object_one"></div>
@@ -11,7 +11,7 @@
                 <div class="object object_three"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Preloader End -->
 
     <!-- header - section start -->
@@ -117,7 +117,9 @@
             background-color: white;
             transform: scale(1.2);
         }
+
     </style>
+    
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -183,6 +185,7 @@
             // Iniciar
             goToSlide(0);
         });
+    
     </script>
     <!-- Slider Section End -->
 
@@ -190,28 +193,28 @@
     <section class="promotional-banners section-padding">
         <div class="container">
             <div class="categories-grid">
-                <a href="https://celmovil.pe/productos/1/list" class="category-card hover-effect">
+                <a href="{{ url('productos/1/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[0]->content }}" alt="Scooters">
                     <div class="category-overlay">
                         <h3>Scooters</h3>
                         <span>Ver Modelos <i class="fa fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="https://celmovil.pe/productos/2/list" class="category-card hover-effect">
+                <a href="{{ url('productos/2/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[1]->content }}" alt="Bicimotos">
                     <div class="category-overlay">
                         <h3>Bicimotos</h3>
                         <span>Ver Modelos <i class="fa fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="https://celmovil.pe/productos/6/list" class="category-card hover-effect">
+                <a href="{{ url('productos/6/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[2]->content }}" alt="Motos Eléctricas">
                     <div class="category-overlay">
                         <h3>Motos Eléctricas</h3>
                         <span>Ver Modelos <i class="fa fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="https://celmovil.pe/productos/3/list" class="category-card hover-effect">
+                <a href="{{ url('productos/3/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[3]->content }}" alt="Accesorios">
                     <div class="category-overlay">
                         <h3>Accesorios</h3>
@@ -222,8 +225,7 @@
         </div>
     </section>
 
-    <style>
-        
+        <style>
         body.dark .section-padding {
             background-color: #111827;
         }
@@ -274,6 +276,7 @@
             margin-top: 5px;
         }
     </style>
+    
     <!-- Tarjetas Catalogo - section end -->
 
 
@@ -299,8 +302,8 @@
             <div class="models-grid">
                 @foreach ($algunos_modelos as $key => $am)
                     <div class="model-card">
-                        <a href="{{ $am->item->items[2]->content }}" class="model-link">
-                            <div class="model-image-box">
+                        <a href="{{ $am->item->items[2]->content ?? '#' }}" class="model-link">
+                            <div class="model-image-box" style="height: 400px;"> {{-- Fixed height for consistency --}}
                                 <img src="{{ $am->item->items[0]->content }}" alt="{{ $am->item->items[1]->content }}" loading="lazy">
                                 <div class="model-overlay">
                                     <span class="btn-view-model">Ver Detalles</span>
@@ -317,6 +320,7 @@
         </div>
 
         <style>
+            
             /* Title Styles */
             .modern-title {
                 font-size: 2.5rem;
@@ -486,7 +490,10 @@
             .model-card:hover .model-name {
                 color: var(--primary-color, #ff6600);
             }
+
         </style>
+
+
     </section>
     <!-- Algunos productos - section end -->
 
@@ -634,8 +641,11 @@
             initCarousel();
         });
     </script>
+   
 
     <style>
+   
+
         .section-testimonio {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -763,6 +773,7 @@
             }
         }
     </style>
+    
 
     <!-- contact area start -->
     <div class="contact-section section-padding">
@@ -885,7 +896,7 @@
 
     <style>
         .scroll-reveal {
-            opacity: 0;
+            /* opacity: 0; */
             transform: translateY(50px);
             transition: all 0.8s ease-out;
         }
@@ -925,6 +936,7 @@
         }
 
     </style>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
@@ -947,4 +959,4 @@
 
         });
     </script>
-@stop
+@endsection
