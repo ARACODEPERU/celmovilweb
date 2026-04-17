@@ -196,29 +196,29 @@
                 <a href="{{ url('productos/1/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[0]->content }}" alt="Scooters">
                     <div class="category-overlay">
-                        <h3>Scooters</h3>
-                        <span>Ver Modelos <i class="fa fa-arrow-right"></i></span>
+                        {{-- <h3>Scooters</h3> --}}
+                        <h3>Ver Modelos <i class="fa fa-arrow-right"></i></h3>
                     </div>
                 </a>
                 <a href="{{ url('productos/2/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[1]->content }}" alt="Bicimotos">
                     <div class="category-overlay">
-                        <h3>Bicimotos</h3>
-                        <span>Ver Modelos <i class="fa fa-arrow-right"></i></span>
+                        {{-- <h3>Bicimotos</h3> --}}
+                        <h3>Ver Modelos <i class="fa fa-arrow-right"></i></h3>
                     </div>
                 </a>
                 <a href="{{ url('productos/6/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[2]->content }}" alt="Motos Eléctricas">
                     <div class="category-overlay">
-                        <h3>Motos Eléctricas</h3>
-                        <span>Ver Modelos <i class="fa fa-arrow-right"></i></span>
+                        {{-- <h3>Bicimotos</h3> --}}
+                        <h3>Ver Modelos <i class="fa fa-arrow-right"></i></h3>
                     </div>
                 </a>
                 <a href="{{ url('productos/3/list') }}" class="category-card hover-effect">
                     <img src="{{ $portadas[3]->content }}" alt="Accesorios">
                     <div class="category-overlay">
-                        <h3>Accesorios</h3>
-                        <span>Ver Catálogo <i class="fa fa-arrow-right"></i></span>
+                        {{-- <h3>Bicimotos</h3> --}}
+                        <h3>Ver Modelos <i class="fa fa-arrow-right"></i></h3>
                     </div>
                 </a>
             </div>
