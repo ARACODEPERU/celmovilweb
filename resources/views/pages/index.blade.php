@@ -25,6 +25,9 @@
     <!-- feature products - section start -->
     <x-feature-products-area />
 
+    <!-- accessories random area -->
+    <x-accessories-random-area :accessories="$accessories" />
+
     <!-- popular-product section start -->
     <x-popular-product-area />
 

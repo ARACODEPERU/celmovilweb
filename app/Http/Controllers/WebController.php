@@ -62,6 +62,24 @@ class WebController extends Controller
         ->orderBy('position')
         ->get();
 
+        // Obtener todos los IDs de subcategorías que pertenecen a la categoría 27 (Accesorios)
+        $accessory_ids = SaleProductCategory::where('category_id', 27)
+            ->pluck('id')
+            ->toArray();
+
+        if(empty($accessory_ids)){
+            $accessory_ids = [27];
+        }
+
+        $accessories = OnliItem::join('products', 'onli_items.item_id', 'products.id')
+            ->select('onli_items.*')
+            ->with('product')
+            ->whereIn('products.category_id', $accessory_ids) // Buscar en la categoría y sus hijos
+            ->where('onli_items.existence', 1)
+            ->inRandomOrder()
+            ->take(15)
+            ->get();
+
         $ofprincipal = CmsSection::where('component_id', 'oficina_principal_area_12')  //siempre cambiar el id del componente
         ->join('cms_section_items', 'section_id', 'cms_sections.id')
         ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
@@ -78,7 +96,8 @@ class WebController extends Controller
             'portadas' => $portadas,
             'products_main' => $products_main,
             'algunos_modelos' => $algunos_modelos,
-            'ofprincipal' => $ofprincipal
+            'ofprincipal' => $ofprincipal,
+            'accessories' => $accessories
         ]);
     }
 

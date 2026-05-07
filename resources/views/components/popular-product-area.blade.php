@@ -59,7 +59,7 @@
         /* Section Styles */
         .popular-products-modern {
             position: relative;
-            background-color: #f9fafb;
+            background-color: #f6f6f6;
         }
 
         body.dark .popular-products-modern {
