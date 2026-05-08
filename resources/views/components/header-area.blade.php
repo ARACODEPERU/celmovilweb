@@ -1061,6 +1061,15 @@
         body.dark b[style*="#ff6600"] {
             color: #ff6600 !important;
         }
+
+        /* Ajuste Global para contenido de TinyMCE / Rich Text en Modo Noche */
+        body.dark .rich-text-content,
+        body.dark .rich-text-content *,
+        body.dark .product-highlights-v2,
+        body.dark .product-highlights-v2 * {
+            color: #d1d5db !important;
+            background-color: transparent !important;
+        }
     </style>
 
     <!-- Existing Scripts for Cart Logic Compatibility -->
