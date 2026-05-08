@@ -63,11 +63,11 @@
                                                         ? $category->products->random() 
                                                         : null;
                                                     // Prioridad: Imagen de producto aleatorio > Imagen de categoría > Placeholder
-                                                    $promoImage = $randomProduct ? asset($randomProduct->image) : ($category->image ?? asset('themes/celmovil/img/promo-placeholder.jpg'));
+                                                    $promoImage = $randomProduct ? asset('storage/' . $randomProduct->image) : ($category->image ?? asset('themes/celmovil/img/promo-placeholder.jpg'));
                                                 @endphp
                                                 <div class="promo-card">
                                                     <img src="{{ $promoImage }}"
-                                                        alt="{{ $category->description }}">
+                                                        alt="{{ $category->description }}" style="width: 100px; height: 100px;">
                                                     <div class="promo-content">
                                                         <h5>Lo mejor en {{ $category->description }}</h5>
                                                         <a href="{{ route('web_producto_principal', $category->id) }}"
