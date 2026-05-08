@@ -180,8 +180,11 @@
                     <div class="specs-mini-list">
                         @foreach ($product->specifications->take(6) as $spec)
                             <div class="spec-row">
-                                <span class="label">{{ $spec->title }}</span>
-                                <span class="value">{{ $spec->description }}</span>
+                                <div class="spec-label-group">
+                                    <i class="fa fa-caret-right"></i>
+                                    <span class="label">{{ $spec->title }}</span>
+                                </div>
+                                <span>{{ $spec->description }}</span>
                             </div>
                         @endforeach
                     </div>
@@ -259,11 +262,29 @@
         body.dark .bento-header h3 { color: #ffffff; }
 
         /* Specs Style */
-        .spec-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f7fafc; }
+        .spec-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px 12px; 
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        /* Zebra striping para orden visual */
+        .spec-row:nth-child(even) { background-color: #f8fafc; }
+        body.dark .spec-row:nth-child(even) { background-color: rgba(255,255,255,0.02); }
+
+        /* Micro-interacción al pasar el mouse */
+        .spec-row:hover { background-color: #fff5f0; transform: translateX(5px); }
+        body.dark .spec-row:hover { background-color: rgba(255,102,0,0.1); }
+
         body.dark .spec-row { border-color: #2d3748; }
-        .spec-row .label { color: #64748b; font-size: 0.9rem; font-weight: 600; }
+        .spec-label-group { display: flex; align-items: center; gap: 8px; }
+        .spec-label-group i { color: #ff6600; font-size: 0.8rem; opacity: 0.8; }
+        .spec-row .label { color: #64748b; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
         body.dark .spec-row .label { color: #94a3b8; }
-        .spec-row .value { font-weight: 700; color: #2d3748; }
+        .spec-row .value { font-weight: 700; color: #2d3748; font-size: 0.95rem; text-align: right; }
         body.dark .spec-row .value { color: #e2e8f0; }
 
         /* Chips */
