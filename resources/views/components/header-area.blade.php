@@ -57,8 +57,16 @@
                                                 </ul>
                                             </div>
                                             <div class="mega-menu-promo">
+                                                @php
+                                                    // Intentamos obtener un producto aleatorio de la categoría
+                                                    $randomProduct = (isset($category->products) && $category->products->isNotEmpty()) 
+                                                        ? $category->products->random() 
+                                                        : null;
+                                                    // Prioridad: Imagen de producto aleatorio > Imagen de categoría > Placeholder
+                                                    $promoImage = $randomProduct ? asset($randomProduct->image) : ($category->image ?? asset('themes/celmovil/img/promo-placeholder.jpg'));
+                                                @endphp
                                                 <div class="promo-card">
-                                                    <img src="{{ $category->image ?? asset('themes/celmovil/img/promo-placeholder.jpg') }}"
+                                                    <img src="{{ $promoImage }}"
                                                         alt="{{ $category->description }}">
                                                     <div class="promo-content">
                                                         <h5>Lo mejor en {{ $category->description }}</h5>
@@ -94,8 +102,6 @@
                 </div>
             </div>
         </div>
-
-
     </header>
 
     <!-- Search Overlay -->
