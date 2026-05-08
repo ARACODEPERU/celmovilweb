@@ -126,24 +126,22 @@ class ServicesController extends Controller
         );
 
         $porduct = Product::find($id);
-
-        $porduct->update([
+        
+        $data = [
             'usine' => $request->get('usine'),
             'interne' => $request->get('interne'),
             'description' => $request->get('description'),
-            'image' => 'img/imagen-no-disponible.jpg',
             'purchase_prices' => 0,
             'sale_prices' => json_encode($request->get('sale_prices')),
-            'sizes' => null,
-            'stock_min' => 1,
-            'stock' => 1,
-            'presentations' => false,
-            'is_product' => false,
-            'type_sale_affectation_id' => '10',
-            'type_purchase_affectation_id' => '10',
-            'type_unit_measure_id' => 'ZZ',
             'status' => $request->get('status') ? true : false
-        ]);
+        ];
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $data['image'] = $path;
+        }
+
+        $porduct->update($data);
     }
 
     /**
