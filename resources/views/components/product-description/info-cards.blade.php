@@ -201,12 +201,12 @@
                     </div>
                     <div class="download-chips">
                         @if ($product->additional3)
-                            <a href="{{ $product->additional3 }}" target="_blank" class="chip">
-                                <i class="fa fa-file-pdf-o"></i> Manual de Usuario
+                            <a href="{{ $product->additional3 }}" target="_blank" class="chip" style="font-size: 1.4rem;">
+                                <i class="fa fa-file-pdf-o" style="font-size: 1.8rem;"></i> Manual de Usuario
                             </a>
                         @endif
-                        <a href="https://api.whatsapp.com/send?phone=51921197459" class="chip whatsapp">
-                            <i class="fa fa-whatsapp"></i> Soporte Técnico
+                        <a href="https://api.whatsapp.com/send?phone=51921197459" class="chip whatsapp" style="font-size: 1.4rem;">
+                            <i class="fa fa-whatsapp" style="font-size: 1.8rem;"></i> Soporte Técnico
                         </a>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
 
         .bento-inner { padding: 30px; height: 100%; display: flex; flex-direction: column; }
         .bento-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-        .bento-icon { width: 40px; height: 40px; background: #fff5f0; color: #ff6600; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .bento-icon { width: 40px; height: 40px; background: #fff5f0; color: #ff6600; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
         body.dark .bento-icon { background: rgba(255, 102, 0, 0.1); }
         .bento-header h3 { font-size: 1.3rem; font-weight: 800; margin: 0; }
         body.dark .bento-header h3 { color: #ffffff; }

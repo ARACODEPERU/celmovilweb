@@ -272,7 +272,7 @@
         }
 
         .product-header-v2 .product-category-v2 {
-            font-size: 0.8rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--primary-color-v2);
             text-transform: uppercase;
@@ -292,7 +292,7 @@
         }
 
         .product-header-v2 .product-sku-v2 {
-            font-size: 0.85rem;
+            font-size: 1.1rem;
             color: #9ca3af;
         }
 
