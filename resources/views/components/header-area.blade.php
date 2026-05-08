@@ -59,15 +59,21 @@
                                             <div class="mega-menu-promo">
                                                 @php
                                                     // Intentamos obtener un producto aleatorio de la categoría
-                                                    $randomProduct = (isset($category->products) && $category->products->isNotEmpty()) 
-                                                        ? $category->products->random() 
-                                                        : null;
-                                                    // Prioridad: Imagen de producto aleatorio > Imagen de categoría > Placeholder
-                                                    $promoImage = $randomProduct ? asset('storage/' . $randomProduct->image) : ($category->image ?? asset('themes/celmovil/img/promo-placeholder.jpg'));
+                                                    $randomProduct = (isset($category->products) && $category->products->isNotEmpty()) ? $category->products->random() : null;
+                                                    
+                                                    $rawPath = $randomProduct ? $randomProduct->image : ($category->image ?? null);
+                                                    
+                                                    if ($rawPath) {
+                                                        // Verificamos si la ruta necesita el prefijo 'storage/' basándonos en el estándar de la web
+                                                        $promoImage = (str_starts_with($rawPath, 'http') || str_starts_with($rawPath, 'storage/') || str_starts_with($rawPath, 'themes/') || str_starts_with($rawPath, 'img/')) 
+                                                            ? asset($rawPath) 
+                                                            : asset('storage/' . $rawPath);
+                                                    } else {
+                                                        $promoImage = asset('themes/celmovil/img/promo-placeholder.jpg');
+                                                    }
                                                 @endphp
                                                 <div class="promo-card">
-                                                    <img src="{{ $promoImage }}"
-                                                        alt="{{ $category->description }}" style="width: 100px; height: 100px;">
+                                                    <img src="{{ $promoImage }}" alt="{{ $category->description }}">
                                                     <div class="promo-content">
                                                         <h5>Lo mejor en {{ $category->description }}</h5>
                                                         <a href="{{ route('web_producto_principal', $category->id) }}"
@@ -77,6 +83,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             @endif
                         </li>
                     @empty
@@ -348,6 +355,69 @@
 
         .mega-menu-promo {
             flex: 1;
+            padding-left: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+            border: 1px solid #edf2f7;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        body.dark .promo-card {
+            background: #1a202c;
+            border-color: #2d3748;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+
+        .promo-card img {
+            width: 100%;
+            height: 130px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .promo-content h5 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+        body.dark .promo-content h5 { color: white; }
+
+        .btn-promo {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white !important;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .btn-promo:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
         }
 
         .mega-menu-list h4 {
