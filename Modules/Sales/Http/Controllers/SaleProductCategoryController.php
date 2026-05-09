@@ -148,13 +148,13 @@ class SaleProductCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'description' => 'required'
         ]);
 
-        $category = SaleProductCategory::find($request->get('id'));
+        $category = SaleProductCategory::findOrFail($id);
 
         $category->update([
             'description' => $request->get('description'),
@@ -162,11 +162,26 @@ class SaleProductCategoryController extends Controller
             'status' => $request->get('status') ? true : false
         ]);
 
-        $path = null;
         $destination = 'uploads/ventas/categorias';
-        $base64Image = $request->get('image');
 
-        if ($base64Image) {
+        // 1. Manejo de archivo binario (Estándar de Inertia/Formularios)
+        if ($request->hasFile('image')) {
+            // Borrar imagen anterior si existe
+            if ($category->image && Storage::disk('public')->exists($category->image)) {
+                Storage::disk('public')->delete($category->image);
+            }
+
+            // Generamos un nombre único basado en el tiempo para evitar problemas de caché
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileName = $category->id . '_' . time() . '.' . $extension;
+            $path = $request->file('image')->storeAs($destination, $fileName, 'public');
+
+            $category->image = $path;
+            $category->save();
+        }
+        // 2. Manejo de Base64 (Tu lógica actual mejorada)
+        elseif ($request->get('image') && str_starts_with($request->get('image'), 'data:image')) {
+            $base64Image = $request->get('image');
             $fileData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
             if (PHP_OS == 'WINNT') {
                 $tempFile = tempnam(sys_get_temp_dir(), 'img');
@@ -181,12 +196,13 @@ class SaleProductCategoryController extends Controller
 
 
             if ($file) {
-                // $original_name = strtolower(trim($file->getClientOriginalName()));
-                // $file_name = time() . rand(100, 999) . $original_name;
-                $original_name = strtolower(trim($file->getClientOriginalName()));
-                $original_name = str_replace(" ", "_", $original_name);
-                $extension = $file->getClientOriginalExtension();
-                $file_name = $category->id . '.' . $extension;
+                // Borrar anterior
+                if ($category->image && Storage::disk('public')->exists($category->image)) {
+                    Storage::disk('public')->delete($category->image);
+                }
+
+                $extension = str_replace('image/', '', $mime);
+                $file_name = $category->id . '_' . time() . '.' . $extension;
                 $path = Storage::disk('public')->putFileAs($destination, $file, $file_name);
 
                 $category->image = $path;
