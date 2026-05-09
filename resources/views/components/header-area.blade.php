@@ -350,12 +350,12 @@
         }
 
         .mega-menu-list {
-            flex: 3;
+            flex: 2;
         }
 
         .mega-menu-promo {
             flex: 1;
-            padding-left: 40px;
+            padding-left: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -413,10 +413,12 @@
             display: inline-block;
             background: var(--primary-color);
             color: white !important;
-            padding: 8px 25px;
+            width: 100%;
+            padding: 3px 10px;
             border-radius: 50px;
             font-size: 12px;
             font-weight: 800;
+            text-align: center;
             text-transform: uppercase;
             transition: var(--transition);
         }
