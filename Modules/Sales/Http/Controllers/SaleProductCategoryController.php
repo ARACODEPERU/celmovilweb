@@ -148,8 +148,9 @@ class SaleProductCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->get('id');
         $this->validate($request, [
             'description' => 'required'
         ]);
@@ -186,7 +187,7 @@ class SaleProductCategoryController extends Controller
             if (PHP_OS == 'WINNT') {
                 $tempFile = tempnam(sys_get_temp_dir(), 'img');
             } else {
-                $tempFile = tempnam('/var/www/html/img_temp', 'img');
+                $tempFile = tempnam(sys_get_temp_dir(), 'img');
             }
             file_put_contents($tempFile, $fileData);
             $mime = mime_content_type($tempFile);
