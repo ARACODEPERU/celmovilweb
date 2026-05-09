@@ -414,9 +414,9 @@
             background: var(--primary-color);
             color: white !important;
             width: 100%;
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 12px;
+            padding: 1px 10px;
+            border-radius: 30px;
+            font-size: 13px;
             font-weight: 800;
             text-align: center;
             text-transform: uppercase;
