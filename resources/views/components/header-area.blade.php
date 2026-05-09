@@ -366,8 +366,11 @@
             border-radius: 20px;
             padding: 20px;
             width: 100%;
-            max-width: 250px;
-            text-align: center;
+            max-width: 420px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-align: left;
             border: 1px solid #edf2f7;
             transition: var(--transition);
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
@@ -385,18 +388,22 @@
         }
 
         .promo-card img {
-            width: 100%;
-            height: 130px;
+            width: 140px;
+            height: 110px;
             object-fit: contain;
-            margin-bottom: 15px;
+            margin-bottom: 0;
             border-radius: 12px;
             transition: var(--transition);
         }
 
+        .promo-content {
+            flex: 1;
+        }
+
         .promo-content h5 {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: var(--text-dark);
             line-height: 1.3;
         }
