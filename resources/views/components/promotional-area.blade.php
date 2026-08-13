@@ -1,7 +1,7 @@
 
 <div>
     <section class="promotional-modern section-padding">
-        <div class="container">
+        {{-- <div class="container">
             <div class="promo-card">
                 <div class="promo-grid">
                     <!-- Text Content -->
@@ -20,6 +20,32 @@
                     </div>
 
                     <!-- Image Content -->
+                    <div class="promo-image-wrapper">
+                        <a href="{{ $promotional[3]->content }}">
+                            <img src="{{ $promotional[4]->content }}" alt="Promoción" loading="lazy">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="promo-content">
+                        <span class="promo-tag">{{ $promotional[0]->content }}</span>
+                        <h2 class="promo-title">
+                            {!! nl2br(e($promotional[1]->content)) !!}
+                        </h2>
+                        <div class="promo-line"></div>
+                        <p class="promo-desc">
+                            {{ $promotional[2]->content }}
+                        </p>
+                        <a href="{{ $promotional[3]->content }}" class="btn-promo-modern">
+                            Acceder Ahora <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-7">
                     <div class="promo-image-wrapper">
                         <a href="{{ $promotional[3]->content }}">
                             <img src="{{ $promotional[4]->content }}" alt="Promoción" loading="lazy">
@@ -61,10 +87,10 @@
 
         .promo-content {
             padding: 40px;
-            display: flex;
+            /* display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start; /* Left align */
+            align-items: flex-start; */
         }
 
         @media (max-width: 991px) {
