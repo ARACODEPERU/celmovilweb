@@ -38,7 +38,7 @@
                                     <div class="col-xs-12 col-md-3" style="padding: 15px;">
                                         <div class="product-item" style="padding: 15px;  height: 380px;">
                                             <div class="pro-img">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                <a href="{{ route('web_producto_descripcion', $product->slug) }}">
                                                     <img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 220px; height: 220px;">
                                                 </a>
                                             </div>
@@ -57,7 +57,7 @@
                                             </div> --}}
                                             <div class="">
                                                 <div class="product-title">
-                                                    <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                    <a href="{{ route('web_producto_descripcion', $product->slug) }}">
                                                         <h6><b>{{ $product->name }}</b></h6>
                                                     </a>
                                                     @if ($product->discount > 0)
@@ -82,12 +82,12 @@
                                                 </div>
                                             </div>
                                             {{-- <div class="info" style="margin-top: 10px;">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                                <a href="{{ route('web_producto_descripcion', $product->slug) }}" class="btn btn-celmovil">
                                                     Obtén un <b>Desc. 4%</b>
                                                 </a>
                                             </div> --}}
                                             <div style="margin-top: 10px;">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}" class="btn btn-celmovil">
+                                                <a href="{{ route('web_producto_descripcion', $product->slug) }}" class="btn btn-celmovil">
                                                     <b>Más Información </b>
                                                 </a>
                                             </div>

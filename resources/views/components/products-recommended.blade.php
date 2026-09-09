@@ -18,7 +18,7 @@
                                         <div class="product-card">
                                             <!-- Image -->
                                             <div class="product-image">
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                <a href="{{ route('web_producto_descripcion', $product->slug) }}">
                                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
                                                         loading="lazy" />
                                                 </a>
@@ -31,7 +31,7 @@
                                             <!-- Content -->
                                             <div class="product-info">
                                                 <h3 class="product-title">
-                                                    <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                                    <a href="{{ route('web_producto_descripcion', $product->slug) }}">
                                                         {{ $product->name }}
                                                     </a>
                                                 </h3>
@@ -49,7 +49,7 @@
                                                     @endif
                                                 </div>
 
-                                                <a href="{{ route('web_producto_descripcion', $product->id) }}"
+                                                <a href="{{ route('web_producto_descripcion', $product->slug) }}"
                                                     class="btn-view-product">
                                                     Ver Detalles <i class="fa fa-arrow-right"></i>
                                                 </a>

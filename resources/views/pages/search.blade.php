@@ -16,7 +16,7 @@
                 <div class="models-grid">
                     @foreach ($products as $product)
                         <div class="model-card">
-                            <a href="{{ route('web_producto_descripcion', $product->id) }}" class="model-link">
+                            <a href="{{ route('web_producto_descripcion', $product->slug) }}" class="model-link">
                                 <div class="model-image-box" style="height: 300px; display: flex; align-items: center; justify-content: center; background: #f9fafb; padding: 20px; overflow: hidden; position: relative;">
                                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
                                     <div class="model-overlay">

@@ -15,6 +15,7 @@ use Modules\Onlineshop\Entities\AcaModality;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
 use Modules\Onlineshop\Entities\OnliItemSpecification;
+use Illuminate\Support\Str;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Client\Payment\PaymentClient;
@@ -106,6 +107,7 @@ class OnliItemController extends Controller
             'item_id'                   => 'required|unique:onli_items,item_id',
             'entitie'                   => 'required',
             'name'                      => 'required|max:255',
+            'slug'                      => 'nullable|max:255',
             ///'description'               => 'required|max:255',
             'description'               => 'required',
 
@@ -132,11 +134,14 @@ class OnliItemController extends Controller
         $image_url = $request->get('image_view');
         $path = str_replace(asset('storage/'), "", $image_url);
 
+        $slug = $request->get('slug') ? Str::slug($request->get('slug')) : OnliItem::generateUniqueSlug($request->get('name'));
+
         $onliItem =  OnliItem::create([
             'item_id'                   => $request->get('item_id'),
             'entitie'                   => $request->get('entitie'),
             'category_description'      => $request->get('category_description'),
             'name'                      => $request->get('name'),
+            'slug'                      => $slug,
             'description'               => $request->get('description'),
             'scor'                      => 4,
             'price'                     => $request->get('price'),
@@ -259,6 +264,7 @@ class OnliItemController extends Controller
 
         $this->validate($request, [
             'name'                      => 'required|max:255',
+            'slug'                      => 'nullable|max:255',
             ///'description'               => 'required|max:255',
             'description'               => 'required',
             //'image'                     => 'required|image|mimes:jpeg,png,gif|max:2048'
@@ -283,6 +289,7 @@ class OnliItemController extends Controller
         $OnliItem = OnliItem::find($id);
 
         $OnliItem->name = $request->get('name');
+        $OnliItem->slug = $request->get('slug') ? Str::slug($request->get('slug')) : OnliItem::generateUniqueSlug($request->get('name'), $id);
         $OnliItem->description = $request->get('description');
         $OnliItem->category_description = $request->get('category_description');
         $OnliItem->price = $request->get('price');

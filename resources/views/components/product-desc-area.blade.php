@@ -8,7 +8,7 @@
                             <div class="col-xs-12">
                                 <div class="product-item">
                                     <div class="pro-img">
-                                        <a href="{{ route('web_producto_descripcion', $product->id) }}"><img
+                                        <a href="{{ route('web_producto_descripcion', $product->slug) }}"><img
                                                 src="{{ asset($product->image) }}" alt="{{ $product->name }}" /></a>
                                         <div class="tag-n-s">
                                             <span>-{{ (($product->discount ?? 0) / $product->price) * 100 }}%</span>
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="riding-title clearfix">
                                         <div class="product-title">
-                                            <a href="{{ route('web_producto_descripcion', $product->id) }}">
+                                            <a href="{{ route('web_producto_descripcion', $product->slug) }}">
                                                 <h5>{{ $product->name }}</h5>
                                             </a>
                                             <p>

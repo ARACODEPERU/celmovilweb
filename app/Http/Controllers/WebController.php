@@ -224,7 +224,7 @@ class WebController extends Controller
         ]);
     }
 
-    public function productodescripcion($id)
+    public function productodescripcion($slug)
     {
         $banner = CmsSection::where('component_id', 'banner_productos_descripcion_5')  //siempre cambiar el id del componente
             ->join('cms_section_items', 'section_id', 'cms_sections.id')
@@ -239,8 +239,12 @@ class WebController extends Controller
         $product = OnliItem::with('images')
             ->with('product')
             ->with('specifications')
-            ->where('id', $id)
+            ->where('slug', $slug)
             ->first();
+
+        if (!$product) {
+            abort(404);
+        }
         //dd($product->category_description);
 
         return view('pages/producto-descripcion', [

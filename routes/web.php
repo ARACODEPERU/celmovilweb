@@ -30,7 +30,14 @@ Route::get('/libro-de-reclamaciones', [WebController::class, 'claims'])->name('w
 Route::post('/send-claim',  [WebController::class, 'send_claim'])->name('send_claim');
 
 // STORE //
-Route::get('/producto-descripcion/{id}/in', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
+Route::get('/productos/{slug}', [WebController::class, 'productodescripcion'])->name('web_producto_descripcion');
+Route::get('/producto-descripcion/{id}/in', function ($id) {
+    $item = \Modules\Onlineshop\Entities\OnliItem::find($id);
+    if ($item) {
+        return redirect()->route('web_producto_descripcion', $item->slug, 301);
+    }
+    abort(404);
+});
 Route::get('/producto-categoria/{id}/list', [WebController::class, 'productocategoria'])->name('web_producto_categoria');
 Route::get('/productos/{id}/list', [WebController::class, 'productoPrincipal'])->name('web_producto_principal');
 Route::get('/buscar-productos', [WebController::class, 'searchProducts'])->name('web_search_products');

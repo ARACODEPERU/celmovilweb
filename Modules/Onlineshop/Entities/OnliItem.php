@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class OnliItem extends Model
 {
@@ -17,6 +18,7 @@ class OnliItem extends Model
         'entitie',
         'category_description',
         'name',
+        'slug',
         'description',
         'scor',
         'price',
@@ -51,6 +53,36 @@ class OnliItem extends Model
     public function product(): HasOne
     {
         return $this->hasOne(Product::class, 'id', 'item_id');
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
+     * Genera un slug único basado en el nombre.
+     */
+    public static function generateUniqueSlug($name, $ignoreId = null): string
+    {
+        $baseSlug = Str::slug($name);
+        $slug = $baseSlug;
+        $counter = 1;
+
+        $query = static::where('slug', $slug);
+        if ($ignoreId) {
+            $query->where('id', '!=', $ignoreId);
+        }
+        while ($query->exists()) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+            $query = static::where('slug', $slug);
+            if ($ignoreId) {
+                $query->where('id', '!=', $ignoreId);
+            }
+        }
+
+        return $slug;
     }
 
     public function specifications(): HasMany

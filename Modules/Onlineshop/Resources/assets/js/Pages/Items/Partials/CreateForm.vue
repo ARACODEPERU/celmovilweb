@@ -1,5 +1,6 @@
 <script setup>
 import { useForm, Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -45,6 +46,7 @@ const form = useForm({
     entitie: 'Modules-Academic-Entities-AcaCourse',
     category_description: null,
     name: null,
+    slug: null,
     description: null,
     price: null,
     discount: null,
@@ -69,6 +71,27 @@ watch(() => form.description, (newValue) => {
     form.countCharacters = newValue.length;
 });
 
+const autoSlug = ref(false);
+
+watch(() => form.name, (newValue) => {
+    if (newValue && !form.slug) {
+        form.slug = newValue.toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    } else if (newValue && form.slug && !autoSlug.value) {
+        // Si el slug fue auto-generado previamente, regenerarlo
+        form.slug = newValue.toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    }
+});
+
 const createItem = () => {
     form.post(route('onlineshop_items_store'), {
         forceFormData: true,
@@ -88,6 +111,8 @@ const createItem = () => {
 const setItemsData = (data,type) => {
     form.type = type;
     form.item_id = data.id;
+    form.slug = null; // Reset slug when selecting a new item
+    autoSlug.value = false;
     if(type == 1){
         titles.value.additional = 'Tipo'
         titles.value.additional1 = 'Modalidad'
@@ -209,6 +234,19 @@ const removeSpecifications= (key) => {
                         />
                         <InputError :message="form.errors.name" class="mt-2" />
                         <InputError :message="form.errors.item_id" class="mt-2" />
+                    </div>
+                    <div>
+                        <InputLabel for="slug" value="Slug / URL" />
+                        <TextInput
+                            id="slug"
+                            v-model="form.slug"
+                            type="text"
+                            class="block w-full mt-1"
+                            autocomplete="off"
+                            placeholder="ejemplo-mi-producto"
+                        />
+                        <p class="mt-1 text-sm text-gray-500">Se genera automáticamente del nombre. Puedes editarlo manualmente.</p>
+                        <InputError :message="form.errors.slug" class="mt-2" />
                     </div>
                     <div v-if="form.type == 1" class="mt-2">
                         <InputLabel for="description" value="Descripción" />

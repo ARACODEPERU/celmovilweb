@@ -1,5 +1,6 @@
 <script setup>
 import { useForm, Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -41,6 +42,7 @@ const form = useForm({
     type: props.type,
     category_description: props.item.category_description,
     name: props.item.name,
+    slug: props.item.slug,
     description: props.item.description,
     price: props.item.price,
     discount: props.item.discount,
@@ -155,6 +157,20 @@ const handleFileChange2 = (event) => {
                     autocomplete="off"
                 />
                 <InputError :message="form.errors.name" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-6">
+                <InputLabel for="slug" value="Slug / URL" />
+                <TextInput
+                    id="slug"
+                    v-model="form.slug"
+                    type="text"
+                    class="block w-full mt-1"
+                    autocomplete="off"
+                    placeholder="ejemplo-mi-producto"
+                />
+                <p class="mt-1 text-sm text-gray-500">Identificador único para la URL del producto.</p>
+                <InputError :message="form.errors.slug" class="mt-2" />
             </div>
             
             <div v-if="form.type == 1" class="col-span-6 sm:col-span-6 ">
