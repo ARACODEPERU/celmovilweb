@@ -1,5 +1,10 @@
 @extends('layouts.celmovil')
 
+@section('seo_title', $seo_title)
+@section('seo_description', $seo_description)
+@section('og_image', $og_image)
+@section('og_type', $og_type ?? 'product')
+
 @section('content')
 
     <!-- header - section start -->

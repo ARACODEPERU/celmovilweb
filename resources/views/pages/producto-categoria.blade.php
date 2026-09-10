@@ -1,4 +1,9 @@
 @extends('layouts.celmovil')
+
+@section('seo_title', $seo_title)
+@section('seo_description', $seo_description)
+@section('og_image', $og_image)
+
 @section('content')
     <!-- Preloader Start
                                                                                                                                                                                                                                 <div class="preloader">                                                                                                                                                                              </div>

@@ -5,11 +5,42 @@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>CELMOVIL || Perú</title>
+
+    {{-- SEO: Título por página --}}
+    <title>@yield('seo_title', 'CELMOVIL || Perú - Motos Eléctricas en Trujillo, Perú')</title>
+
+    {{-- SEO: Descripción por página --}}
     <meta name="description"
-        content="- Líder en Motos Eléctricas La Libertad
-                - Representante de las marcas TOP
-                - Servicio Técnico">
+        content="@yield('seo_description', 'Líder en Motos Eléctricas La Libertad. Representante de las marcas TOP. Servicio Técnico especializado. Envíos a todo el Perú.')">
+
+    {{-- SEO: Canonical URL --}}
+    @hasSection('seo_canonical')
+        <link rel="canonical" href="@yield('seo_canonical')">
+    @endif
+
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="@yield('og_url', url()->current())">
+    <meta property="og:title" content="@yield('seo_title', 'CELMOVIL || Perú - Motos Eléctricas en Trujillo, Perú')">
+    <meta property="og:description" content="@yield('seo_description', 'Líder en Motos Eléctricas La Libertad. Representante de las marcas TOP. Servicio Técnico especializado.')">
+    <meta property="og:image" content="@yield('og_image', asset('themes/celmovil/img/logoCM.png'))">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="CELMOVIL">
+    <meta property="og:locale" content="es_PE">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('seo_title', 'CELMOVIL || Perú - Motos Eléctricas en Trujillo, Perú')">
+    <meta name="twitter:description" content="@yield('seo_description', 'Líder en Motos Eléctricas La Libertad. Representante de las marcas TOP.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('themes/celmovil/img/logoCM.png'))">
+
+    {{-- Schema.org JSON-LD --}}
+    @hasSection('jsonld')
+        <script type="application/ld+json">
+            @yield('jsonld')
+        </script>
+    @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/celmovil/img/logoIcon.png') }}">
