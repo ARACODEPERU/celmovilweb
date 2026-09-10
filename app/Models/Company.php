@@ -33,6 +33,18 @@ class Company extends Model
         'isotipo_dark'
     ];
 
+    protected $appends = ['logo_url', 'isotipo_url'];
+
+    public function getLogoUrlAttribute(): ?string
+    {
+        return $this->logo ? asset('storage/' . $this->logo) : null;
+    }
+
+    public function getIsotipoUrlAttribute(): ?string
+    {
+        return $this->isotipo ? asset('storage/' . $this->isotipo) : null;
+    }
+
     public function district(): HasOne
     {
         return $this->hasOne(District::class, 'id', 'ubigeo');
