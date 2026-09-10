@@ -24,14 +24,16 @@ const initials = computed(() => {
             <div class="relative z-10">
                 <span class="inline-flex items-center gap-3">
                     <template v-if="logoUrl">
-                        <img :src="logoUrl" alt="Logo" class="h-12 w-auto max-w-[220px] rounded-lg bg-white/95 p-1.5 shadow-lg object-contain" />
+                        <img :src="logoUrl" alt="Logo" class="h-20 w-auto max-w-[320px] object-contain drop-shadow-lg" />
                     </template>
                     <template v-else>
-                        <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 backdrop-blur text-white text-lg font-bold shadow-lg border border-white/25">
-                            {{ initials }}
+                        <span class="flex items-center gap-3">
+                            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 backdrop-blur text-white text-lg font-bold shadow-lg border border-white/25">
+                                {{ initials }}
+                            </span>
+                            <span class="text-white text-xl font-semibold tracking-wide">{{ companyName }}</span>
                         </span>
                     </template>
-                    <span class="text-white text-xl font-semibold tracking-wide">{{ companyName }}</span>
                 </span>
             </div>
 
@@ -61,12 +63,14 @@ const initials = computed(() => {
             <!-- Mobile header with logo -->
             <div class="lg:hidden flex items-center gap-3 px-6 pt-8 pb-2">
                 <template v-if="logoUrl">
-                    <img :src="logoUrl" alt="Logo" class="h-11 w-auto max-w-[180px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white p-1 object-contain" />
+                    <img :src="logoUrl" alt="Logo" class="h-14 w-auto max-w-[220px] object-contain" />
                 </template>
                 <template v-else>
-                    <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white text-base font-bold shadow">{{ initials }}</span>
+                    <span class="flex items-center gap-3">
+                        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white text-base font-bold shadow">{{ initials }}</span>
+                        <span class="text-lg font-semibold text-gray-900 dark:text-white">{{ companyName }}</span>
+                    </span>
                 </template>
-                <span class="text-lg font-semibold text-gray-900 dark:text-white">{{ companyName }}</span>
             </div>
 
             <main class="flex-1 flex items-center justify-center p-6 sm:p-10">
