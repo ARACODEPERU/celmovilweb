@@ -83,53 +83,20 @@
                         </div>
                     </div>
                     <div class="max-w-full overflow-x-auto">
-                        <table class="w-full table-auto">
-                            <thead class="border-b border-stroke">
-                                <tr class="bg-gray-50 text-left dark:bg-meta-4">
-                                    <th scope="col" class="py-1 px-4 text-center font-medium text-black dark:text-white">
-                                        Acciones
-                                    </th>
-                                    <th scope="col" class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Fecha
-                                    </th>
-                                    <th scope="col" class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Nombre
-                                    </th>
-                                    <th scope="col" class="py-1 px-4 font-medium text-black dark:text-white">
-                                        Email
-                                    </th>
-                                    <th scope="col" class="py-1 px-4 font-medium text-black dark:text-white">
-                                        TOKEN
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(user, index) in users.data" :key="user.id" class="">
-                                    <td class="text-center px-2 py-2">
-                                        <Link :href="route('users.edit', user.id)" class="mr-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            <font-awesome-icon :icon="faPencilAlt" />
-                                        </Link>
-                                        <button type="button" class="mr-1 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                                            @click="destroy(user.id)"
-                                            >
-                                            <font-awesome-icon :icon="faTrashAlt" />
-                                        </button>
-                                    </td>
-                                    <td class="px-2 py-2">
-                                        {{  new Date(user.created_at).toLocaleDateString('es-ES') }}
-                                    </td>
-                                    <td class="px-2 py-2">
-                                        {{ user.name }}
-                                    </td>
-                                    <td class="px-2 py-2">
-                                        {{ user.email }}
-                                    </td>
-                                    <td class="px-2 py-2">
-                                        {{ user.api_token }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <TableData :items="users.data" :headers="[ { key: '_actions', label: 'Acciones', classes: 'text-center' }, { key: 'created_at', label: 'Fecha' }, { key: 'name', label: 'Nombre' }, { key: 'email', label: 'Email' }, { key: 'api_token', label: 'TOKEN' } ]" empty-message="Sin usuarios">
+                            <template #cell-created_at="{ item }">
+                                {{ new Date(item.created_at).toLocaleDateString('es-ES') }}
+                            </template>
+                            <template #actions="{ item }">
+                                <Link :href="route('users.edit', item.id)" class="mr-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <font-awesome-icon :icon="faPencilAlt" />
+                                </Link>
+                                <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                    @click="destroy(item.id)">
+                                    <font-awesome-icon :icon="faTrashAlt" />
+                                </button>
+                            </template>
+                        </TableData>
                     </div>
 
                     <Pagination :data="users" />

@@ -17,6 +17,10 @@ use App\Http\Controllers\WebController;
 use App\Mail\StudentRegistrationMailable;
 use Illuminate\Support\Facades\Mail;
 use Modules\Blog\Http\Controllers\BlogController;
+use App\Models\Sale;
+use App\Models\Product;
+use App\Models\Person;
+use App\Models\LocalSale;
 
 // SITE WEB //
 Route::get('/', [WebController::class, 'index'])->name('cms_principal');
@@ -80,7 +84,36 @@ Route::get('/email', function () {
 // });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $localId = auth()->user()->local_id ?? null;
+    $now = \Carbon\Carbon::now();
+    $today = $now->format('Y-m-d');
+    $monthStart = $now->format('Y-m-01');
+    $isAdmin = auth()->user()->hasRole('admin') ? true : false;
+    $salesFilter = function ($q) use ($localId, $isAdmin) {
+        if ($isAdmin || !$localId) { return $q; }
+        return $q->where('local_id', $localId);
+    };
+    $salesToday = \App\Models\Sale::where('status', true)
+        ->whereDate('created_at', $today)
+        ->when(!$isAdmin && $localId, $salesFilter)
+        ->sum('total');
+    $salesMonth = \App\Models\Sale::where('status', true)
+        ->whereBetween('created_at', [$monthStart, $now->format('Y-m-d H:i:s')])
+        ->sum('total');
+    $productsCount = \App\Models\Product::count();
+    $stockTotal = \App\Models\Product::sum('stock');
+    $lowStock = \App\Models\Product::whereColumn('stock', '<=', 'stock_min')->count();
+    $clientsCount = \App\Models\Person::where('is_client', true)->count();
+    $establishmentsCount = \App\Models\LocalSale::count();
+    return Inertia::render('Dashboard', [
+        'sales_today' => (float) $salesToday,
+        'sales_month' => (float) $salesMonth,
+        'products_count' => (int) $productsCount,
+        'stock_total' => (int) $stockTotal,
+        'low_stock_count' => (int) $lowStock,
+        'clients_count' => (int) $clientsCount,
+        'establishments_count' => (int) $establishmentsCount,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

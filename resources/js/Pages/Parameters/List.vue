@@ -81,86 +81,46 @@
                         </div>
                     </div>
                     <div class="max-w-full overflow-x-auto">
-                        <table class="w-full table-auto">
-                            <thead class="border-b border-stroke">
-                                <tr class="bg-gray-50 text-left dark:bg-meta-4">
-                                    <th class="py-4 px-4 text-center font-medium text-black dark:text-white">
-                                        Acciones
-                                    </th>
-                                    <th class="py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                                        Código
-                                    </th>
-                                    <th class="py-4 px-4 font-medium text-black dark:text-white">
-                                        Descripción
-                                    </th>
-                                    <th class="py-4 px-4 font-medium text-black dark:text-white">
-                                        Valor
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(parameter, index) in parameters" :key="parameter.id" >
-                                    <td class="text-center border-b border-stroke py-4 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                                        <Dropdown :placement="'bottomLeft'" arrow>
-                                            <button class="border py-1.5 px-2 dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm" type="button">
-                                                <font-awesome-icon :icon="faGears" />
-                                            </button>
-                                            <template #overlay>
-                                            <Menu>
-                                                <MenuItem>
-                                                    <Link :href="route('parameters_edit',parameter.id)" type="Link">Editar</Link>
-                                                </MenuItem>
-                                                <MenuItem>
-                                                    <a href="javascript:;">Eliminar</a>
-                                                </MenuItem>
-                                            </Menu>
-                                            </template>
-                                        </Dropdown>
-                                    </td>
-                                    <td class="text-center border-b border-stroke py-4 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                                        <pre>{{ parameter.parameter_code }}</pre>
-                                    </td>
-                                    <td class="border-b border-stroke py-4 px-4 dark:border-strokedark">
-                                        {{ parameter.description }}
-                                    </td>
-                                    <td class="border-b border-stroke py-4 px-4 dark:border-strokedark">
-                                        <template v-if="parameter.control_type == 'in'">
-                                            <Input 
-                                                v-model:value="parameter.value_default"
-                                                @pressEnter="updateDefaultValue(parameter.id, parameter.value_default)"
-                                            />
-                                            <small>presionar enter para guardar cambios</small>
-                                        </template>
-                                        <template v-else-if="parameter.control_type == 'sq'">
-                                            <Select
-                                                v-model:value="parameter.value_default"
-                                                style="width: 100%"
-                                                :options="JSON.parse(parameter.json_query_data).map((obj) => ({value: obj.id, label:obj.description}))"
-                                                @change="updateDefaultValue(parameter.id, parameter.value_default)"
-                                            />
-                                        </template>
-                                        <template v-else-if="parameter.control_type == 'sa'">
-                                            <Select
-                                                v-model:value="parameter.value_default"
-                                                style="width: 100%"
-                                                :options="JSON.parse(parameter.json_query_data)"
-                                                @change="updateDefaultValue(parameter.id, parameter.value_default)"
-                                            />
-                                        </template>
-                                        <template v-else-if="parameter.control_type == 'tx'">
-                                            <Textarea
-                                                v-model:value="parameter.value_default"
-                                                style="width: 100%"
-                                                show-count 
-                                                :maxlength="5000"
-                                                @change="updateDefaultValue(parameter.id, parameter.value_default)"
-                                                >
-                                            </Textarea>
-                                        </template>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <TableData :items="parameters" :headers="[ { key: '_actions', label: 'Acciones', classes: 'text-center py-4 px-4 pl-9 xl:pl-11' }, { key: 'parameter_code', label: 'Código', classes: 'text-center py-4 px-4 pl-9 xl:pl-11' }, { key: 'description', label: 'Descripción', classes: 'py-4 px-4' }, { key: 'value_default', label: 'Valor', classes: 'py-4 px-4' } ]" empty-message="Sin parámetros">
+                            <template #cell-parameter_code="{ item }">
+                                <pre>{{ item.parameter_code }}</pre>
+                            </template>
+                            <template #cell-description="{ item }">
+                                {{ item.description }}
+                            </template>
+                            <template #cell-value_default="{ item }">
+                                <template v-if="item.control_type == 'in'">
+                                    <Input v-model:value="item.value_default" @pressEnter="updateDefaultValue(item.id, item.value_default)" />
+                                    <small>presionar enter para guardar cambios</small>
+                                </template>
+                                <template v-else-if="item.control_type == 'sq'">
+                                    <Select v-model:value="item.value_default" style="width: 100%" :options="JSON.parse(item.json_query_data).map((obj) => ({value: obj.id, label: obj.description}))" @change="updateDefaultValue(item.id, item.value_default)" />
+                                </template>
+                                <template v-else-if="item.control_type == 'sa'">
+                                    <Select v-model:value="item.value_default" style="width: 100%" :options="JSON.parse(item.json_query_data)" @change="updateDefaultValue(item.id, item.value_default)" />
+                                </template>
+                                <template v-else-if="item.control_type == 'tx'">
+                                    <Textarea v-model:value="item.value_default" style="width: 100%" show-count :maxlength="5000" @change="updateDefaultValue(item.id, item.value_default)" />
+                                </template>
+                            </template>
+                            <template #actions="{ item }">
+                                <Dropdown :placement="'bottomLeft'" arrow>
+                                    <button class="border py-1.5 px-2 inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm" type="button">
+                                        <font-awesome-icon :icon="faGears" />
+                                    </button>
+                                    <template #overlay>
+                                        <Menu>
+                                            <MenuItem>
+                                                <Link :href="route('parameters_edit', item.id)" type="Link">Editar</Link>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <a href="javascript:;">Eliminar</a>
+                                            </MenuItem>
+                                        </Menu>
+                                    </template>
+                                </Dropdown>
+                            </template>
+                        </TableData>
                     </div>
                 </div>
             </div>

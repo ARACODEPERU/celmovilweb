@@ -71,33 +71,19 @@
                         </div>
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-2">
-                        <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
-                            <thead class="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
-                                <tr>
-                                    <th scope="col" class="px-6 py-2">
-                                        Acciones
-                                    </th>
-                                    <th scope="col" class="px-6 py-2">
-                                        Nombre
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(role, index) in roles.data" :key="role.id" class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500">
-                                    <td class="px-6 py-4">
-                                        <a :href="route('roles.edit',role.id)" class="mr-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            <font-awesome-icon :icon="faPencilAlt" />
-                                        </a>
-                                        <button @click="destroyRol(role.id)" type="button" class="mr-1 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                                            <font-awesome-icon :icon="faTrashAlt" />
-                                        </button>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ role.name }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <TableData :items="roles.data" :headers="[ { key: '_actions', label: 'Acciones', classes: 'px-6 py-4' }, { key: 'name', label: 'Nombre', classes: 'px-6 py-4 font-medium text-black dark:text-white' } ]" empty-message="Sin roles">
+                            <template #cell-name="{ item }">
+                                {{ item.name }}
+                            </template>
+                            <template #actions="{ item }">
+                                <a :href="route('roles.edit', item.id)" class="mr-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <font-awesome-icon :icon="faPencilAlt" />
+                                </a>
+                                <button @click="destroyRol(item.id)" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                    <font-awesome-icon :icon="faTrashAlt" />
+                                </button>
+                            </template>
+                        </TableData>
                     </div>
 
                     <Pagination :data="roles" />
