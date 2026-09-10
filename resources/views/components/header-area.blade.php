@@ -28,11 +28,29 @@
             </a>
 
             <!-- Desktop Navigation -->
+            @php
+                $currentRoute = request()->route()->getName();
+                $currentPath = request()->path();
+                
+                // Helper to check if a route is active
+                $isActive = function($routeNames) {
+                    $current = request()->route()->getName();
+                    if (is_array($routeNames)) {
+                        return in_array($current, $routeNames);
+                    }
+                    return $current === $routeNames;
+                };
+            @endphp
             <nav class="desktop-nav">
                 <ul class="nav-menu">
-                    <li><a href="{{ route('web_inicio') }}">INICIO</a></li>
+                    <li class="{{ $isActive(['web_inicio', 'cms_principal']) ? 'active' : '' }}">
+                        <a href="{{ route('web_inicio') }}">INICIO</a>
+                    </li>
                     @forelse ($categories ?? [] as $category)
-                        <li class="menu-item-has-children">
+                        @php
+                            $isCategoryActive = $currentRoute === 'web_producto_principal' && request()->route('id') == $category->id;
+                        @endphp
+                        <li class="menu-item-has-children {{ $isCategoryActive ? 'active' : '' }}">
                             <a href="{{ route('web_producto_principal', $category->id) }}">
                                 {{ $category->description }}
                                 @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
@@ -156,12 +174,18 @@
         </div>
         <div class="mobile-menu-body">
             <ul class="mobile-nav-list">
-                <li><a href="{{ route('web_inicio') }}">Inicio</a></li>
+                <li class="{{ $isActive(['web_inicio', 'cms_principal']) ? 'mobile-active' : '' }}">
+                    <div class="mobile-link-wrapper">
+                        <a href="{{ route('web_inicio') }}">INICIO</a>
+                    </div>
+                </li>
                 @forelse ($categories ?? [] as $category)
-                    <li class="mobile-has-children">
+                    @php
+                        $isMobileCategoryActive = $currentRoute === 'web_producto_principal' && request()->route('id') == $category->id;
+                    @endphp
+                    <li class="mobile-has-children {{ $isMobileCategoryActive ? 'mobile-active' : '' }}">
                         <div class="mobile-link-wrapper">
-                            <a
-                                href="{{ route('web_producto_principal', $category->id) }}">{{ $category->description }}</a>
+                            <a href="{{ route('web_producto_principal', $category->id) }}">{{ strtoupper($category->description) }}</a>
                             @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
                                 <span class="mobile-submenu-toggle"><i class='bx bx-plus'></i></span>
                             @endif
@@ -169,9 +193,7 @@
                         @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
                             <ul class="mobile-submenu">
                                 @foreach ($category->subcategories as $subcategory)
-                                    <li><a
-                                            href="{{ route('web_producto_principal', $subcategory->id) }}">{{ $subcategory->description }}</a>
-                                    </li>
+                                    <li><a href="{{ route('web_producto_principal', $subcategory->id) }}">{{ $subcategory->description }}</a></li>
                                 @endforeach
                             </ul>
                         @endif
@@ -192,7 +214,7 @@
             --text-light: #6b7280;
             --bg-light: #ffffff;
             --bg-dark: #111827;
-            --header-height: 80px;
+            --header-height: 90px;
             --transition: all 0.3s ease;
         }
 
@@ -222,6 +244,32 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            padding: 0 30px;
+        }
+
+        .top-bar-left a,
+        .top-bar-left span {
+            margin-right: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .top-bar-left a:hover {
+            color: #000000;
+        }
+
+        .top-bar-left i {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+
+        .top-bar-right {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-size: 14px;
         }
 
         .top-bar-right a {
@@ -233,8 +281,9 @@
         }
 
         .top-bar .divider {
-            margin-left: 15px;
+            margin-left: 20px;
             opacity: 0.5;
+            font-size: 16px;
         }
 
         /* Main Header */
@@ -270,6 +319,13 @@
             align-items: center;
             justify-content: space-between;
             height: 100%;
+            width: 100%;
+            padding: 0 30px;
+        }
+
+        .header-logo {
+            flex-shrink: 0;
+            margin-right: 25px;
         }
 
         .header-logo img {
@@ -279,30 +335,36 @@
 
         /* Desktop Nav */
         .desktop-nav {
-            display: none;
+            display: none !important;
+            flex: 1;
+            min-width: 0;
         }
 
         @media (min-width: 992px) {
             .desktop-nav {
-                display: block;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
             }
         }
 
         .nav-menu {
             display: flex;
-            gap: 30px;
+            gap: 8px;
+            justify-content: center;
+            width: 100%;
         }
 
         .nav-menu>li>a {
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             color: white;
-            /* Default transparent state */
-            padding: 30px 0;
+            padding: 30px 12px;
             display: flex;
             align-items: center;
             gap: 5px;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         /* #main-header.scrolled .nav-menu > li > a { color: var(--text-dark); } */
@@ -316,6 +378,26 @@
 
         .nav-menu>li:hover>a {
             color: var(--primary-color) !important;
+        }
+
+        /* Active Menu Item */
+        .nav-menu>li.active>a {
+            color: var(--primary-color) !important;
+            position: relative;
+            background: rgba(255, 102, 0, 0.12);
+            border-radius: 6px;
+        }
+
+        .nav-menu>li.active>a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px 2px 0 0;
         }
 
         /* Mega Menu */
@@ -342,6 +424,11 @@
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+        }
+
+        .mega-menu .container {
+            width: 100%;
+            padding: 0 30px;
         }
 
         .mega-menu-inner {
@@ -461,16 +548,28 @@
         /* Header Icons */
         .header-actions {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .icon-btn {
-            font-size: 22px;
+            font-size: 26px;
             color: white;
             cursor: pointer;
             position: relative;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 102, 0, 0.2);
         }
 
         /* #main-header.scrolled .icon-btn { color: var(--text-dark); } */
@@ -484,7 +583,7 @@
 
         .icon-btn:hover {
             color: var(--primary-color) !important;
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .badge {
@@ -784,16 +883,13 @@
             position: fixed;
             top: 0;
             left: -300px;
-            width: 300px;
+            width: 280px;
             height: 100%;
-            background: white;
+            background: #000000;
             z-index: 2000;
             transition: var(--transition);
-            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
-        }
-
-        body.dark .mobile-menu {
-            background: var(--bg-dark);
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
         }
 
         .mobile-menu.active {
@@ -805,122 +901,221 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        body.dark .mobile-menu-header {
-            border-bottom-color: #374151;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: #000000;
         }
 
         .mobile-menu-header img {
-            height: 40px;
+            height: 70px;
+            object-fit: contain;
         }
 
         .mobile-close {
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .mobile-close:hover {
+            background: rgba(255, 102, 0, 0.3);
+            color: var(--primary-color);
         }
 
         .mobile-nav-list {
-            padding: 20px;
+            padding: 10px 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
         }
 
         .mobile-nav-list>li {
-            border-bottom: 1px solid #f5f5f5;
-        }
-
-        body.dark .mobile-nav-list>li {
-            border-bottom-color: #374151;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            width: 100%;
         }
 
         .mobile-link-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 14px 20px;
         }
 
         .mobile-link-wrapper a {
             font-weight: 600;
             font-size: 15px;
+            color: #ffffff;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mobile-link-wrapper a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Mobile Active Menu Item */
+        .mobile-nav-list>li.mobile-active {
+            background: rgba(255, 102, 0, 0.15);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .mobile-nav-list>li.mobile-active .mobile-link-wrapper a {
+            color: var(--primary-color);
+            font-weight: 700;
         }
 
         .mobile-submenu-toggle {
-            width: 30px;
-            height: 30px;
-            background: #f5f5f5;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
+            color: white;
+            font-size: 18px;
+            transition: var(--transition);
         }
 
-        body.dark .mobile-submenu-toggle {
-            background: #374151;
+        .mobile-submenu-toggle:hover {
+            background: rgba(255, 102, 0, 0.3);
         }
 
         .mobile-submenu {
             display: none;
-            padding-left: 15px;
+            padding-left: 20px;
             padding-bottom: 10px;
-            background: #fafafa;
-        }
-
-        body.dark .mobile-submenu {
-            background: #1f2937;
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .mobile-submenu li a {
             display: block;
-            padding: 8px 0;
+            padding: 10px 20px;
             font-size: 14px;
-            color: var(--text-light);
+            color: #d1d5db;
+            transition: var(--transition);
         }
 
-        /* Responsive Adjustments */
+        .mobile-submenu li a:hover {
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        /* Responsive: Tablets */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .nav-menu {
+                gap: 4px;
+            }
+            .nav-menu>li>a {
+                padding: 30px 8px;
+                font-size: 13px;
+            }
+            .header-actions {
+                gap: 12px;
+            }
+        }
+
+        /* Responsive: Mobile */
         @media (max-width: 768px) {
             .top-bar {
-                display: none;
+                display: none !important;
+            }
+
+            .desktop-nav {
+                display: none !important;
             }
 
             #main-header {
                 top: 0;
-                background: rgba(255, 255, 255, 0.95);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                height: 65px;
+                background: rgba(0, 0, 0, 0.95);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             }
 
             body.dark #main-header {
                 background: rgba(17, 24, 39, 0.95);
             }
 
-            .nav-menu>li>a {
-                color: var(--text-dark);
+            .header-container {
+                padding: 0 12px;
+                gap: 10px;
             }
 
-            body.dark .nav-menu>li>a {
+            .header-logo {
+                margin-right: auto;
+            }
+
+            .header-logo img {
+                height: 45px;
+            }
+
+            .mobile-menu-trigger {
+                display: flex !important;
                 color: white;
+                font-size: 28px;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+            }
+
+            .header-actions {
+                gap: 8px;
+                margin-left: 0;
             }
 
             .icon-btn {
-                color: var(--text-dark);
+                font-size: 20px;
+                width: 36px;
+                height: 36px;
+                color: white;
+                background: rgba(255, 255, 255, 0.1);
             }
 
             body.dark .icon-btn {
                 color: white;
             }
 
-            .mobile-menu-trigger {
-                color: var(--text-dark);
-            }
-
-            body.dark .mobile-menu-trigger {
-                color: white;
-            }
-
             .cart-sidebar {
                 width: 100%;
                 right: -100%;
+            }
+        }
+
+        /* Responsive: Small phones */
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 0 10px;
+                gap: 8px;
+            }
+
+            .header-logo img {
+                height: 40px;
+            }
+
+            .mobile-menu-trigger {
+                font-size: 24px;
+                width: 36px;
+                height: 36px;
+            }
+
+            .icon-btn {
+                font-size: 18px;
+                width: 32px;
+                height: 32px;
+            }
+
+            .header-actions {
+                gap: 6px;
             }
         }
     </style>

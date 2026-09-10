@@ -372,7 +372,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <p class="text-center" style="margin: 0;">
-                            Copyright &copy; 2025 - Desarrollado por <a href="https://www.aracodeperu.com/" style="color: var(--primary-color, #ff6600); font-weight: 600;">ARACODE SMART SOLUTIONS</a>
+                            Copyright &copy; {{ date('Y') }} - Desarrollado por <a href="https://www.aracodeperu.com/" style="color: var(--primary-color, #ff6600); font-weight: 600;">ARACODE SMART SOLUTIONS</a>
                         </p>
                     </div>
                 </div>
