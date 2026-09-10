@@ -15,7 +15,7 @@ const initials = computed(() => {
 <template>
     <div class="min-h-screen bg-gray-50 dark:bg-boxdark flex flex-col lg:flex-row">
         <!-- Brand Panel (desktop) -->
-        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#0188EE] via-[#016BBE] to-[#013B66] relative overflow-hidden flex-col justify-between p-10 xl:p-16">
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#111111] via-[#000000] to-[#1a1a1a] relative overflow-hidden flex-col justify-between p-10 xl:p-16">
             <!-- Decorative shapes -->
             <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/5"></div>
             <div class="absolute -bottom-32 -left-16 w-[28rem] h-[28rem] rounded-full bg-white/5"></div>
@@ -41,12 +41,12 @@ const initials = computed(() => {
                 <h1 class="text-3xl xl:text-4xl font-bold text-white leading-tight">
                     Solución de ventas adaptable y amigable multiplataforma.
                 </h1>
-                <p class="mt-4 text-blue-100/90 text-base leading-relaxed">
+                <p class="mt-4 text-gray-300 text-base leading-relaxed">
                     Gestiona tus productos, ventas e inventario desde cualquier lugar, en cualquier momento.
                 </p>
             </div>
 
-            <div class="relative z-10 flex items-center gap-8 text-blue-100/70 text-sm">
+            <div class="relative z-10 flex items-center gap-8 text-gray-400 text-sm">
                 <span class="flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     Multiplataforma
