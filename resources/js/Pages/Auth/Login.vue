@@ -34,7 +34,7 @@ const submit = () => {
         <Head title="Acceso" />
 
         <div>
-            <span class="mb-1.5 block text-sm font-medium text-primary">Empezar</span>
+            <span class="mb-1.5 block text-sm font-medium text-[#0188EE]">Empezar</span>
             <h2 class="mb-2 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                 Iniciar sesión
             </h2>
@@ -117,7 +117,7 @@ const submit = () => {
                     type="submit"
                     :class="{ 'opacity-60 cursor-not-allowed': form.processing }"
                     :disabled="form.processing"
-                    class="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3.5 font-medium text-white transition hover:bg-opacity-90 focus:ring-4 focus:ring-primary/25"
+                    class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#4EAE33] py-3.5 font-medium text-white transition hover:bg-[#459A2C] focus:ring-4 focus:ring-[#4EAE33]/25"
                 >
                     <svg v-if="form.processing" class="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />

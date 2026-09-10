@@ -15,7 +15,7 @@ const initials = computed(() => {
 <template>
     <div class="min-h-screen bg-gray-50 dark:bg-boxdark flex flex-col lg:flex-row">
         <!-- Brand Panel (desktop) -->
-        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary via-blue-800 to-blue-950 relative overflow-hidden flex-col justify-between p-10 xl:p-16">
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#0188EE] via-[#016BBE] to-[#013B66] relative overflow-hidden flex-col justify-between p-10 xl:p-16">
             <!-- Decorative shapes -->
             <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/5"></div>
             <div class="absolute -bottom-32 -left-16 w-[28rem] h-[28rem] rounded-full bg-white/5"></div>

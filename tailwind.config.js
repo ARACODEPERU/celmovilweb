@@ -24,7 +24,10 @@ module.exports = {
             bodydark: "#AEB7C0",
             bodydark1: "#DEE4EE",
             bodydark2: "#8A99AF",
-            primary: "#3C50E0",
+            primary: "#0188EE", // Azul Aracode
+            "aracode-green": "#4EAE33", // Verde Aracode (acentos, botones)
+            "aracode-blue": "#0188EE", // Azul Aracode (elementos principales, enlaces)
+            "aracode-red": "#F11600", // Rojo Aracode (llamados de atención)
             blue: "#0000FF",
             "blue-50": "#EBF5FF",
             "blue-100": "#E1EFFE",
@@ -100,8 +103,8 @@ module.exports = {
             "meta-7": "#FF6766",
             "meta-8": "#F0950C",
             "meta-9": "#E5E7EB",
-            success: "#219653",
-            danger: "#D34053",
+            success: "#4EAE33", // Verde Aracode
+            danger: "#F11600", // Rojo Aracode
             warning: "#FFA70B",
         },
         screens: {
